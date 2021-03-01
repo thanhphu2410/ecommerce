@@ -1,0 +1,10 @@
+.error {
+    color: #e46a76;
+}
+.btn-none,
+.btn-none:focus {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
