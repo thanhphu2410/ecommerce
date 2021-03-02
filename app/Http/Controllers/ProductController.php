@@ -34,6 +34,15 @@ class ProductController extends Controller
         return success('products.index');
     }
 
+    public function show(Product $product)
+    {
+        $product->load(['images', 'tags', 'sizes']);
+
+        $image = $product->images->first();
+        
+        return view('backend.product.show', compact('product', 'image'));
+    }
+
     public function edit(Product $product)
     {
         $tags = Tag::all();

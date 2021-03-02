@@ -35,6 +35,10 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td class="text-nowrap">
+                                    <a href="{{ route('products.show', ['product' => $product->id ]) }}" 
+                                        data-toggle="tooltip" data-original-title="View"> 
+                                        <i class="fa fa-eye m-r-15" aria-hidden="true"></i>
+                                    </a>
                                     <a href="{{ route('products.edit', ['product' => $product->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="Edit"> 
                                         <i class="fa fa-pencil text-inverse m-r-10"></i> 

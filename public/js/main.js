@@ -75,14 +75,14 @@
     });
 
     //Canvas Menu
+    var check = false;
     $(".canvas__open").on("click", function() {
-        $(".offcanvas-menu-wrapper").addClass("active");
-        $(".offcanvas-menu-overlay").addClass("active");
-    });
-
-    $(".offcanvas-menu-overlay").on("click", function() {
-        $(".offcanvas-menu-wrapper").removeClass("active");
-        $(".offcanvas-menu-overlay").removeClass("active");
+        if (!check) {
+            $(".offcanvas-menu-wrapper").addClass("active");
+        } else {
+            $(".offcanvas-menu-wrapper").removeClass("active");
+        }
+        check = !check;
     });
 
     /*-----------------------
