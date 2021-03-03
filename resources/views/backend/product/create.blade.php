@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-group">
                             <label>Product Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ old('name') }}" autocomplete="off">
                             @error('name') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -57,15 +57,15 @@
                         </div>
 
                         <div class="form-group">
-                            <h5 class="m-t-30">Select tags</h5>
-                            @foreach ($tags as $tag)
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="tag{{ $tag->id }}" 
-                                    value="{{ $tag->id }}" name="tags[]">
-                                    <label class="custom-control-label" for="tag{{ $tag->id }}">{{ $tag->name }}</label>
+                            <h5 class="m-t-30">Select Sub Category</h5>
+                            @foreach ($subCategories as $subCategory)
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="subcategory{{ $subCategory->id }}" 
+                                    value="{{ $subCategory->id }}" name="sub_category_id">
+                                    <label class="custom-control-label" for="subcategory{{ $subCategory->id }}">{{ $subCategory->name }}</label>
                                 </div>
                             @endforeach
-                            @error('tags') 
+                            @error('sub_category_id') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>

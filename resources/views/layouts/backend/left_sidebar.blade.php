@@ -1,7 +1,5 @@
 <aside class="left-sidebar">
-    <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
-        <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="user-pro"> 
@@ -38,22 +36,11 @@
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
                         <i class="mdi mdi-tag-multiple"></i>
-                        <span class="hide-menu">Tags</span> 
+                        <span class="hide-menu">Sub Categories</span> 
                     </a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{ route('tags.index') }}">All Tags</a></li>
-                        <li><a href="{{ route('tags.create') }}">New Tag</a></li>
-                    </ul>
-                </li>
-                <li> 
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
-                        <i class="ti-shopping-cart"></i>
-                        <span class="hide-menu">Products</span> 
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{ route('products.index') }}">All Products</a></li>
-                        <li><a href="{{ route('products.create') }}">New Product</a></li>
+                        <li><a href="{{ route('sub-categories.index') }}">All Sub Categories</a></li>
+                        <li><a href="{{ route('sub-categories.create') }}">New Sub Category</a></li>
                     </ul>
                 </li>
                 <li> 
@@ -67,9 +54,18 @@
                         <li><a href="{{ route('sizes.create') }}">New Size</a></li>
                     </ul>
                 </li> 
+                <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="ti-shopping-cart"></i>
+                        <span class="hide-menu">Products</span> 
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('products.index') }}">All Products</a></li>
+                        <li><a href="{{ route('products.create') }}">New Product</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
-        <!-- End Sidebar navigation -->
     </div>
-    <!-- End Sidebar scroll-->
 </aside>

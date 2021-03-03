@@ -23,7 +23,10 @@
                         @csrf
                         <div class="form-group">
                             <label>Category Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ old('name') }}" required>
+                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ old('name') }}" autocomplete="off">
+                            @error('name') 
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Image</label>

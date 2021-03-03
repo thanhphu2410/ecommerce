@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
+use App\Models\Size;
 use App\Models\Product;
-use App\Models\Category;
-use Facades\App\Models\ProductImage;
+use App\Models\SubCategory;
 use App\Events\ProductStoreEvent;
 use App\Events\ProductUpdateEvent;
+use Facades\App\Models\ProductImage;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
-use App\Models\Size;
 
 class ProductController extends Controller
 {
@@ -22,9 +21,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        $tags = Tag::all();
+        $subCategories = SubCategory::all();
         $sizes = Size::all();
-        return view('backend.product.create', compact('tags', 'sizes'));
+        return view('backend.product.create', compact('subCategories', 'sizes'));
     }
 
     public function store(ProductStoreRequest $request)
@@ -36,7 +35,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load(['images', 'tags', 'sizes']);
+        $product->load(['images', 'sizes']);
 
         $image = $product->images->first();
         
@@ -45,12 +44,12 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $tags = Tag::all();
+        $subCategories = SubCategory::all();
         $sizes = Size::all();
+
+        $product->load('sizes');
         
-        $product->load(['tags', 'sizes']);
-        
-        return view('backend.product.edit', compact('product', 'tags', 'sizes'));
+        return view('backend.product.edit', compact('product', 'subCategories', 'sizes'));
     }
 
     public function update(ProductUpdateRequest $request, Product $product)

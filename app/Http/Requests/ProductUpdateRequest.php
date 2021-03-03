@@ -28,7 +28,7 @@ class ProductUpdateRequest extends FormRequest
             'price' => 'required|numeric',
             'quantity' => 'required|numeric|min:1',
             'description' => 'nullable',
-            'tags' => 'required',
+            'sub_category_id' => 'required',
             'sizes' => 'required'
         ];
     }

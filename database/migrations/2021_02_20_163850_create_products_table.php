@@ -19,7 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('price');
             $table->string('quantity');
             $table->bigInteger('discount')->default('0');
-            $table->string('description')->nullable();
+            $table->string('description')->nullable()->default('This is a description');
+            $table->foreignId('sub_category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

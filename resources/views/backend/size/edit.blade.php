@@ -24,7 +24,10 @@
                         @csrf
                         <div class="form-group">
                             <label>Category Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ $size->name }}">
+                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ $size->name }}" autocomplete="off">
+                            @error('name') 
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-danger"> <i class="fa fa-pencil"></i> Save</button>
                     </form>

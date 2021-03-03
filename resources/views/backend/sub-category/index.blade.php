@@ -2,13 +2,13 @@
 @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Tags</h4>
+        <h4 class="text-themecolor">Sub Categories</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">Tags</li>
+                <li class="breadcrumb-item active">Sub Categories</li>
             </ol>
         </div>
     </div>
@@ -17,25 +17,25 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Tags Table</h4>
+                <h4 class="card-title">Sub Categories Table</h4>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Tag Name</th>
+                                <th>Sub Category Name</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tags as $tag)
+                            @foreach ($subCategories as $subCategory)
                             <tr>
-                                <td>{{ $tag->name }}</td>
+                                <td>{{ $subCategory->name }}</td>
                                 <td class="text-nowrap">
-                                    <a href="{{ route('tags.edit', ['tag' => $tag->id ]) }}" 
+                                    <a href="{{ route('sub-categories.edit', ['sub_category' => $subCategory->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="Edit"> 
                                         <i class="fa fa-pencil text-inverse m-r-10"></i> 
                                     </a>
-                                    <form action="{{ route('tags.destroy', ['tag' => $tag->id ]) }}" method="post" class="d-inline">
+                                    <form action="{{ route('sub-categories.destroy', ['sub_category' => $subCategory->id ]) }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn-none" type="submit" data-toggle="tooltip" data-original-title="Delete"> 

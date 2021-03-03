@@ -14,9 +14,9 @@ class Product extends Model
         return $this->hasMany('App\Models\ProductImage');
     }
 
-    public function tags()
+    public function subCategory()
     {
-        return $this->belongsToMany('App\Models\Tag');
+        return $this->belongsTo('App\Models\SubCategory');
     }
 
     public function sizes()

@@ -237,7 +237,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item sale">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
+                            <div class="product__item__pic set-bg" data-setbg="https://preview.colorlib.com/theme/malefashion/img/product/product-12.jpg">
                                 <span class="label">Sale</span>
                                 <ul class="product__hover">
                                     <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>

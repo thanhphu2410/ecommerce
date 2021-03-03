@@ -42,8 +42,8 @@
                                             <td>{{ $product->sizes->implode('name', ', ') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Tags</td>
-                                            <td>{{ $product->tags->implode('name', ', ') }}</td>
+                                            <td>Sub Category</td>
+                                            <td>{{ $product->subCategory->name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Reviews</td>

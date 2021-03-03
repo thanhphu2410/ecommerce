@@ -18,14 +18,14 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::view('/shop', 'frontend.shop');
+Route::view('/shop', 'frontend.shop')->name('shop');
 Route::view('/checkout', 'frontend.checkout');
 Route::view('/product', 'frontend.product_details');
 Route::view('/cart', 'frontend.cart');
 Route::view('/blog', 'frontend.blog');
 Route::view('/dashboard', 'backend.index')->name('dashboard');
 Route::resource('categories', 'CategoryController');
-Route::resource('tags', 'TagController');
+Route::resource('sub-categories', 'SubCategoryController');
 Route::resource('products', 'ProductController');
 Route::resource('sizes', 'SizeController');
 

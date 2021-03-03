@@ -29,7 +29,7 @@ class ProductStoreRequest extends FormRequest
             'quantity' => 'required|numeric|min:1',
             'description' => 'nullable',
             'images' => 'required',
-            'tags' => 'required',
+            'sub_category_id' => 'required',
             'sizes' => 'required'
         ];
     }

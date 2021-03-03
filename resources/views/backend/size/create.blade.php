@@ -23,7 +23,10 @@
                         @csrf
                         <div class="form-group">
                             <label>Size Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ old('name') }}" autocomplete="off">
+                            @error('name') 
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
                     </form>

@@ -61,7 +61,7 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="/login">Sign in</a>
+                                <a href="{{ route('login') }}">Sign in</a>
                                 @auth
                                     <a href="/logout">Log out</a>
                                     @if (Auth::id() == 1)
@@ -70,7 +70,7 @@
                                 @endauth
                             </div>
                             <div class="header__top__hover">
-                                <span>Usd <i class="fa fa-caret-down"></i></span>
+                                <span>Usd <i class="fa fa-caret-down" aria-hidden="true"></i></span>
                                 <ul>
                                     <li>USD</li>
                                     <li>EUR</li>
@@ -92,8 +92,8 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="{{ route('shop') }}">Shop</a></li>
                             <li>
                                 <a href="#">Pages</a>
                                 <ul class="dropdown">

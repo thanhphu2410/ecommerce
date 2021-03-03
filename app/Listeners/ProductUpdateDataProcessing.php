@@ -11,8 +11,8 @@ class ProductUpdateDataProcessing
 {
     public function handle(ProductUpdateEvent $event)
     {
-        //delete "tags" key on $event->data for mass update
-        unset($event->data['tags'], $event->data['sizes']);
+        //delete "sizes" key on $event->data for mass update
+        unset($event->data['sizes']);
 
         $event->product->update($event->data);
 
@@ -21,8 +21,6 @@ class ProductUpdateDataProcessing
             ProductImage::storeProductImage($event->product);
         }
         
-        $event->product->tags()->sync(request('tags'));
-
         $event->product->sizes()->sync(request('sizes'));
     }
 }
