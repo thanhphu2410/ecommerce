@@ -28,4 +28,30 @@ class Product extends Model
     {
         $this->attributes['name'] = Str::title($value);
     }
+
+    public function getBestSellerAttribute()
+    {
+        return $this->select('products.*')
+            ->join('order_details', 'products.id', '=', 'order_details.product_id')
+            ->groupBy('order_details.product_id')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit(8)
+            ->with('images')
+            ->get();
+    }
+
+    public function getNewArrivalAttribute()
+    {
+        return $this->latest()->limit(8)->with('images')->get();
+    }
+
+    public function getHotSaleAttribute()
+    {
+        return $this->orderBy('discount', 'desc')->limit(8)->with('images')->get();
+    }
+
+    public function getFirstImageAttribute()
+    {
+        return $this->images->first()->path;
+    }
 }

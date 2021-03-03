@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
-
-Route::view('/shop', 'frontend.shop')->name('shop');
+Route::get('/', 'LandingPageController@index');
+Route::get('shop', 'ShopController@index')->name('shop');
+Route::get('product-details/{product}', 'ShopController@show')->name('product_details');
 Route::view('/checkout', 'frontend.checkout');
 Route::view('/product', 'frontend.product_details');
 Route::view('/cart', 'frontend.cart');

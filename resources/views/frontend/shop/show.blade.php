@@ -6,62 +6,35 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product__details__breadcrumb">
-                        <a href="./index.html">Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Product Details</span>
+                        <a href="/">Home</a>
+                        <i class="fa fa-caret-right mx-2" aria-hidden="true"></i>
+                        <a href="{{ route('shop') }}">Shop</a>
+                        <i class="fa fa-caret-right mx-2" aria-hidden="true"></i>
+                        <span>{{ $product->name }}</span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <ul class="nav nav-tabs" role="tablist">
+                        @foreach ($product->images as $image)
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-1.png"></div>
+                            <a class="nav-link @if($loop->first) active @endif" data-toggle="tab" href="#tab{{ $image->id }}" role="tab">
+                                <div class="product__thumb__pic set-bg img-thumbnail" data-setbg="/{{ $image->path }}"></div>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-2.png"></div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-3.png"></div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-4.png">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="col-lg-6 col-md-9">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        @foreach ($product->images as $image)
+                        <div class="tab-pane @if($loop->first) active @endif" id="tab{{ $image->id }}" role="tabpanel">
                             <div class="product__details__pic__item">
-                                <img src="img/shop-details/product-big-2.png" alt="">
+                                <img class="img-thumbnail" src="/{{ $image->path }}" alt="">
                             </div>
                         </div>
-                        <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="img/shop-details/product-big-3.png" alt="">
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="img/shop-details/product-big.png" alt="">
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-4" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="img/shop-details/product-big-4.png" alt="">
-                                <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" class="video-popup"><i class="fa fa-play"></i></a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -72,7 +45,7 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
                     <div class="product__details__text">
-                        <h4>Hooded thermal anorak</h4>
+                        <h4>{{ $product->name }}</h4>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -81,26 +54,16 @@
                             <i class="fa fa-star-o"></i>
                             <span> - 5 Reviews</span>
                         </div>
-                        <h3>$270.00 <span>70.00</span></h3>
-                        <p>Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
-                            cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
-                            with placket.
-                        </p>
+                        <h3>{{ $product->price }} VND <span>70.00</span></h3>
+                        <p>{{ $product->description }}</p>
                         <div class="product__details__option">
                             <div class="product__details__option__size">
                                 <span>Size:</span>
-                                <label for="xxl">xxl
-                                <input type="radio" id="xxl">
-                                </label>
-                                <label class="active" for="xl">xl
-                                <input type="radio" id="xl">
-                                </label>
-                                <label for="l">l
-                                <input type="radio" id="l">
-                                </label>
-                                <label for="sm">s
-                                <input type="radio" id="sm">
-                                </label>
+                                @foreach ($product->sizes as $size)
+                                    <label for="size{{ $size->id }}">
+                                        {{ $size->name }} <input type="radio" id="size{{ $size->id }}">
+                                    </label>
+                                @endforeach
                             </div>
                             <div class="product__details__option__color">
                                 <span>Color:</span>

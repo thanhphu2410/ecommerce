@@ -7,7 +7,7 @@
                     <h3 class="p-2">{{ $product->name }}</h3>
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="white-box text-center"> <img src="/{{ $image->path }}" class="img-responsive">
+                            <div class="white-box text-center"> <img src="/{{ $product->first_image }}" class="img-responsive">
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-6">

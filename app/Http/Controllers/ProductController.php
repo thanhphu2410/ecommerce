@@ -37,9 +37,7 @@ class ProductController extends Controller
     {
         $product->load(['images', 'sizes']);
 
-        $image = $product->images->first();
-        
-        return view('backend.product.show', compact('product', 'image'));
+        return view('backend.product.show', compact('product'));
     }
 
     public function edit(Product $product)
