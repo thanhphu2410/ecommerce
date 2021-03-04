@@ -77,7 +77,7 @@
                                 @foreach ($products ?? [] as $index=>$item)
                                     <li>
                                         {{ $products[$index]->product_name }}({{ $quantity[$item->id][0] }})
-                                        <span>{{ $item->price * $quantity[$item->id][0] }} vnd</span>
+                                        <span>{{ $item->price * $quantity[$item->id][0] }} đ</span>
                                     </li>
                                 @endforeach
                             </ul>

@@ -50,8 +50,18 @@ class Product extends Model
         return $this->orderBy('discount', 'desc')->limit(8)->with('images')->get();
     }
 
+    public function getRelatedAttribute()
+    {
+        return Product::where('sub_category_id', $this->sub_category_id)->with('images')->get();
+    }
+
     public function getFirstImageAttribute()
     {
         return $this->images->first()->path;
+    }
+
+    public function getCategoryAttribute()
+    {
+        return $this->subCategory->category;
     }
 }

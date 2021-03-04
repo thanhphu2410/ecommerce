@@ -16,6 +16,7 @@ class ShopController extends Controller
     public function show(Product $product)
     {
         $product->load(['images', 'sizes']);
-        return view('frontend.shop.show', compact('product'));
+        $relatedProducts = $product->related;
+        return view('frontend.shop.show', compact('product', 'relatedProducts'));
     }
 }

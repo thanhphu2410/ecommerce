@@ -48,6 +48,7 @@
         </div>
     </div>
 </section>
+
 <section class="banner spad">
     <div class="container">
         <div class="row">
@@ -107,12 +108,16 @@
                         <span class="label">New</span>
                         <ul class="product__hover">
                             <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
-                            <li><a href="#"><img src="{{ asset('images/search.svg') }}" width="32" alt=""></a></li>
+                            <li>
+                                <a href="{{ route('product_details', ['product' => $product->id])  }}">
+                                    <img src="{{ asset('images/search.svg') }}" width="32" alt="">
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="product__item__text">
                         <h6>{{ $product->name }}</h6>
-                        <a href="/" class="add-cart">+ Add To Cart</a>
+                        <a href="{{ route('product_details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
                         <div class="rating">
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
@@ -120,7 +125,7 @@
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <h5>{{ $product->price }} VND</h5>
+                        <h5>{{ $product->price }} đ</h5>
                         <div class="product__color__select">
                             <label for="pc-1">
                                 <input type="radio" id="pc-1">
@@ -143,12 +148,16 @@
                     <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
                         <ul class="product__hover">
                             <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
-                            <li><a href="#"><img src="{{ asset('images/search.svg') }}" width="32" alt=""></a></li>
+                            <li>
+                                <a href="{{ route('product_details', ['product' => $product->id])  }}">
+                                    <img src="{{ asset('images/search.svg') }}" width="32" alt="">
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="product__item__text">
                         <h6>{{ $product->name }}</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
+                        <a href="{{ route('product_details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -156,7 +165,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <h5>{{ $product->price }} VND</h5>
+                        <h5>{{ $product->price }} đ</h5>
                     </div>
                 </div>
             </div>
@@ -169,12 +178,16 @@
                         <span class="label">Sale</span>
                         <ul class="product__hover">
                             <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
-                            <li><a href="#"><img src="{{ asset('images/search.svg') }}" width="32" alt=""></a></li>
+                            <li>
+                                <a href="{{ route('product_details', ['product' => $product->id])  }}">
+                                    <img src="{{ asset('images/search.svg') }}" width="32" alt="">
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="product__item__text">
                         <h6>{{ $product->name }}</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
+                        <a href="{{ route('product_details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -182,8 +195,8 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <h5 class="line-through">{{ $product->price }} VND</h5>
-                        <h5>{{ $product->price }} VND</h5>
+                        <h5 class="line-through">{{ $product->price }} đ</h5>
+                        <h5>{{ $product->price }} đ</h5>
                     </div>
                 </div>
             </div>

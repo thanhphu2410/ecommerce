@@ -88,6 +88,16 @@
     /*-----------------------
         Hero Slider
     ------------------------*/
+    $("#owl-example").owlCarousel({
+        loop: true,
+        items: 4,
+        nav: true,
+        autoplayTimeout: 2000,
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true
+    });
+
     $(".hero__slider").owlCarousel({
         loop: true,
         margin: 0,

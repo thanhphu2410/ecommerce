@@ -224,7 +224,7 @@
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
                                 </div>
-                                <h5>{{ $product->price }} VND</h5>
+                                <h5>{{ $product->price }} đ</h5>
                             </div>
                         </div>
                     </div>

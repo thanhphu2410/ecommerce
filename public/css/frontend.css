@@ -3412,6 +3412,10 @@ input:focus {
     transition: 0.5s;
 }
 
+.primary-btn {
+    border: 1px solid black;
+}
+
 .site-btn:hover,
 .product__details__cart__option .primary-btn:hover,
 .cart__total .primary-btn:hover,
