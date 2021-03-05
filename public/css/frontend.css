@@ -372,7 +372,7 @@ ol {
 }
 
 .header__top__hover span i {
-    font-size: 20px;
+    font-size: 13px;
     position: relative;
     top: 3px;
     right: 2px;
@@ -3467,6 +3467,104 @@ input:focus {
 .page-item.active .page-link {
     border: 1px solid black !important;
     border-radius: 50% !important;
+}
+
+.screen-reader {
+    width: var(--screenReaderWidth, 1px) !important;
+    height: var(--screenReaderHeight, 1px) !important;
+    padding: var(--screenReaderPadding, 0) !important;
+    border: var(--screenReaderBorder, none) !important;
+
+    position: var(--screenReaderPosition, absolute) !important;
+    clip: var(--screenReaderClip, rect(1px, 1px, 1px, 1px)) !important;
+    overflow: var(--screenReaderOverflow, hidden) !important;
+}
+
+.page__group .rating {
+    --uiRatingColor: var(--ratingColor, #eee);
+    --uiRatingColorActive: var(--ratingColorActive, #ffcc00);
+
+    display: var(--ratingDisplay, flex);
+    font-size: var(--ratingSize, 1rem);
+    color: var(--uiRatingColor);
+}
+
+.rating__item {
+    cursor: pointer;
+    position: relative;
+}
+
+.rating__item {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+}
+
+.rating__star {
+    display: block;
+    width: 1em;
+    height: 1em;
+
+    fill: currentColor;
+    stroke: var(--ratingStroke, #222);
+    stroke-width: var(--ratingStrokeWidth, 1px);
+}
+
+.page__group .rating:hover,
+.page__group
+    .rating__control:nth-of-type(1):checked
+    ~ .rating__item:nth-of-type(1),
+.page__group
+    .rating__control:nth-of-type(2):checked
+    ~ .rating__item:nth-of-type(-n + 2),
+.page__group
+    .rating__control:nth-of-type(3):checked
+    ~ .rating__item:nth-of-type(-n + 3),
+.page__group
+    .rating__control:nth-of-type(4):checked
+    ~ .rating__item:nth-of-type(-n + 4),
+.page__group
+    .rating__control:nth-of-type(5):checked
+    ~ .rating__item:nth-of-type(-n + 5) {
+    color: var(--uiRatingColorActive);
+}
+
+.rating__item:hover ~ .rating__item {
+    color: var(--uiRatingColor);
+}
+
+.page__group .rating {
+    --ratingSize: 2rem;
+    --ratingColor: #eee;
+    --ratingColorActive: #ffcc00;
+}
+
+.page__demo {
+    margin: auto;
+}
+
+.page__group {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.page__hint {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 641px) {
+    .page__demo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page__group {
+        margin-left: 3.5rem;
+        margin-right: 3.5rem;
+    }
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

@@ -14,6 +14,26 @@
         Preloader
     --------------------*/
     $(window).on("load", function() {
+        $("#summernote").summernote({
+            placeholder: "Leave your feedback",
+            tabsize: 2,
+            height: 80,
+            toolbar: [
+                ["style", ["style"]],
+                ["font", ["bold", "underline"]],
+                ["insert", ["picture"]]
+            ],
+            callbacks: {
+                onImageUpload: function(files) {
+                    // var image = $("<img>").attr(
+                    //     "src",
+                    //     "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+                    // );
+                    // $("#summernote").summernote("insertNode", image[0]);
+                }
+            }
+        });
+
         $(".loader").fadeOut();
         $("#preloder")
             .delay(200)
@@ -91,9 +111,8 @@
     $("#owl-example").owlCarousel({
         loop: true,
         items: 4,
-        nav: true,
-        autoplayTimeout: 2000,
-        smartSpeed: 1200,
+        autoplayTimeout: 3000,
+        smartSpeed: 500,
         autoHeight: false,
         autoplay: true
     });
@@ -102,17 +121,12 @@
         loop: true,
         margin: 0,
         items: 1,
-        dots: false,
-        nav: true,
-        navText: [
-            "<span class='arrow_left'><span/>",
-            "<span class='arrow_right'><span/>"
-        ],
         animateOut: "fadeOut",
         animateIn: "fadeIn",
         smartSpeed: 1200,
         autoHeight: false,
-        autoplay: false
+        autoplayTimeout: 3000,
+        autoplay: true
     });
 
     /*--------------------------

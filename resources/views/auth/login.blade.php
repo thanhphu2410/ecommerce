@@ -1,9 +1,12 @@
 @extends('layouts.frontend.app')
 @section('content')
     @if ($errors->first())
-    <div class="alert alert-danger alert-login" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ $errors->first() }}
-    </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     @endif
     <section class="m-5" style="min-height: 430px;">
         <div class="container">
@@ -15,7 +18,7 @@
                             @csrf
                             <div class="form-group">
                                 <input type="email" name="email" placeholder="Email Address" class="form-control"
-                                    value="{{ old('name') }}" required>
+                                    value="{{ old('name') }}" required autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password" placeholder="Password" class="form-control" required>
@@ -32,19 +35,19 @@
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="name" placeholder="Name" class="form-control"
-                                    value="{{ old('name') }}" required>
+                                    value="{{ old('name') }}" required autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" placeholder="Email Address" class="form-control"
-                                    value="{{ old('email') }}" required>
+                                    value="{{ old('email') }}" required autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <input type="text" name="phone" placeholder="Phone Number" class="form-control"
-                                    value="{{ old('phone') }}" required>
+                                    value="{{ old('phone') }}" required autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <input type="text" name="address" placeholder="Address" class="form-control"
-                                    value="{{ old('address') }}" required>
+                                    value="{{ old('address') }}" required autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password" placeholder="Password" class="form-control"
