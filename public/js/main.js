@@ -20,8 +20,8 @@
             height: 80,
             toolbar: [
                 ["style", ["style"]],
-                ["font", ["bold", "underline"]],
-                ["insert", ["picture"]]
+                ["font", ["bold", "underline"]]
+                // ["insert", ["picture"]]
             ],
             callbacks: {
                 onImageUpload: function(files) {

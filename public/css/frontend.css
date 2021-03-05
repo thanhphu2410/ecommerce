@@ -3543,7 +3543,6 @@ input:focus {
 }
 
 .page__group {
-    margin-bottom: 2rem;
     text-align: center;
 }
 
@@ -3565,6 +3564,11 @@ input:focus {
         margin-left: 3.5rem;
         margin-right: 3.5rem;
     }
+}
+
+.error {
+    color: red;
+    font-weight: bold;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

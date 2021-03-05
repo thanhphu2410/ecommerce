@@ -1,5 +1,6 @@
 .error {
     color: #e46a76;
+    font-weight: bold;
 }
 .btn-none,
 .btn-none:focus {

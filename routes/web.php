@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'LandingPageController@index');
 Route::get('shop', 'ShopController@index')->name('shop');
 Route::get('product-details/{product}', 'ShopController@show')->name('product_details');
+Route::post('comment/{product}', 'ShopController@comment')->name('comment');
 Route::view('/checkout', 'frontend.checkout');
 Route::view('/product', 'frontend.product_details');
 Route::view('/cart', 'frontend.cart');
 Route::view('/blog', 'frontend.blog');
+
 Route::view('/dashboard', 'backend.index')->name('dashboard');
 Route::resource('categories', 'CategoryController');
 Route::resource('sub-categories', 'SubCategoryController');

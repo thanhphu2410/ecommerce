@@ -134,68 +134,91 @@
                                 <div class="tab-pane" id="tabs-6" role="tabpanel">
                                     <div class="product__details__tab__content">
                                         <div class="product__details__tab__content__item">
-                                            <div class="page">
-                                                <div class="page__demo">
-                                                    <div class="page__group">
-                                                        <span class="page__hint">Please rating</span>
-                                                        <div class="rating">
-                                                            <input type="radio" name="rating-star"
-                                                                class="rating__control screen-reader" id="rc1">
-                                                            <input type="radio" name="rating-star"
-                                                                class="rating__control screen-reader" id="rc2">
-                                                            <input type="radio" name="rating-star"
-                                                                class="rating__control screen-reader" id="rc3">
-                                                            <input type="radio" name="rating-star"
-                                                                class="rating__control screen-reader" id="rc4">
-                                                            <input type="radio" name="rating-star"
-                                                                class="rating__control screen-reader" id="rc5">
-                                                            <label for="rc1" class="rating__item">
-                                                                <svg class="rating__star">
-                                                                    <use xlink:href="#star"></use>
-                                                                </svg>
-                                                                <span class="screen-reader">1</span>
-                                                            </label>
-                                                            <label for="rc2" class="rating__item">
-                                                                <svg class="rating__star">
-                                                                    <use xlink:href="#star"></use>
-                                                                </svg>
-                                                                <span class="screen-reader">2</span>
-                                                            </label>
-                                                            <label for="rc3" class="rating__item">
-                                                                <svg class="rating__star">
-                                                                    <use xlink:href="#star"></use>
-                                                                </svg>
-                                                                <span class="screen-reader">3</span>
-                                                            </label>
-                                                            <label for="rc4" class="rating__item">
-                                                                <svg class="rating__star">
-                                                                    <use xlink:href="#star"></use>
-                                                                </svg>
-                                                                <span class="screen-reader">4</span>
-                                                            </label>
-                                                            <label for="rc5" class="rating__item">
-                                                                <svg class="rating__star">
-                                                                    <use xlink:href="#star"></use>
-                                                                </svg>
-                                                                <span class="screen-reader">5</span>
-                                                            </label>
+                                            <form action="{{ route('comment', ['product' => $product->id]) }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                                <div class="page mb-3">
+                                                    <div class="page__demo">
+                                                        <div class="page__group">
+                                                            <span class="page__hint">Please rating</span>
+                                                            <div class="rating">
+                                                                <input type="radio" name="rating" value="1"
+                                                                    class="rating__control screen-reader" id="rc1" checked>
+                                                                <input type="radio" name="rating" value="2"
+                                                                    class="rating__control screen-reader" id="rc2">
+                                                                <input type="radio" name="rating" value="3"
+                                                                    class="rating__control screen-reader" id="rc3">
+                                                                <input type="radio" name="rating" value="4"
+                                                                    class="rating__control screen-reader" id="rc4">
+                                                                <input type="radio" name="rating" value="5"
+                                                                    class="rating__control screen-reader" id="rc5">
+                                                                <label for="rc1" class="rating__item">
+                                                                    <svg class="rating__star">
+                                                                        <use xlink:href="#star"></use>
+                                                                    </svg>
+                                                                    <span class="screen-reader">1</span>
+                                                                </label>
+                                                                <label for="rc2" class="rating__item">
+                                                                    <svg class="rating__star">
+                                                                        <use xlink:href="#star"></use>
+                                                                    </svg>
+                                                                    <span class="screen-reader">2</span>
+                                                                </label>
+                                                                <label for="rc3" class="rating__item">
+                                                                    <svg class="rating__star">
+                                                                        <use xlink:href="#star"></use>
+                                                                    </svg>
+                                                                    <span class="screen-reader">3</span>
+                                                                </label>
+                                                                <label for="rc4" class="rating__item">
+                                                                    <svg class="rating__star">
+                                                                        <use xlink:href="#star"></use>
+                                                                    </svg>
+                                                                    <span class="screen-reader">4</span>
+                                                                </label>
+                                                                <label for="rc5" class="rating__item">
+                                                                    <svg class="rating__star">
+                                                                        <use xlink:href="#star"></use>
+                                                                    </svg>
+                                                                    <span class="screen-reader">5</span>
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    @error('rating') 
+                                                        <div class="error text-center">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
+                                                
+                                                <textarea id="summernote" name="body"></textarea>
+                                                <button type="submit" class="btn btn-success mt-3">Send</button>
+                                            </form>
+                                        </div>
+                                        @foreach ($reviews as $review)
+                                        <div class="row p-3 border-bottom">
+                                            <div class="row col-3 align-items-start">
+                                                    <img src="https://lh3.googleusercontent.com/a-/AOh14GjknvkuiHdyeEAHbSEulmzR8j3Hum167AIoZtTZtg=s192-c-rg-br100" alt="" width="64" class="mr-3">
+                                                    <div>
+                                                        <p class="font-weight-bold">{{ $review->user->name }}</p>
+                                                        <p>Joined at {{ $review->user->created_at->format('d-m-Y') }}</p>
+                                                    </div>
                                             </div>
-                                            <div id="summernote"></div>
+                                            <div class="col-9">
+                                                <div class="rating">
+                                                    @for ($i = 0; $i < $review->rating; $i++)
+                                                    <i class="fa fa-star"></i>
+                                                    @endfor
+
+                                                    @for ($i = 5; $i > $review->rating; $i--)
+                                                    <i class="fa fa-star-o"></i>
+                                                    @endfor
+                                                    <span> - 5 Reviews</span>
+                                                </div>
+                                                <p>{!! $review->body !!}</p>
+                                            </div>
                                         </div>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Material used</h5>
-                                            <p>Polyester is deemed lower quality due to its none natural quality’s. Made
-                                                from synthetic materials, not natural like wool. Polyester suits become
-                                                creased easily and are known for not being breathable. Polyester suits
-                                                tend to have a shine to them compared to wool and cotton suits, this can
-                                                make the suit look cheap. The texture of velvet is luxurious and
-                                                breathable. Velvet is a great choice for dinner party jacket and can be
-                                                worn all year round.
-                                            </p>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-7" role="tabpanel">

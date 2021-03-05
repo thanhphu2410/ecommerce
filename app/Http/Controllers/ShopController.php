@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Review;
 
 class ShopController extends Controller
 {
@@ -17,6 +18,13 @@ class ShopController extends Controller
     {
         $product->load(['images', 'sizes']);
         $relatedProducts = $product->related;
-        return view('frontend.shop.show', compact('product', 'relatedProducts'));
+        $reviews = Review::all();
+        return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews'));
+    }
+    
+    public function comment(ReviewRequest $request)
+    {
+        Review::create($request->validated());
+        return back();
     }
 }
