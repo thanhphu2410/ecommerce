@@ -30,7 +30,7 @@
                             @foreach ($sizes as $size)
                             <tr>
                                 <td>{{ $size->name }}</td>
-                                <td class="text-nowrap">
+                                <td>
                                     <a href="{{ route('sizes.edit', ['size' => $size->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="Edit"> 
                                         <i class="fa fa-pencil text-inverse m-r-10"></i> 

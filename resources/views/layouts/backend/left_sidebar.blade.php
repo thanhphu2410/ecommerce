@@ -65,6 +65,17 @@
                         <li><a href="{{ route('products.create') }}">New Product</a></li>
                     </ul>
                 </li>
+                <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <span class="hide-menu">Roles</span> 
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('roles.index') }}">All Roles</a></li>
+                        <li><a href="{{ route('roles.create') }}">New Role</a></li>
+                    </ul>
+                </li> 
             </ul>
         </nav>
     </div>

@@ -2,13 +2,13 @@
 @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Categories</h4>
+        <h4 class="text-themecolor">Roles</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">Categories</li>
+                <li class="breadcrumb-item active">Roles</li>
             </ol>
         </div>
     </div>
@@ -17,29 +17,29 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Categories Table</h4>
+                <h4 class="card-title">Roles Table</h4>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Category Name</th>
-                                <th>Category Image</th>
+                                <th>Role Name</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($roles as $role)
                             <tr>
-                                <td>{{ $category->name }}</td>
+                                <td>{{ $role->name }}</td>
                                 <td>
-                                   <img src="{{ $category->image_path }}" width="100">
-                                </td>
-                                <td>
-                                    <a href="{{ route('categories.edit', ['category' => $category->id ]) }}" 
+                                    <a href="{{ route('assign-roles.index', ['role' => $role->id ]) }}" 
+                                        data-toggle="tooltip" data-original-title="Assign roles"> 
+                                        <i class="fa fa-bullseye m-r-15" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="{{ route('roles.edit', ['role' => $role->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="Edit"> 
                                         <i class="fa fa-pencil text-inverse m-r-10"></i> 
                                     </a>
-                                    <form action="{{ route('categories.destroy', ['category' => $category->id ]) }}" method="post" class="d-inline">
+                                    <form action="{{ route('roles.destroy', ['role' => $role->id ]) }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn-none" type="submit" data-toggle="tooltip" data-original-title="Delete"> 

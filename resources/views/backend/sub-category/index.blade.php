@@ -30,7 +30,7 @@
                             @foreach ($subCategories as $subCategory)
                             <tr>
                                 <td>{{ $subCategory->name }}</td>
-                                <td class="text-nowrap">
+                                <td>
                                     <a href="{{ route('sub-categories.edit', ['sub_category' => $subCategory->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="Edit"> 
                                         <i class="fa fa-pencil text-inverse m-r-10"></i> 

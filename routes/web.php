@@ -26,5 +26,8 @@ Route::resource('categories', 'CategoryController');
 Route::resource('sub-categories', 'SubCategoryController');
 Route::resource('products', 'ProductController');
 Route::resource('sizes', 'SizeController');
+Route::resource('roles', 'RoleController');
+Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');
+Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');
 
 Auth::routes();
