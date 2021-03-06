@@ -62,7 +62,10 @@ class Product extends Model
 
     public function getRelatedAttribute()
     {
-        return Product::where('sub_category_id', $this->sub_category_id)->with('images')->get();
+        return Product::where('sub_category_id', $this->sub_category_id)
+            ->where('id', '!=', $this->id)
+            ->with('images')
+            ->get();
     }
 
     public function getFirstImageAttribute()
@@ -73,5 +76,10 @@ class Product extends Model
     public function getCategoryAttribute()
     {
         return $this->subCategory->category;
+    }
+
+    public function getAfterDiscountAttribute()
+    {
+        return $this->price - $this->price * ($this->discount / 100);
     }
 }

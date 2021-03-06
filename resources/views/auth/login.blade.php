@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+    </div>
     @endif
     <section class="m-5" style="min-height: 430px;">
         <div class="container">
@@ -31,7 +31,7 @@
                 <div class="col-sm-6">
                     <div class="signup-form">
                         <h4 class="text-center">SINGUP</h4>
-                        <form method="POST" action="{{ route('register') }}" class="mt-4">
+                        <form method="POST" action="{{ route('register') }}" class="mt-4" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="name" placeholder="Name" class="form-control"
@@ -49,6 +49,10 @@
                                 <input type="text" name="address" placeholder="Address" class="form-control"
                                     value="{{ old('address') }}" required autocomplete="off">
                             </div>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="avatar">
+                                <label class="custom-file-label">Choose file</label>
+                              </div>
                             <div class="form-group">
                                 <input type="password" name="password" placeholder="Password" class="form-control"
                                     value="{{ old('password') }}" required>

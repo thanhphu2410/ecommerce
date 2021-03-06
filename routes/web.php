@@ -33,3 +33,4 @@ Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-ro
 Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');
 
 Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

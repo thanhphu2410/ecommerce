@@ -211,7 +211,11 @@
                                 <span class="label">Sale</span>
                                 <ul class="product__hover">
                                     <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
-                                    <li><a href="#"><img src="{{ asset('images/search.svg') }}" width="32" alt=""></a></li>
+                                    <li>
+                                        <a href="{{ route('product_details', ['product' => $product->id])  }}">
+                                            <img src="{{ asset('images/search.svg') }}" width="32" alt="">
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="product__item__text">

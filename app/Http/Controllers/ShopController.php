@@ -20,7 +20,8 @@ class ShopController extends Controller
         $product->load(['images', 'sizes', 'reviews.images']);
         $relatedProducts = $product->related;
         $reviews = $product->reviews()->paginate(5);
-        return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews'));
+        $ratingStar = round($reviews->average('rating'));
+        return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews', 'ratingStar'));
     }
     
     public function review(ReviewRequest $request, Review $review)
