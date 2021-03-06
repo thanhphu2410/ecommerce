@@ -18,13 +18,15 @@ class ShopController extends Controller
     {
         $product->load(['images', 'sizes']);
         $relatedProducts = $product->related;
-        $reviews = Review::all();
+        $reviews = $product->reviews()->paginate(5);
         return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews'));
     }
     
-    public function comment(ReviewRequest $request)
+    public function review(ReviewRequest $request, Review $review)
     {
-        Review::create($request->validated());
+        $reviewed = $review->isReviewed($request);
+        $data = $request->validated();
+        $reviewed ? $reviewed->update($data) : Review::create($data);
         return back();
     }
 }

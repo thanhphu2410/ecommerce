@@ -13,6 +13,27 @@
     /*------------------
         Preloader
     --------------------*/
+    function readURL(input) {
+        $(".image-review").remove();
+        for (let index = 0; index < input.files.length; index++) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $(".modal-body").append(
+                    '<img class="image-review mr-2" src="' +
+                        e.target.result +
+                        '" width="64" height="44" />'
+                );
+            };
+
+            reader.readAsDataURL(input.files[index]); // convert to base64 string
+        }
+    }
+
+    $("#imgInp").on("change", function() {
+        readURL(this);
+    });
+
     $(window).on("load", function() {
         $("#summernote").summernote({
             placeholder: "Leave your feedback",

@@ -89,8 +89,10 @@ img {
 input:focus,
 select:focus,
 button:focus,
-textarea:focus {
-    outline: none;
+textarea:focus,
+textarea:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 a:hover,
@@ -3505,7 +3507,7 @@ input:focus {
     height: 1em;
 
     fill: currentColor;
-    stroke: var(--ratingStroke, #222);
+    stroke: rgb(255, 181, 0);
     stroke-width: var(--ratingStrokeWidth, 1px);
 }
 
@@ -3534,7 +3536,7 @@ input:focus {
 
 .page__group .rating {
     --ratingSize: 2rem;
-    --ratingColor: #eee;
+    --ratingColor: rgb(255, 255, 255);
     --ratingColorActive: #ffcc00;
 }
 
@@ -3548,7 +3550,6 @@ input:focus {
 
 .page__hint {
     display: block;
-    font-weight: 700;
     font-size: 20px;
     margin-bottom: 10px;
 }
@@ -3569,6 +3570,23 @@ input:focus {
 .error {
     color: red;
     font-weight: bold;
+}
+
+.button-reviews,
+.button-reviews:hover,
+.button-reviews:active {
+    background: #0f1e2f !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.image-review {
+    object-fit: cover;
+    border: 3px solid #ccc;
+}
+
+.custom-file-review {
+    width: 83%;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

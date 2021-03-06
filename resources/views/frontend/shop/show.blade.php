@@ -114,95 +114,140 @@
                         <div class="product__details__tab">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5" role="tab">Description</a>
+                                    <a class="nav-link " data-toggle="tab" href="#tabs-5" role="tab">Description</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Customer
-                                        Previews(5)</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-6" role="tab">Customer Reviews</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional
-                                        information</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional Information</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="tabs-5" role="tabpanel">
+                                <div class="tab-pane" id="tabs-5" role="tabpanel">
                                     <div class="product__details__tab__content">
                                         {{ $product->description }}
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="tabs-6" role="tabpanel">
+                                <div class="tab-pane active" id="tabs-6" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <div class="product__details__tab__content__item">
-                                            <form action="{{ route('comment', ['product' => $product->id]) }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                                <div class="page mb-3">
-                                                    <div class="page__demo">
-                                                        <div class="page__group">
-                                                            <span class="page__hint">Please rating</span>
-                                                            <div class="rating">
-                                                                <input type="radio" name="rating" value="1"
-                                                                    class="rating__control screen-reader" id="rc1" checked>
-                                                                <input type="radio" name="rating" value="2"
-                                                                    class="rating__control screen-reader" id="rc2">
-                                                                <input type="radio" name="rating" value="3"
-                                                                    class="rating__control screen-reader" id="rc3">
-                                                                <input type="radio" name="rating" value="4"
-                                                                    class="rating__control screen-reader" id="rc4">
-                                                                <input type="radio" name="rating" value="5"
-                                                                    class="rating__control screen-reader" id="rc5">
-                                                                <label for="rc1" class="rating__item">
-                                                                    <svg class="rating__star">
-                                                                        <use xlink:href="#star"></use>
-                                                                    </svg>
-                                                                    <span class="screen-reader">1</span>
-                                                                </label>
-                                                                <label for="rc2" class="rating__item">
-                                                                    <svg class="rating__star">
-                                                                        <use xlink:href="#star"></use>
-                                                                    </svg>
-                                                                    <span class="screen-reader">2</span>
-                                                                </label>
-                                                                <label for="rc3" class="rating__item">
-                                                                    <svg class="rating__star">
-                                                                        <use xlink:href="#star"></use>
-                                                                    </svg>
-                                                                    <span class="screen-reader">3</span>
-                                                                </label>
-                                                                <label for="rc4" class="rating__item">
-                                                                    <svg class="rating__star">
-                                                                        <use xlink:href="#star"></use>
-                                                                    </svg>
-                                                                    <span class="screen-reader">4</span>
-                                                                </label>
-                                                                <label for="rc5" class="rating__item">
-                                                                    <svg class="rating__star">
-                                                                        <use xlink:href="#star"></use>
-                                                                    </svg>
-                                                                    <span class="screen-reader">5</span>
-                                                                </label>
+                                        <div class="row p-3">
+                                            <button type="button" class="btn btn-primary button-reviews col-4">{{ $reviews->count() }} reviews</button>
+                                        </div>
+
+                                        @guest
+                                        <div class="row p-3">
+                                             <div class="row col-3 align-items-center">
+                                                <img src="https://lh3.googleusercontent.com/a-/AOh14GjknvkuiHdyeEAHbSEulmzR8j3Hum167AIoZtTZtg=s192-c-rg-br100" alt="" width="50" class="mr-3">
+                                                <a href="{{ route('login') }}" class="font-weight-bold" style="color: #9d9d9d">Login to reviews</a>
+                                            </div>
+                                        </div>
+                                        @endguest
+                                       
+                                        @auth
+
+                                        <div class="row p-3">
+                                            <div class="row col-3 align-items-center">
+                                               <img src="https://lh3.googleusercontent.com/a-/AOh14GjknvkuiHdyeEAHbSEulmzR8j3Hum167AIoZtTZtg=s192-c-rg-br100" alt="" width="50" class="mr-3">
+                                               <a href="{{ route('login') }}" class="font-weight-bold" data-toggle="modal" data-target="#reviews" style="color: #9d9d9d">Click to reviews</a>
+                                           </div>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="reviews" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">{{ $product->name }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('review', ['product' => $product->id]) }}" method="post">
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                                            <div class="page mb-3">
+                                                                <div class="page__demo">
+                                                                    <div class="page__group">
+                                                                        <span class="page__hint">Reviews</span>
+                                                                        <div class="rating">
+                                                                            <input type="radio" name="rating" value="1"
+                                                                                class="rating__control screen-reader" id="rc1" checked>
+                                                                            <input type="radio" name="rating" value="2"
+                                                                                class="rating__control screen-reader" id="rc2">
+                                                                            <input type="radio" name="rating" value="3"
+                                                                                class="rating__control screen-reader" id="rc3">
+                                                                            <input type="radio" name="rating" value="4"
+                                                                                class="rating__control screen-reader" id="rc4">
+                                                                            <input type="radio" name="rating" value="5"
+                                                                                class="rating__control screen-reader" id="rc5">
+                                                                            <label for="rc1" class="rating__item">
+                                                                                <svg class="rating__star">
+                                                                                    <use xlink:href="#star"></use>
+                                                                                </svg>
+                                                                                <span class="screen-reader">1</span>
+                                                                            </label>
+                                                                            <label for="rc2" class="rating__item">
+                                                                                <svg class="rating__star">
+                                                                                    <use xlink:href="#star"></use>
+                                                                                </svg>
+                                                                                <span class="screen-reader">2</span>
+                                                                            </label>
+                                                                            <label for="rc3" class="rating__item">
+                                                                                <svg class="rating__star">
+                                                                                    <use xlink:href="#star"></use>
+                                                                                </svg>
+                                                                                <span class="screen-reader">3</span>
+                                                                            </label>
+                                                                            <label for="rc4" class="rating__item">
+                                                                                <svg class="rating__star">
+                                                                                    <use xlink:href="#star"></use>
+                                                                                </svg>
+                                                                                <span class="screen-reader">4</span>
+                                                                            </label>
+                                                                            <label for="rc5" class="rating__item">
+                                                                                <svg class="rating__star">
+                                                                                    <use xlink:href="#star"></use>
+                                                                                </svg>
+                                                                                <span class="screen-reader">5</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @error('rating') 
+                                                                    <div class="error text-center">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                            
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" rows="3" 
+                                                                placeholder="Share your feedback, reviews about this product"></textarea>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    @error('rating') 
-                                                        <div class="error text-center">{{ $message }}</div>
-                                                    @enderror
+                                                        <div class="modal-footer">
+                                                            <div class="custom-file custom-file-review">
+                                                                <input type="file" class="custom-file-input" id="imgInp" multiple>
+                                                                <label class="custom-file-label">Choose Images</label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-success">Save</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                
-                                                <textarea id="summernote" name="body"></textarea>
-                                                <button type="submit" class="btn btn-success mt-3">Send</button>
-                                            </form>
+                                            </div>
                                         </div>
+                                            
+                                        @endauth
+
                                         @foreach ($reviews as $review)
                                         <div class="row p-3 border-bottom">
                                             <div class="row col-3 align-items-start">
-                                                    <img src="https://lh3.googleusercontent.com/a-/AOh14GjknvkuiHdyeEAHbSEulmzR8j3Hum167AIoZtTZtg=s192-c-rg-br100" alt="" width="64" class="mr-3">
-                                                    <div>
-                                                        <p class="font-weight-bold">{{ $review->user->name }}</p>
-                                                        <p>Joined at {{ $review->user->created_at->format('d-m-Y') }}</p>
-                                                    </div>
+                                                <img src="https://lh3.googleusercontent.com/a-/AOh14GjknvkuiHdyeEAHbSEulmzR8j3Hum167AIoZtTZtg=s192-c-rg-br100" alt="" width="50" class="mr-3">
+                                                <div>
+                                                    <p class="font-weight-bold">{{ $review->user->name }}</p>
+                                                    <p>Joined at {{ $review->user->created_at->format('d-m-Y') }}</p>
+                                                </div>
                                             </div>
                                             <div class="col-9">
                                                 <div class="rating">
@@ -213,7 +258,7 @@
                                                     @for ($i = 5; $i > $review->rating; $i--)
                                                     <i class="fa fa-star-o"></i>
                                                     @endfor
-                                                    <span> - 5 Reviews</span>
+                                                    <span> - Reviewed at {{ $review->created_at->format('d/m/Y') }}</span>
                                                 </div>
                                                 <p>{!! $review->body !!}</p>
                                             </div>

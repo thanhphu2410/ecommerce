@@ -17,4 +17,9 @@ class Review extends Model
     {
         return $this->user->name;
     }
+
+    public function isReviewed($request)
+    {
+        return $this->where('product_id', $request->product_id)->where('user_id', $request->user_id)->first();
+    }
 }

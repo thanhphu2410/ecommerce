@@ -9,6 +9,7 @@ class Product extends Model
 {
     protected $guarded = [];
     
+    /*  *****************************RELATIONSHIP***************************** */
     public function images()
     {
         return $this->hasMany('App\Models\ProductImage');
@@ -24,10 +25,19 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Size');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+    
+    /*  *****************************MUTATORS***************************** */
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = Str::title($value);
     }
+
+    /*  *****************************ACCESSORS***************************** */
 
     public function getBestSellerAttribute()
     {
