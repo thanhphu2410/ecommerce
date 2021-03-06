@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReviewRequest;
-use App\Models\Product;
 use App\Models\Review;
+use App\Models\Product;
+use App\Models\ReviewImage;
+use App\Http\Requests\ReviewRequest;
 
 class ShopController extends Controller
 {
@@ -16,7 +17,7 @@ class ShopController extends Controller
 
     public function show(Product $product)
     {
-        $product->load(['images', 'sizes']);
+        $product->load(['images', 'sizes', 'reviews.images']);
         $relatedProducts = $product->related;
         $reviews = $product->reviews()->paginate(5);
         return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews'));
@@ -25,8 +26,22 @@ class ShopController extends Controller
     public function review(ReviewRequest $request, Review $review)
     {
         $reviewed = $review->isReviewed($request);
+
         $data = $request->validated();
-        $reviewed ? $reviewed->update($data) : Review::create($data);
+
+        $review = $reviewed ? $this->updateReview($reviewed, $data) : Review::create($data);
+
+        ReviewImage::storeReviewImage($review, request('images'));
+
         return back();
+    }
+
+    private function updateReview($reviewed, $data)
+    {
+        $reviewed->update($data);
+
+        ReviewImage::deleteReviewImage($reviewed);
+
+        return $reviewed;
     }
 }

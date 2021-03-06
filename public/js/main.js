@@ -1,17 +1,8 @@
-/*  ---------------------------------------------------
-    Template Name: Male Fashion
-    Description: Male Fashion - ecommerce teplate
-    Author: Colorib
-    Author URI: https://www.colorib.com/
-    Version: 1.0
-    Created: Colorib
----------------------------------------------------------  */
-
 "use strict";
 
 (function($) {
     /*------------------
-        Preloader
+        Preloaderq
     --------------------*/
     function readURL(input) {
         $(".image-review").remove();
@@ -35,25 +26,19 @@
     });
 
     $(window).on("load", function() {
-        $("#summernote").summernote({
-            placeholder: "Leave your feedback",
-            tabsize: 2,
-            height: 80,
-            toolbar: [
-                ["style", ["style"]],
-                ["font", ["bold", "underline"]]
-                // ["insert", ["picture"]]
-            ],
-            callbacks: {
-                onImageUpload: function(files) {
-                    // var image = $("<img>").attr(
-                    //     "src",
-                    //     "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
-                    // );
-                    // $("#summernote").summernote("insertNode", image[0]);
-                }
-            }
-        });
+        // $("#summernote").summernote({
+        //     placeholder: "Leave your feedback",
+        //     tabsize: 2,
+        //     height: 80,
+        //     toolbar: [
+        //         ["style", ["style"]],
+        //         ["font", ["bold", "underline"]]
+        //         // ["insert", ["picture"]]
+        //     ],
+        //     callbacks: {
+        //         onImageUpload: function(files) {}
+        //     }
+        // });
 
         $(".loader").fadeOut();
         $("#preloder")

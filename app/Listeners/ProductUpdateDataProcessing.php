@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use Facades\App\Models\ProductImage;
+use App\Models\ProductImage;
 use App\Events\ProductUpdateEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

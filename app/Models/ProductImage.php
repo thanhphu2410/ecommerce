@@ -8,7 +8,7 @@ class ProductImage extends Model
 {
     protected $guarded = [];
 
-    public function storeProductImage($product)
+    public static function storeProductImage($product)
     {
         foreach (request('images') as $image) {
             $path = $image->store('product', 'public');
@@ -16,7 +16,7 @@ class ProductImage extends Model
         }
     }
     
-    public function deleteProductImage($product)
+    public static function deleteProductImage($product)
     {
         foreach ($product->images as $image) {
             delete_file($image->path);

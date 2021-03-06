@@ -13,6 +13,11 @@ class Review extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function images()
+    {
+        return $this->hasMany('App\Models\ReviewImage');
+    }
+
     public function getUserNameAttribute()
     {
         return $this->user->name;

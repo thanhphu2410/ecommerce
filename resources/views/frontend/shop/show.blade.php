@@ -163,8 +163,16 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="{{ route('review', ['product' => $product->id]) }}" method="post">
+                                                    <form action="{{ route('review', ['product' => $product->id]) }}" method="post" enctype="multipart/form-data">
                                                         @csrf
+                                                        @if ($errors->first())
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            {{ $errors->first() }}
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        @endif
                                                         <div class="modal-body">
                                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
@@ -223,12 +231,12 @@
                                                             
                                                             <div class="form-group">
                                                                 <textarea class="form-control" rows="3" 
-                                                                placeholder="Share your feedback, reviews about this product"></textarea>
+                                                                placeholder="Share your feedback, reviews about this product" name="body"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <div class="custom-file custom-file-review">
-                                                                <input type="file" class="custom-file-input" id="imgInp" multiple>
+                                                                <input type="file" class="custom-file-input" id="imgInp" name="images[]" multiple>
                                                                 <label class="custom-file-label">Choose Images</label>
                                                             </div>
                                                             <button type="submit" class="btn btn-success">Save</button>
@@ -246,11 +254,11 @@
                                                 <img src="https://lh3.googleusercontent.com/a-/AOh14GjknvkuiHdyeEAHbSEulmzR8j3Hum167AIoZtTZtg=s192-c-rg-br100" alt="" width="50" class="mr-3">
                                                 <div>
                                                     <p class="font-weight-bold">{{ $review->user->name }}</p>
-                                                    <p>Joined at {{ $review->user->created_at->format('d-m-Y') }}</p>
+                                                    <p>Joined at {{ $review->user->created_at->format('d/m/Y') }}</p>
                                                 </div>
                                             </div>
                                             <div class="col-9">
-                                                <div class="rating">
+                                                <div class="rating mb-2">
                                                     @for ($i = 0; $i < $review->rating; $i++)
                                                     <i class="fa fa-star"></i>
                                                     @endfor
@@ -258,9 +266,14 @@
                                                     @for ($i = 5; $i > $review->rating; $i--)
                                                     <i class="fa fa-star-o"></i>
                                                     @endfor
-                                                    <span> - Reviewed at {{ $review->created_at->format('d/m/Y') }}</span>
+                                                    <span> - Reviewed at {{ $review->updated_at->format('d/m/Y') }}</span>
                                                 </div>
-                                                <p>{!! $review->body !!}</p>
+                                                <p>{{ $review->body }}</p>
+                                                <div>
+                                                    @foreach ($review->images as $image)
+                                                        <img src="/{{ $image->path }}" width="120" height="120" class="image-review mr-2"> 
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                         @endforeach

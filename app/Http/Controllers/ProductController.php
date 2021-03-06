@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\SubCategory;
 use App\Events\ProductStoreEvent;
 use App\Events\ProductUpdateEvent;
-use Facades\App\Models\ProductImage;
+use App\Models\ProductImage;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 

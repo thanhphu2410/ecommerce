@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\Product;
-use Facades\App\Models\ProductImage;
+use App\Models\ProductImage;
 use App\Events\ProductStoreEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
