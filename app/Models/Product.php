@@ -82,4 +82,9 @@ class Product extends Model
     {
         return $this->price - $this->price * ($this->discount / 100);
     }
+
+    public function getRatingStarAttribute()
+    {
+        return round($this->reviews->average('rating'));
+    }
 }

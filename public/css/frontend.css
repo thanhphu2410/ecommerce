@@ -2427,13 +2427,20 @@ ol {
     text-align: right;
 }
 
-.continue__btn.update__btn a {
+.continue__btn.update__btn button {
     color: #ffffff;
     background: #111111;
     border-color: #111111;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid #e1e1e1;
+    padding: 14px 35px;
+    display: inline-block;
 }
 
-.continue__btn.update__btn a i {
+.continue__btn.update__btn button i {
     margin-right: 5px;
 }
 
@@ -3392,6 +3399,18 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.discount {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.discount span {
+    text-decoration: line-through;
+    font-size: 16px;
+    font-weight: lighter;
+    margin-left: 5px;
+}
+
 .btn-outline-dark:hover {
     background-color: #000 !important;
     transition: 0.5s;
@@ -3421,7 +3440,8 @@ input:focus {
 .site-btn:hover,
 .product__details__cart__option .primary-btn:hover,
 .cart__total .primary-btn:hover,
-.continue__btn.update__btn a:hover {
+.continue__btn.update__btn a:hover,
+.continue__btn.update__btn button:hover {
     transition: 0.5s;
     background-color: white;
     color: #000;
@@ -3440,10 +3460,6 @@ input:focus {
 
 .rating .fa-star-o {
     color: #b7b7b7 !important;
-}
-
-.line-through {
-    text-decoration: line-through;
 }
 
 .pagination {
@@ -3593,6 +3609,12 @@ input:focus {
     border-radius: 50%;
     width: 50px;
     height: 50px;
+    object-fit: cover;
+}
+
+.product__cart__item__pic img {
+    width: 90px;
+    height: 90px;
     object-fit: cover;
 }
 

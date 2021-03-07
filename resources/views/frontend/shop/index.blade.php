@@ -212,7 +212,7 @@
                                 <ul class="product__hover">
                                     <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
                                     <li>
-                                        <a href="{{ route('product_details', ['product' => $product->id])  }}">
+                                        <a href="{{ route('product-details', ['product' => $product->id])  }}">
                                             <img src="{{ asset('images/search.svg') }}" width="32" alt="">
                                         </a>
                                     </li>
@@ -220,13 +220,15 @@
                             </div>
                             <div class="product__item__text">
                                 <h6>{{ $product->name }}</h6>
-                                <a href="{{ route('product_details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
+                                <a href="{{ route('product-details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
                                 <div class="rating">
+                                    @for ($i = 0; $i < $product->rating_star; $i++)
                                     <i class="fa fa-star"></i>
+                                    @endfor
+    
+                                    @for ($i = 5; $i > $product->rating_star; $i--)
                                     <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
+                                    @endfor
                                 </div>
                                 <h5>{{ $product->price }} đ</h5>
                             </div>

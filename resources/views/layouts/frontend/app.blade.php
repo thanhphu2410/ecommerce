@@ -7,6 +7,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Just Do It</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -40,7 +41,7 @@
             <a href="#"><img src="img/icon/heart.png" alt=""></a>
             <a href="#">
                 <i class="fa-shopping-cart"></i>
-                <span>0</span>
+                <span>{{ count(session('cart') ?? []) }}</span>
             </a>
             <div class="price">$0.00</div>
         </div>
@@ -112,14 +113,14 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
                         <a href="#" class="search-switch">
-                            <img src="{{ asset('images/search.svg') }}" width="18" alt="" />
+                            <img src="{{ asset('images/search.svg') }}" width="18"/>
                         </a>
                         <a href="/wishlist">
-                            <img src="{{ asset('images/heart.svg') }}" width="18" alt="" />
+                            <img src="{{ asset('images/heart.svg') }}" width="18"/>
                         </a>
-                        <a href="#">
-                            <img src="{{ asset('images/cart.svg') }}" width="18" alt="" />
-                            <span class="badge rounded-pill bg-warning">0</span>
+                        <a href="{{ route('cart.index') }}">
+                            <img src="{{ asset('images/cart.svg') }}" width="18"/>
+                            <span class="badge rounded-pill bg-warning">{{ count(session('cart') ?? []) }}</span>
                         </a>
                     </div>
                 </div>

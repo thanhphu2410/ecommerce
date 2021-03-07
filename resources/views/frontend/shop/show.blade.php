@@ -63,45 +63,51 @@
                                 <span>{{ $product->price }} đ</span>
                                 @endif 
                             </h3>
-                            <p>{{ $product->description }}</p>
-                            <div class="product__details__option">
-                                <div class="product__details__option__size">
-                                    <span>Size:</span>
-                                    @foreach ($product->sizes as $size)
-                                        <label for="size{{ $size->id }}">
-                                            {{ $size->name }} <input type="radio" id="size{{ $size->id }}">
+                            <form action="{{ route('cart.store') }}" method="post">
+                                @csrf
+                                <div class="product__details__option">
+                                    <div class="product__details__option__size">
+                                        <span>Size:</span>
+                                        @foreach ($product->sizes as $size)
+                                            <label for="size{{ $size->id }}" @if($loop->first) class="active" @endif>
+                                                {{ $size->name }} 
+                                                <input type="radio" id="size{{ $size->id }}" value="{{ $size->id }}"
+                                                name="size" @if($loop->first) checked @endif>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                    <div class="product__details__option__color">
+                                        <span>Color:</span>
+                                        <label class="c-1" for="sp-1">
+                                            <input type="radio" id="sp-1">
                                         </label>
-                                    @endforeach
-                                </div>
-                                <div class="product__details__option__color">
-                                    <span>Color:</span>
-                                    <label class="c-1" for="sp-1">
-                                        <input type="radio" id="sp-1">
-                                    </label>
-                                    <label class="c-2" for="sp-2">
-                                        <input type="radio" id="sp-2">
-                                    </label>
-                                    <label class="c-3" for="sp-3">
-                                        <input type="radio" id="sp-3">
-                                    </label>
-                                    <label class="c-4" for="sp-4">
-                                        <input type="radio" id="sp-4">
-                                    </label>
-                                    <label class="c-9" for="sp-9">
-                                        <input type="radio" id="sp-9">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="product__details__cart__option">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <span class="fa fa-angle-up dec qtybtn"></span>
-                                        <input type="text" value="1">
-                                        <span class="fa fa-angle-down inc qtybtn"></span>
+                                        <label class="c-2" for="sp-2">
+                                            <input type="radio" id="sp-2">
+                                        </label>
+                                        <label class="c-3" for="sp-3">
+                                            <input type="radio" id="sp-3">
+                                        </label>
+                                        <label class="c-4" for="sp-4">
+                                            <input type="radio" id="sp-4">
+                                        </label>
+                                        <label class="c-9" for="sp-9">
+                                            <input type="radio" id="sp-9">
+                                        </label>
                                     </div>
                                 </div>
-                                <a href="#" class="primary-btn">add to cart</a>
-                            </div>
+                                <div class="product__details__cart__option">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                            <input type="hidden" value="{{ $product->quantity }}" id="max_quantity">
+                                            <span class="fa fa-angle-up dec qtybtn" id="increase"></span>
+                                            <input type="text" value="1" id="quantity" name="quantity">
+                                            <span class="fa fa-angle-down inc qtybtn" id="decrease"></span>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="primary-btn">add to cart</button>
+                                </div>
+                            </form>
                             <div class="product__details__btns__option">
                                 <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
                             </div>
@@ -257,20 +263,22 @@
                                     <span class="label">New</span>
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="{{ asset('images/heart.svg') }}" style="width: 32px"></a></li>
-                                        <li><a href="{{ route('product_details', ['product' => $product->id])  }}"><img src="{{ asset('images/search.svg') }}" style="width: 32px"></a></li>
+                                        <li><a href="{{ route('product-details', ['product' => $product->id])  }}"><img src="{{ asset('images/search.svg') }}" style="width: 32px"></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>Piqué Biker Jacket</h6>
-                                    <a href="{{ route('product_details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
+                                    <h6>{{ $product->name }}</h6>
+                                    <a href="{{ route('product-details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
                                     <div class="rating">
+                                        @for ($i = 0; $i < $product->rating_star; $i++)
+                                        <i class="fa fa-star"></i>
+                                        @endfor
+        
+                                        @for ($i = 5; $i > $product->rating_star; $i--)
                                         <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                                        @endfor
                                     </div>
-                                    <h5>$67.24</h5>
+                                    <h5>{{ $product->price }} đ</h5>
                                     <div class="product__color__select">
                                         <label for="pc-1">
                                             <input type="radio" id="pc-1">

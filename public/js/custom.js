@@ -35,3 +35,34 @@ $("#owl-example").owlCarousel({
     autoHeight: false,
     autoplay: true
 });
+
+$("#increase").on("click", function() {
+    let quantity = parseInt($("#quantity").val());
+    let max_quantity = parseInt($("#max_quantity").val());
+    if (quantity + 1 <= max_quantity) {
+        $("#quantity").val(quantity + 1);
+    }
+});
+
+$("#decrease").on("click", function() {
+    let quantity = parseInt($("#quantity").val());
+    if (quantity - 1 > 0) {
+        $("#quantity").val(quantity - 1);
+    }
+});
+
+$("#deleteBtn").on("click", function() {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        }
+    });
+    $.ajax({
+        url: "cart/" + $("#product_id").val(),
+        type: "delete",
+        dataType: "JSON",
+        success: function() {
+            location.reload();
+        }
+    });
+});
