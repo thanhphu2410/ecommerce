@@ -19,6 +19,7 @@ Route::get('shop', 'ShopController@index')->name('shop');
 Route::get('product-details/{product}', 'ShopController@show')->name('product-details');
 Route::post('review/{product}', 'ShopController@review')->name('review')->middleware('auth');
 Route::resource('cart', 'CartController');
+Route::resource('wishlist', 'WishListController');
 Route::view('/checkout', 'frontend.checkout');
 Route::view('/blog', 'frontend.blog');
 

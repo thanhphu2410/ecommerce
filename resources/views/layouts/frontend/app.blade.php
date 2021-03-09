@@ -37,8 +37,8 @@
             </div>
         </div>
         <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-            <a href="#"><img src="img/icon/heart.png" alt=""></a>
+            <a href="#" class="search-switch"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
+            <a href="#"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
             <a href="#">
                 <i class="fa-shopping-cart"></i>
                 <span>{{ count(session('cart') ?? []) }}</span>
@@ -137,10 +137,10 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                            <a href="#"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
-                        <a href="#"><img src="img/payment.png" alt=""></a>
+                        <a href="#"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
                     </div>
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">

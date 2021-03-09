@@ -12,12 +12,7 @@ class CartController extends Controller
         $cart = session('cart') ?? [];
         $products = Product::find(array_keys($cart));
 
-        $total = 0;
-        $index = 0;
-        foreach ($cart as $item) {
-            $total += $item[0]['quantity'] * $products[$index]->after_discount;
-            $index ++;
-        }
+        $total = $this->total($cart, $products);
 
         return view('frontend.cart', compact('cart', 'products', 'total'));
     }
@@ -49,7 +44,7 @@ class CartController extends Controller
 
     public function update()
     {
-        foreach (request('product_id') as $index=>$item) {
+        foreach (request('product_id') ?? [] as $index=>$item) {
             $key = "cart.".$item;
             $cart = [
                 'product_id' => $item,
@@ -67,5 +62,15 @@ class CartController extends Controller
     {
         session()->forget('cart.'.$id);
         return response()->json(['success'=> 'Success']);
+    }
+
+    private function total($cart, $products)
+    {
+        $total = $index = 0;
+        foreach ($cart as $item) {
+            $total += $item[0]['quantity'] * $products[$index]->after_discount;
+            $index ++;
+        }
+        return $total;
     }
 }

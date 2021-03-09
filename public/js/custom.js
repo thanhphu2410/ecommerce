@@ -1,3 +1,5 @@
+const { error } = require("jquery");
+
 $("#review").on("keyup", function() {
     $("#reviewBtn").removeAttr("disabled");
     if (this.value == "") {
@@ -48,6 +50,20 @@ $("#decrease").on("click", function() {
     let quantity = parseInt($("#quantity").val());
     if (quantity - 1 > 0) {
         $("#quantity").val(quantity - 1);
+    }
+});
+
+$("#quantity").on("keyup", function() {
+    $("#updateBtn").removeAttr("disabled");
+    if (isNaN($("#quantity").val())) {
+        $("#updateBtn").attr("disabled", "disabled");
+    }
+});
+
+$("#quantity").on("keyup", function() {
+    $("#addToCartBtn").removeAttr("disabled");
+    if (isNaN($("#quantity").val())) {
+        $("#addToCartBtn").attr("disabled", "disabled");
     }
 });
 

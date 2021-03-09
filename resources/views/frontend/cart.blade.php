@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn update__btn">
-                                <button><i class="fa fa-spinner"></i> Update cart</button>
+                                <button id="updateBtn" @if(count($cart) == 0) disabled @endif><i class="fa fa-spinner"></i> Update cart</button>
                             </div>
                         </div>
                     </div>
