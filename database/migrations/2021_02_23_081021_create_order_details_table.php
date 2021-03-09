@@ -21,7 +21,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('price');
             $table->string('discount');
             $table->string('total');
-            $table->string('size');
+            $table->foreignId('size_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CartRequest;
 use App\Models\Product;
+use App\Services\CartService;
 
 class CartController extends Controller
 {
@@ -11,8 +12,7 @@ class CartController extends Controller
     {
         $cart = session('cart') ?? [];
         $products = Product::find(array_keys($cart));
-
-        $total = $this->total($cart, $products);
+        $total = CartService::total($cart, $products);
 
         return view('frontend.cart', compact('cart', 'products', 'total'));
     }
@@ -62,15 +62,5 @@ class CartController extends Controller
     {
         session()->forget('cart.'.$id);
         return response()->json(['success'=> 'Success']);
-    }
-
-    private function total($cart, $products)
-    {
-        $total = $index = 0;
-        foreach ($cart as $item) {
-            $total += $item[0]['quantity'] * $products[$index]->after_discount;
-            $index ++;
-        }
-        return $total;
     }
 }

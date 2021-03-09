@@ -89,7 +89,7 @@
                         <ul>
                             <li>Total <span>{{ $total }} đ</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a href="{{ route('checkout.create') }}" class="primary-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,9 @@ Route::get('product-details/{product}', 'ShopController@show')->name('product-de
 Route::post('review/{product}', 'ShopController@review')->name('review')->middleware('auth');
 Route::resource('cart', 'CartController');
 Route::resource('wishlist', 'WishListController');
-Route::view('/checkout', 'frontend.checkout');
+Route::resource('checkout', 'CheckoutController');
+Route::get('districts/{province}', 'AddressController@getDistrict');
+Route::get('wards/{district}', 'AddressController@getWards');
 Route::view('/blog', 'frontend.blog');
 
 /* *************Back End************* */

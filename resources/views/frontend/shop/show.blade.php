@@ -109,7 +109,13 @@
                                 </div>
                             </form>
                             <div class="product__details__btns__option">
-                                <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
+                                <form action="{{ route('wishlist.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                    <button type="submit" class="wishlist">
+                                        <i class="fa fa-heart"></i> add to wishlist
+                                    </button>
+                                </form>
                             </div>
                             <div class="product__details__last__option">
                                 <h5><span>Guaranteed Safe Checkout</span></h5>

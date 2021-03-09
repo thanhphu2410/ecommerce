@@ -175,7 +175,7 @@ ol {
     color: #ffffff;
     background: #111111;
     font-weight: 700;
-    border: none;
+    border: 1px solid;
     text-transform: uppercase;
     display: inline-block;
     padding: 14px 30px;
@@ -1797,7 +1797,7 @@ ol {
     margin-bottom: 40px;
 }
 
-.product__details__btns__option a {
+.product__details__btns__option button {
     display: inline-block;
     font-size: 13px;
     color: #3d3d3d;
@@ -2598,7 +2598,6 @@ ol {
     width: 100%;
     border: 1px solid #e1e1e1;
     font-size: 14px;
-    color: #b7b7b7;
     padding-left: 20px;
     margin-bottom: 20px;
 }
@@ -3399,6 +3398,21 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.custom-nice-select .nice-select {
+    border-radius: 0;
+    width: 100%;
+}
+
+.custom-nice-select .nice-select .list {
+    width: 100%;
+    overflow: scroll;
+    max-height: 300px;
+}
+
+.pro-qty-2 {
+    user-select: none;
+}
+
 .wishlist {
     background: white;
     border: none;
@@ -3592,8 +3606,14 @@ input:focus {
 }
 
 .error {
+    line-height: 0;
     color: red;
     font-weight: bold;
+}
+
+.error-nice-select {
+    position: absolute;
+    bottom: -15px;
 }
 
 .button-reviews,

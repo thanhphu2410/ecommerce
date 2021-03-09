@@ -80,3 +80,49 @@ $("#deleteBtn").on("click", function() {
         }
     });
 });
+
+$("#province").on("change", function() {
+    $.ajax({
+        url: "/districts/" + $("#province").val(),
+        type: "get",
+        success: function(data) {
+            $("#district ~ .nice-select .list").empty();
+            $("#district").empty();
+            data.forEach(function(item) {
+                $("#district ~ .nice-select .list").append(
+                    "<li data-value='" +
+                        item.id +
+                        "' class='option'>" +
+                        item.name +
+                        "</li>"
+                );
+                $("#district").append(
+                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                );
+            });
+        }
+    });
+});
+
+$("#district").on("change", function() {
+    $.ajax({
+        url: "/wards/" + $("#district").val(),
+        type: "get",
+        success: function(data) {
+            $("#ward ~ .nice-select .list").empty();
+            $("#ward").empty();
+            data.forEach(function(item) {
+                $("#ward ~ .nice-select .list").append(
+                    '<li data-value="' +
+                        item.id +
+                        '" class="option">' +
+                        item.name +
+                        "</li>"
+                );
+                $("#ward").append(
+                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                );
+            });
+        }
+    });
+});
