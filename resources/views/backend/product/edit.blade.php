@@ -79,6 +79,7 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="form-group">
                             <label>Product Quantity</label>
                             <input type="number" class="form-control" placeholder="Enter Name" name="quantity" value="{{ $product->quantity }}">
@@ -86,6 +87,15 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label>Discount (%)</label>
+                            <input type="number" class="form-control" placeholder="Enter Discount" name="discount" value="{{ $product->discount }}">
+                            @error('discount') 
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label>Product Description</label>
                             <textarea class="form-control" name="description" rows="3">{{ $product->description }}</textarea>

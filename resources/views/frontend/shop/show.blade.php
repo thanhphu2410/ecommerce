@@ -262,7 +262,15 @@
                                 <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
                                     <span class="label">New</span>
                                     <ul class="product__hover">
-                                        <li><a href="#"><img src="{{ asset('images/heart.svg') }}" style="width: 32px"></a></li>
+                                        <li>
+                                            <form action="{{ route('wishlist.store') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                                <button type="submit" class="wishlist">
+                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </li>
                                         <li><a href="{{ route('product-details', ['product' => $product->id])  }}"><img src="{{ asset('images/search.svg') }}" style="width: 32px"></a></li>
                                     </ul>
                                 </div>
@@ -278,18 +286,10 @@
                                         <i class="fa fa-star-o"></i>
                                         @endfor
                                     </div>
-                                    <h5>{{ $product->price }} đ</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-1">
-                                            <input type="radio" id="pc-1">
-                                        </label>
-                                        <label class="active black" for="pc-2">
-                                            <input type="radio" id="pc-2">
-                                        </label>
-                                        <label class="grey" for="pc-3">
-                                            <input type="radio" id="pc-3">
-                                        </label>
-                                    </div>
+                                    <h5 class="discount">
+                                        {{ $product->after_discount }} đ 
+                                        @if($product->discount > 0) <span>{{ $product->price }} đ</span> @endif
+                                    </h5>
                                 </div>
                             </div>
                         </div>

@@ -115,8 +115,9 @@
                         <a href="#" class="search-switch">
                             <img src="{{ asset('images/search.svg') }}" width="18"/>
                         </a>
-                        <a href="/wishlist">
+                        <a href="{{ route('wishlist.index') }}">
                             <img src="{{ asset('images/heart.svg') }}" width="18"/>
+                            <span class="badge rounded-pill bg-warning">{{ count(session('cart') ?? []) }}</span>
                         </a>
                         <a href="{{ route('cart.index') }}">
                             <img src="{{ asset('images/cart.svg') }}" width="18"/>

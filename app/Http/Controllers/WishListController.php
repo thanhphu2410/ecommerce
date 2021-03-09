@@ -15,6 +15,8 @@ class WishListController extends Controller
 
     public function index()
     {
+        $wishlist = Wishlist::all();
+        return view('frontend.wishlist', compact('wishlist'));
     }
 
     public function create()
@@ -24,7 +26,9 @@ class WishListController extends Controller
 
     public function store()
     {
-        Auth::user()->wishlist()->save(new Wishlist(['product_id' => request('product_id')]));
+        if (!Wishlist::isExists()) {
+            Auth::user()->wishlist()->save(new Wishlist(['product_id' => request('product_id')]));
+        }
         return back();
     }
 
@@ -68,8 +72,9 @@ class WishListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Wishlist $wishlist)
     {
-        //
+        $wishlist->delete();
+        return back();
     }
 }

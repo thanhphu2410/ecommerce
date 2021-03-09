@@ -521,8 +521,8 @@ ol {
     color: #0d0d0d;
     font-size: 11px;
     position: absolute;
-    left: 50%;
-    top: 8px;
+    left: 60%;
+    top: 10px;
 }
 
 .header__nav__option a:last-child {
@@ -3398,6 +3398,14 @@ ol {
 }
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
+
+.wishlist {
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    padding: 3px 8px;
+}
 
 .discount {
     white-space: nowrap;

@@ -1,4 +1,11 @@
-const { error } = require("jquery");
+$("#owl-example").owlCarousel({
+    loop: true,
+    items: 4,
+    autoplayTimeout: 3000,
+    smartSpeed: 500,
+    autoHeight: false,
+    autoplay: true
+});
 
 $("#review").on("keyup", function() {
     $("#reviewBtn").removeAttr("disabled");
@@ -27,15 +34,6 @@ function readURL(input) {
 
 $("#imgInp").on("change", function() {
     readURL(this);
-});
-
-$("#owl-example").owlCarousel({
-    loop: true,
-    items: 4,
-    autoplayTimeout: 3000,
-    smartSpeed: 500,
-    autoHeight: false,
-    autoplay: true
 });
 
 $("#increase").on("click", function() {

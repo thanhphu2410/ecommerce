@@ -80,7 +80,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="custom-file custom-file-review">
-                        <input type="file" class="custom-file-input" id="imgInp" name="images[]" multiple>
+                        <input type="file" class="custom-file-input" accept="image/*" id="imgInp" name="images[]" multiple>
                         <label class="custom-file-label">Choose Images</label>
                     </div>
                     <button type="submit" class="btn btn-success" id="reviewBtn" disabled>Save</button>

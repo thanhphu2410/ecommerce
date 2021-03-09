@@ -106,7 +106,15 @@
                     <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
                         <span class="label">New</span>
                         <ul class="product__hover">
-                            <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
+                            <li>
+                                <form action="{{ route('wishlist.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                    <button type="submit" class="wishlist">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </li>
                             <li>
                                 <a href="{{ route('product-details', ['product' => $product->id])  }}">
                                     <img src="{{ asset('images/search.svg') }}" width="32" alt="">
@@ -143,7 +151,15 @@
                         <span class="label">Sale</span>
                         @endif
                         <ul class="product__hover">
-                            <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
+                            <li>
+                                <form action="{{ route('wishlist.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                    <button type="submit" class="wishlist">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </li>
                             <li>
                                 <a href="{{ route('product-details', ['product' => $product->id])  }}">
                                     <img src="{{ asset('images/search.svg') }}" width="32" alt="">
@@ -178,7 +194,15 @@
                     <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
                         <span class="label">Sale</span>
                         <ul class="product__hover">
-                            <li><a href="#"><img src="{{ asset('images/heart.svg') }}" width="32" alt=""></a></li>
+                            <li>
+                                <form action="{{ route('wishlist.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                    <button type="submit" class="wishlist">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </li>
                             <li>
                                 <a href="{{ route('product-details', ['product' => $product->id])  }}">
                                     <img src="{{ asset('images/search.svg') }}" width="32" alt="">

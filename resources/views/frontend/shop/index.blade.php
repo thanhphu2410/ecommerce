@@ -214,7 +214,7 @@
                                         <form action="{{ route('wishlist.store') }}" method="post">
                                             @csrf
                                             <input type="hidden" value="{{ $product->id }}" name="product_id">
-                                            <button type="submit" disabled class="btn p-0">
+                                            <button type="submit" class="wishlist">
                                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                                             </button>
                                         </form>
@@ -238,7 +238,10 @@
                                     <i class="fa fa-star-o"></i>
                                     @endfor
                                 </div>
-                                <h5>{{ $product->price }} đ</h5>
+                                <h5 class="discount">
+                                    {{ $product->after_discount }} đ 
+                                    @if($product->discount > 0) <span>{{ $product->price }} đ</span> @endif
+                                </h5>
                             </div>
                         </div>
                     </div>
