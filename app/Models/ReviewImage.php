@@ -12,7 +12,7 @@ class ReviewImage extends Model
     {
         foreach ($images ?? [] as $image) {
             $path = $image->store('review', 'public');
-            $review->images()->save(new ReviewImage(['path' => "storage/".$path]));
+            $review->images()->create(['path' => "storage/".$path]);
         }
     }
     

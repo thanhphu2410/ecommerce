@@ -12,7 +12,7 @@ class ProductImage extends Model
     {
         foreach (request('images') as $image) {
             $path = $image->store('product', 'public');
-            $product->images()->save(new ProductImage(['path' => "storage/".$path]));
+            $product->images()->create(['path' => "storage/".$path]);
         }
     }
     

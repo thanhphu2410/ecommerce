@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\WishList');
     }
+
+    public function customer()
+    {
+        return $this->hasOne('App\Models\Customer');
+    }
 }

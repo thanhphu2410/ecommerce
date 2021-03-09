@@ -15,7 +15,7 @@ class WishListController extends Controller
 
     public function index()
     {
-        $wishlist = Wishlist::all();
+        $wishlist = Auth::user()->wishlist;
         return view('frontend.wishlist', compact('wishlist'));
     }
 
@@ -27,7 +27,7 @@ class WishListController extends Controller
     public function store()
     {
         if (!Wishlist::isExists()) {
-            Auth::user()->wishlist()->save(new Wishlist(['product_id' => request('product_id')]));
+            Auth::user()->wishlist()->create(['product_id' => request('product_id')]);
         }
         return back();
     }
