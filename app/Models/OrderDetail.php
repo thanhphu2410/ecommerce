@@ -21,14 +21,18 @@ class OrderDetail extends Model
     public static function addItem($order)
     {
         foreach (request('product_id') as $index => $value) {
+            $product = Product::find($value);
+            
             $data = [
                 'product_id' => $value,
                 'quantity' => request('product_id')[$index],
-                'discount' => Product::find($value)->discount,
+                'discount' => $product->discount,
                 'total' => request('total')[$index],
                 'size_id' => request('size_id')[$index],
             ];
             $order->details()->create($data);
+
+            $product->decrement('quantity', request('product_id')[$index]);
         }
     }
 }
