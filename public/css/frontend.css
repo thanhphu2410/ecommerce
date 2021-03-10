@@ -3606,7 +3606,6 @@ input:focus {
 }
 
 .error {
-    line-height: 0;
     color: red;
     font-weight: bold;
 }

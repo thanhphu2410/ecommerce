@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CheckoutRequest;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Province;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Services\CartService;
+use App\Http\Requests\CheckoutRequest;
+use Illuminate\Support\Arr;
 
 class CheckoutController extends Controller
 {
@@ -15,11 +18,6 @@ class CheckoutController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $cart = session('cart') ?? [];
@@ -32,7 +30,10 @@ class CheckoutController extends Controller
 
     public function store(CheckoutRequest $request)
     {
-        return request();
+        $order = Order::create($request->validated());
+        OrderDetail::addItem($order);
+        session()->forget('cart');
+        return back();
     }
 
     /**
