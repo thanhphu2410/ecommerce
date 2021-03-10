@@ -14,7 +14,7 @@
                             <h4 class="box-title">Product description</h4>
                             <p>{{ $product->description }}</p>
                             <h2 class="m-t-40">{{ $product->price }} đ<small
-                                    class="text-success">({{ $product->discount }}% off)</small></h2>
+                                    class="text-success"> ({{ $product->discount }}% off)</small></h2>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h3 class="box-title m-t-40">General Info</h3>
@@ -48,10 +48,7 @@
                                         <tr>
                                             <td>Reviews</td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
-                                                    data-target="#exampleModal">
-                                                    View
-                                                </button>
+                                                <a href="{{ route('product-details', ['product' => $product->id]) }}">View</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -59,25 +56,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-primary">Save changes</button>
                 </div>
             </div>
         </div>

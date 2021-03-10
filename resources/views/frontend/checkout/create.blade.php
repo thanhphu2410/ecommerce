@@ -142,7 +142,7 @@
                             </ul>
                             <p>* Pay when you receive the item
                             </p>
-                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                            <button @if(count($cart) == 0) disabled @endif type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
                     </div>
                 </div>

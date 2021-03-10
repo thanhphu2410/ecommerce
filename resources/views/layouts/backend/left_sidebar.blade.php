@@ -76,6 +76,16 @@
                         <li><a href="{{ route('roles.create') }}">New Role</a></li>
                     </ul>
                 </li> 
+                <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="ti-shopping-cart" aria-hidden="true"></i>
+                        <span class="hide-menu">Orders</span> 
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('orders.index') }}">All Orders</a></li>
+                    </ul>
+                </li> 
             </ul>
         </nav>
     </div>
