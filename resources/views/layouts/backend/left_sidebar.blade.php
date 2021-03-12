@@ -68,7 +68,7 @@
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
-                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <i class="fa fa-user-tag"></i>
                         <span class="hide-menu">Roles</span> 
                     </a>
                     <ul aria-expanded="false" class="collapse">
@@ -79,11 +79,21 @@
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
-                        <i class="ti-shopping-cart" aria-hidden="true"></i>
+                        <i class="fas fa-shopping-bag"></i>
                         <span class="hide-menu">Orders</span> 
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('orders.index') }}">All Orders</a></li>
+                    </ul>
+                </li> 
+                <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <span class="hide-menu">Customers</span> 
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('customers.index') }}">All Customers</a></li>
                     </ul>
                 </li> 
             </ul>

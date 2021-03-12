@@ -2,37 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\Province;
-use App\Models\OrderDetail;
+use App\Models\Customer;
 use Illuminate\Http\Request;
-use App\Services\CartService;
-use App\Http\Requests\CheckoutRequest;
 
-class CheckoutController extends Controller
+class CustomerController extends Controller
 {
     public function index()
+    {
+        $customers = Customer::all();
+        return view('backend.customer.index', compact('customers'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
 
-    public function create()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $cart = session('cart') ?? [];
-        $products = Product::find(array_keys($cart));
-        $total = CartService::total($cart, $products);
-        $provinces = Province::all();
-        
-        return view('frontend.checkout.create', compact('products', 'cart', 'total', 'provinces'));
-    }
-
-    public function store(CheckoutRequest $request)
-    {
-        $order = Order::create($request->validated());
-        OrderDetail::addItem($order);
-        session()->forget('cart');
-        return back();
+        //
     }
 
     /**
