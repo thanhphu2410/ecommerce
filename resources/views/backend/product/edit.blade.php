@@ -86,7 +86,7 @@
                                 @foreach ($product->sizes as $size)
                                     <p class="mt-2" id="qty_label{{ $size->id }}">Quantity Size {{ $size->name }}</p>
                                     <input type="number" class="form-control" placeholder="Enter Quantity" 
-                                    name="quantity[]" id="qty_input{{ $size->id }}" value="{{ $size->pivot->product_quantity }}">
+                                    name="quantity[]" id="qty_input{{ $size->id }}" value="{{ $size->quantity }}">
                                 @endforeach
                             </div>
                             @error('quantity') 

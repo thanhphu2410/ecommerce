@@ -72,7 +72,8 @@
                                             <label for="size{{ $size->id }}" @if($loop->first) class="active" @endif>
                                                 {{ $size->name }} 
                                                 <input type="radio" id="size{{ $size->id }}" value="{{ $size->id }}"
-                                                name="size" @if($loop->first) checked @endif>
+                                                name="size" @if($loop->first) checked @endif class="size">
+                                                <input type="hidden" value="{{ $size->quantity }}" id="size_qty{{ $size->id }}">
                                             </label>
                                         @endforeach
                                     </div>
@@ -99,7 +100,7 @@
                                     <div class="quantity">
                                         <div class="pro-qty">
                                             <input type="hidden" value="{{ $product->id }}" name="product_id">
-                                            <input type="hidden" value="{{ $product->quantity }}" id="max_quantity">
+                                            <input type="hidden" value="{{ $product->sizes->first()->quantity }}" id="max_qty">
                                             <span class="fa fa-angle-up dec qtybtn" id="increase"></span>
                                             <input type="text" value="1" id="quantity" name="quantity">
                                             <span class="fa fa-angle-down inc qtybtn" id="decrease"></span>
@@ -121,6 +122,7 @@
                                 <h5><span>Guaranteed Safe Checkout</span></h5>
                                 <img src="img/shop-details/details-payment.png" alt="">
                                 <ul>
+                                    <li id="in_stock"><span>In stock:</span> {{ $product->sizes->first()->quantity }}</li>
                                     <li><span>Category:</span> {{ $product->category->name }}</li>
                                     <li><span>Sub Category:</span> {{ $product->subCategory->name }}</li>
                                 </ul>

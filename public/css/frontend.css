@@ -1816,7 +1816,6 @@ ol {
     font-weight: 700;
     font-size: 20px;
     position: relative;
-    margin-bottom: 26px;
 }
 
 .product__details__last__option h5 span {
@@ -3476,6 +3475,10 @@ input:focus {
     transition: 0.5s;
 }
 
+.rating {
+    user-select: none;
+}
+
 .rating .fa-star {
     color: #f7941d !important;
 }
@@ -3608,11 +3611,12 @@ input:focus {
 .error {
     color: red;
     font-weight: bold;
+    user-select: none;
 }
 
 .error-nice-select {
     position: absolute;
-    bottom: -15px;
+    bottom: -30px;
 }
 
 .button-reviews,

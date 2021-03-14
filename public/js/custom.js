@@ -36,10 +36,18 @@ $("#imgInp").on("change", function() {
     readURL(this);
 });
 
+$(".size").on("click", function() {
+    let qty = $("#size_qty" + $(this).val()).val();
+    $("#quantity").val(1);
+    $("#max_qty").val(qty);
+    $("#in_stock").empty();
+    $("#in_stock").append('<span>In stock:</span> ' + qty);
+});
+
 $("#increase").on("click", function() {
     let quantity = parseInt($("#quantity").val());
-    let max_quantity = parseInt($("#max_quantity").val());
-    if (quantity + 1 <= max_quantity) {
+    let max_qty = parseInt($("#max_qty").val());
+    if (quantity + 1 <= max_qty) {
         $("#quantity").val(quantity + 1);
     }
 });
@@ -52,15 +60,17 @@ $("#decrease").on("click", function() {
 });
 
 $("#quantity").on("keyup", function() {
+    let max_qty = parseInt($("#max_qty").val());
     $("#updateBtn").removeAttr("disabled");
-    if (isNaN($("#quantity").val())) {
+    if (isNaN($("#quantity").val()) || parseInt($(this).val()) > max_qty) {
         $("#updateBtn").attr("disabled", "disabled");
     }
 });
 
 $("#quantity").on("keyup", function() {
+    let max_qty = parseInt($("#max_qty").val());
     $("#addToCartBtn").removeAttr("disabled");
-    if (isNaN($("#quantity").val())) {
+    if (isNaN($("#quantity").val()) || parseInt($(this).val()) > max_qty) {
         $("#addToCartBtn").attr("disabled", "disabled");
     }
 });
@@ -126,3 +136,5 @@ $("#district").on("change", function() {
         }
     });
 });
+
+

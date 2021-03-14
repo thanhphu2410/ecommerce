@@ -81,7 +81,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-12 custom-nice-select mb-4">
+                            <div class="col-lg-12 custom-nice-select mb-5">
                                 <div class="checkout__input">
                                     <p>Province<span>*</span></p>
                                     <select id="province" name="province_id">

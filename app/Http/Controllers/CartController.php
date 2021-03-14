@@ -17,11 +17,6 @@ class CartController extends Controller
         return view('frontend.cart', compact('cart', 'products', 'total'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(CartRequest $request)
     {
         $key = "cart.".request('product_id');
@@ -30,16 +25,6 @@ class CartController extends Controller
         session()->has($key) ? session()->increment($key.'.0.quantity') : session()->push($key, $cart);
         
         return back();
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function update()

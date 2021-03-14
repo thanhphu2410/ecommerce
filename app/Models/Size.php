@@ -15,4 +15,9 @@ class Size extends Model
         }
         return $data;
     }
+
+    public function getQuantityAttribute()
+    {
+        return $this->pivot->product_quantity;
+    }
 }
