@@ -34,7 +34,14 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\OrderDetail');
     }
-    
+
+    /*  *****************************QUERY SCOPE***************************** */
+
+    public function scopeActive($query)
+    {
+        return $query->where('products.quantity', '>', 0);
+    }
+
     /*  *****************************MUTATORS***************************** */
 
     public function setNameAttribute($value)
@@ -42,11 +49,17 @@ class Product extends Model
         $this->attributes['name'] = Str::title($value);
     }
 
+    public function setQuantityAttribute()
+    {
+        $this->attributes['quantity'] = collect(request('quantity'))->sum();
+    }
+
     /*  *****************************ACCESSORS***************************** */
 
     public function getBestSellerAttribute()
     {
         return $this->select('products.*')
+            ->active()
             ->join('order_details', 'products.id', '=', 'order_details.product_id')
             ->groupBy('order_details.product_id')
             ->orderByRaw('COUNT(*) DESC')
@@ -57,17 +70,23 @@ class Product extends Model
 
     public function getNewArrivalAttribute()
     {
-        return $this->latest()->limit(8)->with('images')->get();
+        return $this->latest()->active()->limit(8)->with('images')->get();
     }
 
     public function getHotSaleAttribute()
     {
-        return $this->orderBy('discount', 'desc')->limit(8)->with('images')->get();
+        return $this->where('discount', '>', 0)
+            ->active()
+            ->orderBy('discount', 'desc')
+            ->limit(8)
+            ->with('images')
+            ->get();
     }
 
     public function getRelatedAttribute()
     {
-        return Product::where('sub_category_id', $this->sub_category_id)
+        return $this->where('sub_category_id', $this->sub_category_id)
+            ->active()
             ->where('id', '!=', $this->id)
             ->with('images')
             ->get();
@@ -91,10 +110,5 @@ class Product extends Model
     public function getRatingStarAttribute()
     {
         return round($this->reviews->average('rating'));
-    }
-
-    public function getQuantityAttribute()
-    {
-        return $this->sizes()->sum('product_quantity');
     }
 }

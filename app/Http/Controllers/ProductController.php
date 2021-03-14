@@ -76,6 +76,6 @@ class ProductController extends Controller
     private function getData($request)
     {
         $validated = $request->validated();
-        return Arr::except($validated, ['images', 'sizes', 'quantity']);
+        return Arr::except($validated, ['images', 'sizes']);
     }
 }
