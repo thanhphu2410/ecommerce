@@ -33,8 +33,8 @@
                             <label>Images</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" multiple class="custom-file-input" name="images[]">
-                                    <label class="custom-file-label">Choose file</label>
+                                    <input type="file" multiple class="custom-file-input" name="images[]" accept="image/*">
+                                    <label class="custom-file-label">Choose images</label>
                                 </div>
                             </div>
                             @error('images') 
@@ -46,7 +46,7 @@
                             <h5 class="m-t-30">Select sizes</h5>
                             @foreach ($sizes as $size)
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="size{{ $size->id }}" 
+                                    <input type="checkbox" class="custom-control-input size" id="size{{ $size->id }}" 
                                     value="{{ $size->id }}" name="sizes[]">
                                     <label class="custom-control-label" for="size{{ $size->id }}">{{ $size->name }}</label>
                                 </div>
@@ -72,15 +72,15 @@
                         
                         <div class="form-group">
                             <label>Product Price</label>
-                            <input type="number" class="form-control" placeholder="Enter Name" name="price" value="{{ old('price') }}">
+                            <input type="number" class="form-control" placeholder="Enter Price" name="price" value="{{ old('price') }}">
                             @error('price') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" >
                             <label>Product Quantity</label>
-                            <input type="number" class="form-control" placeholder="Enter Name" name="quantity" value="{{ old('quantity') }}">
+                            <div id="quantity"></div>
                             @error('quantity') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -88,7 +88,7 @@
 
                         <div class="form-group">
                             <label>Discount (%)</label>
-                            <input type="number" class="form-control" placeholder="Enter Discount" name="discount" value="{{ old('discount') }}">
+                            <input type="number" class="form-control" placeholder="Enter Discount" name="discount" value="{{ old('discount') ?: 0 }}">
                             @error('discount') 
                                 <div class="error">{{ $message }}</div>
                             @enderror

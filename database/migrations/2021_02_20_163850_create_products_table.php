@@ -17,7 +17,6 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('price');
-            $table->string('quantity');
             $table->bigInteger('discount')->default('0');
             $table->string('description')->nullable()->default('This is a description');
             $table->foreignId('sub_category_id')->constrained()->onDelete('cascade');

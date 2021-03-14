@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card card-body">
-            <h3 class="box-title m-b-0 mb-3">New Product</h3>
+            <h3 class="box-title m-b-0 mb-3">Edit Product</h3>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
                     <form action="{{ route('products.update', ['product' => $product->id]) }}" method="post" enctype="multipart/form-data">
@@ -34,8 +34,8 @@
                             <label>Images</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" multiple class="custom-file-input" name="images[]">
-                                    <label class="custom-file-label">Choose file</label>
+                                    <input type="file" multiple class="custom-file-input" name="images[]" accept="image/*">
+                                    <label class="custom-file-label">Choose images</label>
                                 </div>
                             </div>
                             @error('images') 
@@ -47,7 +47,7 @@
                             <h5 class="m-t-30">Select sizes</h5>
                             @foreach ($sizes as $size)
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="size{{ $size->id }}" value="{{ $size->id }}" 
+                                    <input type="checkbox" class="custom-control-input size" id="size{{ $size->id }}" value="{{ $size->id }}"
                                     @if($product->sizes->contains('id', $size->id)) checked @endif name="sizes[]">
                                     <label class="custom-control-label" for="size{{ $size->id }}">{{ $size->name }}</label>
                                 </div>
@@ -74,15 +74,21 @@
                         
                         <div class="form-group">
                             <label>Product Price</label>
-                            <input type="number" class="form-control" placeholder="Enter Name" name="price" value="{{ $product->price }}">
+                            <input type="number" class="form-control" placeholder="Enter Price" name="price" value="{{ $product->price }}">
                             @error('price') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" >
                             <label>Product Quantity</label>
-                            <input type="number" class="form-control" placeholder="Enter Name" name="quantity" value="{{ $product->quantity }}">
+                            <div id="quantity">
+                                @foreach ($product->sizes as $size)
+                                    <p class="mt-2" id="qty_label{{ $size->id }}">Quantity Size {{ $size->name }}</p>
+                                    <input type="number" class="form-control" placeholder="Enter Quantity" 
+                                    name="quantity[]" id="qty_input{{ $size->id }}" value="{{ $size->pivot->product_quantity }}">
+                                @endforeach
+                            </div>
                             @error('quantity') 
                                 <div class="error">{{ $message }}</div>
                             @enderror

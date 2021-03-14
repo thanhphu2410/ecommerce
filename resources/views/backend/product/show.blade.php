@@ -30,6 +30,10 @@
                                             <td>{{ $product->price }}</td>
                                         </tr>
                                         <tr>
+                                            <td>Quantity</td>
+                                            <td>{{ $product->quantity }}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Discount (%)</td>
                                             <td>{{ $product->discount }}</td>
                                         </tr>
@@ -44,6 +48,10 @@
                                         <tr>
                                             <td>Sub Category</td>
                                             <td>{{ $product->subCategory->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ordered</td>
+                                            <td>{{ $product->orders->count() }}</td>
                                         </tr>
                                         <tr>
                                             <td>Reviews</td>

@@ -251,6 +251,7 @@
     <script src="{{ asset('backend/dist/js/waves.js') }}"></script>
     <script src="{{ asset('backend/dist/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('backend/dist/js/custom.min.js') }}"></script>
+    <script src="{{ asset('backend/js/custom.js') }}"></script>
     <script src="{{ asset('backend/toast-master/js/jquery.toast.js') }}"></script>
 	<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
     @isset($success)

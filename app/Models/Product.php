@@ -22,12 +22,17 @@ class Product extends Model
 
     public function sizes()
     {
-        return $this->belongsToMany('App\Models\Size');
+        return $this->belongsToMany('App\Models\Size')->withPivot('product_quantity');
     }
 
     public function reviews()
     {
         return $this->hasMany('App\Models\Review');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\OrderDetail');
     }
     
     /*  *****************************MUTATORS***************************** */
@@ -86,5 +91,10 @@ class Product extends Model
     public function getRatingStarAttribute()
     {
         return round($this->reviews->average('rating'));
+    }
+
+    public function getQuantityAttribute()
+    {
+        return $this->sizes()->sum('product_quantity');
     }
 }
