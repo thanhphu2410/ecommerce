@@ -39,7 +39,7 @@
                                 <div class="checkout__input">
                                     <p>Full Name<span>*</span></p>
                                     <input type="text" placeholder="Full Name" name="customer_name" autocomplete="off"
-                                    value="@auth {{ Auth::user()->name }} @else {{ old('customer_name') }} @endauth">
+                                    value="@auth {{ auth()->user()->name }} @else {{ old('customer_name') }} @endauth">
                                     @error('customer_name') 
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -49,7 +49,7 @@
                                 <div class="checkout__input">
                                     <p>Phone<span>*</span></p>
                                     <input type="text" placeholder="Phone number" required name="customer_phone" autocomplete="off"
-                                    value="@auth {{ Auth::user()->customer->phone }} @else {{ old('customer_phone') }} @endauth">
+                                    value="@auth {{ auth()->user()->customer->phone }} @else {{ old('customer_phone') }} @endauth">
                                     @error('customer_phone') 
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -59,7 +59,7 @@
                                 <div class="checkout__input">
                                     <p>Email<span>*</span></p>
                                     <input type="text" placeholder="Email" name="customer_email" autocomplete="off"
-                                    value="@auth {{ Auth::user()->email }} @else {{ old('customer_email') }} @endauth">
+                                    value="@auth {{ auth()->user()->email }} @else {{ old('customer_email') }} @endauth">
                                     @error('customer_email') 
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -68,14 +68,14 @@
                             <div class="col-lg-12">
                                 <div class="checkout__input">
                                     <p>Order notes</p>
-                                    <input type="text" name="notes" placeholder="Notes about your order, e.g. special notes for delivery.">
+                                    <input type="text" name="notes" value="{{ old('notes') }}" placeholder="Notes about your order, e.g. special notes for delivery.">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="checkout__input">
                                     <p>Address<span>*</span></p>
                                     <input type="text" placeholder="Your Address" class="checkout__input__add" autocomplete="off" name="customer_address"
-                                     value="@auth {{ Auth::user()->customer->address }} @else {{ old('customer_address') }} @endauth">
+                                     value="@auth {{ auth()->user()->customer->address }} @else {{ old('customer_address') }} @endauth">
                                     @error('customer_address') 
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -128,12 +128,17 @@
                             <div class="checkout__order__products font-weight-bold">Product <span>Total</span></div>
                             <ul class="checkout__total__products">
                                 @foreach ($cart as $item)
-                                <input type="hidden" name="size_id[]" value="{{ $item[0]['size'] }}">
-                                <input type="hidden" name="product_id[]" value="{{ $item[0]['product_id'] }}">
-                                <input type="hidden" name="total[]" value="{{ $products[$loop->index]->after_discount * $item[0]['quantity'] }}">
+                                @php
+                                    $item = $item[0];
+                                    $product = $products[$loop->index];
+                                @endphp
+                                <input type="hidden" name="size_id[]" value="{{ $item['size'] }}">
+                                <input type="hidden" name="product_id[]" value="{{ $item['product_id'] }}">
+                                <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
+                                <input type="hidden" name="total[]" value="{{ $product->after_discount * $item['quantity'] }}">
                                 <li>
-                                    {{ $products[$loop->index]->name }} &nbsp; x{{ $item[0]['quantity'] }}
-                                    <span>{{ $products[$loop->index]->after_discount * $item[0]['quantity'] }} đ</span>
+                                    {{ $product->name }} &nbsp; x{{ $item['quantity'] }}
+                                    <span>{{ $product->after_discount * $item['quantity'] }} đ</span>
                                 </li>
                                 @endforeach
                             </ul>

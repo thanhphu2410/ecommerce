@@ -102,11 +102,11 @@
                                             <input type="hidden" value="{{ $product->id }}" name="product_id">
                                             <input type="hidden" value="{{ $product->sizes->first()->quantity }}" id="max_qty">
                                             <span class="fa fa-angle-up dec qtybtn" id="increase"></span>
-                                            <input type="text" value="1" id="quantity" name="quantity">
+                                            <input type="text" value="0" id="quantity" name="quantity">
                                             <span class="fa fa-angle-down inc qtybtn" id="decrease"></span>
                                         </div>
                                     </div>
-                                    <button id="addToCartBtn" type="submit" class="primary-btn">add to cart</button>
+                                    <button id="addToCartBtn" type="submit" class="primary-btn" disabled>add to cart</button>
                                 </div>
                             </form>
                             <div class="product__details__btns__option">

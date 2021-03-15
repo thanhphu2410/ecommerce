@@ -22,17 +22,19 @@ class OrderDetail extends Model
     {
         foreach (request('product_id') as $index => $value) {
             $product = Product::find($value);
+            $productSize = ProductSize::firstWhere(['product_id' => $value,'size_id' => request('size_id')[$index]]);
             
             $data = [
                 'product_id' => $value,
-                'quantity' => request('product_id')[$index],
+                'quantity' => request('quantity')[$index],
                 'discount' => $product->discount,
                 'total' => request('total')[$index],
                 'size_id' => request('size_id')[$index],
             ];
             $order->details()->create($data);
 
-            $product->decrement('quantity', request('product_id')[$index]);
+            $product->decrement('quantity', request('quantity')[$index]);
+            $productSize->decrement('product_quantity', request('quantity')[$index]);
         }
     }
 }
