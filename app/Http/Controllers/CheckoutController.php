@@ -9,7 +9,6 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Services\CartService;
 use App\Http\Requests\CheckoutRequest;
-use App\Models\ProductSize;
 
 class CheckoutController extends Controller
 {
