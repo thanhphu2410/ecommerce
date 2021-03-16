@@ -9,6 +9,7 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Services\CartService;
 use App\Http\Requests\CheckoutRequest;
+use App\Models\ProductSize;
 
 class CheckoutController extends Controller
 {
@@ -29,6 +30,10 @@ class CheckoutController extends Controller
 
     public function store(CheckoutRequest $request)
     {
+        if (!Product::checkQuantity()) {
+            session()->push("error", "This is notification");
+            return back();
+        }
         $order = Order::create($request->validated());
         OrderDetail::addItem($order);
         session()->forget('cart');

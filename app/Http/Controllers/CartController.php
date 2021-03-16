@@ -10,7 +10,8 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cart = session('cart') ?? [];
+        // return session()->all();
+        $cart = session('cart', []);
         $products = Product::find(array_keys($cart));
         $total = CartService::total($cart, $products);
 
@@ -29,7 +30,7 @@ class CartController extends Controller
 
     public function update()
     {
-        foreach (request('product_id') ?? [] as $index=>$item) {
+        foreach (request('product_id', []) as $index=>$item) {
             $key = "cart.".$item;
             $cart = [
                 'product_id' => $item,

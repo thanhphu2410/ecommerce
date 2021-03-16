@@ -3397,6 +3397,19 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+#liveToastSuccess .toast-header {
+    background-color: #7af3b2e8;
+}
+
+#liveToastSuccess i {
+    color: #00a900;
+    font-weight: 200;
+}
+
+#liveToastSuccess .toast-body {
+    background-color: #ffffffcf;
+}
+
 .custom-nice-select .nice-select {
     border-radius: 0;
     width: 100%;

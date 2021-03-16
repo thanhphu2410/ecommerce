@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('backend.*', function ($view) {
+        view()->composer('*', function ($view) {
             if (session()->has('success')) {
                 $view->with('success', session('success'));
                 session()->forget('success');
