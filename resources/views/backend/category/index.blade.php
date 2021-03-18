@@ -32,7 +32,7 @@
                             <tr>
                                 <td>{{ $category->name }}</td>
                                 <td>
-                                   <img src="{{ $category->image_path }}" width="100">
+                                   <img src="{{ $category->image_path }}" width="100" height="100" class="of-cover">
                                 </td>
                                 <td>
                                     <a href="{{ route('categories.edit', ['category' => $category->id ]) }}" 
@@ -52,6 +52,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $categories->links() }}
             </div>
         </div>
     </div>

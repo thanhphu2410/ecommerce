@@ -34,7 +34,7 @@
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('image_path') is-invalid @enderror" name="image_path">
-                                    <label class="custom-file-label">Choose file</label>
+                                    <label class="custom-file-label">Choose image</label>
                                 </div>
                             </div>
                             @error('image_path') 

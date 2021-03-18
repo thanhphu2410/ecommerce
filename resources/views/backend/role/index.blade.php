@@ -52,6 +52,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $roles->links() }}
             </div>
         </div>
     </div>

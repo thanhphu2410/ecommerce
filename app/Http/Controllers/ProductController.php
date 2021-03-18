@@ -15,7 +15,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::latest()->paginate(10);
         return view('backend.product.index', compact('products'));
     }
 
@@ -40,7 +40,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $product->load(['images', 'sizes', 'orders']);
-
         return view('backend.product.show', compact('product'));
     }
 

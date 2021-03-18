@@ -46,6 +46,10 @@
                                             <td>{{ $product->sizes->implode('name', ', ') }}</td>
                                         </tr>
                                         <tr>
+                                            <td>Category</td>
+                                            <td>{{ $product->category->name }}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Sub Category</td>
                                             <td>{{ $product->subCategory->name }}</td>
                                         </tr>

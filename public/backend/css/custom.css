@@ -9,3 +9,6 @@
     outline: none;
     cursor: pointer;
 }
+.of-cover {
+    object-fit: cover;
+}

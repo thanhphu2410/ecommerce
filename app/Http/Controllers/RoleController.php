@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Models\Role;
 
 class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::latest()->paginate(10);
         return view('backend.role.index', compact('roles'));
     }
 

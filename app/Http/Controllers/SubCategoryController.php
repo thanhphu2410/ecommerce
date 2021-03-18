@@ -11,7 +11,7 @@ class SubCategoryController extends Controller
 {
     public function index()
     {
-        $subCategories = SubCategory::all();
+        $subCategories = SubCategory::latest()->paginate(10);
         return view('backend.sub-category.index', compact('subCategories'));
     }
 
@@ -23,10 +23,7 @@ class SubCategoryController extends Controller
 
     public function store(SubCategoryRequest $request)
     {
-        $data = $request->validated();
-
-        SubCategory::create($data);
-        
+        SubCategory::create($request->validated());
         return success('sub-categories.index');
     }
 
@@ -38,10 +35,7 @@ class SubCategoryController extends Controller
 
     public function update(SubCategoryRequest $request, SubCategory $subCategory)
     {
-        $data = $request->validated();
-        
-        $subCategory->update($data);
-        
+        $subCategory->update($request->validated());
         return success('sub-categories.index');
     }
 

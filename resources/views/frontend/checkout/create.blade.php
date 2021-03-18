@@ -127,10 +127,9 @@
                             <h4 class="order__title">Your order</h4>
                             <div class="checkout__order__products font-weight-bold">Product <span>Total</span></div>
                             <ul class="checkout__total__products">
-                                @foreach ($cart as $item)
+                                @foreach ($products as $product)
                                 @php
-                                    $item = $item[0];
-                                    $product = $products[$loop->index];
+                                    $item = $cart[$product->id][0];
                                 @endphp
                                 <input type="hidden" name="size_id[]" value="{{ $item['size'] }}">
                                 <input type="hidden" name="product_id[]" value="{{ $item['product_id'] }}">
@@ -147,7 +146,7 @@
                             </ul>
                             <p>* Pay when you receive the item
                             </p>
-                            <button @if(count($cart) == 0) disabled @endif type="submit" class="site-btn">PLACE ORDER</button>
+                            <button @if($products->count() == 0) disabled @endif type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
                     </div>
                 </div>
