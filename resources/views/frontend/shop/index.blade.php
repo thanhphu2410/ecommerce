@@ -239,8 +239,8 @@
                                     @endfor
                                 </div>
                                 <h5 class="discount">
-                                    {{ $product->after_discount }} đ 
-                                    @if($product->discount > 0) <span>{{ $product->price }} đ</span> @endif
+                                    {{ money($product->after_discount) }}
+                                    @if($product->discount > 0) <span>{{ money($product->price) }}</span> @endif
                                 </h5>
                             </div>
                         </div>

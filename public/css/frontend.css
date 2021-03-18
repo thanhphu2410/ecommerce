@@ -3440,9 +3440,10 @@ ol {
 }
 .discount span {
     text-decoration: line-through;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: lighter;
     margin-left: 5px;
+    color: #848484;
 }
 
 .btn-outline-dark:hover {

@@ -16,3 +16,11 @@ if (! function_exists('delete_file')) {
         Storage::delete(str_replace('storage', 'public', $path));
     }
 }
+
+if (! function_exists('money')) {
+    function money($money)
+    {
+        $amount = new \NumberFormatter('vi_VN', \NumberFormatter::CURRENCY);
+        return $amount->format($money);
+    }
+}
