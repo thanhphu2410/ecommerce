@@ -10,7 +10,6 @@ class CartController extends Controller
 {
     public function index()
     {
-        // return session()->all();
         $cart = session('cart', []);
         $products = Product::find(array_keys($cart));
         $total = CartService::total($cart, $products);

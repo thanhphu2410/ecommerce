@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,7 +24,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', function ($view) {
+        view()->composer('layouts.frontend.app', function ($view) {
+            $cart = session('cart', []);
+            $products = Product::find(array_keys($cart));
+            $view->with('cart', $products->count());
+        });
+
+        view()->composer('layouts.*', function ($view) {
             if (session()->has('success')) {
                 $view->with('success', session('success'));
                 session()->forget('success');

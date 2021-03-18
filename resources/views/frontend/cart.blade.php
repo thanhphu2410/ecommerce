@@ -18,10 +18,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach ($cart as $item)
+									@foreach ($products as $product)
 										@php
-											$item = $item[0];
-											$product = $products[$loop->index]->load('sizes');
+											$item = $cart[$product->id][0];
+											$product->load('sizes');
 										@endphp
 										<tr>
 											<td class="product__cart__item">
