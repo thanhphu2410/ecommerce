@@ -23,7 +23,7 @@ class CartController extends Controller
         $cart = $request->validated();
 
         session()->has($key) ? session()->increment($key.'.0.quantity') : session()->push($key, $cart);
-        
+
         return back();
     }
 
@@ -36,7 +36,7 @@ class CartController extends Controller
                 'quantity' => request('quantity.'.$index),
                 'size' => request('size'.$item)
             ];
-    
+
             session()->forget('cart.'.$item);
             session()->push($key, $cart);
         }

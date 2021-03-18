@@ -18,6 +18,7 @@ class ProductImage extends Model
     
     public static function deleteItem($product)
     {
+        $product->load('images');
         foreach ($product->images as $image) {
             delete_file($image->path);
             $image->delete();

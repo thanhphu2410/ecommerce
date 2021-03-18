@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Services\ImageServices;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 
@@ -21,11 +22,7 @@ class CategoryController extends Controller
 
     public function store(CategoryStoreRequest $request)
     {
-        // assign image path to $data for mass assignment
-        $data = $this->assignImagePath($request->validated());
-        
-        Category::create($data);
-
+        Category::create($request->validated());
         return success('categories.index');
     }
 
@@ -40,28 +37,17 @@ class CategoryController extends Controller
             delete_file($category->image_path);
         }
 
-        $data = $this->assignImagePath($request->validated());
-
-        $category->update($data);
+        $category->update($request->validated());
         
         return success('categories.index');
     }
 
     public function destroy(Category $category)
     {
-        delete_file($category->image_path);
+        ImageServices::deleteImages($category);
 
         $category->delete();
 
         return success('categories.index');
-    }
-
-    private function assignImagePath($data)
-    {
-        if (request()->has('image_path')) {
-            $path = request('image_path')->store('category', 'public');
-            $data['image_path'] = "storage/".$path;
-        }
-        return $data;
     }
 }

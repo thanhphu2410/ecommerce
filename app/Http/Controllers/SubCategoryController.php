@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SubCategoryRequest;
-use App\Models\SubCategory;
 use App\Models\Category;
+use App\Models\SubCategory;
+use App\Services\ImageServices;
+use App\Http\Requests\SubCategoryRequest;
 
 class SubCategoryController extends Controller
 {
@@ -46,7 +47,10 @@ class SubCategoryController extends Controller
 
     public function destroy(SubCategory $subCategory)
     {
+        ImageServices::deleteImages($subCategory);
+
         $subCategory->delete();
+        
         return success('sub-categories.index');
     }
 }

@@ -8,6 +8,7 @@ use App\Models\SubCategory;
 use App\Models\ProductImage;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
+use App\Services\ImageServices;
 use Illuminate\Support\Arr;
 
 class ProductController extends Controller
@@ -66,7 +67,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        ProductImage::deleteItem($product);
+        ImageServices::deleteImages($product);
 
         $product->delete();
         

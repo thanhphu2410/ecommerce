@@ -41,7 +41,7 @@ class ShopController extends Controller
     {
         $reviewed->update($data);
 
-        ReviewImage::deleteReviewImage($reviewed);
+        ReviewImage::deleteItem($reviewed);
 
         return $reviewed;
     }
