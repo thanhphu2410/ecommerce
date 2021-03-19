@@ -35,5 +35,7 @@ Route::resource('roles', 'RoleController');
 Route::resource('assign-roles', 'AssignRoleController');
 Route::resource('orders', 'OrderController');
 Route::resource('customers', 'CustomerController');
+Route::resource('tags', 'TagController');
+Route::resource('blogs', 'BlogController');
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

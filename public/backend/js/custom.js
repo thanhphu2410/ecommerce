@@ -12,3 +12,23 @@ $(".size").on("click", function() {
 		}
 	}
 });
+
+$("#summernote").summernote({
+	placeholder: "Type something ...",
+	tabsize: 2,
+	height: 80,
+	toolbar: [
+		['style', ['style']],
+		['font', ['bold', 'underline', 'clear']],
+		['color', ['color']],
+		['para', ['ul', 'ol', 'paragraph']],
+		['table', ['table']],
+		['insert', ['link', 'picture', 'video']],
+		['view', ['fullscreen', 'codeview', 'help']]
+	],
+	callbacks: {
+		onImageUpload: function(files) {}
+	}
+});
+
+

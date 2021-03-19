@@ -8,7 +8,7 @@ class SizeController extends Controller
 {
     public function index()
     {
-        $sizes = Size::all();
+        $sizes = Size::latest()->paginate(10);
         return view('backend.size.index', compact('sizes'));
     }
 

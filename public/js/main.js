@@ -5,20 +5,6 @@
         Preloaderq
     --------------------*/
     $(window).on("load", function() {
-        // $("#summernote").summernote({
-        //     placeholder: "Leave your feedback",
-        //     tabsize: 2,
-        //     height: 80,
-        //     toolbar: [
-        //         ["style", ["style"]],
-        //         ["font", ["bold", "underline"]]
-        //         // ["insert", ["picture"]]
-        //     ],
-        //     callbacks: {
-        //         onImageUpload: function(files) {}
-        //     }
-        // });
-
         $(".loader").fadeOut();
         $("#preloder")
             .delay(200)

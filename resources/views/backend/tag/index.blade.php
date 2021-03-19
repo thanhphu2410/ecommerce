@@ -2,13 +2,13 @@
 @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Products</h4>
+        <h4 class="text-themecolor">Tags</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Products</li>
+                <li class="breadcrumb-item active">Tags</li>
             </ol>
         </div>
     </div>
@@ -17,33 +17,25 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Products Table</h4>
+                <h4 class="card-title">Tags Table</h4>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Product Name</th>
-                                <th>Product Price</th>
-                                <th>Product Quantity</th>
+                                <th>Tag Name</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($tags as $tag)
                             <tr>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ money($product->price) }}</td>
-                                <td>{{ $product->quantity }}</td>
+                                <td>{{ $tag->name }}</td>
                                 <td>
-                                    <a href="{{ route('products.show', ['product' => $product->id ]) }}" 
-                                        data-toggle="tooltip" data-original-title="View"> 
-                                        <i class="fa fa-eye m-r-15" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="{{ route('products.edit', ['product' => $product->id ]) }}" 
+                                    <a href="{{ route('tags.edit', ['tag' => $tag->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="Edit"> 
                                         <i class="fa fa-pencil text-inverse m-r-10"></i> 
                                     </a>
-                                    <form action="{{ route('products.destroy', ['product' => $product->id ]) }}" method="post" class="d-inline">
+                                    <form action="{{ route('tags.destroy', ['tag' => $tag->id ]) }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn-none" type="submit" data-toggle="tooltip" data-original-title="Delete"> 
@@ -56,7 +48,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $products->links() }}
             </div>
         </div>
     </div>

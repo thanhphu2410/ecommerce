@@ -96,6 +96,28 @@
                         <li><a href="{{ route('customers.index') }}">All Customers</a></li>
                     </ul>
                 </li> 
+                <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="mdi mdi-tag-multiple"></i>
+                        <span class="hide-menu">Blog Tags</span> 
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('tags.index') }}">All Tags</a></li>
+                        <li><a href="{{ route('tags.create') }}">New Tag</a></li>
+                    </ul>
+                </li>
+                <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="far fa-newspaper"></i>
+                        <span class="hide-menu">Blogs</span> 
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('blogs.index') }}">All Blogs</a></li>
+                        <li><a href="{{ route('blogs.create') }}">New Blog</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>
