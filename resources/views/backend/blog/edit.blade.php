@@ -16,14 +16,15 @@
 <div class="row">
     <div class="col-12">
         <div class="card card-body">
-            <h3 class="box-title m-b-0 mb-3">New Blog</h3>
+            <h3 class="box-title m-b-0 mb-3">Edit Blog</h3>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <form action="{{ route('blogs.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('blogs.update', ['blog' => $blog->id]) }}" method="post">
+                        @method('patch')
                         @csrf
                         <div class="form-group">
                             <label>Blog Title</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="title" value="{{ old('title') }}" autocomplete="off">
+                            <input type="text" class="form-control" placeholder="Enter Name" name="title" value="{{ $blog->title }}" autocomplete="off">
                             @error('title') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -40,11 +41,11 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
-                        <textarea id="summernote" name="body"></textarea>
+                        <textarea id="summernote" name="body">{!! $blog->body !!}</textarea>
                         @error('body') 
                             <div class="error">{{ $message }}</div>
                         @enderror
-                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10 mt-3">Submit</button>
+                        <button type="submit" class="btn btn-danger mt-3"> <i class="fa fa-pencil"></i> Save</button>
                     </form>
                 </div>
             </div>

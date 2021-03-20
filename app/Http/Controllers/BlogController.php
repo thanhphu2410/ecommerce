@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\BlogStoreRequest;
+use App\Http\Requests\BlogUpdateRequest;
+use App\Models\Blog;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        //
+        $blogs = Blog::latest()->paginate(10);
+        return view('backend.blog.index', compact('blogs'));
     }
 
     public function create()
@@ -16,59 +19,34 @@ class BlogController extends Controller
         return view('backend.blog.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(BlogStoreRequest $request)
     {
-        //
+        Blog::create($request->validated());
+        return success('blogs.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Blog $blog)
     {
-        //
+        return view('backend.blog.edit', compact('blog'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(BlogUpdateRequest $request, Blog $blog)
     {
-        //
+        if (request()->has('image_path')) {
+            delete_file($blog->image_path);
+        }
+
+        $blog->update($request->validated());
+        
+        return success('blogs.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(Blog $blog)
     {
-        //
-    }
+        delete_file($blog->image_path);
+        
+        $blog->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return success('blogs.index');
     }
 }
