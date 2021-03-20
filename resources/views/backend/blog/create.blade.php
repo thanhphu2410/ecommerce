@@ -28,6 +28,21 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <h5 class="m-t-30">Select tags</h5>
+                            @foreach ($tags as $tag)
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="tag{{ $tag->id }}" 
+                                    value="{{ $tag->id }}" name="tags[]">
+                                    <label class="custom-control-label" for="tag{{ $tag->id }}">{{ $tag->name }}</label>
+                                </div>
+                            @endforeach
+                            @error('tags') 
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label>Image</label>
                             <div class="input-group">

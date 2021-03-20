@@ -19,7 +19,7 @@
             <h3 class="box-title m-b-0 mb-3">Edit Blog</h3>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <form action="{{ route('blogs.update', ['blog' => $blog->id]) }}" method="post">
+                    <form action="{{ route('blogs.update', ['blog' => $blog->id]) }}" method="post" enctype="multipart/form-data">
                         @method('patch')
                         @csrf
                         <div class="form-group">
@@ -29,11 +29,26 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <h5 class="m-t-30">Select tags</h5>
+                            @foreach ($tags as $tag)
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="tag{{ $tag->id }}" value="{{ $tag->id }}"
+                                    @if($blog->tags->contains('id', $tag->id)) checked @endif  name="tags[]">
+                                    <label class="custom-control-label" for="tag{{ $tag->id }}">{{ $tag->name }}</label>
+                                </div>
+                            @endforeach
+                            @error('tags') 
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label>Image</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('image_path') is-invalid @enderror" name="image_path">
+                                    <input type="file" class="custom-file-input @error('image_path') is-invalid @enderror" name="image_path" accept="image/*">
                                     <label class="custom-file-label">Choose image</label>
                                 </div>
                             </div>

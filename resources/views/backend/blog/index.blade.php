@@ -45,7 +45,12 @@
                                                         </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="font-weight-bold">{{ $blog->title }}</div>
+                                                    <div class="font-weight-bold">
+                                                        @foreach ($blog->load('tags')->tags as $tag)
+                                                            #{{ $tag->name }} &nbsp;
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="font-weight-bold mt-3">{{ $blog->title }}</div>
                                                     <div>{!! $blog->body !!}</div>
                                                 </div>
                                             </div>

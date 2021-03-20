@@ -23,7 +23,7 @@ Route::resource('wishlist', 'WishListController');
 Route::resource('checkout', 'CheckoutController');
 Route::get('districts/{province}', 'AddressController@getDistrict');
 Route::get('wards/{district}', 'AddressController@getWards');
-Route::view('/blog', 'frontend.blog');
+Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
 
 /* *************Back End************* */
 Route::view('/dashboard', 'backend.index')->name('dashboard');

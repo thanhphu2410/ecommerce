@@ -27,6 +27,7 @@ class BlogStoreRequest extends FormRequest
             'title' => 'required',
             'body' => 'required',
             'image_path' => 'required|image',
+            'tags' => 'required|array'
         ];
     }
 }
