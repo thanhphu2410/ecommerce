@@ -3186,6 +3186,9 @@ ol {
     font-size: 20px;
     line-height: 30px;
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .blog__details__comment h4 {
@@ -3396,6 +3399,14 @@ ol {
 }
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
+
+.banner.spad {
+    user-select: none;
+}
+
+.banner__item img {
+    object-fit: cover;
+}
 
 #liveToastSuccess .toast-header {
     background-color: #7af3b2e8;

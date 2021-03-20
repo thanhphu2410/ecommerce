@@ -61,29 +61,29 @@
                     </div>
                     <div class="blog__details__btns">
                         <div class="row">
-                            @foreach ($relatedPost as $item)
+                            @if ($relatedPost->count() > 0)
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a href="{{ route('blog-details', ['blog' => $item->id]) }}" class="blog__details__btns__item">
-                                    <p><span class="arrow_left"></span> Previous Pod</p>
-                                    <h5>{{ $item->title }}</h5>
+                                <a href="{{ route('blog-details', ['blog' => $relatedPost[0]->id]) }}" class="blog__details__btns__item">
+                                    <p><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Previous Pod</p>
+                                    <h5>{{ $relatedPost[0]->title }}</h5>
                                 </a>
                             </div>
-                            @endforeach
+                            @endif
+
+                            @if ($relatedPost->count() > 1)
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <a href="{{ route('blog-details', ['blog' => $relatedPost[1]->id]) }}" class="blog__details__btns__item blog__details__btns__item--next">
+                                    <p>Next Pod <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
+                                    <h5>{{ $relatedPost[1]->title }}</h5>
+                                </a>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="blog__details__comment">
                         <h4>Leave A Comment</h4>
                         <form action="#">
                             <div class="row">
-                                <div class="col-lg-4 col-md-4">
-                                    <input type="text" placeholder="Name">
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <input type="text" placeholder="Email">
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <input type="text" placeholder="Phone">
-                                </div>
                                 <div class="col-lg-12 text-center">
                                     <textarea placeholder="Comment"></textarea>
                                     <button type="submit" class="site-btn">Post Comment</button>

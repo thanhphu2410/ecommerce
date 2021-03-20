@@ -41,7 +41,7 @@ $(".size").on("click", function() {
     $("#quantity").val(0);
     $("#max_qty").val(qty);
     $("#in_stock").empty();
-    $("#in_stock").append('<span>In stock:</span> ' + qty);
+    $("#in_stock").append("<span>In stock:</span> " + qty);
 });
 
 $("#increase").on("click", function() {
@@ -142,4 +142,25 @@ $("#district").on("change", function() {
     });
 });
 
-
+$("#loadmore").on("click", function() {
+    $("#next_blogs").val(parseInt($("#next_blogs").val()) + 3);
+    $.ajax({
+        url: "/load-more-blogs/" + $("#current_blogs").val() + "/" + $("#next_blogs").val(),
+        type: "get",
+        success: function(data) {
+            if (data.length == 0) {
+                $("#loadmore").css("display", "none");
+            }
+            $("#current_blogs").val(data.length + parseInt($("#current_blogs").val()));
+            data.forEach(function(item) {
+                $("#blog").append(
+                    '<div class="col-lg-4 col-md-6 col-sm-6"><div class="blog__item">' +
+                    '<div class="blog__item__pic set-bg" style="background-image: url(/' + item.image_path + ')"></div>' +
+                    '<div class="blog__item__text"><span><i class="far fa-calendar"></i> ' + item.created_date +  '</span>' +
+                    '<h5>' + item.title + '</h5>' +
+                    '<a href="blog-details/' + item.id + '">Read More</a></div></div></div>'
+                );
+            });
+        }
+    });
+});

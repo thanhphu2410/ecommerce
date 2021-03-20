@@ -23,6 +23,7 @@ class Blog extends Model
 
     public static function relatedPost($blog)
     {
-        return BlogTag::relatedBlogIds($blog);
+        $blogIds = BlogTag::relatedBlogIds($blog);
+        return Blog::find($blogIds);
     }
 }

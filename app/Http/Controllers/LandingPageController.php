@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Product;
+use App\Models\Category;
 
 class LandingPageController extends Controller
 {
@@ -13,6 +14,7 @@ class LandingPageController extends Controller
         $newArrivals = $product->new_arrival;
         $hotSales = $product->hot_sale;
         $blogs = Blog::latest()->limit(3)->get();
-        return view('frontend.index', compact('bestSellers', 'newArrivals', 'hotSales', 'blogs'));
+        $categories = Category::inRandomOrder()->limit(3)->get();
+        return view('frontend.index', compact('bestSellers', 'newArrivals', 'hotSales', 'blogs', 'categories'));
     }
 }

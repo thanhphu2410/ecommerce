@@ -51,39 +51,22 @@
 <section class="banner spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 offset-lg-4">
-                <div class="banner__item">
-                    <div class="banner__item__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Clothing Collections 2030</h2>
-                        <a href="#">Shop now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="banner__item banner__item--middle">
-                    <div class="banner__item__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Accessories</h2>
-                        <a href="#">Shop now</a>
+            @php
+                $classes = ["", "banner__item--middle", "banner__item--last"];
+            @endphp
+            @foreach ($categories as $index=>$item)
+                <div class="col-lg-{{ $index == 1 ? 5 : 7}} @if($index == 0) offset-lg-4 @endif">
+                    <div class="banner__item {{ $classes[$index] }}">
+                        <div class="banner__item__pic">
+                            <img width="450" height="450" src="{{ $item->image_path }}"/>
+                        </div>
+                        <div class="banner__item__text">
+                            <h2>{{ $item->name }}</h2>
+                            <a href="/product/search/?category_id={{ $item->id }}">Shop now</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="banner__item banner__item--last">
-                    <div class="banner__item__pic">
-                        <img src="img/banner/banner-3.jpg" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Shoes Spring 2030</h2>
-                        <a href="#">Shop now</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -92,7 +75,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="filter__controls">
-                    <li class="active" data-filter="*">All</li>
+                    <li class="active" data-filter="*">MIX</li>
                     <li data-filter=".best-seller">Best Sellers</li>
                     <li data-filter=".new-arrivals">New Arrivals</li>
                     <li data-filter=".hot-sales">Hot Sales</li>
@@ -117,7 +100,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('product-details', ['product' => $product->id])  }}">
-                                    <img src="{{ asset('images/search.svg') }}" width="32" alt="">
+                                    <button type="submit" class="wishlist">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </a>
                             </li>
                         </ul>
@@ -162,7 +147,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('product-details', ['product' => $product->id])  }}">
-                                    <img src="{{ asset('images/search.svg') }}" width="32" alt="">
+                                    <button type="submit" class="wishlist">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </a>
                             </li>
                         </ul>
@@ -205,7 +192,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('product-details', ['product' => $product->id])  }}">
-                                    <img src="{{ asset('images/search.svg') }}" width="32" alt="">
+                                    <button type="submit" class="wishlist">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </a>
                             </li>
                         </ul>
@@ -309,11 +298,12 @@
             <div class="col-lg-12">
                 <div class="section-title">
                     <span>Latest News</span>
-                    {{-- <h2>Latest News</h2> --}}
                 </div>
             </div>
         </div>
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center" id="blog">
+            <input type="hidden" value="{{ $blogs->count() }}" id="current_blogs">
+            <input type="hidden" value="0" id="next_blogs">
             @foreach ($blogs as $blog)
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog__item">
@@ -326,6 +316,9 @@
                 </div>
             </div>
             @endforeach
+        </div>
+        <div class="row justify-content-md-center">
+            <button type="button" class="btn btn-outline-dark" id="loadmore">Load more</button>
         </div>
     </div>
 </section>

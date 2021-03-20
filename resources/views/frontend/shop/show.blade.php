@@ -279,7 +279,13 @@
                                                 </button>
                                             </form>
                                         </li>
-                                        <li><a href="{{ route('product-details', ['product' => $product->id])  }}"><img src="{{ asset('images/search.svg') }}" style="width: 32px"></a></li>
+                                        <li>
+                                            <a href="{{ route('product-details', ['product' => $product->id])  }}">
+                                            <button type="submit" class="wishlist">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
