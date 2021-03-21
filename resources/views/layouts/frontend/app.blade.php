@@ -78,7 +78,7 @@
                                 <a href="{{ route('login') }}">Sign in</a>
                                 @auth
                                     <a href="/logout">Log out</a>
-                                    @if (Auth::id() == 1)
+                                    @if (auth()->id() == 1)
                                         <a href="/dashboard">Dashboard</a>
                                     @endif
                                 @endauth

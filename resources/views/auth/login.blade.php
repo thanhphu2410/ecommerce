@@ -49,24 +49,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="text" name="phone" placeholder="Phone Number" class="form-control"
-                                    value="{{ old('phone') }}" autocomplete="off">
-                                @error('phone') 
-                                    <div class="error">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="address" placeholder="Address" class="form-control"
-                                    value="{{ old('address') }}" autocomplete="off">
-                                @error('address') 
-                                    <div class="error">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="custom-file mb-3 mt-3">
-                                <input type="file" class="custom-file-input" name="avatar">
-                                <label class="custom-file-label">Choose file</label>
-                              </div>
-                            <div class="form-group">
                                 <input type="password" name="password" placeholder="Password" class="form-control"
                                     value="{{ old('password') }}">
                             </div>

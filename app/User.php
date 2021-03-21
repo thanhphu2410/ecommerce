@@ -15,9 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password', 'avatar'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -42,6 +40,21 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role');
     }
 
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Province');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\Models\District');
+    }
+
+    public function ward()
+    {
+        return $this->belongsTo('App\Models\Ward');
+    }
+
     public function reviews()
     {
         return $this->hasMany('App\Models\Review');
@@ -52,11 +65,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\WishList');
     }
 
-    public function customer()
-    {
-        return $this->hasOne('App\Models\Customer');
-    }
-
     public function orders()
     {
         return $this->hasMany('App\Models\Order');
@@ -65,5 +73,13 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->roles->pluck('name')->contains('Admin');
+    }
+
+    public function setAvatarAttribute()
+    {
+        if (request()->has('avatar')) {
+            $path = request('avatar')->store('avatar', 'public');
+            $this->attributes['avatar'] = "storage/".$path;
+        }
     }
 }

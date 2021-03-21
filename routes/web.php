@@ -25,6 +25,8 @@ Route::get('districts/{province}', 'AddressController@getDistrict');
 Route::get('wards/{district}', 'AddressController@getWards');
 Route::get('load-more-blogs/{current}/{next}', 'NewsController@loadMore');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
+Route::get('edit-profile', 'ProfileController@edit')->middleware('auth');
+Route::post('edit-profile', 'ProfileController@update')->middleware('auth');
 
 /* *************Back End************* */
 Route::middleware(['auth', 'isStaff'])->group(function () {

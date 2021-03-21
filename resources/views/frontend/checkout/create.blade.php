@@ -49,7 +49,7 @@
                                 <div class="checkout__input">
                                     <p>Phone<span>*</span></p>
                                     <input type="text" placeholder="Phone number" required name="customer_phone" autocomplete="off"
-                                    value="@auth {{ auth()->user()->customer->phone }} @else {{ old('customer_phone') }} @endauth">
+                                    value="@auth {{ auth()->user()->phone }} @else {{ old('customer_phone') }} @endauth">
                                     @error('customer_phone') 
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -75,7 +75,7 @@
                                 <div class="checkout__input">
                                     <p>Address<span>*</span></p>
                                     <input type="text" placeholder="Your Address" class="checkout__input__add" autocomplete="off" name="customer_address"
-                                     value="@auth {{ auth()->user()->customer->address }} @else {{ old('customer_address') }} @endauth">
+                                     value="@auth {{ auth()->user()->address }} @else {{ old('customer_address') }} @endauth">
                                     @error('customer_address') 
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -85,7 +85,7 @@
                                 <div class="checkout__input">
                                     <p>Province<span>*</span></p>
                                     <select id="province" name="province_id">
-                                        <option @auth value="" @endauth selected>Select province</option>
+                                        <option selected>Select province</option>
                                         @foreach ($provinces as $province)
                                             <option value="{{ $province->id }}">{{ $province->name }}</option>
                                         @endforeach

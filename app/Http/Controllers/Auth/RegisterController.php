@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Models\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -53,9 +52,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/'],
-            'address' => ['required', 'string'],
-            'avatar' => ['required', 'image'],
             'password' => ['required', 'string', 'min:6'],
         ]);
     }
@@ -68,16 +64,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        $avatar = "storage/avatar/avatar-default.svg";
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'avatar' => $avatar,
             'password' => Hash::make($data['password']),
-            'avatar' => "storage/".request('avatar')->store('avatar', 'public'),
         ]);
-
-        unset($data['password'], $data['avatar']);
-        $user->customer()->create($data);
-
-        return $user;
     }
 }

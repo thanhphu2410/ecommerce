@@ -169,7 +169,7 @@
 
                                         <div class="row p-3">
                                             <div class="row col-3 align-items-center">
-                                               <img src="/{{ Auth::user()->avatar }}" alt="" width="50" class="mr-3 avatar">
+                                               <img src="/{{ auth()->user()->avatar }}" alt="" width="50" class="mr-3 avatar">
                                                <a href="{{ route('login') }}" class="font-weight-bold" data-toggle="modal" data-target="#reviews" style="color: #9d9d9d">Click to reviews</a>
                                            </div>
                                         </div>
