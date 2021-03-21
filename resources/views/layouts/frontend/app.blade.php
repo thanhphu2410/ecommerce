@@ -126,14 +126,13 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
                         <a href="#" class="search-switch">
-                            <img src="{{ asset('images/search.svg') }}" width="18"/>
+                            <i class="fa fa-search"></i>
                         </a>
                         <a href="{{ route('wishlist.index') }}">
-                            <img src="{{ asset('images/heart.svg') }}" width="18"/>
+                            <i class="far fa-heart"></i>
                         </a>
                         <a href="{{ route('cart.index') }}">
-                            <img src="{{ asset('images/cart.svg') }}" width="18"/>
-                            
+                            <i class="fas fa-shopping-bag"></i>
                             {{-- $cart in AppServiceProvider --}}
                             <span class="badge rounded-pill bg-warning">{{ $cart }}</span>
                         </a>

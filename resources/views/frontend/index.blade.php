@@ -85,9 +85,11 @@
         <div class="row product__filter">
             @foreach ($bestSellers as $product)
             <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix best-seller">
-                <div class="product__item">
+                <div class="product__item sale">
                     <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
-                        <span class="label">New</span>
+                        @if($product->discount > 0)
+                            <span class="label">Sale</span>
+                        @endif
                         <ul class="product__hover">
                             <li>
                                 <form action="{{ route('wishlist.store') }}" method="post">
@@ -133,7 +135,7 @@
                 <div class="product__item @if($product->discount > 0) sale @endif">
                     <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
                         @if($product->discount > 0) 
-                        <span class="label">Sale</span>
+                            <span class="label">Sale</span>
                         @endif
                         <ul class="product__hover">
                             <li>
@@ -179,7 +181,9 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                 <div class="product__item sale">
                     <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
-                        <span class="label">Sale</span>
+                        @if($product->discount > 0)
+                            <span class="label">Sale</span>
+                        @endif
                         <ul class="product__hover">
                             <li>
                                 <form action="{{ route('wishlist.store') }}" method="post">

@@ -27,16 +27,19 @@ Route::get('load-more-blogs/{current}/{next}', 'NewsController@loadMore');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
 
 /* *************Back End************* */
-Route::view('/dashboard', 'backend.index')->name('dashboard');
-Route::resource('categories', 'CategoryController');
-Route::resource('sub-categories', 'SubCategoryController');
-Route::resource('products', 'ProductController');
-Route::resource('sizes', 'SizeController');
-Route::resource('roles', 'RoleController');
-Route::resource('assign-roles', 'AssignRoleController');
-Route::resource('orders', 'OrderController');
-Route::resource('customers', 'CustomerController');
-Route::resource('tags', 'TagController');
-Route::resource('blogs', 'BlogController');
+Route::middleware(['auth', 'isStaff'])->group(function () {
+    Route::view('/dashboard', 'backend.index')->name('dashboard');
+    Route::resource('categories', 'CategoryController');
+    Route::resource('sub-categories', 'SubCategoryController');
+    Route::resource('products', 'ProductController');
+    Route::resource('sizes', 'SizeController');
+    Route::resource('roles', 'RoleController');
+    Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');
+    Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');
+    Route::resource('orders', 'OrderController');
+    Route::resource('customers', 'CustomerController');
+    Route::resource('tags', 'TagController');
+    Route::resource('blogs', 'BlogController');
+});
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

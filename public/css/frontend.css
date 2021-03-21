@@ -3400,6 +3400,15 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.header__nav__option i {
+    color: #3a3a3a;
+    font-size: 18px;
+}
+
+.header__nav__option i:hover {
+    color: black;
+}
+
 .banner.spad {
     user-select: none;
 }

@@ -208,7 +208,9 @@
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item sale">
                             <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
-                                <span class="label">Sale</span>
+                                @if($product->discount > 0)
+                                    <span class="label">Sale</span>
+                                @endif
                                 <ul class="product__hover">
                                     <li>
                                         <form action="{{ route('wishlist.store') }}" method="post">

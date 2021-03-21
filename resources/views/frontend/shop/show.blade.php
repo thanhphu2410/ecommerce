@@ -266,9 +266,11 @@
                 <div id="owl-example" class="owl-carousel">
                     @foreach ($relatedProducts as $product)
                         <div class="col-12">
-                            <div class="product__item">
+                            <div class="product__item sale">
                                 <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
-                                    <span class="label">New</span>
+                                    @if($product->discount > 0)
+                                        <span class="label">Sale</span>
+                                    @endif
                                     <ul class="product__hover">
                                         <li>
                                             <form action="{{ route('wishlist.store') }}" method="post">
