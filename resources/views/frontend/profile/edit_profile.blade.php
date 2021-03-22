@@ -104,7 +104,7 @@
                                         <option selected>Select province</option>
                                         @foreach ($provinces as $province)
                                             <option value="{{ $province->id }}" 
-                                                @if($province->id == $user->province->id) selected @endif>
+                                                @if($province->id == $user->province_id) selected @endif>
                                                 {{ $province->name }}
                                             </option>
                                         @endforeach
@@ -118,9 +118,16 @@
                                 <div class="checkout__input">
                                     <p>District</p>
                                     <select id="district" name="district_id">
-                                        <option selected value="{{ $user->district->id ?? null}}">
-                                            {{ $user->district->name ?? "Select district" }}
-                                        </option>
+                                        @if ($user->province_id != null)
+                                            @foreach ($user->province->load('districts')->districts as $district)
+                                                <option value="{{ $district->id }}" 
+                                                    @if($district->id == $user->district_id) selected @endif>
+                                                    {{ $district->name }}
+                                                </option>
+                                            @endforeach
+                                        @else
+                                            <option selected>Select District</option>
+                                        @endif
                                     </select>
                                     @error('district_id') 
                                         <div class="error error-nice-select">{{ $message }}</div>
@@ -131,9 +138,16 @@
                                 <div class="checkout__input">
                                     <p>Ward</p>
                                     <select id="ward" name="ward_id">
-                                        <option selected value="{{ $user->ward->id ?? null }}">
-                                            {{ $user->ward->name ?? "Select ward" }}
-                                        </option>
+                                        @if ($user->district_id != null)
+                                            @foreach ($user->district->load('wards')->wards as $ward)
+                                                <option value="{{ $ward->id }}" 
+                                                    @if($ward->id == $user->ward_id) selected @endif>
+                                                    {{ $ward->name }}
+                                                </option>
+                                            @endforeach
+                                        @else
+                                            <option selected>Select Ward</option>
+                                        @endif
                                     </select>
                                 </div>
                                 @error('ward_id') 

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Product;
+use App\Models\SystemSetting;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,5 +38,7 @@ class AppServiceProvider extends ServiceProvider
                 session()->forget('success');
             }
         });
+
+        View::share('setting', SystemSetting::all()->first());
     }
 }

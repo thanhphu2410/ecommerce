@@ -27,4 +27,34 @@ $("#summernote").summernote({
 	]
 });
 
+$("#province").on("change", function() {
+	$.ajax({
+        url: "/districts/" + $("#province").val(),
+        type: "get",
+        success: function(data) {
+            $("#district").empty();
+            $("#district").empty();
+            data.forEach(function(item) {
+                $("#district").append(
+                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                );
+            });
+        }
+    });
+});
 
+$("#district").on("change", function() {
+	$.ajax({
+        url: "/wards/" + $("#district").val(),
+        type: "get",
+        success: function(data) {
+            $("#ward").empty();
+            $("#ward").empty();
+            data.forEach(function(item) {
+                $("#ward").append(
+                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                );
+            });
+        }
+    });
+});

@@ -44,6 +44,8 @@ Route::middleware(['auth', 'isStaff'])->group(function () {
     Route::resource('customers', 'CustomerController');
     Route::resource('tags', 'TagController');
     Route::resource('blogs', 'BlogController');
+    Route::get('system-setting', 'SystemSettingController@edit')->name('system-setting.edit');
+    Route::post('system-setting', 'SystemSettingController@update')->name('system-setting.update');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

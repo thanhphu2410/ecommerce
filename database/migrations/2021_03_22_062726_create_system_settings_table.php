@@ -22,6 +22,7 @@ class CreateSystemSettingsTable extends Migration
             $table->string('email')->nullable();
             $table->string('copyright_text')->nullable();
             $table->string('phone')->nullable();
+            $table->string('address')->nullable();
             $table->foreignId('province_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('district_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('ward_id')->nullable()->constrained()->onDelete('cascade');

@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>Just Do It</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/{{ $setting->favicon }}">
+    <title>{{ $setting->site_title }}</title>
     <link href="{{ asset('backend/morrisjs/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
