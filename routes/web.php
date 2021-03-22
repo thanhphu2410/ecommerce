@@ -23,10 +23,12 @@ Route::resource('wishlist', 'WishListController');
 Route::resource('checkout', 'CheckoutController');
 Route::get('districts/{province}', 'AddressController@getDistrict');
 Route::get('wards/{district}', 'AddressController@getWards');
-Route::get('load-more-blogs/{current}/{next}', 'NewsController@loadMore');
+Route::get('all-blogs', 'NewsController@index');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
-Route::get('edit-profile', 'ProfileController@edit')->middleware('auth');
-Route::post('edit-profile', 'ProfileController@update')->middleware('auth');
+Route::get('edit-profile', 'ProfileController@editProfile')->middleware('auth');
+Route::post('edit-profile', 'ProfileController@updateProfile')->middleware('auth');
+Route::get('edit-password', 'ProfileController@editPassword')->middleware('auth');
+Route::post('edit-password', 'ProfileController@updatePassword')->middleware('auth');
 
 /* *************Back End************* */
 Route::middleware(['auth', 'isStaff'])->group(function () {

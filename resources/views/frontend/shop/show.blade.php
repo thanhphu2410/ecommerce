@@ -159,7 +159,7 @@
                                         @guest
                                         <div class="row p-3">
                                              <div class="row col-3 align-items-center">
-                                                <img src="/storage/avatar/avatar-default.svg" alt="" width="50" class="mr-3">
+                                                <img src="/images/avatar-default.svg" alt="" width="50" class="mr-3">
                                                 <a href="{{ route('login') }}" class="font-weight-bold" style="color: #9d9d9d">Login to reviews</a>
                                             </div>
                                         </div>

@@ -8,54 +8,48 @@
         </button>
     </div>
     @endif
-    <section class="m-5" style="min-height: 430px;">
-        <div class="container">
-            <div class="row edit-input-btn">
-                <div class="col-sm-6 col-sm-offset-1">
-                    <div class="login-form">
-                        <h4 class="text-center">LOGIN</h4>
-                        <form method="POST" action="{{ route('login') }}" class="mt-4">
-                            @csrf
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Email Address" class="form-control"
-                                    value="{{ old('name') }}" autocomplete="off">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" placeholder="Password" class="form-control">
-                            </div>
-                            <button class="btn btn-outline-dark" style="width: 100%" type="submit">Login</button>
-                        </form>
-                    </div>
-                </div>
 
-                <div class="col-sm-6">
-                    <div class="signup-form">
-                        <h4 class="text-center">SINGUP</h4>
-                        <form method="POST" action="{{ route('register') }}" class="mt-4" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder="Name" class="form-control"
-                                    value="{{ old('name') }}" autocomplete="off">
-                                @error('name') 
-                                    <div class="error">{{ $message }}</div>
-                                @enderror
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+                    <div class="row edit-input-btn">
+                        <div class="col-lg-12 col-md-6">
+                            <h6 class="checkout__title">LOGIN</h6>
+                            <div class="row justify-content-md-center align-items-center">
+    
+                                <div class="col-lg-12">
+                                    <div class="checkout__input">
+                                        <p>Email <span>*</span></p>
+                                        <input type="email" name="email" placeholder="Email Address"
+                                            value="{{ old('email') }}" autocomplete="off">
+                                        @error('email') 
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+    
+                                <div class="col-lg-12">
+                                    <div class="checkout__input">
+                                        <p>Password <span>*</span></p>
+                                        <input type="password" placeholder="Password" name="password" autocomplete="off">
+                                        @error('password') 
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
                             </div>
-                            
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Email Address" class="form-control"
-                                    value="{{ old('email') }}" autocomplete="off">
-                                @error('email') 
-                                    <div class="error">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" placeholder="Password" class="form-control"
-                                    value="{{ old('password') }}">
-                            </div>
-                            <button class="btn btn-outline-dark" style="width: 100%" type="submit">Signup</button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <button type="submit" class="site-btn mt-5">LOGIN</button>
+                    <a href="{{ route('register') }}">
+                        <button type="button" class="site-btn mt-5 register-btn">
+                            REGISTER
+                        </button>
+                    </a>
+                </form>
             </div>
         </div>
     </section>

@@ -1,8 +1,5 @@
 @extends('layouts.frontend.app')
 @section('content')
-@foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-@endforeach
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
@@ -49,13 +46,13 @@
                                 <div class="checkout__input">
                                     <p>Gender </p>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="male" name="gender" class="custom-control-input" value="male"
-                                        @if($user->gender == 'male') checked @endif>
+                                        <input type="radio" id="male" name="gender" class="custom-control-input" value="Male"
+                                        @if($user->gender == 'Male') checked @endif>
                                         <label class="custom-control-label" for="male">Male</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="female" name="gender" class="custom-control-input" value="female"
-                                        @if($user->gender == 'female') checked @endif>
+                                        <input type="radio" id="female" name="gender" class="custom-control-input" value="Female"
+                                        @if($user->gender == 'Female') checked @endif>
                                         <label class="custom-control-label" for="female">Female</label>
                                     </div>
                                     @error('gender') 

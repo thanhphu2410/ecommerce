@@ -342,9 +342,9 @@ ol {
 
 .header__top__links a {
     color: #ffffff;
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     margin-right: 28px;
     display: inline-block;
 }
@@ -366,9 +366,9 @@ ol {
 
 .header__top__hover span {
     color: #ffffff;
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     display: inline-block;
     cursor: pointer;
 }
@@ -394,7 +394,7 @@ ol {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     -webkit-transition: all, 0.3s;
     -o-transition: all, 0.3s;
-    transition: all, 0.3s;
+    transition: all, 0.2s;
 }
 
 .header__top__hover ul li {
@@ -403,6 +403,10 @@ ol {
     color: #111111;
     padding: 2px 15px;
     cursor: pointer;
+}
+
+.header__top__hover ul li:hover {
+    background-color: #eee;
 }
 
 .header__logo > a > img {
@@ -3399,6 +3403,21 @@ ol {
 }
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
+
+.my-profile ul {
+    width: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.my-profile ul li {
+    text-align: center;
+    padding: 2px 9px;
+}
+
+.my-profile ul li a {
+    color: black;
+}
 
 .header__nav__option i {
     color: #3a3a3a;

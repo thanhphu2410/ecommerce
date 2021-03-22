@@ -12,7 +12,7 @@
                             <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
                                 commitment to exceptional quality.
                             </p>
-                            <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                            <a href="{{ route('shop') }}" class="primary-btn">Shop now <span class="arrow_right"></span></a>
                             <div class="hero__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -306,8 +306,6 @@
             </div>
         </div>
         <div class="row justify-content-md-center" id="blog">
-            <input type="hidden" value="{{ $blogs->count() }}" id="current_blogs">
-            <input type="hidden" value="0" id="next_blogs">
             @foreach ($blogs as $blog)
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog__item">
@@ -322,7 +320,11 @@
             @endforeach
         </div>
         <div class="row justify-content-md-center">
-            <button type="button" class="btn btn-outline-dark" id="loadmore">Load more</button>
+            <a href="{{ url('all-blogs') }}">
+                <button type="button" class="site-btn mt-5 loadmore">
+                    Load more
+                </button>
+            </a>
         </div>
     </div>
 </section>

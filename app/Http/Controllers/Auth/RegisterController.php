@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $avatar = "storage/avatar/avatar-default.svg";
+        $avatar = "images/avatar-default.svg";
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

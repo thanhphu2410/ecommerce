@@ -75,10 +75,12 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="{{ route('login') }}">Sign in</a>
+                                @guest
+                                    <a href="{{ route('login') }}">Sign in</a>
+                                @endguest
                                 @auth
                                     <a href="/logout">Log out</a>
-                                    @if (auth()->id() == 1)
+                                    @if (auth()->user()->isAdmin())
                                         <a href="/dashboard">Dashboard</a>
                                     @endif
                                 @endauth
@@ -89,6 +91,18 @@
                                     <li>USD</li>
                                     <li>EUR</li>
                                     <li>USD</li>
+                                </ul>
+                            </div>
+
+                            <div class="header__top__hover ml-3 my-profile">
+                                <span>My Profile <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                                <ul>
+                                    <li>
+                                        <a href="{{ url('edit-profile') }}">Update Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('edit-password') }}">Change Password</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
