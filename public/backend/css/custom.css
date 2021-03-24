@@ -12,3 +12,11 @@
 .of-cover {
     object-fit: cover;
 }
+
+.round {
+    background: none !important;
+}
+.round img {
+    object-fit: cover;
+    border-radius: 50% !important;
+}

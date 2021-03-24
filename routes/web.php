@@ -32,18 +32,18 @@ Route::post('edit-password', 'ProfileController@updatePassword')->middleware('au
 
 /* *************Back End************* */
 Route::middleware(['auth', 'isStaff'])->group(function () {
-    Route::view('/dashboard', 'backend.index')->name('dashboard');
     Route::resource('categories', 'CategoryController');
     Route::resource('sub-categories', 'SubCategoryController');
     Route::resource('products', 'ProductController');
     Route::resource('sizes', 'SizeController');
     Route::resource('roles', 'RoleController');
-    Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');
-    Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');
     Route::resource('orders', 'OrderController');
     Route::resource('customers', 'CustomerController');
     Route::resource('tags', 'TagController');
     Route::resource('blogs', 'BlogController');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');
+    Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');
     Route::get('system-setting', 'SystemSettingController@edit')->name('system-setting.edit');
     Route::post('system-setting', 'SystemSettingController@update')->name('system-setting.update');
 });

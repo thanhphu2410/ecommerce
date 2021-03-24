@@ -59,12 +59,25 @@ class Product extends Model
     public function getBestSellerAttribute()
     {
         return $this->select('products.*')
+            ->selectRaw('COUNT(*) AS result')
             ->active()
             ->join('order_details', 'products.id', '=', 'order_details.product_id')
             ->groupBy('order_details.product_id')
             ->orderByRaw('COUNT(*) DESC')
             ->limit(8)
             ->with('images')
+            ->get();
+    }
+
+    public function getTopFavouriteAttribute()
+    {
+        return $this->select('products.*')
+            ->selectRaw('COUNT(*) AS result')
+            ->active()
+            ->join('wishlists', 'products.id', '=', 'wishlists.product_id')
+            ->groupBy('wishlists.product_id')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit(8)
             ->get();
     }
 

@@ -26,6 +26,11 @@
             </div>
             @endforeach
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                {{ $blogs->links() }}
+            </div>
+        </div>
     </div>
 </section>
 @endsection

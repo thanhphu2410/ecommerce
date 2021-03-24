@@ -58,3 +58,7 @@ $("#district").on("change", function() {
         }
     });
 });
+
+$("#month").on("change", function(){
+	$(location).attr('href', '/dashboard/?m=' + $("#month").val());
+})

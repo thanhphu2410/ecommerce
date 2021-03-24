@@ -82,4 +82,13 @@ class User extends Authenticatable
             $this->attributes['avatar'] = "storage/".$path;
         }
     }
+
+    public function scopeCustomer($query)
+    {
+        return $query->whereNotIn('id', function ($item) {
+            $item->select('id')
+                ->from('role_user')
+                ->get();
+        });
+    }
 }
