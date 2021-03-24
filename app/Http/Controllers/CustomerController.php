@@ -11,4 +11,9 @@ class CustomerController extends Controller
         $customers = User::customer();
         return view('backend.customer.index', compact('customers'));
     }
+
+    public function show(User $customer)
+    {
+        return view('backend.customer.show', compact('customer'));
+    }
 }

@@ -35,9 +35,9 @@
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->phone }}</td>
                                 <td>
-                                    <a href="{{ route('customers.edit', ['customer' => $customer->id ]) }}" 
-                                        data-toggle="tooltip" data-original-title="Edit"> 
-                                        <i class="fa fa-pencil text-inverse m-r-10"></i> 
+                                    <a href="{{ route('customers.show', ['customer' => $customer->id ]) }}" 
+                                        data-toggle="tooltip" data-original-title="View"> 
+                                        <i class="fa fa-eye m-r-15" aria-hidden="true"></i>
                                     </a>
                                     <form action="{{ route('customers.destroy', ['customer' => $customer->id ]) }}" method="post" class="d-inline">
                                         @method('delete')
