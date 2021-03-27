@@ -29,16 +29,17 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
-                        
+
                         <div class="form-group">
-                            <h5 class="m-t-30 m-b-10">Select category</h5>
-                            @foreach ($categories as $category)
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="category{{ $category->id }}" value="{{ $category->id }}"
-                                    @if($subCategory->category_id == $category->id) checked @endif name="category_id">
-                                    <label class="custom-control-label" for="category{{ $category->id }}">{{ $category->name }}</label>
-                                </div>
-                            @endforeach
+                            <h5 class="m-t-30">Select Category</h5>
+                            <select class="custom-select" name="category_id">
+                                <option selected value="">Select category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @if($subCategory->category_id == $category->id) selected @endif>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('category_id') 
                                 <div class="error">{{ $message }}</div>
                             @enderror

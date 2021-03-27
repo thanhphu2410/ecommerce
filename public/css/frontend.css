@@ -30,6 +30,26 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(170, 168, 168);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 html,
 body {
     height: 100%;
@@ -1249,7 +1269,7 @@ ol {
 .shop__sidebar__categories ul,
 .shop__sidebar__price ul,
 .shop__sidebar__brand ul {
-    height: 225px;
+    height: auto;
 }
 
 .shop__sidebar__categories ul li,
@@ -1258,7 +1278,7 @@ ol {
     list-style: none;
 }
 
-.shop__sidebar__categories ul li a,
+.shop__sidebar__categories ul li span,
 .shop__sidebar__price ul li a,
 .shop__sidebar__brand ul li a {
     color: #b7b7b7;
@@ -1523,7 +1543,8 @@ ol {
 
 .product__details__pic .nav-tabs {
     border-bottom: none;
-    width: 105px;
+    height: 400px;
+    overflow-y: scroll;
 }
 
 .product__details__pic .nav-tabs .nav-item {
@@ -3403,6 +3424,10 @@ ol {
 }
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
+
+.shop__sidebar__categories li:hover {
+    /* background: rgb(238, 238, 237) !important; */
+}
 
 .my-profile ul {
     width: 150px;

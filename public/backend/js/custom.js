@@ -1,18 +1,3 @@
-$(".size").on("click", function() {
-	for (let index = 0; index < $(".size").length; index++) {
-		var size = $(".size")[index];
-		var qty_input = $("#qty_input" + size.value).val();
-		$("#qty_input" + size.value).remove();
-		$("#qty_label" + size.value).remove();
-		if (size.checked) {
-			$("#quantity").append(
-				`<p class="mt-2" id="qty_label${size.value}">Quantity Size ${$(".size ~ label")[index].innerText}</p>
-				<input type="number" class="form-control" placeholder="Enter Quantity" name="quantity[]" id="qty_input${size.value}" value="${qty_input}">`
-			);
-		}
-	}
-});
-
 $("#summernote").summernote({
 	placeholder: "Type something ...",
 	tabsize: 2,
@@ -61,4 +46,21 @@ $("#district").on("change", function() {
 
 $("#month").on("change", function(){
 	$(location).attr('href', '/dashboard/?m=' + $("#month").val());
+})
+
+$(".deleteAttribute").on("click", function(){
+	var currentAttribute = parseInt($("#currentAttribute").val());
+	if (currentAttribute - 1 >= 1) {
+		$(this).parents('#attribute').remove();
+		$("#currentAttribute").val(currentAttribute - 1);
+	}
+})
+
+$("#addAttribute").on("click", function(){
+	var maxOfAttribute = parseInt($("#maxOfAttribute").val());
+	var currentAttribute = parseInt($("#currentAttribute").val());
+	if (currentAttribute + 1 <= maxOfAttribute) {
+		$("#attribute").clone(true).appendTo("#attributeWrapper");
+		$("#currentAttribute").val(currentAttribute + 1);
+	}
 })

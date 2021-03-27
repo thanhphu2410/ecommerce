@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Size;
 use App\Models\Product;
 use App\Models\SubCategory;
+use Illuminate\Support\Arr;
 use App\Models\ProductImage;
+use App\Services\ImageServices;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
-use App\Services\ImageServices;
-use Illuminate\Support\Arr;
 
 class ProductController extends Controller
 {

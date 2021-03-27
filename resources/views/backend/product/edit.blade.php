@@ -43,53 +43,113 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <h5 class="m-t-30">Select sizes</h5>
-                            @foreach ($sizes as $size)
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input size" id="size{{ $size->id }}" value="{{ $size->id }}"
-                                    @if($product->sizes->contains('id', $size->id)) checked @endif name="sizes[]">
-                                    <label class="custom-control-label" for="size{{ $size->id }}">{{ $size->name }}</label>
-                                </div>
-                            @endforeach
-                            @error('sizes') 
-                                <div class="error">{{ $message }}</div>
-                            @enderror
+                        <div>
+                            <label class="mb-3">Product Attributes</label>
+                            <button type="button" class="btn btn-info btn-sm" id="addAttribute">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
+
+                        @if (count(old('sizes') ?? []) > 0)
+                            <div id="attributeWrapper">
+                                <input type="hidden" value="1" id="currentAttribute">
+                                <input type="hidden" value="{{ $sizes->count() }}" id="maxOfAttribute">
+                                @foreach (old('sizes') as $item)
+                                <div class="row align-items-center" id="attribute">
+                                    <div class="form-group col-5">
+                                        <label>Select sizes</label>
+                                        <select class="custom-select" name="sizes[]">
+                                            <option selected value="">Sizes</option>
+                                            @foreach ($sizes as $size)
+                                                <option value="{{ $size->id }}" @if ($size->id == $item) selected @endif>
+                                                    {{ $size->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-5">
+                                        <label>Product Quantity</label>
+                                        <input type="number" class="form-control" placeholder="Enter Quantity" 
+                                        name="quantity[]" value="{{ old('quantity.'.$loop->index) }}">
+                                    </div>
+
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-dark deleteAttribute">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @endforeach
+                                
+                                @error('sizes.*') 
+                                    <div class="error">The size field is required.</div>
+                                @enderror
+                                @error('quantity.*') 
+                                    <div class="error">The quantity field is required.</div>
+                                @enderror
+                            </div>
+                        @else
+                            <div id="attributeWrapper">
+                                <input type="hidden" value="1" id="currentAttribute">
+                                <input type="hidden" value="{{ $sizes->count() }}" id="maxOfAttribute">
+                                @foreach ($product->sizes as $item)
+                                <div class="row align-items-center" id="attribute">
+                                    <div class="form-group col-5">
+                                        <label>Select sizes</label>
+                                        <select class="custom-select" name="sizes[]">
+                                            <option selected value="">Sizes</option>
+                                            @foreach ($sizes as $size)
+                                                <option value="{{ $size->id }}" @if($size->id == $item->id) selected @endif>
+                                                    {{ $size->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-5">
+                                        <label>Product Quantity</label>
+                                        <input type="number" class="form-control" placeholder="Enter Quantity" 
+                                        name="quantity[]" value="{{ $product->sizes[$loop->index]->quantity }}">
+                                    </div>
+
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-dark deleteAttribute">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @endforeach
+                                
+                                @error('sizes.*') 
+                                    <div class="error">The size field is required.</div>
+                                @enderror
+                                @error('quantity.*') 
+                                    <div class="error">The quantity field is required.</div>
+                                @enderror
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <h5 class="m-t-30">Select Sub Category</h5>
-                            @foreach ($subCategories as $subCategory)
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="subcategory{{ $subCategory->id }}" 
-                                    value="{{ $subCategory->id }}" name="sub_category_id"
-                                     @if($product->subcategory->id == $subCategory->id) checked @endif >
-                                    <label class="custom-control-label" for="subcategory{{ $subCategory->id }}">{{ $subCategory->name }}</label>
-                                </div>
-                            @endforeach
+                            <select class="custom-select" name="sub_category_id">
+                                <option selected value="">Select sub-category</option>
+                                @foreach ($subCategories as $subCategory)
+                                    <option value="{{ $subCategory->id }}" 
+                                        @if ($product->subcategory->id == $subCategory->id) selected @endif>
+                                        {{ $subCategory->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('sub_category_id') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Product Price</label>
                             <input type="number" class="form-control" placeholder="Enter Price" name="price" value="{{ $product->price }}">
                             @error('price') 
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group" >
-                            <label>Product Quantity</label>
-                            <div id="quantity">
-                                @foreach ($product->sizes as $size)
-                                    <p class="mt-2" id="qty_label{{ $size->id }}">Quantity Size {{ $size->name }}</p>
-                                    <input type="number" class="form-control" placeholder="Enter Quantity" 
-                                    name="quantity[]" id="qty_input{{ $size->id }}" value="{{ $size->quantity }}">
-                                @endforeach
-                            </div>
-                            @error('quantity') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>

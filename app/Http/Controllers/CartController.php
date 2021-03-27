@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CartRequest;
 use App\Models\Product;
 use App\Services\CartService;
+use App\Http\Requests\CartRequest;
 
 class CartController extends Controller
 {

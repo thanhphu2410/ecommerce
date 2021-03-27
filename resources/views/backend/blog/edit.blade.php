@@ -52,9 +52,9 @@
                                     <label class="custom-file-label">Choose image</label>
                                 </div>
                             </div>
-                            @error('image_path') 
-                                <div class="error">{{ $message }}</div>
-                            @enderror
+                            @if ($errors->any())
+                                <div class="error">Please choose images again</div>
+                            @endif
                         </div>
                         <textarea id="summernote" name="body">{!! $blog->body !!}</textarea>
                         @error('body') 

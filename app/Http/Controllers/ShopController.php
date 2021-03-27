@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\ReviewImage;
 use App\Http\Requests\ReviewRequest;
 
@@ -12,7 +13,8 @@ class ShopController extends Controller
     public function index()
     {
         $products = Product::active()->paginate(9);
-        return view('frontend.shop.index', compact('products'));
+        $categories = Category::all();
+        return view('frontend.shop.index', compact('products', 'categories'));
     }
 
     public function show(Product $product)

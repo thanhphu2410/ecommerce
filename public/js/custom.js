@@ -141,3 +141,10 @@ $("#district").on("change", function() {
         }
     });
 });
+
+$(".unactive").on("click", function(){
+    var color = $(this).css('background-color') == 'rgb(255, 255, 255)' ? 'rgb(238, 238, 238)' : 'rgb(255, 255, 255)';
+    console.log( color);
+    $(this).css('background-color', color);
+})
+

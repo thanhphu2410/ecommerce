@@ -1,5 +1,13 @@
 @extends('layouts.frontend.app')
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Something went wrong! Try again</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
@@ -101,7 +109,7 @@
                                 <div class="checkout__input">
                                     <p>Province</p>
                                     <select id="province" name="province_id">
-                                        <option selected>Select province</option>
+                                        <option selected value="">Select province</option>
                                         @foreach ($provinces as $province)
                                             <option value="{{ $province->id }}" 
                                                 @if($province->id == $user->province_id) selected @endif>
@@ -126,7 +134,7 @@
                                                 </option>
                                             @endforeach
                                         @else
-                                            <option selected>Select District</option>
+                                            <option selected value="">Select District</option>
                                         @endif
                                     </select>
                                     @error('district_id') 
@@ -146,7 +154,7 @@
                                                 </option>
                                             @endforeach
                                         @else
-                                            <option selected>Select Ward</option>
+                                            <option selected value="">Select Ward</option>
                                         @endif
                                     </select>
                                 </div>

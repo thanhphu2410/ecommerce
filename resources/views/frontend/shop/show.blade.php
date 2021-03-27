@@ -14,8 +14,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-3">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-2 col-md-3">
                         <ul class="nav nav-tabs" role="tablist">
                             @foreach ($product->images as $image)
                                 <li class="nav-item">
@@ -27,7 +27,7 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div class="col-lg-6 col-md-9">
+                    <div class="col-lg-8 col-md-9">
                         <div class="tab-content">
                             @foreach ($product->images as $image)
                                 <div class="tab-pane @if ($loop->first) active @endif" id="tab{{ $image->id }}" role="tabpanel">

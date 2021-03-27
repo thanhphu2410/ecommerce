@@ -28,8 +28,8 @@ class ProductImage extends Model
     public static function updateItem($product)
     {
         if (request()->has('images')) {
-            self::deleteProductImage($product);
-            self::storeProductImage($product);
+            self::deleteItem($product);
+            self::storeItem($product);
         }
     }
 }
