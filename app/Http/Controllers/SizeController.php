@@ -43,7 +43,6 @@ class SizeController extends Controller
     public function destroy(Size $size)
     {
         $size->delete();
-        
         return success('sizes.index');
     }
 }

@@ -1275,11 +1275,13 @@ ol {
 .shop__sidebar__categories ul li,
 .shop__sidebar__price ul li,
 .shop__sidebar__brand ul li {
+    padding: 3px 10px;
+    margin-bottom: 6px;
     list-style: none;
 }
 
 .shop__sidebar__categories ul li span,
-.shop__sidebar__price ul li a,
+.shop__sidebar__price ul li span,
 .shop__sidebar__brand ul li a {
     color: #b7b7b7;
     font-size: 15px;
@@ -1289,8 +1291,8 @@ ol {
     transition: all, 0.3s;
 }
 
-.shop__sidebar__categories ul li a:hover,
-.shop__sidebar__price ul li a:hover,
+.shop__sidebar__categories ul li span:hover,
+.shop__sidebar__price ul li span:hover,
 .shop__sidebar__brand ul li a:hover {
     color: #111111;
 }
@@ -1318,6 +1320,7 @@ ol {
     margin-bottom: 10px;
     margin-right: 5px;
     cursor: pointer;
+    user-select: none;
 }
 
 .shop__sidebar__size label.active {
@@ -3425,8 +3428,15 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
-.shop__sidebar__categories li:hover {
-    /* background: rgb(238, 238, 237) !important; */
+.shop__sidebar__categories li:hover,
+.shop__sidebar__price li:hover {
+    background-color: rgb(238, 238, 238);
+    cursor: pointer;
+}
+
+.shop__sidebar__categories .active,
+.shop__sidebar__price .active {
+    background-color: rgb(238, 238, 238);
 }
 
 .my-profile ul {

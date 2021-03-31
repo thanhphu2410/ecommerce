@@ -29,6 +29,7 @@
                         </form>
                     </div>
                     <div class="shop__sidebar__accordion">
+                        <input type="hidden" id="filterUrl" value="/filter?category=&subcategory=&price=&size=">
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-heading">
@@ -38,9 +39,34 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__categories">
                                             <ul class="nice-scroll">
+                                                <input type="hidden" id="categorySelected">
                                                 @foreach ($categories as $category)
-                                                    <li class="unactive" style="background: rgb(255, 255, 255)">
+                                                    @php
+                                                        $requestCategory = explode(",", request('category'));
+                                                    @endphp
+                                                    <li class="category @if(in_array($category->id, $requestCategory)) active @endif">
+                                                        <input type="hidden" value="{{ $category->id }}" id="category_id">
                                                         <span>{{ $category->name }}</span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseTwo">Sub-Categories</a>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul class="nice-scroll">
+                                                <input type="hidden" id="subCategorySelected">
+                                                @foreach ($subCategories as $subCategory)
+                                                    <li class="sub-category">
+                                                        <input type="hidden" value="{{ $subCategory->id }}" id="sub_category_id">
+                                                        <span>{{ $subCategory->name }}</span>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -56,12 +82,31 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__price">
                                             <ul>
-                                                <li><a href="#">$0.00 - $50.00</a></li>
-                                                <li><a href="#">$50.00 - $100.00</a></li>
-                                                <li><a href="#">$100.00 - $150.00</a></li>
-                                                <li><a href="#">$150.00 - $200.00</a></li>
-                                                <li><a href="#">$200.00 - $250.00</a></li>
-                                                <li><a href="#">250.00+</a></li>
+                                                <input type="hidden" id="priceSelected">
+                                                <li class="price">
+                                                    <input type="hidden" value="0" id="price">
+                                                    <span>< 200$</span>
+                                                </li>
+
+                                                <li class="price">
+                                                    <input type="hidden" value="1" id="price">
+                                                    <span>200 - 299$</span>
+                                                </li>
+
+                                                <li class="price">
+                                                    <input type="hidden" value="2" id="price">
+                                                    <span>300 - 399$</span>
+                                                </li>
+
+                                                <li class="price">
+                                                    <input type="hidden" value="3" id="price">
+                                                    <span>400 - 499$</span>
+                                                </li>
+
+                                                <li class="price">
+                                                    <input type="hidden" value="4" id="price">
+                                                    <span> > 500$</span>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -74,30 +119,13 @@
                                 <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__size">
-                                            <label for="xs">xs
-                                                <input type="radio" id="xs">
+                                            <input type="hidden" id="sizeSelected">
+                                            @foreach ($sizes as $size)
+                                            <label for="sz{{ $size->id }}">
+                                                {{ $size->name }}
+                                                <input class="size" type="radio" id="sz{{ $size->id }}" value="{{ $size->id }}">
                                             </label>
-                                            <label for="sm">s
-                                                <input type="radio" id="sm">
-                                            </label>
-                                            <label for="md">m
-                                                <input type="radio" id="md">
-                                            </label>
-                                            <label for="xl">xl
-                                                <input type="radio" id="xl">
-                                            </label>
-                                            <label for="2xl">2xl
-                                                <input type="radio" id="2xl">
-                                            </label>
-                                            <label for="xxl">xxl
-                                                <input type="radio" id="xxl">
-                                            </label>
-                                            <label for="3xl">3xl
-                                                <input type="radio" id="3xl">
-                                            </label>
-                                            <label for="4xl">4xl
-                                                <input type="radio" id="4xl">
-                                            </label>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -140,24 +168,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
-                                </div>
-                                <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__tags">
-                                            <a href="#">Product</a>
-                                            <a href="#">Bags</a>
-                                            <a href="#">Shoes</a>
-                                            <a href="#">Fashio</a>
-                                            <a href="#">Clothing</a>
-                                            <a href="#">Hats</a>
-                                            <a href="#">Accessories</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -167,7 +177,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__left">
-                                <p>Showing {{ $products->count() }} of {{ $products->total() }} results</p>
+                                <p>Showing {{ $products->count() }} results</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -182,7 +192,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="products">
                     @foreach ($products as $product)
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item sale">
@@ -203,8 +213,8 @@
                                     <li>
                                         <a href="{{ route('product-details', ['product' => $product->id])  }}">
                                             <button type="submit" class="wishlist">
-                                        <i class="fa fa-search"></i>
-                                    </button>
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                         </a>
                                     </li>
                                 </ul>

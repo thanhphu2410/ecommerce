@@ -33,12 +33,14 @@
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
-                        <i class="icon-size-fullscreen"></i>
-                        <span class="hide-menu">Sizes</span> 
+                        <i class="fas fa-toolbox"></i>
+                        <span class="hide-menu">Toolbox</span> 
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('sizes.index') }}">All Sizes</a></li>
                         <li><a href="{{ route('sizes.create') }}">New Size</a></li>
+                        <li><a href="{{ route('colors.index') }}">All Colors</a></li>
+                        <li><a href="{{ route('colors.create') }}">New Color</a></li>
                     </ul>
                 </li> 
                 <li> 

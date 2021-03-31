@@ -29,6 +29,7 @@ Route::get('edit-profile', 'ProfileController@editProfile')->middleware('auth');
 Route::post('edit-profile', 'ProfileController@updateProfile')->middleware('auth');
 Route::get('edit-password', 'ProfileController@editPassword')->middleware('auth');
 Route::post('edit-password', 'ProfileController@updatePassword')->middleware('auth');
+Route::get('filter', 'ShopController@filter');
 
 /* *************Back End************* */
 Route::middleware(['auth', 'isStaff'])->group(function () {
@@ -36,11 +37,13 @@ Route::middleware(['auth', 'isStaff'])->group(function () {
     Route::resource('sub-categories', 'SubCategoryController');
     Route::resource('products', 'ProductController');
     Route::resource('sizes', 'SizeController');
+    Route::resource('colors', 'ColorController');
     Route::resource('roles', 'RoleController');
     Route::resource('orders', 'OrderController');
     Route::resource('customers', 'CustomerController');
     Route::resource('tags', 'TagController');
     Route::resource('blogs', 'BlogController');
+    Route::get('all-sizes', 'ProductController@allSizes');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');
     Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');

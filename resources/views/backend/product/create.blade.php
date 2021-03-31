@@ -33,7 +33,7 @@
                             <label>Images</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" multiple class="custom-file-input" name="images[]" accept="image/*">
+                                    <input type="file" multiple class="custom-file-input" name="images[]" accept="image/*" id="files">
                                     <label class="custom-file-label">Choose images</label>
                                 </div>
                             </div>
@@ -93,22 +93,24 @@
                                 <input type="hidden" value="1" id="currentAttribute">
                                 <input type="hidden" value="{{ $sizes->count() }}" id="maxOfAttribute">
                                 <div class="row align-items-center" id="attribute">
-                                    <div class="form-group col-5">
-                                        <label>Select sizes</label>
-                                        <select class="custom-select" name="sizes[]">
-                                            <option selected value="">Sizes</option>
-                                            @foreach ($sizes as $size)
-                                                <option value="{{ $size->id }}">{{ $size->name }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col-10 row">
+                                        <div class="form-group col-6">
+                                            <label>Select sizes</label>
+                                            <select class="custom-select" name="sizes[]">
+                                                <option selected value="">Sizes</option>
+                                                @foreach ($sizes as $size)
+                                                    <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label>Product Quantity</label>
+                                            <input type="number" class="form-control" placeholder="Enter Quantity" name="quantity[]" value="">
+                                        </div>
                                     </div>
 
-                                    <div class="form-group col-5">
-                                        <label>Product Quantity</label>
-                                        <input type="number" class="form-control" placeholder="Enter Quantity" name="quantity[]" value="">
-                                    </div>
-
-                                    <div class="col-2">
+                                    <div class="col-2 text-center">
                                         <button type="button" class="btn btn-dark deleteAttribute">
                                             <i class="fas fa-trash"></i>
                                         </button>

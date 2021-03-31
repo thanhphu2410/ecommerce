@@ -13,6 +13,12 @@ class Category extends Model
         return $this->hasMany('App\Models\SubCategory');
     }
 
+    public function products()
+    {
+        $subcategories = SubCategory::whereIn('category', request('category'))->modelKeys();
+        return Product::with('images')->whereIn('sub_category_id', $subcategories)->get();
+    }
+
     public function setImagePathAttribute()
     {
         if (request()->has('image_path')) {

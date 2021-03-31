@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Support\Arr;
 use App\Models\ProductImage;
+use Illuminate\Http\Request;
 use App\Services\ImageServices;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
@@ -26,7 +27,7 @@ class ProductController extends Controller
         return view('backend.product.create', compact('subCategories', 'sizes'));
     }
 
-    public function store(ProductStoreRequest $request)
+    public function store(Request $request)
     {
         $product = Product::create($this->getData($request));
  
@@ -71,6 +72,11 @@ class ProductController extends Controller
         $product->delete();
         
         return success('products.index');
+    }
+    
+    public function allSizes()
+    {
+        return Size::all();
     }
 
     private function getData($request)

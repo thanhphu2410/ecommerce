@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $guarded = [];
+    protected $appends = ['after_discount', 'first_image', 'rating_star'];
     
     /*  *****************************RELATIONSHIP***************************** */
     public function images()

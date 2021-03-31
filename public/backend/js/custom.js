@@ -48,19 +48,58 @@ $("#month").on("change", function(){
 	$(location).attr('href', '/dashboard/?m=' + $("#month").val());
 })
 
-$(".deleteAttribute").on("click", function(){
+$(document).on("click", ".deleteAttribute" , function() {
 	var currentAttribute = parseInt($("#currentAttribute").val());
 	if (currentAttribute - 1 >= 1) {
 		$(this).parents('#attribute').remove();
 		$("#currentAttribute").val(currentAttribute - 1);
 	}
-})
+});
 
 $("#addAttribute").on("click", function(){
 	var maxOfAttribute = parseInt($("#maxOfAttribute").val());
 	var currentAttribute = parseInt($("#currentAttribute").val());
-	if (currentAttribute + 1 <= maxOfAttribute) {
-		$("#attribute").clone(true).appendTo("#attributeWrapper");
-		$("#currentAttribute").val(currentAttribute + 1);
-	}
+	$.ajax({
+        url: "/all-sizes",
+        type: "get",
+        success: function(data) {
+			var sizes = '';
+			data.forEach(function(item) { 
+			 	sizes += '<option value="' + item.id+ '">' + item.name + '</option>'
+			});
+			if (currentAttribute + 1 <= maxOfAttribute) {
+				$("#attributeWrapper").append(
+					'<div class="row align-items-center" id="attribute">' +
+						'<div class="col-10 row">' +
+							'<div class="form-group col-6">' +
+								'<label>Select sizes</label>' +
+								'<select class="custom-select" name="sizes[]">' +
+									'<option selected value="">Sizes</option>' +
+									sizes +
+								'</select>' +
+							'</div>' +
+
+							'<div class="form-group col-6">' +
+								'<label>Product Quantity</label>' +
+								'<input type="number" class="form-control" placeholder="Enter Quantity" name="quantity[]" value="">' +
+							'</div>' +
+						'</div>' +
+
+						'<div class="col-2 text-center">' +
+							'<button type="button" class="btn btn-dark deleteAttribute">' +
+								'<i class="fas fa-trash"></i>' +
+							'</button>' +
+						'</div>' +
+					'</div>'
+				
+					// $("#attribute").clone(true).appendTo("#attributeWrapper");
+				)
+				$("#currentAttribute").val(currentAttribute + 1);
+			}
+        }
+    });
 })
+
+$('#files').on('change', function(){ 
+	$("#files ~ .custom-file-label").text($(this).get(0).files.length + " files choose");
+});
