@@ -50,6 +50,10 @@
                                             <td>{{ $product->sizes->implode('name', ', ') }}</td>
                                         </tr>
                                         <tr>
+                                            <td>Colors</td>
+                                            <td>{{ $product->colors->implode('name', ', ') }}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Category</td>
                                             <td>{{ $product->category->name }}</td>
                                         </tr>

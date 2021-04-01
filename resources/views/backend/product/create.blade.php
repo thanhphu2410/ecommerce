@@ -28,19 +28,6 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
-                        
-                        <div class="form-group">
-                            <label>Images</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" multiple class="custom-file-input" name="images[]" accept="image/*" id="files">
-                                    <label class="custom-file-label">Choose images</label>
-                                </div>
-                            </div>
-                            @if ($errors->any())
-                                <div class="error">Please choose images again</div>
-                            @endif
-                        </div>
 
                         <div>
                             <label class="mb-3">Product Attributes</label>
@@ -49,28 +36,52 @@
                             </button>
                         </div>
                         
+                        <input type="hidden" value="{{ old('sizes') ? count(old('sizes') ?? []) : 1 }}" id="currentAttribute">
+                        <input type="hidden" value="{{ $sizes->count() * $colors->count() }}" id="maxOfAttribute">
                         @if (count(old('sizes') ?? []) > 0)
                             <div id="attributeWrapper">
-                                <input type="hidden" value="1" id="currentAttribute">
-                                <input type="hidden" value="{{ $sizes->count() }}" id="maxOfAttribute">
-                                @foreach (old('sizes') as $item)
+                                @foreach (old('sizes') as $index=>$item)
                                 <div class="row align-items-center" id="attribute">
-                                    <div class="form-group col-5">
-                                        <label>Select sizes</label>
-                                        <select class="custom-select" name="sizes[]">
-                                            <option selected value="">Sizes</option>
-                                            @foreach ($sizes as $size)
-                                                <option value="{{ $size->id }}" @if ($size->id == $item) selected @endif>
-                                                    {{ $size->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <div class="col-10 row">
+                                        <div class="form-group col-6">
+                                            <label>Select sizes</label>
+                                            <select class="custom-select" name="sizes[]">
+                                                <option selected value="">Sizes</option>
+                                                @foreach ($sizes as $size)
+                                                    <option value="{{ $size->id }}" @if ($size->id == $item) selected @endif>
+                                                        {{ $size->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                                    <div class="form-group col-5">
-                                        <label>Product Quantity</label>
-                                        <input type="number" class="form-control" placeholder="Enter Quantity" 
-                                        name="quantity[]" value="{{ old('quantity.'.$loop->index) }}">
+                                        <div class="form-group col-6">
+                                            <label>Product Quantity</label>
+                                            <input type="number" class="form-control" placeholder="Enter Quantity" 
+                                            name="quantity[]" value="{{ old('quantity.'.$loop->index) }}">
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label>Select colors</label>
+                                            <select class="custom-select" name="colors[]">
+                                                <option selected value="">Colors</option>
+                                                @foreach ($colors as $color)
+                                                    <option value="{{ $color->id }}" @if ($color->id == old('colors')[$index]) selected @endif>
+                                                        {{ $color->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label>Images</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" multiple class="custom-file-input" name="images{{ $index }}[]" accept="image/*">
+                                                    <label class="custom-file-label">Choose images</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-2">
@@ -80,18 +91,9 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                
-                                @error('sizes.*') 
-                                    <div class="error">The size field is required.</div>
-                                @enderror
-                                @error('quantity.*') 
-                                    <div class="error">The quantity field is required.</div>
-                                @enderror
                             </div>
                         @else
                             <div id="attributeWrapper">
-                                <input type="hidden" value="1" id="currentAttribute">
-                                <input type="hidden" value="{{ $sizes->count() }}" id="maxOfAttribute">
                                 <div class="row align-items-center" id="attribute">
                                     <div class="col-10 row">
                                         <div class="form-group col-6">
@@ -108,6 +110,28 @@
                                             <label>Product Quantity</label>
                                             <input type="number" class="form-control" placeholder="Enter Quantity" name="quantity[]" value="">
                                         </div>
+
+                                        <div class="form-group col-6">
+                                            <label>Select colors</label>
+                                            <select class="custom-select" name="colors[]">
+                                                <option selected value="">Colors</option>
+                                                @foreach ($colors as $color)
+                                                    <option value="{{ $color->id }}">
+                                                        {{ $color->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label>Images</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" multiple class="custom-file-input" name="images0[]" accept="image/*">
+                                                    <label class="custom-file-label">Choose images</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-2 text-center">
@@ -116,14 +140,18 @@
                                         </button>
                                     </div>
                                 </div>
-                                @error('sizes.*') 
-                                    <div class="error">The size field is required.</div>
-                                @enderror
-                                @error('quantity.*') 
-                                    <div class="error">The quantity field is required.</div>
-                                @enderror
                             </div>
                         @endif
+                        @if ($errors->any())
+                            <div class="error">Please choose images again</div>
+                        @endif
+                        @error('sizes.*') 
+                            <div class="error">The size field is required.</div>
+                        @enderror
+                        @error('quantity.*') 
+                            <div class="error">The quantity field is required.</div>
+                        @enderror
+                            
 
                         <div class="form-group">
                             <h5 class="m-t-30">Select Sub Category</h5>

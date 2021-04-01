@@ -30,7 +30,6 @@ class ProductStoreRequest extends FormRequest
             'quantity.*' => 'required|numeric|min:1',
             'discount' => 'numeric',
             'description' => 'nullable',
-            'images' => 'required',
             'sub_category_id' => 'required',
             'sizes' => 'required|array',
             'sizes.*' => 'required|numeric',

@@ -18,10 +18,8 @@ class ReviewImage extends Model
     
     public static function deleteItem($review)
     {
-        $review->load('images');
         foreach ($review->images as $image) {
             delete_file($image->path);
-            $image->delete();
         }
     }
 }

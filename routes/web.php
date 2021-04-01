@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Size;
+use App\Models\Color;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /* *************Front End************* */
+Route::resource('cart', 'CartController');
+Route::resource('wishlist', 'WishListController');
+Route::resource('checkout', 'CheckoutController');
 Route::get('/', 'LandingPageController@index');
 Route::get('shop', 'ShopController@index')->name('shop');
 Route::get('product-details/{product}', 'ShopController@show')->name('product-details');
 Route::post('review/{product}', 'ShopController@review')->name('review')->middleware('auth');
-Route::resource('cart', 'CartController');
-Route::resource('wishlist', 'WishListController');
-Route::resource('checkout', 'CheckoutController');
 Route::get('districts/{province}', 'AddressController@getDistrict');
 Route::get('wards/{district}', 'AddressController@getWards');
 Route::get('all-blogs', 'NewsController@index');
@@ -33,6 +35,7 @@ Route::get('filter', 'ShopController@filter');
 
 /* *************Back End************* */
 Route::middleware(['auth', 'isStaff'])->group(function () {
+    Route::get('products/attributes', 'ProductController@getAttributes');
     Route::resource('categories', 'CategoryController');
     Route::resource('sub-categories', 'SubCategoryController');
     Route::resource('products', 'ProductController');
@@ -43,7 +46,6 @@ Route::middleware(['auth', 'isStaff'])->group(function () {
     Route::resource('customers', 'CustomerController');
     Route::resource('tags', 'TagController');
     Route::resource('blogs', 'BlogController');
-    Route::get('all-sizes', 'ProductController@allSizes');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');
     Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');

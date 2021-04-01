@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'name', 'price', 'quantity', 'discount', 'description', 'sub_category_id'
+    ];
     protected $appends = ['after_discount', 'first_image', 'rating_star'];
     
     /*  *****************************RELATIONSHIP***************************** */
-    public function images()
+
+    public function colors()
     {
-        return $this->hasMany('App\Models\ProductImage');
+        return $this->belongsToMany('App\Models\Color', 'product_attributes');
+    }
+
+    public function sizes()
+    {
+        return $this->belongsToMany('App\Models\Size', 'product_attributes');
     }
 
     public function subCategory()
@@ -21,9 +29,9 @@ class Product extends Model
         return $this->belongsTo('App\Models\SubCategory');
     }
 
-    public function sizes()
+    public function attributes()
     {
-        return $this->belongsToMany('App\Models\Size')->withPivot('product_quantity');
+        return $this->hasMany('App\Models\ProductAttribute');
     }
 
     public function reviews()
@@ -44,12 +52,7 @@ class Product extends Model
     }
 
     /*  *****************************MUTATORS***************************** */
-
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = Str::title($value);
-    }
-
+    
     public function setQuantityAttribute()
     {
         $this->attributes['quantity'] = collect(request('quantity'))->sum();
@@ -66,7 +69,7 @@ class Product extends Model
             ->groupBy('order_details.product_id')
             ->orderByRaw('COUNT(*) DESC')
             ->limit(8)
-            ->with('images')
+            ->with('attributes.images')
             ->get();
     }
 
@@ -84,7 +87,7 @@ class Product extends Model
 
     public function getNewArrivalAttribute()
     {
-        return $this->latest()->active()->limit(8)->with('images')->get();
+        return $this->latest()->active()->limit(8)->with('attributes.images')->get();
     }
 
     public function getHotSaleAttribute()
@@ -93,7 +96,7 @@ class Product extends Model
             ->active()
             ->orderBy('discount', 'desc')
             ->limit(8)
-            ->with('images')
+            ->with('attributes.images')
             ->get();
     }
 
@@ -102,13 +105,18 @@ class Product extends Model
         return $this->where('sub_category_id', $this->sub_category_id)
             ->active()
             ->where('id', '!=', $this->id)
-            ->with('images')
+            ->with('attributes.images')
             ->get();
+    }
+
+    public function getImagesAttribute()
+    {
+        return $this->attributes()->first()->images ?? collect([]);
     }
 
     public function getFirstImageAttribute()
     {
-        return $this->images->first()->path;
+        return $this->images->first()->path ?? '';
     }
 
     public function getCategoryAttribute()

@@ -1,6 +1,8 @@
 <?php
 namespace App\Services;
 
+use App\Models\Size;
+use App\Models\Color;
 use App\Models\Category;
 use App\Models\ReviewImage;
 use App\Models\SubCategory;
@@ -14,16 +16,28 @@ class ImageServices
             return self::deleteImagesByCategory($item);
         } elseif ($item instanceof SubCategory) {
             return self::deleteImagesBySubCategory($item);
+        } elseif ($item instanceof Size || $item instanceof Color) {
+            return self::deleteImagesByAttribute($item);
         }
         self::deleteImagesByProduct($item);
     }
 
     public static function deleteImagesByProduct($product)
     {
-        ProductImage::deleteItem($product);
-        $product->load('reviews');
+        $product->load(['reviews.images', 'attributes.images']);
+        foreach ($product->attributes as $attribute) {
+            ProductImage::deleteItem($attribute);
+        }
+        
         foreach ($product->reviews as $review) {
             ReviewImage::deleteItem($review);
+        }
+    }
+
+    public static function deleteImagesByAttribute($item)
+    {
+        foreach ($item->attributes as $attribute) {
+            ProductImage::deleteItem($attribute);
         }
     }
 

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Size;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\SubCategory;
-use Illuminate\Support\Arr;
 use App\Models\ProductImage;
-use Illuminate\Http\Request;
 use App\Services\ImageServices;
+use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductStoreRequest;
-use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
@@ -24,23 +24,23 @@ class ProductController extends Controller
     {
         $subCategories = SubCategory::all();
         $sizes = Size::all();
-        return view('backend.product.create', compact('subCategories', 'sizes'));
+        $colors = Color::all();
+        return view('backend.product.create', compact('subCategories', 'sizes', 'colors'));
     }
 
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
-        $product = Product::create($this->getData($request));
- 
-        ProductImage::storeItem($product);
-         
-        $product->sizes()->attach(Size::getData());
-
+        DB::transaction(function () use ($request) {
+            $product = Product::create($request->validated());
+            $attributes = $product->attributes()->createMany(ProductAttribute::getData());
+            ProductImage::storeItem($attributes);
+        });
         return success('products.index');
     }
 
     public function show(Product $product)
     {
-        $product->load(['images', 'sizes', 'orders']);
+        $product->load(['orders', 'sizes', 'colors']);
         return view('backend.product.show', compact('product'));
     }
 
@@ -48,40 +48,34 @@ class ProductController extends Controller
     {
         $subCategories = SubCategory::all();
         $sizes = Size::all();
-
-        $product->load('sizes');
-
-        return view('backend.product.edit', compact('product', 'subCategories', 'sizes'));
+        $colors = Color::all();
+        $product->load(['attributes']);
+        return view('backend.product.edit', compact('product', 'subCategories', 'sizes', 'colors'));
     }
 
-    public function update(ProductUpdateRequest $request, Product $product)
+    public function update(ProductStoreRequest $request, Product $product)
     {
-        $product->update($this->getData($request));
-
-        ProductImage::updateItem($product);
-        
-        $product->sizes()->sync(Size::getData());
-
+        DB::transaction(function () use ($request, $product) {
+            $product->update($request->validated());
+            $product->sizes()->sync(ProductAttribute::getData());
+            ProductImage::updateItem($product->attributes);
+        });
         return success('products.index');
     }
 
     public function destroy(Product $product)
     {
         ImageServices::deleteImages($product);
-
         $product->delete();
-        
         return success('products.index');
     }
-    
-    public function allSizes()
-    {
-        return Size::all();
-    }
 
-    private function getData($request)
+    public function getAttributes()
     {
-        $validated = $request->validated();
-        return Arr::except($validated, ['images', 'sizes']);
+        $attributes = [
+            'sizes' => Size::all(),
+            'colors' => Color::all(),
+        ];
+        return $attributes;
     }
 }

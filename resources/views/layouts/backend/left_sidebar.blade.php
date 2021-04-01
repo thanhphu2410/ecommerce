@@ -57,17 +57,6 @@
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
-                        <i class="fa fa-user-tag"></i>
-                        <span class="hide-menu">Roles</span> 
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{ route('roles.index') }}">All Roles</a></li>
-                        <li><a href="{{ route('roles.create') }}">New Role</a></li>
-                    </ul>
-                </li> 
-                <li> 
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
                         <i class="fas fa-shopping-bag"></i>
                         <span class="hide-menu">Orders</span> 
                     </a>
@@ -84,21 +73,12 @@
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
-                        <i class="mdi mdi-tag-multiple"></i>
-                        <span class="hide-menu">Blog Tags</span> 
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{ route('tags.index') }}">All Tags</a></li>
-                        <li><a href="{{ route('tags.create') }}">New Tag</a></li>
-                    </ul>
-                </li>
-                <li> 
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
                         <i class="far fa-newspaper"></i>
                         <span class="hide-menu">Blogs</span> 
                     </a>
                     <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('tags.index') }}">All Tags</a></li>
+                        <li><a href="{{ route('tags.create') }}">New Tag</a></li>
                         <li><a href="{{ route('blogs.index') }}">All Blogs</a></li>
                         <li><a href="{{ route('blogs.create') }}">New Blog</a></li>
                     </ul>
@@ -111,6 +91,8 @@
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('system-setting.edit') }}">System Settings</a></li>
+                        <li><a href="{{ route('roles.index') }}">All Roles</a></li>
+                        <li><a href="{{ route('roles.create') }}">New Role</a></li>
                     </ul>
                 </li>
             </ul>

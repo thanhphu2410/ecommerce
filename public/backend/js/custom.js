@@ -60,16 +60,22 @@ $("#addAttribute").on("click", function(){
 	var maxOfAttribute = parseInt($("#maxOfAttribute").val());
 	var currentAttribute = parseInt($("#currentAttribute").val());
 	$.ajax({
-        url: "/all-sizes",
+        url: "/products/attributes",
         type: "get",
         success: function(data) {
 			var sizes = '';
-			data.forEach(function(item) { 
+			data.sizes.forEach(function(item) { 
 			 	sizes += '<option value="' + item.id+ '">' + item.name + '</option>'
 			});
+
+			var colors = '';
+			data.colors.forEach(function(item) { 
+			 	colors += '<option value="' + item.id+ '">' + item.name + '</option>'
+			});
+
 			if (currentAttribute + 1 <= maxOfAttribute) {
 				$("#attributeWrapper").append(
-					'<div class="row align-items-center" id="attribute">' +
+					'<div class="row align-items-center mt-5" id="attribute">' +
 						'<div class="col-10 row">' +
 							'<div class="form-group col-6">' +
 								'<label>Select sizes</label>' +
@@ -83,6 +89,24 @@ $("#addAttribute").on("click", function(){
 								'<label>Product Quantity</label>' +
 								'<input type="number" class="form-control" placeholder="Enter Quantity" name="quantity[]" value="">' +
 							'</div>' +
+
+							'<div class="form-group col-6">' +
+								'<label>Select colors</label>' +
+								'<select class="custom-select" name="colors[]">' +
+									'<option selected value="">Colors</option>' +
+									colors +
+								'</select>' +
+							'</div>' +
+
+							'<div class="form-group col-6">' +
+								'<label>Images</label>' +
+								'<div class="input-group">' +
+									'<div class="custom-file">' +
+										'<input type="file" multiple class="custom-file-input" name="images' + currentAttribute + '[]" accept="image/*">' +
+										'<label class="custom-file-label">Choose images</label>' +
+									'</div>' +
+								'</div>' +
+							'</div>' +
 						'</div>' +
 
 						'<div class="col-2 text-center">' +
@@ -91,8 +115,6 @@ $("#addAttribute").on("click", function(){
 							'</button>' +
 						'</div>' +
 					'</div>'
-				
-					// $("#attribute").clone(true).appendTo("#attributeWrapper");
 				)
 				$("#currentAttribute").val(currentAttribute + 1);
 			}

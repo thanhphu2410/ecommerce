@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
+use App\Services\ImageServices;
 
 class ColorController extends Controller
 {
@@ -20,9 +21,7 @@ class ColorController extends Controller
     public function store()
     {
         $data = request()->validate(['name' => "required", 'code' => 'required']);
-        
         Color::create($data);
-        
         return success('colors.index');
     }
 
@@ -34,14 +33,13 @@ class ColorController extends Controller
     public function update(Color $color)
     {
         $data = request()->validate(['name' => "required", 'code' => 'required']);
-        
         $color->update($data);
-        
         return success('colors.index');
     }
 
     public function destroy(Color $color)
     {
+        ImageServices::deleteImages($color);
         $color->delete();
         return success('colors.index');
     }
