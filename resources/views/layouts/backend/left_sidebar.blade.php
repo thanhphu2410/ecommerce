@@ -55,14 +55,10 @@
                     </ul>
                 </li>
                 <li> 
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
+                    <a class="waves-effect waves-dark" href="{{ route('orders.index') }}">
                         <i class="fas fa-shopping-bag"></i>
                         <span class="hide-menu">Orders</span> 
                     </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{ route('orders.index') }}">All Orders</a></li>
-                    </ul>
                 </li> 
                 <li> 
                     <a class="waves-effect waves-dark" href="{{ route('customers.index') }}">

@@ -46,7 +46,7 @@
                                             <td>Price</td>
                                             <td>{{ $order->price }} đ</td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td>Details</td>
                                             <td>
                                                 <!-- Button trigger modal -->
@@ -94,11 +94,45 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Order Details</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Size Name</th>
+                                    <th>Quantity</th>
+                                    <th>Discount</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($order->details as $item)
+                                <tr>
+                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ $item->size->name }}</td>
+                                    <td>{{ $item->quantity }}</td>
+                                    <td>{{ $item->discount }}</td>
+                                    <td>{{ $item->total }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
