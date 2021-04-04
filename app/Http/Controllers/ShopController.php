@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Size;
+use App\Models\Color;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
@@ -15,12 +16,12 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $products = Product::active()->orderBy('price', 'asc')->paginate(1);
-        // $products = $this->filter();
+        $products = $this->filter();
         $categories = Category::all();
         $subCategories = SubCategory::all();
         $sizes = Size::all();
-        return view('frontend.shop.index', compact('products', 'categories', 'sizes', 'subCategories'));
+        $colors = Color::all();
+        return view('frontend.shop.index', compact('products', 'categories', 'sizes', 'subCategories', 'colors'));
     }
 
     public function show(Product $product)
@@ -86,12 +87,26 @@ class ShopController extends Controller
             }
         }
 
-        // if (request('size')) {
-        //     $productIds = ProductSize::whereIn('size_id', explode(",", request('size')))->pluck('product_id');
-        //     $products->whereIn('id', $productIds);
-        // }
+        if (request('size')) {
+            $productIds = ProductAttribute::whereIn('size_id', explode(",", request('size')))->pluck('product_id');
+            $products->whereIn('id', $productIds);
+        }
+
+        if (request('color')) {
+            $productIds = ProductAttribute::whereIn('color_id', explode(",", request('color')))->pluck('product_id');
+            $products->whereIn('id', $productIds);
+        }
+
+        if (request('name')) {
+            $products->where('name', 'LIKE', '%'.request('name').'%');
+        }
 
         return $products->orderBy('price', 'asc')->get();
+    }
+
+    public function searchByName()
+    {
+        return Product::where('name', 'LIKE', '%'.request('name').'%')->get();
     }
 
     public function getColor($product, $size)

@@ -281,6 +281,31 @@ $(".sizeFilter").on("click", function() {
     ajaxFilter();
 })
 
+$(".colorFilter").on("click", function() {
+    var parent = $(this).parent("label");
+    parent.hasClass("active") ? parent.removeClass("active") : parent.addClass("active");
+    var color_id = $(this).val();
+    var currentColor = "color=" + $("#colorSelected").val();
+    var splitColor = $("#colorSelected").val().split(",");
+
+    $("#colorSelected").val($("#colorSelected").val() + color_id + ',');
+    if (splitColor.indexOf(color_id) != -1) {
+        splitColor.splice(splitColor.indexOf(color_id), 1);
+        $("#colorSelected").val(splitColor);
+    }
+
+    $("#filterUrl").val(function(i, v) {return v.replace(currentColor, "color=" + $("#colorSelected").val());}).val();
+    ajaxFilter();
+})
+
+$("#nameFilter").on("keyup", function() {
+    var name = $(this).val();
+    var currentUrl = $("#filterUrl").val();
+    var currentName = currentUrl.slice(currentUrl.indexOf("name="), currentUrl.length);
+    $("#filterUrl").val(function(i, v) {return v.replace(currentName, "name=" + name);}).val();
+    ajaxFilter();
+})
+
 function ajaxFilter() {
     $.ajax({
         url: $("#filterUrl").val(),

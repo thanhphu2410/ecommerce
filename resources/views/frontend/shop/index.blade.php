@@ -23,13 +23,10 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form action="#">
-                            <input type="text" placeholder="Search...">
-                            <button type="submit"><span class="icon_search"></span></button>
-                        </form>
+                        <input type="text" placeholder="Search by name..." id="nameFilter">
                     </div>
                     <div class="shop__sidebar__accordion">
-                        <input type="hidden" id="filterUrl" value="/filter?category=&subcategory=&price=&size=">
+                        <input type="hidden" id="filterUrl" value="/filter?category=&subcategory=&price=&size=&color=&name=">
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-heading">
@@ -137,33 +134,13 @@
                                 <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__color">
-                                            <label class="c-1" for="sp-1">
-                                                <input type="radio" id="sp-1">
+                                            <input type="hidden" id="colorSelected">
+                                            @foreach ($colors as $color)
+                                            <label style="background: {{ $color->code }}" for="color{{ $color->id }}">
+                                                <i class="fas fa-check"></i>
+                                                <input class="colorFilter" type="radio" id="color{{ $color->id }}" value="{{ $color->id }}">
                                             </label>
-                                            <label class="c-2" for="sp-2">
-                                                <input type="radio" id="sp-2">
-                                            </label>
-                                            <label class="c-3" for="sp-3">
-                                                <input type="radio" id="sp-3">
-                                            </label>
-                                            <label class="c-4" for="sp-4">
-                                                <input type="radio" id="sp-4">
-                                            </label>
-                                            <label class="c-5" for="sp-5">
-                                                <input type="radio" id="sp-5">
-                                            </label>
-                                            <label class="c-6" for="sp-6">
-                                                <input type="radio" id="sp-6">
-                                            </label>
-                                            <label class="c-7" for="sp-7">
-                                                <input type="radio" id="sp-7">
-                                            </label>
-                                            <label class="c-8" for="sp-8">
-                                                <input type="radio" id="sp-8">
-                                            </label>
-                                            <label class="c-9" for="sp-9">
-                                                <input type="radio" id="sp-9">
-                                            </label>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -184,9 +161,8 @@
                             <div class="shop__product__option__right">
                                 <p>Sort by Price:</p>
                                 <select>
-                                    <option value="">Low To High</option>
-                                    <option value="">$0 - $55</option>
-                                    <option value="">$55 - $100</option>
+                                    <option id="l2h">Low To High</option>
+                                    <option id="h2l">High To Low</option>
                                 </select>
                             </div>
                         </div>
@@ -239,12 +215,6 @@
                         </div>
                     </div>
                     @endforeach
-                </div>
-                
-                <div class="row">
-                    <div class="col-lg-12">
-                        {{ $products->links() }}
-                    </div>
                 </div>
             </div>
         </div>
