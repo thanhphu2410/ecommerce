@@ -31,7 +31,7 @@ class ProductImage extends Model
             $old_images = request('old_images'.$index, []);
             if (!request('images'.$index)) {
                 foreach ($old_images as $image) {
-                    $attribute->images()->create(['path' => "storage/".$image]);
+                    $attribute->images()->create(['path' => $image]);
                 }
                 continue;
             }

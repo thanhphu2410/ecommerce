@@ -26,7 +26,8 @@ class CartRequest extends FormRequest
         return [
             'product_id' => 'required',
             'quantity' => 'required|numeric|min:1',
-            'size' => 'required'
+            'size' => 'required',
+            'color' => 'required'
         ];
     }
 }

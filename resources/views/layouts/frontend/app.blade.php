@@ -53,7 +53,7 @@
             <a href="#"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
             <a href="#">
                 <i class="fa-shopping-cart"></i>
-                <span>{{ $cart }}</span>
+                <span>{{ $cart_amount }}</span>
             </a>
             <div class="price">$0.00</div>
         </div>
@@ -146,8 +146,8 @@
                         </a>
                         <a href="{{ route('cart.index') }}">
                             <i class="fas fa-shopping-bag"></i>
-                            {{-- $cart in AppServiceProvider --}}
-                            <span class="badge rounded-pill bg-warning">{{ $cart }}</span>
+                            {{-- $cart_amount in AppServiceProvider --}}
+                            <span class="badge rounded-pill bg-warning">{{ $cart_amount }}</span>
                         </a>
                     </div>
                 </div>

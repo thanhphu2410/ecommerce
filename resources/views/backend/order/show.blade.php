@@ -46,55 +46,6 @@
                                             <td>Price</td>
                                             <td>{{ $order->price }} đ</td>
                                         </tr>
-                                        {{-- <tr>
-                                            <td>Details</td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modelId">
-                                                  View
-                                                </button>
-                                                
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Details</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="table-responsive">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Product Name</th>
-                                                                                <th>Size Name</th>
-                                                                                <th>Quantity</th>
-                                                                                <th>Discount</th>
-                                                                                <th>Total</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            @foreach ($order->details as $item)
-                                                                            <tr>
-                                                                                <td>{{ $item->product->name }}</td>
-                                                                                <td>{{ $item->size->name }}</td>
-                                                                                <td>{{ $item->quantity }}</td>
-                                                                                <td>{{ $item->discount }}</td>
-                                                                                <td>{{ $item->total }}</td>
-                                                                            </tr>
-                                                                            @endforeach
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>

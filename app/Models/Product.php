@@ -16,12 +16,12 @@ class Product extends Model
 
     public function colors()
     {
-        return $this->belongsToMany('App\Models\Color', 'product_attributes');
+        return $this->belongsToMany('App\Models\Color', 'product_attributes')->withPivot('product_quantity');
     }
 
     public function sizes()
     {
-        return $this->belongsToMany('App\Models\Size', 'product_attributes');
+        return $this->belongsToMany('App\Models\Size', 'product_attributes')->withPivot('product_quantity');
     }
 
     public function subCategory()

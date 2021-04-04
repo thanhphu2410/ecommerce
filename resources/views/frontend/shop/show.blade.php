@@ -14,37 +14,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-2 col-md-3">
-                        <ul class="nav nav-tabs" role="tablist">
-                            @foreach ($product->images as $image)
-                                <li class="nav-item">
-                                    <a class="nav-link @if ($loop->first) active @endif" data-toggle="tab" href="#tab{{ $image->id }}" role="tab">
-                                        <div class="product__thumb__pic set-bg img-thumbnail"
-                                            data-setbg="/{{ $image->path }}"></div>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="col-lg-8 col-md-9">
-                        <div class="tab-content">
-                            @foreach ($product->images as $image)
-                                <div class="tab-pane @if ($loop->first) active @endif" id="tab{{ $image->id }}" role="tabpanel">
-                                    <div class="product__details__pic__item">
-                                        <img class="img-thumbnail" src="/{{ $image->path }}" alt="">
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="product__details__content">
             <div class="container">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-6 col-md-9">
+                        <div class="tab-content">
+                            <div class="product__details__pic__item">
+                                <img class="img-thumbnail" src="/{{ $product->first_image }}" id="main-image">
+                            </div>
+                        </div>
+                        <div id="tab_image" class="owl-carousel mt-3">
+                            @foreach ($product->attributes as $attributeKey=>$attribute)
+                                @foreach ($attribute->images as $imageKey=>$image)
+                                    <div class="tab-image @if ($attributeKey == 0 && $imageKey == 0) active @endif">
+                                        <a href="#tab{{ $image->id }}">
+                                            <input type="hidden" value="/{{ $image->path }}">
+                                            <div class="product__thumb__pic set-bg img-thumbnail"
+                                                data-setbg="/{{ $image->path }}"></div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
                         <div class="product__details__text">
                             <h4>{{ $product->name }}</h4>
                             <div class="rating">
@@ -68,39 +63,31 @@
                                 <div class="product__details__option">
                                     <div class="product__details__option__size">
                                         <span>Size:</span>
-                                        @foreach ($product->sizes as $size)
+                                        @foreach ($sizes as $size)
                                             <label for="size{{ $size->id }}" @if($loop->first) class="active" @endif>
                                                 {{ $size->name }} 
                                                 <input type="radio" id="size{{ $size->id }}" value="{{ $size->id }}"
                                                 name="size" @if($loop->first) checked @endif class="size">
-                                                <input type="hidden" value="{{ $size->quantity }}" id="size_qty{{ $size->id }}">
+                                                <input type="hidden" value="{{ $size->pivot->product_quantity }}" id="size_qty{{ $size->id }}">
                                             </label>
                                         @endforeach
                                     </div>
-                                    <div class="product__details__option__color">
+                                    <input type="hidden" name="color" value="{{ $colors[0]->color_id }}" id="colorValue">
+                                    <div class="product__details__option__color" id="colorWrapper">
                                         <span>Color:</span>
-                                        <label class="c-1" for="sp-1">
-                                            <input type="radio" id="sp-1">
+                                        @foreach ($colors as $item)
+                                        <label class="color @if($loop->first) active @endif" style="background: {{ $item->color->code }}">
+                                            <input type="hidden" value="{{ $item->color_id}}">
+                                            <i class="fas fa-check"></i>
                                         </label>
-                                        <label class="c-2" for="sp-2">
-                                            <input type="radio" id="sp-2">
-                                        </label>
-                                        <label class="c-3" for="sp-3">
-                                            <input type="radio" id="sp-3">
-                                        </label>
-                                        <label class="c-4" for="sp-4">
-                                            <input type="radio" id="sp-4">
-                                        </label>
-                                        <label class="c-9" for="sp-9">
-                                            <input type="radio" id="sp-9">
-                                        </label>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="product__details__cart__option">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="hidden" value="{{ $product->id }}" name="product_id">
-                                            <input type="hidden" value="{{ $product->sizes->first()->quantity }}" id="max_qty">
+                                            <input type="hidden" value="{{ $product->id }}" name="product_id" id="product_id">
+                                            <input type="hidden" value="{{ $product->attributes->first()->product_quantity }}" id="max_qty">
                                             <span class="fa fa-angle-up dec qtybtn" id="increase"></span>
                                             <input type="text" value="0" id="quantity" name="quantity">
                                             <span class="fa fa-angle-down inc qtybtn" id="decrease"></span>
@@ -122,7 +109,7 @@
                                 <h5><span>Guaranteed Safe Checkout</span></h5>
                                 <img src="img/shop-details/details-payment.png" alt="">
                                 <ul>
-                                    <li id="in_stock"><span>In stock:</span> {{ $product->sizes->first()->quantity }}</li>
+                                    <li id="in_stock"><span>In stock:</span> {{ $product->attributes->first()->product_quantity }}</li>
                                     <li><span>Category:</span> {{ $product->category->name }}</li>
                                     <li><span>Sub Category:</span> {{ $product->subCategory->name }}</li>
                                 </ul>

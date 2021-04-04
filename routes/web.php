@@ -32,6 +32,7 @@ Route::post('edit-profile', 'ProfileController@updateProfile')->middleware('auth
 Route::get('edit-password', 'ProfileController@editPassword')->middleware('auth');
 Route::post('edit-password', 'ProfileController@updatePassword')->middleware('auth');
 Route::get('filter', 'ShopController@filter');
+Route::get('get-colors/{product}/{size}', 'ShopController@getColor');
 
 /* *************Back End************* */
 Route::middleware(['auth', 'isStaff'])->group(function () {

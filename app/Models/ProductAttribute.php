@@ -8,6 +8,16 @@ class ProductAttribute extends Model
 {
     protected $guarded = [];
 
+    public function size()
+    {
+        return $this->belongsTo('App\Models\Size');
+    }
+
+    public function color()
+    {
+        return $this->belongsTo('App\Models\Color');
+    }
+
     public function images()
     {
         return $this->hasMany('App\Models\ProductImage');

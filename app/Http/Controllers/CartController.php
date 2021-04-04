@@ -13,7 +13,6 @@ class CartController extends Controller
         $cart = session('cart', []);
         $products = Product::find(array_keys($cart));
         $total = CartService::total($cart, $products);
-
         return view('frontend.cart', compact('cart', 'products', 'total'));
     }
 
@@ -21,24 +20,15 @@ class CartController extends Controller
     {
         $key = "cart.".request('product_id');
         $cart = $request->validated();
-
         session()->has($key) ? session()->increment($key.'.0.quantity') : session()->push($key, $cart);
-
         return back();
     }
 
     public function update()
     {
         foreach (request('product_id', []) as $index=>$item) {
-            $key = "cart.".$item;
-            $cart = [
-                'product_id' => $item,
-                'quantity' => request('quantity.'.$index),
-                'size' => request('size'.$item)
-            ];
-
-            session()->forget('cart.'.$item);
-            session()->push($key, $cart);
+            $key = "cart.".$item.'.0.quantity';
+            session()->put($key, request('quantity.'.$index));
         }
         return back();
     }

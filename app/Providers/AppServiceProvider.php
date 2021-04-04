@@ -28,8 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.frontend.app', function ($view) {
             $cart = session('cart', []);
-            $products = Product::find(array_keys($cart));
-            $view->with('cart', $products->count());
+            $amount = collect($cart)->sum(function ($item) {
+                return $item[0]['quantity'];
+            });
+            $view->with('cart_amount', $amount);
         });
 
         view()->composer('layouts.*', function ($view) {

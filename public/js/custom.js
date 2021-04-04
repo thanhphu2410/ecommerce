@@ -1,11 +1,24 @@
 $("#owl-example").owlCarousel({
-    loop: true,
+    loop: false,
     items: 4,
     autoplayTimeout: 3000,
     smartSpeed: 500,
     autoHeight: false,
-    autoplay: true
+    autoplay: false,
 });
+
+$("#tab_image").owlCarousel({
+    loop: false,
+    items: 4,
+    autoplay: false,
+});
+
+$(".tab-image").on("mouseover", function(){
+    var path = $(this).find("input").val();
+    $("#main-image").attr("src", path);
+    $(".tab-image").removeClass("active");
+    $(this).addClass("active");
+})
 
 $("#review").on("keyup", function() {
     $("#reviewBtn").removeAttr("disabled");
@@ -36,62 +49,123 @@ $("#imgInp").on("change", function() {
     readURL(this);
 });
 
-$(".size").on("click", function() {
-    let qty = $("#size_qty" + $(this).val()).val();
-    $("#quantity").val(0);
-    $("#max_qty").val(qty);
-    $("#in_stock").empty();
-    $("#in_stock").append("<span>In stock:</span> " + qty);
-});
-
 $("#increase").on("click", function() {
     let quantity = parseInt($("#quantity").val());
     let max_qty = parseInt($("#max_qty").val());
     if (quantity + 1 <= max_qty) {
         $("#quantity").val(quantity + 1);
-        if ($("#addToCartBtn").length) {
+        if (quantity + 1 > 0 && quantity + 1 <= max_qty) {
             $("#addToCartBtn").removeAttr("disabled");
         }
     }
 });
 
 $("#decrease").on("click", function() {
+    let max_qty = parseInt($("#max_qty").val());
     let quantity = parseInt($("#quantity").val());
     if (quantity - 1 > 0) {
         $("#quantity").val(quantity - 1);
+        if (quantity - 1 > 0 && quantity - 1 <= max_qty) {
+            $("#addToCartBtn").removeAttr("disabled");
+        }
     }
 });
 
-$("#quantity").on("keyup", function() {
-    let max_qty = parseInt($("#max_qty").val());
-    let qty = parseInt($(this).val());
-    $("#updateBtn").removeAttr("disabled");
-    if (isNaN($("#quantity").val()) || qty > max_qty || qty == 0) {
-        $("#updateBtn").attr("disabled", "disabled");
-    }
+$(".size").on("click", function() {
+    let qty = $("#size_qty" + $(this).val()).val();
+    $("#quantity").val(0);
+    $("#max_qty").val(qty);
+    $("#in_stock").empty();
+    $("#in_stock").append("<span>In stock:</span> " + qty);
+    $.ajax({
+        url: "/get-colors/" + $("#product_id").val() + "/" + $(this).val(),
+        type: "get",
+        dataType: "JSON",
+        success: function(data) {
+            $("#colorWrapper").empty();
+            var colorsRender = '';
+            data.forEach(function(item) {
+                colorsRender += '<label class="color" style="background: ' + item.color.code + '" for="sp-1">'+
+                '<input type="hidden" value="' + item.color_id+ '">'+
+                '<i class="fas fa-check"></i>'+
+                '</label>';
+            });
+            $("#colorWrapper").append(
+                '<span>Color:</span>'+
+                colorsRender
+            );
+        }
+    });
+});
+
+$(document).on("click", ".color", function(){
+    $(".color").removeClass("active");
+    $(this).addClass("active");
+    $("#colorValue").val($(this).find("input").val());
 });
 
 $("#quantity").on("keyup", function() {
     let max_qty = parseInt($("#max_qty").val());
     let qty = parseInt($(this).val());
     $("#addToCartBtn").removeAttr("disabled");
-    if (isNaN($("#quantity").val()) || qty > max_qty || qty == 0) {
+    if (isNaN($("#quantity").val()) || qty > max_qty || qty < 0) {
         $("#addToCartBtn").attr("disabled", "disabled");
     }
 });
 
-$("#deleteBtn").on("click", function() {
+$(".increase").on("click", function() {
+    let quantity = parseInt($(this).siblings(".quantityValue").val());
+    let max_qty = parseInt($(this).siblings("#max_qty").val());
+    if (quantity + 1 <= max_qty) {
+        $(this).siblings(".quantityValue").val(quantity + 1);
+        var price = (quantity + 1) * parseFloat($(this).parents("tr").find("#price_after_discount").text());
+        $(this).parents("tr")
+            .children(".cart__price")
+            .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
+    }
+});
+
+$(".decrease").on("click", function() {
+    let quantity = parseInt($(this).siblings(".quantityValue").val());
+    if (quantity - 1 > 0) {
+        $(this).siblings(".quantityValue").val(quantity - 1);
+        var price = (quantity - 1) * parseFloat($(this).parents("tr").find("#price_after_discount").text());
+        $(this).parents("tr")
+            .children(".cart__price")
+            .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
+    }
+});
+
+$(".quantityValue").on("keyup", function() {
+    let max_qty = parseInt($(this).siblings("#max_qty").val());
+    let qty = parseInt($(this).val());
+    $("#updateBtn").removeAttr("disabled");
+    if (isNaN($(this).val()) || parseInt($(this).val()) > max_qty || parseInt($(this).val()) < 0) {
+        $(this).parents("tr")
+            .children(".cart__price")
+            .text("NaN");
+        $("#updateBtn").attr("disabled", "disabled");
+    }else{
+        var price = qty * parseFloat($(this).parents("tr").find("#price_after_discount").text());
+        $(this).parents("tr")
+            .children(".cart__price")
+            .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
+    }
+});
+
+$(".deleteBtn").on("click", function() {
+    var t = $(this);
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
         }
     });
     $.ajax({
-        url: "cart/" + $("#product_id").val(),
+        url: "/cart/" + $(this).parents("tr").find("#product_id").val(),
         type: "delete",
         dataType: "JSON",
         success: function() {
-            location.reload();
+            t.parents("tr").remove();
         }
     });
 });
@@ -190,7 +264,7 @@ $(".price").on("click", function(){
     ajaxFilter();
 })
 
-$(".size").on("click", function() {
+$(".sizeFilter").on("click", function() {
     var parent = $(this).parent("label");
     parent.hasClass("active") ? parent.removeClass("active") : parent.addClass("active");
     var size_id = $(this).val();

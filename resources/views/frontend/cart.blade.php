@@ -21,55 +21,48 @@
 									@foreach ($products as $product)
 										@php
 											$item = $cart[$product->id][0];
-											$product->load('sizes');
+											$product->load('attributes');
+											$attribute = $product->attributes
+														->where('size_id', $item['size'])
+														->where('color_id', $item['color'])
+														->first()
 										@endphp
 										<tr>
 											<td class="product__cart__item">
 												<div class="product__cart__item__pic">
-													<img src="{{ $product->first_image }}" alt="">
+													<img src="{{ $attribute->images[0]->path }}" alt="">
 												</div>
 												<div class="product__cart__item__text">
-													<h6>{{ $product->name }}</h6>
-													<h5>{{ $product->after_discount }} đ</h5>
+													<h6>
+														<a href="{{ route('product-details', ['product' => $product->id])  }}">
+															{{ $product->name }}
+														</a>
+													</h6>
+													<h5 id="price_after_discount">{{ money($product->after_discount) }}</h5>
 													<div class="mt-2">
-														<span>Size:</span>
-														@foreach ($product->sizes as $size)
-															<div class="custom-control custom-radio custom-control-inline">
-																<input type="hidden" value="{{ $size->quantity }}"
-																	id="size_qty{{ $size->id }}">
-																<input type="radio" id="size{{ $size->id }}"
-																	name="size{{ $item['product_id'] }}" 
-																	@if ($item['size'] == $size->id) checked @endif
-																	class="custom-control-input size"
-																	value="{{ $size->id }}">
-																<label class="custom-control-label"
-																	for="size{{ $size->id }}">{{ $size->name }}</label>
-															</div>
-														@endforeach
+														<span class="font-weight-bold">Size: </span> {{ $attribute->size->name }}
+													</div>
+													<div class="mt-2">
+														<span class="font-weight-bold">Color: </span> {{ $attribute->color->name }}
 													</div>
 												</div>
 											</td>
 											<td class="quantity__item">
 												<div class="quantity">
 													<div class="pro-qty-2">
-														<input type="hidden" value="{{ $product->id }}"
-															name="product_id[]" id="product_id">
-														@foreach ($product->sizes as $size)
-															@if ($item['size'] == $size->id)
-																<input type="hidden" value="{{ $size->quantity }}" id="max_qty">
-															@endif
-														@endforeach
-														<span class="fa fa-angle-left dec qtybtn" id="decrease"></span>
-														<input type="text" value="{{ $item['quantity'] }}"
-															name="quantity[]" id="quantity">
-														<span class="fa fa-angle-right inc qtybtn" id="increase"></span>
+														<input type="hidden" value="{{ $product->id }}" name="product_id[]" id="product_id">
+														<input type="hidden" value="{{ $attribute->product_quantity }}" id="max_qty">
+														<span class="fa fa-angle-left dec qtybtn decrease"></span>
+														<input type="text" value="{{ $item['quantity'] }}" name="quantity[]" class="quantityValue">
+														<span class="fa fa-angle-right inc qtybtn increase"></span>
 													</div>
 												</div>
 											</td>
-											<td class="cart__price">{{ $product->after_discount * $item['quantity'] }} đ
+											<td class="cart__price">
+												{{ money($product->after_discount * $item['quantity']) }}
 											</td>
 											<td class="cart__close">
-												<button id="deleteBtn" type="button" class="btn">
+												<button type="button" class="btn deleteBtn">
 													<i class="fa fa-close"></i>
 												</button>
 											</td>

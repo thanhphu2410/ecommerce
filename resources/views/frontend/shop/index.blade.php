@@ -123,7 +123,7 @@
                                             @foreach ($sizes as $size)
                                             <label for="sz{{ $size->id }}">
                                                 {{ $size->name }}
-                                                <input class="size" type="radio" id="sz{{ $size->id }}" value="{{ $size->id }}">
+                                                <input class="sizeFilter" type="radio" id="sz{{ $size->id }}" value="{{ $size->id }}">
                                             </label>
                                             @endforeach
                                         </div>

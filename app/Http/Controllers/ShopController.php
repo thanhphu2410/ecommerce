@@ -6,9 +6,9 @@ use App\Models\Size;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\ProductSize;
 use App\Models\ReviewImage;
 use App\Models\SubCategory;
+use App\Models\ProductAttribute;
 use App\Http\Requests\ReviewRequest;
 
 class ShopController extends Controller
@@ -25,11 +25,13 @@ class ShopController extends Controller
 
     public function show(Product $product)
     {
-        $product->load(['images', 'sizes', 'reviews.images']);
+        $product->load(['attributes.images', 'reviews.images', 'sizes']);
         $relatedProducts = $product->related;
         $reviews = $product->reviews()->paginate(5);
         $ratingStar = round($reviews->average('rating'));
-        return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews', 'ratingStar'));
+        $sizes = $product->sizes->unique('id');
+        $colors = ProductAttribute::where('product_id', $product->id)->where('size_id', $sizes[0]->id)->get()->unique('color_id');
+        return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews', 'ratingStar', 'colors', 'sizes'));
     }
     
     public function review(ReviewRequest $request, Review $review)
@@ -84,11 +86,18 @@ class ShopController extends Controller
             }
         }
 
-        if (request('size')) {
-            $productIds = ProductSize::whereIn('size_id', explode(",", request('size')))->pluck('product_id');
-            $products->whereIn('id', $productIds);
-        }
+        // if (request('size')) {
+        //     $productIds = ProductSize::whereIn('size_id', explode(",", request('size')))->pluck('product_id');
+        //     $products->whereIn('id', $productIds);
+        // }
 
         return $products->orderBy('price', 'asc')->get();
+    }
+
+    public function getColor($product, $size)
+    {
+        $attributes = ProductAttribute::where('product_id', $product)->where('size_id', $size)->get()->unique('color_id');
+        $attributes->load('color');
+        return $attributes;
     }
 }
