@@ -306,6 +306,14 @@ $("#nameFilter").on("keyup", function() {
     ajaxFilter();
 })
 
+$("#sortby").on("change", function(){
+    var sortby = $(this).val();
+    var currentUrl = $("#filterUrl").val();
+    var currentSortBy = currentUrl.slice(8, currentUrl.indexOf("&category="));
+    $("#filterUrl").val(function(i, v) {return v.replace(currentSortBy, "sortby=" + sortby);}).val();
+    ajaxFilter();
+})
+
 function ajaxFilter() {
     $.ajax({
         url: $("#filterUrl").val(),

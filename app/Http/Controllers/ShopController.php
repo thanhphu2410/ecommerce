@@ -101,7 +101,7 @@ class ShopController extends Controller
             $products->where('name', 'LIKE', '%'.request('name').'%');
         }
 
-        return $products->orderBy('price', 'asc')->get();
+        return $products->orderBy('price', request('sortby', 'asc'))->get();
     }
 
     public function searchByName()

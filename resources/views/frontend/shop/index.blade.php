@@ -26,7 +26,7 @@
                         <input type="text" placeholder="Search by name..." id="nameFilter">
                     </div>
                     <div class="shop__sidebar__accordion">
-                        <input type="hidden" id="filterUrl" value="/filter?category=&subcategory=&price=&size=&color=&name=">
+                        <input type="hidden" id="filterUrl" value="/filter?sortby=asc&category=&subcategory=&price=&size=&color=&name=">
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-heading">
@@ -160,9 +160,9 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__right">
                                 <p>Sort by Price:</p>
-                                <select>
-                                    <option id="l2h">Low To High</option>
-                                    <option id="h2l">High To Low</option>
+                                <select id="sortby">
+                                    <option value="asc">Low To High</option>
+                                    <option value="desc">High To Low</option>
                                 </select>
                             </div>
                         </div>
