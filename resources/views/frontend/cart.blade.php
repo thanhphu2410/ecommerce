@@ -38,7 +38,8 @@
 															{{ $product->name }}
 														</a>
 													</h6>
-													<h5 id="price_after_discount">{{ money($product->after_discount) }}</h5>
+													<input type="hidden" id="price_after_discount" value="{{ $product->after_discount }}">
+													<h5>{{ money($product->after_discount) }}</h5>
 													<div class="mt-2">
 														<span class="font-weight-bold">Size: </span> {{ $attribute->size->name }}
 													</div>
@@ -100,7 +101,7 @@
 					<div class="cart__total">
 						<h6>Cart total</h6>
 						<ul>
-							<li>Total <span>{{ $total }} đ</span></li>
+							<li>Total <span>{{ money($total) }}</span></li>
 						</ul>
 						<a href="{{ route('checkout.create') }}" class="primary-btn">Proceed to checkout</a>
 					</div>

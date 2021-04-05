@@ -118,7 +118,7 @@ $(".increase").on("click", function() {
     let max_qty = parseInt($(this).siblings("#max_qty").val());
     if (quantity + 1 <= max_qty) {
         $(this).siblings(".quantityValue").val(quantity + 1);
-        var price = (quantity + 1) * parseFloat($(this).parents("tr").find("#price_after_discount").text());
+        var price = (quantity + 1) * parseFloat($(this).parents("tr").find("#price_after_discount").val());
         $(this).parents("tr")
             .children(".cart__price")
             .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
@@ -129,7 +129,7 @@ $(".decrease").on("click", function() {
     let quantity = parseInt($(this).siblings(".quantityValue").val());
     if (quantity - 1 > 0) {
         $(this).siblings(".quantityValue").val(quantity - 1);
-        var price = (quantity - 1) * parseFloat($(this).parents("tr").find("#price_after_discount").text());
+        var price = (quantity - 1) * parseFloat($(this).parents("tr").find("#price_after_discount").val());
         $(this).parents("tr")
             .children(".cart__price")
             .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
@@ -146,7 +146,7 @@ $(".quantityValue").on("keyup", function() {
             .text("NaN");
         $("#updateBtn").attr("disabled", "disabled");
     }else{
-        var price = qty * parseFloat($(this).parents("tr").find("#price_after_discount").text());
+        var price = qty * parseFloat($(this).parents("tr").find("#price_after_discount").val());
         $(this).parents("tr")
             .children(".cart__price")
             .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));

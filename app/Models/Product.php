@@ -126,7 +126,7 @@ class Product extends Model
 
     public function getAfterDiscountAttribute()
     {
-        return $this->price - $this->price * ($this->discount / 100);
+        return $this->price * ((100 - $this->discount) / 100);
     }
 
     public function getRatingStarAttribute()

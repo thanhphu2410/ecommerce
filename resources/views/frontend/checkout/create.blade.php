@@ -128,21 +128,22 @@
                             <div class="checkout__order__products font-weight-bold">Product <span>Total</span></div>
                             <ul class="checkout__total__products">
                                 @foreach ($products as $product)
-                                @php
-                                    $item = $cart[$product->id][0];
-                                @endphp
-                                <input type="hidden" name="size_id[]" value="{{ $item['size'] }}">
-                                <input type="hidden" name="product_id[]" value="{{ $item['product_id'] }}">
-                                <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
-                                <input type="hidden" name="total[]" value="{{ $product->after_discount * $item['quantity'] }}">
-                                <li>
-                                    {{ $product->name }} &nbsp; x{{ $item['quantity'] }}
-                                    <span>{{ $product->after_discount * $item['quantity'] }} đ</span>
-                                </li>
+                                    @php
+                                        $item = $cart[$product->id][0];
+                                    @endphp
+                                    <input type="hidden" name="size_id[]" value="{{ $item['size'] }}">
+                                    <input type="hidden" name="color_id[]" value="{{ $item['color'] }}">
+                                    <input type="hidden" name="product_id[]" value="{{ $item['product_id'] }}">
+                                    <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
+                                    <input type="hidden" name="total[]" value="{{ $product->after_discount * $item['quantity'] }}">
+                                    <li>
+                                        {{ $product->name }} &nbsp; x{{ $item['quantity'] }}
+                                        <span>{{ money($product->after_discount * $item['quantity']) }}</span>
+                                    </li>
                                 @endforeach
                             </ul>
                             <ul class="checkout__total__all">
-                                <li>Total <span>{{ $total }} vnd</span></li>
+                                <li>Total <span>{{ money($total) }}</span></li>
                             </ul>
                             <p>* Pay when you receive the item
                             </p>

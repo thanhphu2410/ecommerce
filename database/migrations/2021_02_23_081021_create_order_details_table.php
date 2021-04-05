@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOrderDetailsTable extends Migration
 {
@@ -21,6 +21,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('discount');
             $table->string('total');
             $table->foreignId('size_id')->constrained()->onDelete('cascade');
+            $table->foreignId('color_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
