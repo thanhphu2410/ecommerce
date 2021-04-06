@@ -16,7 +16,8 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $products = $this->filter();
+        // $products = $this->filter();
+        $products = Product::limit(1)->get();
         $categories = Category::all();
         $subCategories = SubCategory::all();
         $sizes = Size::all();
@@ -102,11 +103,6 @@ class ShopController extends Controller
         }
 
         return $products->orderBy('price', request('sortby', 'asc'))->get();
-    }
-
-    public function searchByName()
-    {
-        return Product::where('name', 'LIKE', '%'.request('name').'%')->get();
     }
 
     public function getColor($product, $size)

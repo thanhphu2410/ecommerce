@@ -8,7 +8,7 @@ class ReviewImage extends Model
 {
     protected $guarded = [];
 
-    public static function storeReviewImage($review, $images)
+    public static function storeItem($review, $images)
     {
         foreach ($images ?? [] as $image) {
             $path = $image->store('review', 'public');
@@ -20,6 +20,7 @@ class ReviewImage extends Model
     {
         foreach ($review->images as $image) {
             delete_file($image->path);
+            $image->delete();
         }
     }
 }

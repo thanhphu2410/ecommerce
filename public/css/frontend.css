@@ -3429,6 +3429,11 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.review_at {
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .product__cart__item__text a {
     color: black;
     font-weight: 700;

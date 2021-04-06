@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Size;
-use App\Models\Color;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,17 +20,20 @@ Route::resource('checkout', 'CheckoutController');
 Route::get('/', 'LandingPageController@index');
 Route::get('shop', 'ShopController@index')->name('shop');
 Route::get('product-details/{product}', 'ShopController@show')->name('product-details');
-Route::post('review/{product}', 'ShopController@review')->name('review')->middleware('auth');
 Route::get('districts/{province}', 'AddressController@getDistrict');
 Route::get('wards/{district}', 'AddressController@getWards');
 Route::get('all-blogs', 'NewsController@index');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
-Route::get('edit-profile', 'ProfileController@editProfile')->middleware('auth');
-Route::post('edit-profile', 'ProfileController@updateProfile')->middleware('auth');
-Route::get('edit-password', 'ProfileController@editPassword')->middleware('auth');
-Route::post('edit-password', 'ProfileController@updatePassword')->middleware('auth');
 Route::get('filter', 'ShopController@filter');
 Route::get('get-colors/{product}/{size}', 'ShopController@getColor');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('review/{product}', 'ProductReviewController')->name('review');
+    Route::get('edit-profile', 'ProfileController@editProfile');
+    Route::post('edit-profile', 'ProfileController@updateProfile');
+    Route::get('edit-password', 'ProfileController@editPassword');
+    Route::post('edit-password', 'ProfileController@updatePassword');
+});
 
 /* *************Back End************* */
 Route::middleware(['auth', 'isStaff'])->group(function () {

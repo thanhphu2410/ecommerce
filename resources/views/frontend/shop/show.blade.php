@@ -184,7 +184,7 @@
                                                     @for ($i = 5; $i > $review->rating; $i--)
                                                     <i class="fa fa-star-o"></i>
                                                     @endfor
-                                                    <span> - Reviewed at {{ $review->updated_at->format('d/m/Y') }}</span>
+                                                    <span class="review_at"> - Reviewed at {{ $review->updated_at->format('d/m/Y') }}</span>
                                                 </div>
                                                 <p>{{ $review->body }}</p>
                                                 <div>
