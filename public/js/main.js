@@ -21,6 +21,22 @@
             var containerEl = document.querySelector(".product__filter");
             var mixer = mixitup(containerEl);
         }
+
+        /*-----------------------
+        Hero Slider
+        ------------------------*/
+
+        $("#background").owlCarousel({
+            loop: true,
+            margin: 0,
+            items: 1,
+            animateOut: "fadeOut",
+            animateIn: "fadeIn",
+            smartSpeed: 1200,
+            autoHeight: false,
+            autoplayTimeout: 3000,
+            autoplay: false
+        });
     });
 
     /*------------------
@@ -74,22 +90,6 @@
             $(".offcanvas-menu-wrapper").removeClass("active");
         }
         check = !check;
-    });
-
-    /*-----------------------
-        Hero Slider
-    ------------------------*/
-
-    $(".hero__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        animateOut: "fadeOut",
-        animateIn: "fadeIn",
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplayTimeout: 3000,
-        autoplay: false
     });
 
     /*--------------------------

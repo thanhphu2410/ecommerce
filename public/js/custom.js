@@ -7,6 +7,33 @@ $("#owl-example").owlCarousel({
     autoplay: false,
 });
 
+$("#best-seller").owlCarousel({
+    loop: false,
+    items: 4,
+    autoplayTimeout: 3000,
+    smartSpeed: 500,
+    autoHeight: false,
+    autoplay: false,
+});
+
+$("#new-arrivals").owlCarousel({
+    loop: false,
+    items: 4,
+    autoplayTimeout: 3000,
+    smartSpeed: 500,
+    autoHeight: false,
+    autoplay: false,
+});
+
+$("#hot-sales").owlCarousel({
+    loop: false,
+    items: 4,
+    autoplayTimeout: 3000,
+    smartSpeed: 500,
+    autoHeight: false,
+    autoplay: false,
+});
+
 $("#tab_image").owlCarousel({
     loop: false,
     items: 4,
