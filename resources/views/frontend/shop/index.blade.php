@@ -26,7 +26,7 @@
                         <input type="text" placeholder="Search by name..." id="nameFilter">
                     </div>
                     <div class="shop__sidebar__accordion">
-                        <input type="hidden" id="filterUrl" value="/filter?sortby=asc&category=&subcategory=&price=&size=&color=&name=">
+                        <input type="hidden" id="filterUrl" value="/filter?sortby=asc&category=&subcategory=&price=&size=&color=&name=&offset={{ $products->count() }}&limit=5">
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-heading">
@@ -215,6 +215,11 @@
                         </div>
                     </div>
                     @endforeach
+                </div>
+                <div class="row justify-content-md-center">
+                    <button type="button" class="site-btn mt-5 loadmore" id="shop_loadmore">
+                        Load More
+                    </button>
                 </div>
             </div>
         </div>

@@ -50,6 +50,10 @@
     background: #555;
 }
 
+/* html {
+    scroll-behavior: smooth;
+} */
+
 html,
 body {
     height: 100%;

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOrdersTable extends Migration
 {
@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('district_id')->constrained()->onDelete('cascade');
             $table->foreignId('ward_id')->constrained()->onDelete('cascade');
             $table->string('notes')->nullable();
-            $table->string('price');
+            $table->bigInteger('price');
             $table->string('status')->nullable()->comment('pending, shipping, delivered')->default('pending');
             $table->timestamps();
         });

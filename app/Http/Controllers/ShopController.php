@@ -16,8 +16,8 @@ class ShopController extends Controller
 {
     public function index()
     {
-        // $products = $this->filter();
-        $products = Product::limit(1)->get();
+        $products = $this->filter();
+        // $products = Product::limit(1)->get();
         $categories = Category::all();
         $subCategories = SubCategory::all();
         $sizes = Size::all();
@@ -102,7 +102,10 @@ class ShopController extends Controller
             $products->where('name', 'LIKE', '%'.request('name').'%');
         }
 
-        return $products->orderBy('price', request('sortby', 'asc'))->get();
+        return $products->orderBy('price', request('sortby', 'asc'))
+                ->offset(request('offset', 0))
+                ->limit(request('limit', 5))
+                ->get();
     }
 
     public function getColor($product, $size)

@@ -301,7 +301,7 @@ $(".colorFilter").on("click", function() {
 $("#nameFilter").on("keyup", function() {
     var name = $(this).val();
     var currentUrl = $("#filterUrl").val();
-    var currentName = currentUrl.slice(currentUrl.indexOf("name="), currentUrl.length);
+    var currentName = currentUrl.slice(currentUrl.indexOf("name="), currentUrl.indexOf("&offset="));
     $("#filterUrl").val(function(i, v) {return v.replace(currentName, "name=" + name);}).val();
     ajaxFilter();
 })
@@ -309,12 +309,20 @@ $("#nameFilter").on("keyup", function() {
 $("#sortby").on("change", function(){
     var sortby = $(this).val();
     var currentUrl = $("#filterUrl").val();
-    var currentSortBy = currentUrl.slice(8, currentUrl.indexOf("&category="));
+    var currentSortBy = currentUrl.slice(currentUrl.indexOf("sortby="), currentUrl.indexOf("&category="));
     $("#filterUrl").val(function(i, v) {return v.replace(currentSortBy, "sortby=" + sortby);}).val();
     ajaxFilter();
 })
 
 function ajaxFilter() {
+    var currentUrl = $("#filterUrl").val();
+    var currentOffset = currentUrl.slice(currentUrl.indexOf("offset=") + 7, currentUrl.indexOf("&limit="));
+    $("#filterUrl").val(function(i, v) {return v.replace("offset=" + currentOffset, "offset=0");}).val();
+
+    var products = $(".product__hover input[name='product_id']");
+    var currentLimit = parseInt(currentUrl.slice(currentUrl.indexOf("limit=") + 6, currentUrl.length));
+    var nextLimit = (products.length < 5) ? 5 : products.length;
+    $("#filterUrl").val(function(i, v) {return v.replace("limit=" + currentLimit, "limit=" + nextLimit);}).val();
     $.ajax({
         url: $("#filterUrl").val(),
         type: "get",
@@ -323,9 +331,54 @@ function ajaxFilter() {
             data.forEach(function(item) {
                 renderProducts(item);
             });
+            $(".shop__product__option__left p").text('Showing ' + $(".product__hover input[name='product_id']").length + ' results');
         }
     });
 }
+
+$("#shop_loadmore").on("click", function(){
+    $("#shop_loadmore").html(
+        '<div class="spinner-border spinner-border-sm" role="status">'+
+        '<span class="sr-only">Loading...</span>'+
+        '</div>'
+    );
+    var check = false;
+    var array = [];
+    var products = $(".product__hover input[name='product_id']");
+    for (let index = 0; index < products.length; index++) {
+        array.push(parseInt(products.get(index).value));
+    }
+
+    var currentUrl = $("#filterUrl").val();
+    var currentOffset = currentUrl.slice(currentUrl.indexOf("offset=") + 7, currentUrl.indexOf("&limit="));
+    $("#filterUrl").val(function(i, v) {return v.replace("offset=" + currentOffset, "offset=" + array.length);}).val();
+
+    var currentLimit = parseInt(currentUrl.slice(currentUrl.indexOf("limit=") + 6, currentUrl.length));
+    if (currentLimit < 5) {
+        $("#filterUrl").val(function(i, v) {return v.replace("limit=" + currentLimit, "limit=5");}).val();
+    }
+    $.ajax({
+        url: $("#filterUrl").val(),
+        type: "get",
+        success: function(data) {
+            data.forEach(function(item) {
+                if (array.indexOf(item.id) == -1) {
+                    check = true;
+                    renderProducts(item);
+                }
+            });
+            if (data.length > 0 && check) {
+                var currentLimit = currentUrl.slice(currentUrl.indexOf("limit=") + 6, currentUrl.length);
+                var nextLimit = parseInt(currentLimit) + 5;
+                $("#filterUrl").val(function(i, v) {return v.replace("limit=" + currentLimit, "limit=" + nextLimit);}).val();
+                $(".shop__product__option__left p").text('Showing ' + $(".product__hover input[name='product_id']").length + ' results');
+            }
+            $("#shop_loadmore").text(
+                'Load More'
+            );
+        }
+    });
+})
 
 function renderProducts(item) {
     var price = parseInt(item.price).toLocaleString('vi', {style : 'currency', currency : 'VND'});
