@@ -8,6 +8,12 @@ class ContactController extends Controller
 {
     public function index()
     {
+        $contacts = ContactMessage::all();
+        return view('backend.contact.index', compact('contacts'));
+    }
+
+    public function create()
+    {
         return view('frontend.contact');
     }
 

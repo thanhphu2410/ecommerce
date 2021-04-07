@@ -26,7 +26,7 @@ Route::get('all-blogs', 'NewsController@index');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
 Route::get('filter', 'ShopController@filter');
 Route::get('get-colors/{product}/{size}', 'ShopController@getColor');
-Route::get('contact', 'ContactController@index');
+Route::get('contact/create', 'ContactController@create');
 Route::post('contact', 'ContactController@store');
 
 Route::middleware(['auth'])->group(function () {
@@ -50,6 +50,7 @@ Route::middleware(['auth', 'isStaff'])->group(function () {
     Route::resource('customers', 'CustomerController');
     Route::resource('tags', 'TagController');
     Route::resource('blogs', 'BlogController');
+    Route::get('contact', 'ContactController@index');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');
     Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');

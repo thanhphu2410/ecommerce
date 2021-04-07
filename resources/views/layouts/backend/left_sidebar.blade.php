@@ -67,6 +67,12 @@
                     </a>
                 </li> 
                 <li> 
+                    <a class="waves-effect waves-dark" href="{{ url('contact') }}">
+                        <i class="fas fa-address-card"></i>
+                        <span class="hide-menu">Contact Message</span> 
+                    </a>
+                </li> 
+                <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
                         <i class="far fa-newspaper"></i>
