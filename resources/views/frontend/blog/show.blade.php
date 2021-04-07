@@ -43,7 +43,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="blog__details__author">
                                     <div class="blog__details__author__pic">
-                                        <img src="img/blog/details/blog-author.jpg" alt="">
+                                        <img src="/images/avatar-default.svg" alt="">
                                     </div>
                                     <div class="blog__details__author__text">
                                         <h5>Admin</h5>
@@ -79,17 +79,6 @@
                             </div>
                             @endif
                         </div>
-                    </div>
-                    <div class="blog__details__comment">
-                        <h4>Leave A Comment</h4>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-lg-12 text-center">
-                                    <textarea placeholder="Comment"></textarea>
-                                    <button type="submit" class="site-btn">Post Comment</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

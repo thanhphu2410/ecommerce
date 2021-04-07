@@ -26,6 +26,8 @@ Route::get('all-blogs', 'NewsController@index');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
 Route::get('filter', 'ShopController@filter');
 Route::get('get-colors/{product}/{size}', 'ShopController@getColor');
+Route::get('contact', 'ContactController@index');
+Route::post('contact', 'ContactController@store');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('review/{product}', 'ProductReviewController')->name('review');

@@ -3433,9 +3433,16 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.contact__text a {
+    color: black;
+    font-weight: 700;
+}
+
 #button {
     display: inline-block;
-    background: linear-gradient(to right, #fe8c00, #f83600);
+    background: #485563;
+    background: -webkit-linear-gradient(to right, #29323c, #485563);
+    background: linear-gradient(to right, #29323c, #485563);
     width: 50px;
     height: 50px;
     text-align: center;
@@ -3459,10 +3466,6 @@ ol {
 }
 #button:hover {
     cursor: pointer;
-    background-color: #333;
-}
-#button:active {
-    background-color: #555;
 }
 #button.show {
     opacity: 1;
