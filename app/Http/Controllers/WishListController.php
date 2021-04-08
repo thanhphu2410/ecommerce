@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wishlist;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class WishListController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $wishlist = auth()->user()->wishlist;
@@ -23,13 +16,14 @@ class WishListController extends Controller
     {
         if (!Wishlist::isExists()) {
             auth()->user()->wishlist()->create(['product_id' => request('product_id')]);
+            return success('wishlist.index');
         }
-        return back();
+        return success('wishlist.index', "Added to wishlist");
     }
 
     public function destroy(Wishlist $wishlist)
     {
         $wishlist->delete();
-        return back();
+        return success('wishlist.index');
     }
 }

@@ -3435,7 +3435,6 @@ ol {
 
 .contact__text a {
     color: black;
-    font-weight: 700;
 }
 
 #button {
@@ -3586,18 +3585,18 @@ ol {
 .banner__item img {
     object-fit: cover;
 }
-
-#liveToastSuccess .toast-header {
-    background-color: #7af3b2e8;
+.toast-wrapper {
+    z-index: 1001;
+    right: 0;
+    bottom: 15px;
 }
 
-#liveToastSuccess i {
-    color: #00a900;
-    font-weight: 200;
-}
-
-#liveToastSuccess .toast-body {
-    background-color: #ffffffcf;
+#liveToastSuccess {
+    font-weight: 700;
+    color: #43b172;
+    background-color: #dbf8e8;
+    border-color: #bcf1d4;
+    display: none;
 }
 
 .custom-nice-select .nice-select {

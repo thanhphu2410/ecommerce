@@ -22,7 +22,7 @@ class ProfileController extends Controller
             delete_file(auth()->user()->avatar);
         }
         auth()->user()->update($request->validated());
-        return back();
+        return success();
     }
 
     public function editPassword()
@@ -35,6 +35,6 @@ class ProfileController extends Controller
     {
         $password = Hash::make($request->new_password);
         auth()->user()->update(['password' => $password]);
-        return back();
+        return success();
     }
 }

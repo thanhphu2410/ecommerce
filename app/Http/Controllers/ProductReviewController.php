@@ -11,11 +11,12 @@ class ProductReviewController extends Controller
     public function __invoke(ReviewRequest $request, Review $review)
     {
         $review = Review::updateOrCreate(
-            ['product_id' => $request->product_id, 'user_id' => $request->user_id],
+            ["product_id" => $request->product_id, "user_id" => $request->user_id],
             $request->validated()
         );
         ReviewImage::deleteItem($review);
-        ReviewImage::storeItem($review, request('images'));
-        return back();
+        ReviewImage::storeItem($review, request("images"));
+        session()->put("success", "Operation successful");
+        return redirect()->route("product-details", ["product" => $request->product_id]);
     }
 }

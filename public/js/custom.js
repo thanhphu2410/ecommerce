@@ -182,6 +182,7 @@ $(".quantityValue").on("keyup", function() {
 
 $(".deleteBtn").on("click", function() {
     var t = $(this);
+    var cart_amount = parseInt($("#cart_amount").text()) - parseInt(t.parents("tr").find(".quantityValue").val());
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -193,6 +194,11 @@ $(".deleteBtn").on("click", function() {
         dataType: "JSON",
         success: function() {
             t.parents("tr").remove();
+            $("#cart_amount").text(cart_amount);
+            if (cart_amount == 0) {
+                $("#updateBtn").attr("disabled", "disabled");
+            }
+            $('#liveToastSuccess').show();
         }
     });
 });
@@ -475,3 +481,6 @@ btn.on('click', function(e) {
   $('html, body').animate({scrollTop:0}, '300');
 });
 
+$("#toast-close").on('click', function(){
+    $("#liveToastSuccess").hide();
+})

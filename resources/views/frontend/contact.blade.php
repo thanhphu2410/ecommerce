@@ -17,8 +17,9 @@
                         </div>
                         <ul>
                             <li>
-                                <h4>Viet Nam</h4>
-                                <p>Vinh Vien Street, Ward 15, District 11 <br/><a href="tel:0932042076">+932042076</a></p>
+                                <p><i class="fas fa-map-marker-alt mr-2"></i> Vinh Vien Street, Ward 15, District 11, Viet Nam</p>
+                                <a href="tel:0932042076"><i class="fas fa-mobile-alt mr-2"></i> +932042076</a>
+                                <p><i class="fas fa-envelope mr-2"></i> thanhphu2410@gmail.com</p>
                             </li>
                         </ul>
                     </div>

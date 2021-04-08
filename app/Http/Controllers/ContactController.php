@@ -20,6 +20,6 @@ class ContactController extends Controller
     public function store()
     {
         ContactMessage::create(request()->all());
-        return back();
+        return success('contact.create');
     }
 }

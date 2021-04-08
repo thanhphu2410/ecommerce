@@ -13,11 +13,11 @@ class CheckoutController extends Controller
 {
     public function create()
     {
-        $cart = session('cart', []);
+        $cart = session("cart", []);
         $products = Product::find(array_keys($cart));
         $total = CartService::total($cart, $products);
         $provinces = Province::all();
-        return view('frontend.checkout.create', compact('products', 'cart', 'total', 'provinces'));
+        return view("frontend.checkout.create", compact("products", "cart", "total", "provinces"));
     }
 
     public function store(CheckoutRequest $request)
@@ -28,7 +28,7 @@ class CheckoutController extends Controller
         }
         $order = Order::create($request->validated());
         OrderDetail::storeItem($order);
-        session()->forget('cart');
-        return back();
+        session()->forget("cart");
+        return success("home", "Checkout successful");
     }
 }

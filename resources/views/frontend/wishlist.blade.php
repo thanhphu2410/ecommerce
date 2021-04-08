@@ -26,7 +26,6 @@
                             <tr>
                                 <th>Product</th>
                                 <th>Price</th>
-                                <th class="text-center">Action</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -38,7 +37,11 @@
                                             <img width="100" src="{{ $item->product->first_image }}" alt="">
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>{{ $item->product->name }}</h6>
+                                            <h6>
+                                                <a href="{{ route('product-details', ['product' => $item->product_id])  }}">
+                                                    {{ $item->product->name }}
+                                                </a>
+                                            </h6>
                                             <div class="rating">
                                                 @for ($i = 0; $i < $item->product->rating_star; $i++)
                                                 <i class="fa fa-star"></i>
@@ -51,12 +54,7 @@
                                         </div>
                                     </td>
                                     <td class="cart__price">{{ $item->product->after_discount }} vnd</td>
-                                    <td class="text-center">
-                                        <div class="continue__btn">
-                                            <a href="{{ route('product-details', ['product' => $item->product_id])  }}">Add to cart</a>
-                                        </div>
-                                    </td>
-                                    <td class="cart__close">
+                                    <td class="cart__close text-center">
                                         <form action="{{ route('wishlist.destroy', ['wishlist' => $item->id]) }}" method="post">
                                             @method('delete')
                                             @csrf

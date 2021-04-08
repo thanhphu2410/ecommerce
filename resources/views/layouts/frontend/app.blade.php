@@ -8,9 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="/{{ $setting->favicon }}">
     <title>{{ $setting->site_title }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css" />
@@ -19,18 +19,12 @@
 </head>
 
 <body>
-    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
-        <div id="liveToastSuccess" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-            <div class="toast-header">
-                <strong class="mr-auto"><i class="fa fa-check-circle" aria-hidden="true"></i> Success</strong>
-                {{-- <small>11 mins ago</small> --}}
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+    <div class="position-fixed p-3 toast-wrapper">
+        <div id="liveToastSuccess" class="alert alert-success alert-dismissible" role="alert">
+            {{ $success ?? "Operation successful" }}
+            <button type="button" class="close" id="toast-close">
                 <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                {{ session('success') }}
-            </div>
+            </button>
         </div>
     </div>
     <div class="offcanvas-menu-wrapper">
@@ -132,7 +126,7 @@
                                 </ul>
                             </li>
                             <li><a href="{{ url('all-blogs') }}">Blog</a></li>
-                            <li><a href="{{ url('contact') }}">Contacts</a></li>
+                            <li><a href="{{ url('contact/create') }}">Contacts</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -147,7 +141,7 @@
                         <a href="{{ route('cart.index') }}">
                             <i class="fas fa-shopping-bag"></i>
                             {{-- $cart_amount in AppServiceProvider --}}
-                            <span class="badge rounded-pill bg-warning">{{ $cart_amount }}</span>
+                            <span class="badge rounded-pill bg-warning" id="cart_amount">{{ $cart_amount }}</span>
                         </a>
                     </div>
                 </div>
@@ -227,7 +221,8 @@
     </div>
 	<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
@@ -242,7 +237,10 @@
     </svg>
     @isset($success)
         <script>
-            $('#liveToastSuccess').toast('show');
+            $("#liveToastSuccess").show();
+            $("#liveToastSuccess").delay(3000).slideUp(200, function() {
+                $(this).hide();
+            });
         </script>
     @endisset
 </body>
