@@ -26,7 +26,7 @@
                         <input type="text" placeholder="Search by name..." id="nameFilter">
                     </div>
                     <div class="shop__sidebar__accordion">
-                        <input type="hidden" id="filterUrl" value="/filter?sortby=asc&category=&subcategory=&price=&size=&color=&name=&offset={{ $products->count() }}&limit=5">
+                        <input type="hidden" id="filterUrl" value="/filter?sortby=asc&category=&subcategory=&sale=no&price=&size=&color=&name=&offset={{ $products->count() }}&limit=5">
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-heading">
@@ -61,11 +61,27 @@
                                             <ul class="nice-scroll">
                                                 <input type="hidden" id="subCategorySelected">
                                                 @foreach ($subCategories as $subCategory)
-                                                    <li class="sub-category">
+                                                    <li class="sub-category @if(request('subcategory') == $subCategory->id) active @endif">
                                                         <input type="hidden" value="{{ $subCategory->id }}" id="sub_category_id">
                                                         <span>{{ $subCategory->name }}</span>
                                                     </li>
                                                 @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseOne">On Sale</a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul class="nice-scroll">
+                                                <li class="sale @if(request('sale') == 'yes') active @endif">
+                                                    <span>Sale</span>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

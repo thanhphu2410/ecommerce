@@ -24,7 +24,7 @@ class CheckoutController extends Controller
     {
         if (!Product::checkQuantity()) {
             session()->push("error", "This is notification");
-            return back();
+            return error("checkout.create");
         }
         $order = Order::create($request->validated());
         OrderDetail::storeItem($order);

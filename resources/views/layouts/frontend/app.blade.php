@@ -22,7 +22,15 @@
     <div class="position-fixed p-3 toast-wrapper">
         <div id="liveToastSuccess" class="alert alert-success alert-dismissible" role="alert">
             {{ $success ?? "Operation successful" }}
-            <button type="button" class="close" id="toast-close">
+            <button type="button" class="close" id="close_success">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    <div class="position-fixed p-3 toast-wrapper">
+        <div id="liveToastError" class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $error ?? "Operation failed" }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -113,20 +121,18 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="{{ route('shop') }}">Shop</a></li>
-                            <li>
-                                <a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./about.html">About Us</a></li>
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
+                            <li @if(request()->url() == url("/")) class="active" @endif>
+                                <a href="/">Home</a>
                             </li>
-                            <li><a href="{{ url('all-blogs') }}">Blog</a></li>
-                            <li><a href="{{ url('contact/create') }}">Contacts</a></li>
+                            <li @if(request()->url() == url("shop")) class="active" @endif>
+                                <a href="{{ route('shop') }}">Shop</a>
+                            </li>
+                            <li @if(request()->url() == url("all-blogs")) class="active" @endif>
+                                <a href="{{ url('all-blogs') }}">Blog</a>
+                            </li>
+                            <li @if(request()->url() == url("contact/create")) class="active" @endif>
+                                <a href="{{ route('contact.create') }}">Contacts</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -168,10 +174,10 @@
                     <div class="footer__widget">
                         <h6>Shopping</h6>
                         <ul>
-                            <li><a href="#">Clothing Store</a></li>
-                            <li><a href="#">Trending Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Sale</a></li>
+                            @foreach ($sub_categories_footer as $item)
+                            <li><a href="{{ route('shop', ['subcategory' => $item->id]) }}">{{ $item->name }}</a></li>
+                            @endforeach
+                            <li><a href="{{ route('shop', ['sale' => 'yes']) }}">Sale Products</a></li>
                         </ul>
                     </div>
                 </div>
@@ -179,7 +185,7 @@
                     <div class="footer__widget">
                         <h6>Shopping</h6>
                         <ul>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{{ route('contact.create') }}">Contact Us</a></li>
                             <li><a href="#">Payment Methods</a></li>
                             <li><a href="#">Delivary</a></li>
                             <li><a href="#">Return & Exchanges</a></li>
@@ -239,6 +245,15 @@
         <script>
             $("#liveToastSuccess").show();
             $("#liveToastSuccess").delay(3000).slideUp(200, function() {
+                $(this).hide();
+            });
+        </script>
+    @endisset
+
+    @isset($error)
+        <script>
+            $("#liveToastError").show();
+            $("#liveToastError").delay(3000).slideUp(200, function() {
                 $(this).hide();
             });
         </script>

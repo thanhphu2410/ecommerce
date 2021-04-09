@@ -102,6 +102,10 @@ class ShopController extends Controller
             $products->where('name', 'LIKE', '%'.request('name').'%');
         }
 
+        if (request('sale') == "yes") {
+            $products->where('discount', '>', 0);
+        }
+
         return $products->orderBy('price', request('sortby', 'asc'))
                 ->offset(request('offset', 0))
                 ->limit(request('limit', 5))

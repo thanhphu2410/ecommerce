@@ -10,6 +10,14 @@ if (! function_exists("success")) {
     }
 }
 
+if (! function_exists("error")) {
+    function error($nameRoute = "home", $message = "Operation failed")
+    {
+        session()->put("error", $message);
+        return redirect()->route($nameRoute);
+    }
+}
+
 if (! function_exists("delete_file")) {
     function delete_file($path)
     {

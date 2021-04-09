@@ -281,6 +281,18 @@ $(".sub-category").on("click", function(){
     ajaxFilter();
 })
 
+$(".sale").on("click", function(){
+    $(this).hasClass("active") ? $(this).removeClass("active") : $(this).addClass("active");
+    var currentSale = "yes";
+    var nextSale = "no";
+    if ($(this).hasClass("active")) {
+        currentSale = "no";
+        nextSale = "yes";
+    }
+    $("#filterUrl").val(function(i, v) {return v.replace("sale=" + currentSale, "sale=" + nextSale);}).val();
+    ajaxFilter();
+})
+
 $(".price").on("click", function(){
     $(this).hasClass("active") ? $(this).removeClass("active") : $(this).addClass("active");
     var price = $(this).children("#price").val();
@@ -468,7 +480,7 @@ function renderProducts(item) {
 
 var btn = $('#button');
 
-$(window).scroll(function() {
+$(window).on("scroll", function() {
   if ($(window).scrollTop() > 300) {
     btn.addClass('show');
   } else {
@@ -481,6 +493,6 @@ btn.on('click', function(e) {
   $('html, body').animate({scrollTop:0}, '300');
 });
 
-$("#toast-close").on('click', function(){
+$("#close_success").on('click', function(){
     $("#liveToastSuccess").hide();
 })

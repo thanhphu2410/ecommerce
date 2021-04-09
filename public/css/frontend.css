@@ -3599,6 +3599,14 @@ ol {
     display: none;
 }
 
+#liveToastError {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #eca7af;
+    font-weight: 700;
+    display: none;
+}
+
 .custom-nice-select .nice-select {
     border-radius: 0;
     width: 100%;

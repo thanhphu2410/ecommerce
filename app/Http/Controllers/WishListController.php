@@ -16,9 +16,9 @@ class WishListController extends Controller
     {
         if (!Wishlist::isExists()) {
             auth()->user()->wishlist()->create(['product_id' => request('product_id')]);
-            return success('wishlist.index');
+            return success('wishlist.index', 'Added to wishlist');
         }
-        return success('wishlist.index', "Added to wishlist");
+        return error('wishlist.index', 'Already in wishlist');
     }
 
     public function destroy(Wishlist $wishlist)

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Product;
+use App\Models\SubCategory;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -32,12 +33,20 @@ class AppServiceProvider extends ServiceProvider
                 return $item[0]['quantity'];
             });
             $view->with('cart_amount', $amount);
+
+            $subCategories = SubCategory::limit(3)->get();
+            $view->with('sub_categories_footer', $subCategories);
         });
 
         view()->composer('layouts.*', function ($view) {
             if (session()->has('success')) {
                 $view->with('success', session('success'));
                 session()->forget('success');
+            }
+
+            if (session()->has('error')) {
+                $view->with('error', session('error'));
+                session()->forget('error');
             }
         });
 
