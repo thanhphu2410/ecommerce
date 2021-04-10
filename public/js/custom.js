@@ -212,6 +212,7 @@ $("#province").on("change", function() {
         url: "/districts/" + $("#province").val(),
         type: "get",
         success: function(data) {
+            $("#district ~ .nice-select .current").text("Select District");
             $("#district ~ .nice-select .list").empty();
             $("#district").empty();
             data.forEach(function(item) {
@@ -238,6 +239,7 @@ $("#district").on("change", function() {
             $("#ward ~ .nice-select .list").empty();
             $("#ward").empty();
             data.forEach(function(item) {
+                $("#ward ~ .nice-select .current").text("Select Ward");
                 $("#ward ~ .nice-select .list").append(
                     '<li data-value="' +
                         item.id +

@@ -85,9 +85,14 @@
                                 <div class="checkout__input">
                                     <p>Province<span>*</span></p>
                                     <select id="province" name="province_id">
-                                        <option selected>Select province</option>
+                                        <option selected value="">Select province</option>
                                         @foreach ($provinces as $province)
-                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                            <option value="{{ $province->id }}" 
+                                                @auth {{ $province->id == auth()->user()->province_id ? "selected" : ""}} 
+                                                @else {{ $province->id == old('customer_address') ? "selected" : "" }} 
+                                                @endauth>
+                                                {{ $province->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('province_id') 
@@ -97,9 +102,24 @@
                             </div>
                             <div class="col-lg-6 custom-nice-select">
                                 <div class="checkout__input">
-                                    <p>District<span>*</span></p>
+                                    <p>District</p>
                                     <select id="district" name="district_id">
-                                        <option selected>Select district</option>
+                                        @auth
+                                            @if (auth()->user()->province_id != null)
+                                                @foreach (auth()->user()->province->load('districts')->districts as $district)
+                                                    <option value="{{ $district->id }}" 
+                                                        @if($district->id == auth()->user()->district_id) selected @endif>
+                                                        {{ $district->name }}
+                                                    </option>
+                                                @endforeach
+                                            @else
+                                                <option selected value="">Select District</option>
+                                            @endif
+                                        @endauth
+
+                                        @guest
+                                            <option selected value="">Select District</option>
+                                        @endguest
                                     </select>
                                     @error('district_id') 
                                         <div class="error error-nice-select">{{ $message }}</div>
@@ -108,19 +128,31 @@
                             </div>
                             <div class="col-lg-6 custom-nice-select">
                                 <div class="checkout__input">
-                                    <p>Ward<span>*</span></p>
+                                    <p>Ward</p>
                                     <select id="ward" name="ward_id">
-                                        <option selected>Select ward</option>
+                                        @auth
+                                        @if (auth()->user()->district_id != null)
+                                            @foreach (auth()->user()->district->load('wards')->wards as $ward)
+                                                <option value="{{ $ward->id }}" 
+                                                    @if($ward->id == auth()->user()->ward_id) selected @endif>
+                                                    {{ $ward->name }}
+                                                </option>
+                                            @endforeach
+                                        @else
+                                            <option selected value="">Select Ward</option>
+                                        @endif
+                                        @endauth
+
+                                        @guest
+                                            <option selected value="">Select Ward</option>
+                                        @endguest
                                     </select>
-                                   
                                 </div>
                                 @error('ward_id') 
                                     <div class="error error-nice-select">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-                        
-                        
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
@@ -129,13 +161,22 @@
                             <ul class="checkout__total__products">
                                 @foreach ($products as $product)
                                     @foreach (session('cart.'.$product->id) as $index=>$item)
+                                        @php
+											$attribute = $product->attributes
+														->where('size_id', $item['size'])
+														->where('color_id', $item['color'])
+														->first()
+										@endphp
                                         <input type="hidden" name="size_id[]" value="{{ $item['size'] }}">
                                         <input type="hidden" name="color_id[]" value="{{ $item['color'] }}">
                                         <input type="hidden" name="product_id[]" value="{{ $item['product_id'] }}">
                                         <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
                                         <input type="hidden" name="total[]" value="{{ $product->after_discount * $item['quantity'] }}">
                                         <li>
-                                            {{ $product->name }} &nbsp; x{{ $item['quantity'] }}
+                                            <div>{{ $product->name }} - {{ $attribute->color->name }}<br>
+                                                Size: {{ $attribute->size->name }}
+                                            </div>
+                                            Quantity: {{ $item['quantity'] }}
                                             <span>{{ money($product->after_discount * $item['quantity']) }}</span>
                                         </li>
                                         @endforeach
