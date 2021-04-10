@@ -19,18 +19,18 @@
 								</thead>
 								<tbody>
 									@foreach ($products as $product)
+										@foreach (session('cart.'.$product->id) as $index=>$item)
 										@php
-											$item = $cart[$product->id][0];
-											$product->load('attributes');
 											$attribute = $product->attributes
 														->where('size_id', $item['size'])
 														->where('color_id', $item['color'])
 														->first()
 										@endphp
 										<tr>
+											<input type="hidden" value="{{ $index }}" id="indexValue">
 											<td class="product__cart__item">
 												<div class="product__cart__item__pic">
-													<img src="{{ $attribute->images[0]->path }}" alt="">
+													<img src="{{ $attribute->images[0]->path ?? ''}}" alt="">
 												</div>
 												<div class="product__cart__item__text">
 													<h6>
@@ -54,7 +54,8 @@
 														<input type="hidden" value="{{ $product->id }}" name="product_id[]" id="product_id">
 														<input type="hidden" value="{{ $attribute->product_quantity }}" id="max_qty">
 														<span class="fa fa-angle-left dec qtybtn decrease"></span>
-														<input type="text" value="{{ $item['quantity'] }}" name="quantity[]" class="quantityValue">
+														<input type="text" value="{{ $item['quantity'] }}" 
+														name="quantity{{ $product->id }}[]" class="quantityValue">
 														<span class="fa fa-angle-right inc qtybtn increase"></span>
 													</div>
 												</div>
@@ -68,6 +69,7 @@
 												</button>
 											</td>
 										</tr>
+										@endforeach
 									@endforeach
 								</tbody>
 							</table>

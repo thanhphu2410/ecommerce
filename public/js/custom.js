@@ -109,10 +109,14 @@ $(".size").on("click", function() {
         type: "get",
         dataType: "JSON",
         success: function(data) {
+            $("#colorValue").val(data[0].color_id);
             $("#colorWrapper").empty();
             var colorsRender = '';
-            data.forEach(function(item) {
-                colorsRender += '<label class="color" style="background: ' + item.color.code + '" for="sp-1">'+
+            var active = "";
+            data.forEach(function(item, index) {
+                active = index == 0 ? "active" : "";
+                console.log(active);
+                colorsRender += '<label class="color ' + active + '" style="background: ' + item.color.code + '" for="sp-1">'+
                 '<input type="hidden" value="' + item.color_id+ '">'+
                 '<i class="fas fa-check"></i>'+
                 '</label>';
@@ -189,7 +193,7 @@ $(".deleteBtn").on("click", function() {
         }
     });
     $.ajax({
-        url: "/cart/" + $(this).parents("tr").find("#product_id").val(),
+        url: "/cart/" + $(this).parents("tr").find("#product_id").val() + "?index=" + $(this).parents("tr").find("#indexValue").val(),
         type: "delete",
         dataType: "JSON",
         success: function() {

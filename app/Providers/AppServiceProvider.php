@@ -29,9 +29,12 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.frontend.app', function ($view) {
             $cart = session('cart', []);
-            $amount = collect($cart)->sum(function ($item) {
-                return $item[0]['quantity'];
-            });
+            $amount = 0;
+            foreach (session('cart', []) as $index=>$item) {
+                foreach (session('cart.'.$index) as $key=>$value) {
+                    $amount += $cart[$index][$key]['quantity'];
+                }
+            }
             $view->with('cart_amount', $amount);
 
             $subCategories = SubCategory::limit(3)->get();

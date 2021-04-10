@@ -72,7 +72,7 @@
                                             </label>
                                         @endforeach
                                     </div>
-                                    <input type="hidden" name="color" value="{{ $colors[0]->color_id }}" id="colorValue">
+                                    <input type="hidden" name="color" value="{{ $colors[0]->color_id }}" id="colorValue" required>
                                     <div class="product__details__option__color" id="colorWrapper">
                                         <span>Color:</span>
                                         @foreach ($colors as $item)

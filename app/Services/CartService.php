@@ -7,7 +7,9 @@ class CartService
     public static function total($cart, $products, $total = 0)
     {
         foreach ($products as $product) {
-            $total += $cart[$product->id][0]['quantity'] * $product->after_discount;
+            foreach (session('cart.'.$product->id) as $index=>$item) {
+                $total += $cart[$product->id][$index]['quantity'] * $product->after_discount;
+            }
         }
         return $total;
     }
