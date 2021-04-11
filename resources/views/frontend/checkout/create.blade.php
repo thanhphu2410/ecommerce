@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-lg-6 custom-nice-select">
                                 <div class="checkout__input">
-                                    <p>District</p>
+                                    <p>District<span>*</span></p>
                                     <select id="district" name="district_id">
                                         @auth
                                             @if (auth()->user()->province_id != null)
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-lg-6 custom-nice-select">
                                 <div class="checkout__input">
-                                    <p>Ward</p>
+                                    <p>Ward<span>*</span></p>
                                     <select id="ward" name="ward_id">
                                         @auth
                                         @if (auth()->user()->district_id != null)

@@ -35,6 +35,7 @@
             </button>
         </div>
     </div>
+
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
@@ -51,19 +52,23 @@
             </div>
         </div>
         <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
-            <a href="#"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
+            <a href="#" class="search-switch">
+                <i class="fa fa-search"></i>
+            </a>
+            <a href="#">
+                <i class="far fa-heart"></i>
+            </a>
             <a href="#">
                 <i class="fa-shopping-cart"></i>
                 <span>{{ $cart_amount }}</span>
             </a>
-            <div class="price">$0.00</div>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
             <p>Free shipping, 30-day return or refund guarantee.</p>
         </div>
     </div>
+
     <header class="header">
         <div class="header__top">
             <div class="container">
@@ -164,10 +169,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
+                            <a href="#">
+                                <i class="far fa-heart"></i>
+                            </a>
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
-                        <a href="#"><img src="{{ asset('images/heart.svg') }}" width="32"></a>
+                        <a href="#">
+                            <i class="far fa-heart"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">

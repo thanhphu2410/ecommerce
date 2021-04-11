@@ -27,6 +27,8 @@ Route::get("filter", "ShopController@filter");
 Route::get("get-colors/{product}/{size}", "ShopController@getColor");
 Route::get("contact/create", "ContactController@create")->name('contact.create');
 Route::post("contact", "ContactController@store");
+Route::get("order-checking", "CheckoutController@orderCheckView");
+Route::post("order-checking", "CheckoutController@orderChecking")->name('checking-order');
 
 Route::middleware(["auth"])->group(function () {
     Route::resource("wishlist", "WishListController");

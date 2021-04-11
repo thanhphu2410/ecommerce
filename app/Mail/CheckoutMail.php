@@ -20,7 +20,7 @@ class CheckoutMail extends Mailable
     public function __construct($order)
     {
         $this->order = $order;
-        $this->subject("Confirm Order");
+        $this->subject("Order Confirmation");
     }
 
     /**

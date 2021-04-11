@@ -65,11 +65,10 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Product Name</th>
-                                    <th>Size Name</th>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
                                     <th>Quantity</th>
-                                    <th>Discount</th>
-                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,9 +76,8 @@
                                 <tr>
                                     <td>{{ $item->product->name }}</td>
                                     <td>{{ $item->size->name }}</td>
+                                    <td>{{ $item->color->name }}</td>
                                     <td>{{ $item->quantity }}</td>
-                                    <td>{{ $item->discount }}</td>
-                                    <td>{{ $item->total }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

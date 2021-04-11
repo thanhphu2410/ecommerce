@@ -20,20 +20,13 @@ We've got your order!
 @component('mail::table')
 | &nbsp;         | &nbsp;            |
 | -------------  |:-----------------:|
-| Total          | {{ money(123) }}  |
+| Total          | {{ money($order->price) }}  |
 @endcomponent
 
 #### BILLING INFO <br>
-{{ $order->customer_name }} <br>
-{{ $order->customer_phone }} <br>
-{{ $order->customer_address }} <br>
-{{ $order->province->name }} <br>
-{{ $order->district->name }} <br>
-{{ $order->ward->name }} <br>
-
-{{-- @component('mail::button', ['url' => ''])
-Button Text
-@endcomponent --}}
+Name: {{ $order->customer_name }} <br>
+Mobile: {{ $order->customer_phone }} <br>
+Adress: {{ $order->customer_address }}, Ward {{ $order->ward->name }}, District {{ $order->district->name }}, Province {{ $order->province->name }}
 
 Thanks,<br>
 {{ config('app.name') }}

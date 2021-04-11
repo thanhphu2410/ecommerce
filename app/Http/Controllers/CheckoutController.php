@@ -34,7 +34,18 @@ class CheckoutController extends Controller
         $order->update(['order_no' => $order_no]);
         OrderDetail::storeItem($order);
         Mail::to("thanhphu2410@gmail.com")->send(new CheckoutMail($order));
-        // session()->forget("cart");
+        session()->forget("cart");
         return success("home", "Checkout successful");
+    }
+
+    public function orderCheckView()
+    {
+        return view("frontend.order_checking");
+    }
+
+    public function orderChecking()
+    {
+        $order = Order::where("order_no", request("order_no"))->first();
+        return view('frontend.order_checking', compact('order'));
     }
 }

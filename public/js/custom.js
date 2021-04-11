@@ -1,3 +1,12 @@
+$("#background").owlCarousel({
+    loop: true,
+    items: 1,
+    smartSpeed: 500,
+    autoHeight: false,
+    autoplayTimeout: 3000,
+    autoplay: false
+});
+
 $("#owl-example").owlCarousel({
     loop: false,
     items: 4,

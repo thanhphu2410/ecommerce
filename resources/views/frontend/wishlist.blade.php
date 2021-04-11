@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">{{ $item->product->after_discount }} vnd</td>
+                                    <td class="cart__price">{{ money($item->product->after_discount) }}</td>
                                     <td class="cart__close text-center">
                                         <form action="{{ route('wishlist.destroy', ['wishlist' => $item->id]) }}" method="post">
                                             @method('delete')
@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="continue__btn">
-                            <a href="/shop">Continue Shopping</a>
+                            <a href="{{ route('shop') }}">Continue Shopping</a>
                         </div>
                     </div>
                 </div>
