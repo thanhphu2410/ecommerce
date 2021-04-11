@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Size;
 use App\Services\ImageServices;
-use App\Models\ProductAttribute;
 
 class SizeController extends Controller
 {
@@ -21,7 +20,7 @@ class SizeController extends Controller
 
     public function store()
     {
-        $data = request()->validate(['name' => "required"]);
+        $data = request()->validate(['name' => 'required']);
         Size::create($data);
         return success('sizes.index');
     }
@@ -33,7 +32,7 @@ class SizeController extends Controller
 
     public function update(Size $size)
     {
-        $data = request()->validate(['name' => "required"]);
+        $data = request()->validate(['name' => 'required']);
         $size->update($data);
         return success('sizes.index');
     }

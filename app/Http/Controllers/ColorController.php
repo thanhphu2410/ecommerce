@@ -20,7 +20,7 @@ class ColorController extends Controller
 
     public function store()
     {
-        $data = request()->validate(['name' => "required", 'code' => 'required']);
+        $data = request()->validate(['name' => 'required', 'code' => 'required']);
         Color::create($data);
         return success('colors.index');
     }
@@ -32,7 +32,7 @@ class ColorController extends Controller
 
     public function update(Color $color)
     {
-        $data = request()->validate(['name' => "required", 'code' => 'required']);
+        $data = request()->validate(['name' => 'required', 'code' => 'required']);
         $color->update($data);
         return success('colors.index');
     }

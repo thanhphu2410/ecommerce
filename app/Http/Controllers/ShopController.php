@@ -17,7 +17,6 @@ class ShopController extends Controller
     public function index()
     {
         $products = $this->filter();
-        // $products = Product::limit(1)->get();
         $categories = Category::all();
         $subCategories = SubCategory::all();
         $sizes = Size::all();
@@ -35,24 +34,6 @@ class ShopController extends Controller
         $colors = ProductAttribute::where('product_id', $product->id)->where('size_id', $sizes[0]->id)->get()->unique('color_id');
         return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews', 'ratingStar', 'colors', 'sizes'));
     }
-    
-    public function review(ReviewRequest $request, Review $review)
-    {
-        $reviewed = $review->isReviewed($request);
-        $data = $request->validated();
-        $review = $reviewed ? $this->updateReview($reviewed, $data) : Review::create($data);
-
-        ReviewImage::storeReviewImage($review, request('images'));
-
-        return back();
-    }
-
-    private function updateReview($reviewed, $data)
-    {
-        $reviewed->update($data);
-        ReviewImage::deleteItem($reviewed);
-        return $reviewed;
-    }
 
     public function filter()
     {
@@ -66,16 +47,16 @@ class ShopController extends Controller
 
         $products = Product::query()->active();
         if (request('category')) {
-            $subcategories = SubCategory::whereIn('category_id', explode(",", request('category')))->get()->modelKeys();
+            $subcategories = SubCategory::whereIn('category_id', explode(',', request('category')))->get()->modelKeys();
             $products->whereIn('sub_category_id', $subcategories);
         }
 
         if (request('subcategory')) {
-            $products->whereIn('sub_category_id', explode(",", request('subcategory')));
+            $products->whereIn('sub_category_id', explode(',', request('subcategory')));
         }
 
         if (request('price')) {
-            $price = explode(",", request('price'));
+            $price = explode(',', request('price'));
             unset($price[count($price) - 1]);
             foreach ($price as $index=>$value) {
                 $min = $priceRange[$value]['min'];
@@ -89,12 +70,12 @@ class ShopController extends Controller
         }
 
         if (request('size')) {
-            $productIds = ProductAttribute::whereIn('size_id', explode(",", request('size')))->pluck('product_id');
+            $productIds = ProductAttribute::whereIn('size_id', explode(',', request('size')))->pluck('product_id');
             $products->whereIn('id', $productIds);
         }
 
         if (request('color')) {
-            $productIds = ProductAttribute::whereIn('color_id', explode(",", request('color')))->pluck('product_id');
+            $productIds = ProductAttribute::whereIn('color_id', explode(',', request('color')))->pluck('product_id');
             $products->whereIn('id', $productIds);
         }
 
@@ -102,7 +83,7 @@ class ShopController extends Controller
             $products->where('name', 'LIKE', '%'.request('name').'%');
         }
 
-        if (request('sale') == "yes") {
+        if (request('sale') == 'yes') {
             $products->where('discount', '>', 0);
         }
 

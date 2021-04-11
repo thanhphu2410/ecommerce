@@ -19,10 +19,8 @@ class RoleController extends Controller
 
     public function store()
     {
-        $data = request()->validate(['name' => "required"]);
-        
+        $data = request()->validate(['name' => 'required']);
         Role::create($data);
-        
         return success('roles.index');
     }
 
@@ -33,17 +31,14 @@ class RoleController extends Controller
 
     public function update(Role $role)
     {
-        $data = request()->validate(['name' => "required"]);
-        
+        $data = request()->validate(['name' => 'required']);
         $role->update($data);
-        
         return success('roles.index');
     }
 
     public function destroy(Role $role)
     {
         $role->delete();
-        
         return success('roles.index');
     }
 }

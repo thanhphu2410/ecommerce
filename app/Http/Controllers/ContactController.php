@@ -8,7 +8,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contacts = ContactMessage::all();
+        $contacts = ContactMessage::latest()->paginate(10);
         return view('backend.contact.index', compact('contacts'));
     }
 

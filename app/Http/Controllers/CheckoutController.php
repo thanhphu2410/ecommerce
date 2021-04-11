@@ -16,36 +16,36 @@ class CheckoutController extends Controller
 {
     public function create()
     {
-        $cart = session("cart", []);
+        $cart = session('cart', []);
         $products = Product::find(array_keys($cart));
         $total = CartService::total($cart, $products);
         $provinces = Province::all();
-        return view("frontend.checkout.create", compact("products", "cart", "total", "provinces"));
+        return view('frontend.checkout.create', compact('products', 'cart', 'total', 'provinces'));
     }
 
     public function store(CheckoutRequest $request)
     {
         if (!Product::checkQuantity()) {
-            session()->push("error", "This is notification");
-            return error("checkout.create");
+            session()->push('error', 'This is notification');
+            return error('checkout.create');
         }
         $order = Order::create($request->validated());
         $order_no = str_pad($order->id, 10, Str::random(100));
         $order->update(['order_no' => $order_no]);
         OrderDetail::storeItem($order);
-        Mail::to("thanhphu2410@gmail.com")->send(new CheckoutMail($order));
-        session()->forget("cart");
-        return success("home", "Checkout successful");
+        Mail::to('thanhphu2410@gmail.com')->send(new CheckoutMail($order));
+        session()->forget('cart');
+        return success('home', 'Checkout successful');
     }
 
     public function orderCheckView()
     {
-        return view("frontend.order_checking");
+        return view('frontend.order_checking');
     }
 
     public function orderChecking()
     {
-        $order = Order::where("order_no", request("order_no"))->first();
+        $order = Order::where('order_no', request('order_no'))->first();
         return view('frontend.order_checking', compact('order'));
     }
 }

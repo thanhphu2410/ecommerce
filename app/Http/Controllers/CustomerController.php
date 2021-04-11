@@ -8,7 +8,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = User::customer();
+        $customers = User::customer()->latest()->paginate(10);
         return view('backend.customer.index', compact('customers'));
     }
 

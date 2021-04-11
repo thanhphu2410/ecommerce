@@ -8,7 +8,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::latest()->paginate(10);
         return view('backend.tag.index', compact('tags'));
     }
 
@@ -19,7 +19,7 @@ class TagController extends Controller
 
     public function store()
     {
-        $data = request()->validate(['name' => "required"]);
+        $data = request()->validate(['name' => 'required']);
         
         Tag::create($data);
         
@@ -33,7 +33,7 @@ class TagController extends Controller
 
     public function update(Tag $tag)
     {
-        $data = request()->validate(['name' => "required"]);
+        $data = request()->validate(['name' => 'required']);
         
         $tag->update($data);
         

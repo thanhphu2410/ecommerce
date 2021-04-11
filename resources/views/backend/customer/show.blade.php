@@ -28,7 +28,7 @@
                                         </tr>
                                         <tr>
                                             <td>Date of birth</td>
-                                            <td>{{ $customer->date_of_birth }} %</td>
+                                            <td>{{ $customer->date_of_birth }}</td>
                                         </tr>
                                         <tr>
                                             <td>Address</td>
@@ -36,15 +36,15 @@
                                         </tr>
                                         <tr>
                                             <td>Province</td>
-                                            <td>{{ $customer->province->name }}</td>
+                                            <td>{{ $customer->province->name ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td>District</td>
-                                            <td>{{ $customer->district->name }}</td>
+                                            <td>{{ $customer->district->name ?? '' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Ward</td>
-                                            <td>{{ $customer->ward->name }}</td>
+                                            <td>{{ $customer->ward->name ?? '' }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -36,18 +36,14 @@ class CategoryController extends Controller
         if (request()->has('image_path')) {
             delete_file($category->image_path);
         }
-
         $category->update($request->validated());
-        
         return success('categories.index');
     }
 
     public function destroy(Category $category)
     {
         ImageServices::deleteImages($category);
-
         $category->delete();
-
         return success('categories.index');
     }
 }

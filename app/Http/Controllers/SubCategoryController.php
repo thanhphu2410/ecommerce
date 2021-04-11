@@ -42,9 +42,7 @@ class SubCategoryController extends Controller
     public function destroy(SubCategory $subCategory)
     {
         ImageServices::deleteImages($subCategory);
-
         $subCategory->delete();
-        
         return success('sub-categories.index');
     }
 }
