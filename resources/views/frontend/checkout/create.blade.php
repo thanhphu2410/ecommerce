@@ -89,7 +89,7 @@
                                         @foreach ($provinces as $province)
                                             <option value="{{ $province->id }}" 
                                                 @auth {{ $province->id == auth()->user()->province_id ? "selected" : ""}} 
-                                                @else {{ $province->id == old('customer_address') ? "selected" : "" }} 
+                                                @else {{ $province->id == old('province_id') ? "selected" : "" }} 
                                                 @endauth>
                                                 {{ $province->name }}
                                             </option>

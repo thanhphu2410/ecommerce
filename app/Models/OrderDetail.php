@@ -18,6 +18,11 @@ class OrderDetail extends Model
         return $this->belongsTo('App\Models\Size');
     }
 
+    public function color()
+    {
+        return $this->belongsTo('App\Models\Color');
+    }
+
     public static function storeItem($order)
     {
         foreach (request('product_id') as $index => $value) {
