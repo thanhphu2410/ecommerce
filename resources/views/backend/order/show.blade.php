@@ -46,6 +46,17 @@
                                             <td>Price</td>
                                             <td>{{ $order->price }} đ</td>
                                         </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>
+                                                <input type="hidden" id="order_id" value="{{ $order->id }}">
+                                                <select class="form-control" id="order_status">
+                                                    <option {{ $order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                                    <option {{ $order->status == 'Shipping' ? 'selected' : '' }}>Shipping</option>
+                                                    <option {{ $order->status == 'Delivered' ? 'selected' : '' }}>Delivered</option>
+                                                </select>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

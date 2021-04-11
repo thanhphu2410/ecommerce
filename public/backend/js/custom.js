@@ -125,3 +125,21 @@ $("#addAttribute").on("click", function(){
 $('#files').on('change', function(){ 
 	$("#files ~ .custom-file-label").text($(this).get(0).files.length + " files choose");
 });
+
+$('#order_status').on('change', function(){
+	$.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        }
+    });
+	$.ajax({
+        url: "/orders/" + $('#order_id').val(),
+        type: "patch",
+		data: { 
+			'status': $(this).val()
+		},
+        success: function(data) {
+            console.log(data);
+        }
+    });
+});
