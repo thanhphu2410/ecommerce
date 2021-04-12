@@ -195,7 +195,7 @@
                         <h6>Shopping</h6>
                         <ul>
                             <li><a href="{{ route('contact.create') }}">Contact Us</a></li>
-                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="{{ url('order-checking') }}">Check Order</a></li>
                             <li><a href="#">Delivary</a></li>
                             <li><a href="#">Return & Exchanges</a></li>
                         </ul>

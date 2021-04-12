@@ -32,4 +32,14 @@ class Order extends Model
     {
         return $this->belongsTo('App\Models\Ward');
     }
+
+    public function getStatusColorAttribute()
+    {
+        $classes = [
+            'Pending' => 'label-warning',
+            'Shipping' => 'label-danger',
+            'Delivered' => 'label-success'
+        ];
+        return $classes[$this->status];
+    }
 }

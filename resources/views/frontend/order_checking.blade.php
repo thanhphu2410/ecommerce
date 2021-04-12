@@ -88,7 +88,9 @@
                                     </td>
                                     <td>{{ $order->created_at->format('d-m-Y') }}</td>
                                     <td>{{ money($order->price) }}</td>
-                                    <td class="font-weight-bold">{{ $order->status }}</td>
+                                    <td>
+                                        <span class="label {{ $order->status_color }}">{{ $order->status }}</span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

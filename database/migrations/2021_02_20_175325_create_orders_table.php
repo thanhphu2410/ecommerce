@@ -26,7 +26,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('ward_id')->constrained()->onDelete('cascade');
             $table->string('notes')->nullable();
             $table->bigInteger('price');
-            $table->string('status')->nullable()->comment('pending, shipping, delivered')->default('pending');
+            $table->string('status')->nullable()->comment('pending, shipping, delivered')->default('Pending');
             $table->timestamps();
         });
     }

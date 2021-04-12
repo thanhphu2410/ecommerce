@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/{{ $setting->favicon }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $setting->site_title }}</title>
-    <link href="{{ asset('backend/morrisjs/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet">
@@ -17,19 +16,9 @@
 </head>
 
 <body class="skin-purple fixed-layout">
-
-    {{-- <div class="preloader">
-        <div class="loader">
-            <div class="loader__figure"></div>
-            <p class="loader__label">Just Do It</p>
-        </div>
-    </div> --}}
-
     <div id="main-wrapper">
-
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
                         <b>
@@ -42,7 +31,6 @@
                 </div>
 
                 <div class="navbar-collapse">
-
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link nav-toggler d-block d-sm-none waves-effect waves-dark"
@@ -73,6 +61,7 @@
                                     <span class="point"></span>
                                 </div>
                             </a>
+
                             <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
                                 <ul>
                                     <li>
@@ -116,110 +105,42 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center link" href="javascript:void(0);"> 
-                                            <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> 
+                                        <a class="nav-link text-center link" href="javascript:void(0);">
+                                            <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
-                                    class="icon-note"></i>
-                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                            </a>
-                            <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown"
-                                aria-labelledby="2">
-                                <ul>
-                                    <li>
-                                        <div class="drop-title">You have 4 new messages</div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="user-img"> <img
-                                                        src="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/users/1.jpg"
-                                                        alt="user" class="img-circle"> <span
-                                                        class="profile-status online pull-right"></span> </div>
-                                                <div class="mail-contnet">
-                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my
-                                                        admin!</span> <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="user-img"> <img src="../assets/images/users/2.jpg"
-                                                        alt="user" class="img-circle"> <span
-                                                        class="profile-status busy pull-right"></span> </div>
-                                                <div class="mail-contnet">
-                                                    <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See
-                                                        you at</span> <span class="time">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="user-img"> <img src="../assets/images/users/3.jpg"
-                                                        alt="user" class="img-circle"> <span
-                                                        class="profile-status away pull-right"></span> </div>
-                                                <div class="mail-contnet">
-                                                    <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span>
-                                                    <span class="time">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="user-img"> <img src="../assets/images/users/4.jpg"
-                                                        alt="user" class="img-circle"> <span
-                                                        class="profile-status offline pull-right"></span> </div>
-                                                <div class="mail-contnet">
-                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my
-                                                        admin!</span> <span class="time">9:02 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center link" href="javascript:void(0);"> <strong>See all
-                                                e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            
                         </li>
 
                         <li class="nav-item dropdown u-pro">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/users/1.jpg"
-                                    alt="user" class=""> <span class="hidden-md-down">Mark &nbsp;<i
-                                        class="fa fa-angle-down"></i></span> </a>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="/{{ auth()->user()->avatar }}">
+                                <span class="hidden-md-down">{{ auth()->user()->name }} &nbsp;
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
-                                <!-- text-->
-                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My
-                                    Profile</a>
-                                <!-- text-->
-                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My
-                                    Balance</a>
-                                <!-- text-->
-                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
-                                <!-- text-->
-                                <div class="dropdown-divider"></div>
-                                <!-- text-->
-                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account
-                                    Setting</a>
-                                <!-- text-->
-                                <div class="dropdown-divider"></div>
-                                <!-- text-->
-                                <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
-                                <!-- text-->
+                                <a href="{{ url('edit-profile') }}" class="dropdown-item">
+                                    <i class="ti-user"></i> My Profile
+                                </a>
+                                <a href="javascript:void(0)" class="dropdown-item">
+                                    <i class="ti-wallet"></i> My balance
+                                </a>
+                                <a href="javascript:void(0)" class="dropdown-item">
+                                    <i class="ti-email"></i> Inbox
+                                </a>
+                                <a href="{{ url('logout') }}" class="dropdown-item">
+                                    <i class="fa fa-power-off"></i> Logout
+                                </a>
                             </div>
                         </li>
 
-                        <li class="nav-item right-side-toggle"> 
-                            <a class="nav-link  waves-effect waves-light"
-                                href="javascript:void(0)"><i class="ti-settings"></i>
+                        <li class="nav-item right-side-toggle">
+                            <a class="nav-link  waves-effect waves-light" href="javascript:void(0)">
+                                <i class="ti-settings"></i>
                             </a>
                         </li>
                     </ul>
@@ -253,7 +174,7 @@
     <script src="{{ asset('backend/dist/js/custom.min.js') }}"></script>
     <script src="{{ asset('backend/toast-master/js/jquery.toast.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-	<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
+    <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
     <script src="{{ asset('backend/js/custom.js') }}"></script>
     @isset($success)
         <script>
@@ -268,7 +189,5 @@
             });
         </script>
     @endisset
-
 </body>
-
 </html>

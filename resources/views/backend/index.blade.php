@@ -270,6 +270,7 @@
                                 <th>CUSTOMER EMAIL</th>
                                 <th>CUSTOMER PHONE</th>
                                 <th>PRICE</th>
+                                <th>STATUS</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -281,6 +282,9 @@
                                     <td class="txt-oflo">{{ $item->customer_email }}</td>
                                     <td class="txt-oflo">{{ $item->customer_phone }}</td>
                                     <td class="txt-oflo">{{ $item->price }}</td>
+                                    <td>
+                                        <span class="label {{ $item->status_color }}">{{ $item->status }}</span>
+                                    </td>
                                     <td class="txt-oflo">
                                         <a href="{{ route('orders.show', ['order' => $item->id]) }}">VIEW</a>
                                     </td>
