@@ -143,3 +143,16 @@ $('#order_status').on('change', function(){
         }
     });
 });
+
+$('#search').on('keyup', function() {
+	var $rows = $('#table tr');
+	var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+	$rows.show().filter(function() {
+		var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+		if (text.indexOf(val) == -1) {
+			return true;
+		}
+		return false;
+		// return !~text.indexOf(val);
+	}).hide();
+});

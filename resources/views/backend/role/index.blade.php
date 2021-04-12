@@ -19,7 +19,10 @@
             <div class="card-body">
                 <h4 class="card-title">Roles Table</h4>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search" placeholder="Type to search" autofocus>
+                    </div>
+                    <table class="table table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th>Role Name</th>
