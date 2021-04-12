@@ -26,3 +26,13 @@
     border-radius: 50%;
     object-fit: cover;
 }
+.profiletimeline {
+    padding-left: 0 !important;
+    border: none !important;
+}
+.profiletimeline .body {
+    color: black;
+}
+.profiletimeline .fa-star {
+    color: #ff9900;
+}

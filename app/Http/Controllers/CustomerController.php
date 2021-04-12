@@ -14,6 +14,7 @@ class CustomerController extends Controller
 
     public function show(User $customer)
     {
-        return view('backend.customer.show', compact('customer'));
+        $reviews = $customer->load('reviews.images')->reviews;
+        return view('backend.customer.show', compact('customer', 'reviews'));
     }
 }
