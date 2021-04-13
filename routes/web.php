@@ -58,6 +58,7 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::post('assign-roles/{role}', 'AssignRoleController@store')->name('assign-roles.store');
     Route::get('system-setting', 'SystemSettingController@edit')->name('system-setting.edit');
     Route::post('system-setting', 'SystemSettingController@update')->name('system-setting.update');
+    Route::get('mark-all-as-read', 'NotificationController@markAllAsRead')->name('mark-all-as-read');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

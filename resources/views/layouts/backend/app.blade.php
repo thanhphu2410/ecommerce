@@ -86,8 +86,9 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center link" href="javascript:void(0);">
-                                            <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i>
+                                        <a class="nav-link text-center link" 
+                                        href="{{ $current_user->unreadNotifications->count() > 0 ? route('mark-all-as-read') : '#'}}">
+                                            <strong>Mark all notifications as read</strong> <i class="fa fa-angle-right"></i>
                                         </a>
                                     </li>
                                 </ul>
