@@ -23,6 +23,7 @@ class DashboardController extends Controller
         $newReviews = Review::whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->latest()->get();
         $bestSellers = $product->best_seller;
         $topFavourite = $product->top_favourite;
-        return view('backend.index', compact('month', 'newCustomers', 'newOrders', 'totalIncome', 'newReviews', 'bestSellers', 'topFavourite'));
+        $pendingOrders = Order::where('status', 'pending')->get();
+        return view('backend.index', compact('month', 'newCustomers', 'newOrders', 'totalIncome', 'newReviews', 'bestSellers', 'topFavourite', 'pendingOrders'));
     }
 }
