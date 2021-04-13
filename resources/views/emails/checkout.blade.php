@@ -15,12 +15,7 @@ We've got your order!
 @foreach ($order->details as $index=>$item)
 | {{ $item->product->name }} - {{ $item->color->name }}      | {{ $item->size->name }}  | {{ $item->quantity }}     | {{ money($item->product->after_discount * $item->quantity) }}      |
 @endforeach
-@endcomponent
-
-@component('mail::table')
-| &nbsp;         | &nbsp;            |
-| -------------  |:-----------------:|
-| Total          | {{ money($order->price) }}  |
+|                                                            |                          | **Total**                  | {{ money($order->price) }}                                         | 
 @endcomponent
 
 #### BILLING INFO <br>

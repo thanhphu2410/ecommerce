@@ -25,7 +25,7 @@
                             <i class="ti-pinterest"></i>
                         </b>
                         <span>
-                            Website
+                            Adike
                         </span>
                     </a>
                 </div>
@@ -55,11 +55,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-email"></i>
+                                <i class="far fa-bell"></i>
+                                @if ($current_user->unreadNotifications->count() > 0)
                                 <div class="notify">
                                     <span class="heartbit"></span>
                                     <span class="point"></span>
                                 </div>
+                                @endif
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
@@ -69,39 +71,18 @@
                                     </li>
                                     <li>
                                         <div class="message-center">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new
-                                                        admin!</span> <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="btn btn-success btn-circle"><i class="ti-calendar"></i>
+                                            @foreach ($current_user->unreadNotifications as $item)
+                                            <a href="{{ $item->data['url'] }}?notification={{ $item->id }}">
+                                                <div class="btn btn-danger btn-circle">
+                                                    <i class="{{ $item->data['icon'] ?? 'fas fa-wallet' }}"></i>
                                                 </div>
                                                 <div class="mail-contnet">
-                                                    <h5>Event today</h5> <span class="mail-desc">Just a reminder that
-                                                        you have event</span> <span class="time">9:10 AM</span>
+                                                    <h5>{{ $item->data['title'] }}</h5> 
+                                                    <span class="mail-desc">{{ $item->data['body'] }}</span> 
+                                                    <span class="time">{{ $item->created_at->format('d-m H:i') }}</span>
                                                 </div>
                                             </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Settings</h5> <span class="mail-desc">You can customize this
-                                                        template as you want</span> <span class="time">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)">
-                                                <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my
-                                                        admin!</span> <span class="time">9:02 AM</span>
-                                                </div>
-                                            </a>
+                                            @endforeach
                                         </div>
                                     </li>
                                     <li>
@@ -117,8 +98,8 @@
                         <li class="nav-item dropdown u-pro">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="/{{ auth()->user()->avatar ?? '' }}">
-                                <span class="hidden-md-down">{{ auth()->user()->name ?? '' }} &nbsp;
+                                <img src="/{{ $current_user->avatar ?? '' }}">
+                                <span class="hidden-md-down">{{ $current_user->name ?? '' }} &nbsp;
                                     <i class="fa fa-angle-down"></i>
                                 </span>
                             </a>

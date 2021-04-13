@@ -54,5 +54,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::share('setting', SystemSetting::all()->first());
+        view()->composer('layouts.backend.app', function ($view) {
+            $view->with('current_user', auth()->user()->load('unreadNotifications'));
+        });
     }
 }

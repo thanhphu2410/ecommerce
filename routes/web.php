@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 /* *************Back End************* */
-Route::middleware(['auth', 'isStaff'])->group(function () {
+Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::get('products/attributes', 'ProductController@getAttributes');
     Route::resource('categories', 'CategoryController');
     Route::resource('sub-categories', 'SubCategoryController');
