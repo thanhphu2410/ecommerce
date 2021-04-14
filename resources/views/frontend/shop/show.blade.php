@@ -30,7 +30,7 @@
                                 @foreach ($attribute->images as $imageKey=>$image)
                                     <div class="tab-image @if ($attributeKey == 0 && $imageKey == 0) active @endif">
                                         <a href="#tab{{ $image->id }}">
-                                            <input type="hidden" value="/{{ $image->path }}">
+                                            <input type="hidden" value="/{{ $image->path }}" id="attribute{{ $attribute->id }}">
                                             <div class="product__thumb__pic set-bg img-thumbnail"
                                                 data-setbg="/{{ $image->path }}"></div>
                                         </a>
@@ -76,7 +76,7 @@
                                     <div class="product__details__option__color" id="colorWrapper">
                                         <span>Color:</span>
                                         @foreach ($colors as $item)
-                                        <label class="color @if($loop->first) active @endif" style="background: {{ $item->color->code }}">
+                                        <label class="color @if($loop->first) active @endif" style="background: {{ $item->color->code }}" id="attribute_id{{ $item->id }}">
                                             <input type="hidden" value="{{ $item->color_id}}">
                                             <i class="fas fa-check"></i>
                                         </label>

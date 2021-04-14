@@ -257,50 +257,6 @@
                 <div class="card-body bg-light">
                     <div class="row">
                         <div class="col-6">
-                            <h4>Recent Orders</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-center">#</th>
-                                <th>CUSTOMER NAME</th>
-                                <th>CUSTOMER EMAIL</th>
-                                <th>CUSTOMER PHONE</th>
-                                <th>PRICE</th>
-                                <th>STATUS</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($newOrders->take(8) as $item)
-                                <tr>
-                                    <td class="text-center">{{ $loop->index + 1 }}</td>
-                                    <td class="txt-oflo">{{ $item->customer_name }}</td>
-                                    <td class="txt-oflo">{{ $item->customer_email }}</td>
-                                    <td class="txt-oflo">{{ $item->customer_phone }}</td>
-                                    <td class="txt-oflo">{{ $item->price }}</td>
-                                    <td>
-                                        <span class="label {{ $item->status_color }}">{{ $item->status }}</span>
-                                    </td>
-                                    <td class="txt-oflo">
-                                        <a href="{{ route('orders.show', ['order' => $item->id]) }}">VIEW</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body bg-light">
-                    <div class="row">
-                        <div class="col-6">
                             <h4>Pending Orders</h4>
                         </div>
                     </div>

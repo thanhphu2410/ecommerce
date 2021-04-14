@@ -142,6 +142,9 @@ $(document).on("click", ".color", function(){
     $(".color").removeClass("active");
     $(this).addClass("active");
     $("#colorValue").val($(this).find("input").val());
+    var path = $("#attribute" + $(this).attr("id").replace('attribute_id', '')).val();
+    $("#main-image").attr("src", path);
+    console.log(path);
 });
 
 $("#quantity").on("keyup", function() {
