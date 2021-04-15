@@ -12,9 +12,6 @@ class DashboardController extends Controller
 {
     public function index(Product $product)
     {
-        return SubCategory::all()->transform(function ($item) {
-            return $item->only(['id', 'name', 'category']);
-        });
         $month = request('m', date('m'));
         $newCustomers = User::whereMonth('created_at', $month)
             ->whereYear('created_at', date('Y'))
