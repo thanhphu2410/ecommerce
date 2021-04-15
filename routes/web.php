@@ -62,6 +62,7 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::get('excel/categories', 'ExportExcelController@categories');
     Route::get('excel/sub-categories', 'ExportExcelController@subCategories');
     Route::get('excel/products', 'ExportExcelController@products');
+    Route::get('excel/orders', 'ExportExcelController@orders');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

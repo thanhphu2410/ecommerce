@@ -15,13 +15,19 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping, Shoul
     */
     public function collection()
     {
-        return Product::all('id', 'name', 'price', 'quantity', 'discount', 'description', 'sub_category_id');
+        return Product::select(
+            'name',
+            'price',
+            'quantity',
+            'discount',
+            'description',
+            'sub_category_id'
+        )->latest()->get();
     }
 
     public function map($item) : array
     {
         return [
-            $item->id,
             $item->name,
             $item->price,
             $item->quantity,
@@ -34,7 +40,7 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping, Shoul
     public function headings(): array
     {
         return [
-            'Id', 'Name', 'Price', 'Quantity', 'Discount', 'Description', 'Sub category'
+            'NAME', 'PRICE', 'QUANTITY', 'DISCOUNT', 'DESCRIPTION', 'SUB CATEGORY'
         ];
     }
 }

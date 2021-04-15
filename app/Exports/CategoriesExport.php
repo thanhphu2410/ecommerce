@@ -14,14 +14,13 @@ class CategoriesExport implements FromCollection, WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        return Category::all('id', 'name');
+        return Category::select('name')->latest()->get();
     }
 
     public function headings(): array
     {
         return [
-            'Id',
-            'Name',
+            'NAME',
         ];
     }
 }

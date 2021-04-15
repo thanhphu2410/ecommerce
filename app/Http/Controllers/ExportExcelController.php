@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Exports\OrdersExport;
 use App\Exports\ProductsExport;
 use App\Exports\CategoriesExport;
 use App\Exports\SubCategoriesExport;
@@ -22,5 +24,10 @@ class ExportExcelController extends Controller
     public function products()
     {
         return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+    public function orders()
+    {
+        return Excel::download(new OrdersExport, 'orders.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
 }

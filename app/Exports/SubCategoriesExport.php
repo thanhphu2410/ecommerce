@@ -15,13 +15,12 @@ class SubCategoriesExport implements FromCollection, WithHeadings, WithMapping, 
     */
     public function collection()
     {
-        return SubCategory::all();
+        return SubCategory::select('name', 'category_id')->latest()->get();
     }
 
     public function map($item) : array
     {
         return [
-            $item->id,
             $item->name,
             $item->category->name,
         ] ;
@@ -30,9 +29,8 @@ class SubCategoriesExport implements FromCollection, WithHeadings, WithMapping, 
     public function headings(): array
     {
         return [
-            'Id',
-            'Name',
-            'Category'
+            'NAME',
+            'CATEGORY'
         ];
     }
 }
