@@ -61,6 +61,7 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::get('mark-all-as-read', 'NotificationController@markAllAsRead')->name('mark-all-as-read');
     Route::get('excel/categories', 'ExportExcelController@categories');
     Route::get('excel/sub-categories', 'ExportExcelController@subCategories');
+    Route::get('excel/products', 'ExportExcelController@products');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
