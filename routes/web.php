@@ -59,6 +59,8 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::get('system-setting', 'SystemSettingController@edit')->name('system-setting.edit');
     Route::post('system-setting', 'SystemSettingController@update')->name('system-setting.update');
     Route::get('mark-all-as-read', 'NotificationController@markAllAsRead')->name('mark-all-as-read');
+    Route::get('excel/categories', 'ExportExcelController@categories');
+    Route::get('excel/sub-categories', 'ExportExcelController@subCategories');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

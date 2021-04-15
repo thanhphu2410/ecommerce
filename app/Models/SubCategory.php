@@ -8,6 +8,8 @@ class SubCategory extends Model
 {
     protected $guarded = [];
 
+    protected $appends = ['category_name'];
+
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
@@ -16,5 +18,10 @@ class SubCategory extends Model
     public function products()
     {
         return $this->hasMany('App\Models\Product');
+    }
+
+    public function getCategoryNameAttribute()
+    {
+        return $this->category->name;
     }
 }

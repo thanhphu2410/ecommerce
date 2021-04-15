@@ -19,6 +19,9 @@
             <div class="card-body">
                 <h4 class="card-title">Categories Table</h4>
                 <div class="table-responsive">
+                    <a href="{{ url('excel/categories') }}">
+                        <button type="button" class="btn btn-primary mb-3">EXCEL</button>
+                    </a>
                     <div class="form-group">
                         <input type="text" class="form-control" id="search" placeholder="Type to search" autofocus>
                     </div>
