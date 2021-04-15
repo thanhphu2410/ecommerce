@@ -164,7 +164,7 @@ $(".increase").on("click", function() {
         var price = (quantity + 1) * parseFloat($(this).parents("tr").find("#price_after_discount").val());
         $(this).parents("tr")
             .children(".cart__price")
-            .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
+            .text(price.toLocaleString('en', {style : 'currency', currency : 'USD'}));
     }
 });
 
@@ -175,7 +175,7 @@ $(".decrease").on("click", function() {
         var price = (quantity - 1) * parseFloat($(this).parents("tr").find("#price_after_discount").val());
         $(this).parents("tr")
             .children(".cart__price")
-            .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
+            .text(price.toLocaleString('en', {style : 'currency', currency : 'USD'}));
     }
 });
 
@@ -192,7 +192,7 @@ $(".quantityValue").on("keyup", function() {
         var price = qty * parseFloat($(this).parents("tr").find("#price_after_discount").val());
         $(this).parents("tr")
             .children(".cart__price")
-            .text(price.toLocaleString('vi', {style : 'currency', currency : 'VND'}));
+            .text(price.toLocaleString('en', {style : 'currency', currency : 'USD'}));
     }
 });
 
@@ -444,7 +444,7 @@ $("#shop_loadmore").on("click", function(){
 })
 
 function renderProducts(item) {
-    var price = parseInt(item.price).toLocaleString('vi', {style : 'currency', currency : 'VND'});
+    var price = parseInt(item.price).toLocaleString('en', {style : 'currency', currency : 'USD'});
     var discountRender =  item.discount > 0 ? '<span>' + price + '</span>': '';
     var saleRender =  item.discount > 0 ? '<span class="label">Sale</span>': '';
     var starRender = '';
@@ -485,7 +485,7 @@ function renderProducts(item) {
                     starRender +
                 '</div>' +
                 '<h5 class="discount">' +
-                    item.after_discount.toLocaleString('vi', {style : 'currency', currency : 'VND'}) +
+                    item.after_discount.toLocaleString('en', {style : 'currency', currency : 'USD'}) +
                     discountRender +
                 '</h5>' +
             '</div>' +
