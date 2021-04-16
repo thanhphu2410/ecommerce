@@ -514,3 +514,11 @@ btn.on('click', function(e) {
 $("#close_success").on('click', function(){
     $("#liveToastSuccess").hide();
 })
+
+$("#apply_promos").on("click", function(){
+    $("#apply_promos").html(
+        '<div class="spinner-border spinner-border-sm" role="status">'+
+        '<span class="sr-only">Loading...</span>'+
+        '</div>'
+    );
+})

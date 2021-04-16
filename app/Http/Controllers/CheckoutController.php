@@ -30,6 +30,7 @@ class CheckoutController extends Controller
         }
         
         $order = Order::create($request->validated());
+        
         $order->update(['order_no' => str_pad($order->id, 10, Str::random(100))]);
 
         OrderDetail::storeItem($order);

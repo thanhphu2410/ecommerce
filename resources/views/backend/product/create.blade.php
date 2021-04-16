@@ -178,7 +178,7 @@
 
                         <div class="form-group">
                             <label>Discount (%)</label>
-                            <input type="number" class="form-control" placeholder="Enter Discount" name="discount" value="{{ old('discount') ?: 0 }}">
+                            <input type="number" class="form-control" placeholder="Enter Discount" name="discount" value="{{ old('discount', 0) }}">
                             @error('discount') 
                                 <div class="error">{{ $message }}</div>
                             @enderror

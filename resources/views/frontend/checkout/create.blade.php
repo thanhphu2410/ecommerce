@@ -155,6 +155,13 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
+                        <div class="cart__discount">
+                            <h6>Discount codes</h6>
+                            <div>
+                                <input type="text" placeholder="Promos code">
+                                <button type="button" id="apply_promos">Apply</button>
+                            </div>
+                        </div>
                         <div class="checkout__order">
                             <h4 class="order__title">Your order</h4>
                             <div class="checkout__order__products font-weight-bold">Product <span>Total</span></div>

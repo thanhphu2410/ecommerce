@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\View;

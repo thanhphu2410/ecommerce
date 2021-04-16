@@ -48,6 +48,7 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::resource('sizes', 'SizeController');
     Route::resource('colors', 'ColorController');
     Route::resource('roles', 'RoleController');
+    Route::resource('promos', 'PromoController');
     Route::resource('orders', 'OrderController');
     Route::resource('customers', 'CustomerController');
     Route::resource('tags', 'TagController');
@@ -59,10 +60,12 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::get('system-setting', 'SystemSettingController@edit')->name('system-setting.edit');
     Route::post('system-setting', 'SystemSettingController@update')->name('system-setting.update');
     Route::get('mark-all-as-read', 'NotificationController@markAllAsRead')->name('mark-all-as-read');
-    Route::get('excel/categories', 'ExportExcelController@categories');
-    Route::get('excel/sub-categories', 'ExportExcelController@subCategories');
-    Route::get('excel/products', 'ExportExcelController@products');
-    Route::get('excel/orders', 'ExportExcelController@orders');
+    Route::prefix('excel')->group(function () {
+        Route::get('categories', 'ExportExcelController@categories');
+        Route::get('sub-categories', 'ExportExcelController@subCategories');
+        Route::get('products', 'ExportExcelController@products');
+        Route::get('orders', 'ExportExcelController@orders');
+    });
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

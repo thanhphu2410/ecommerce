@@ -20,7 +20,7 @@ class DashboardController extends Controller
             ->get();
 
         $newOrders = Order::whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->latest()->get();
-        $totalIncome = $newOrders->sum('price');
+        $totalIncome = $newOrders->where('status', 'Delivered')->sum('price');
         $newReviews = Review::whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->latest()->get();
         $bestSellers = $product->best_seller;
         $topFavourite = $product->top_favourite;

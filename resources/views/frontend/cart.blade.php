@@ -93,14 +93,7 @@
 					</form>
 				</div>
 				<div class="col-lg-4">
-					<div class="cart__discount">
-						<h6>Discount codes</h6>
-						<form action="#">
-							<input type="text" placeholder="Coupon code">
-							<button type="submit">Apply</button>
-						</form>
-					</div>
-					<div class="cart__total">
+					<div class="cart__total mt-5">
 						<h6>Cart total</h6>
 						<ul>
 							<li>Total <span>{{ money($total) }}</span></li>
