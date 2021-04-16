@@ -25,7 +25,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId('district_id')->constrained()->onDelete('cascade');
             $table->foreignId('ward_id')->constrained()->onDelete('cascade');
             $table->string('notes')->nullable();
-            $table->bigInteger('price');
+            $table->double('price');
+            $table->bigInteger('discount')->default(0)->nullable();
             $table->string('status')->nullable()->comment('pending, shipping, delivered')->default('Pending');
             $table->timestamps();
         });

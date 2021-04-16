@@ -521,4 +521,52 @@ $("#apply_promos").on("click", function(){
         '<span class="sr-only">Loading...</span>'+
         '</div>'
     );
+    $.ajax({
+        url: '/find-promos/' + $('#promos_code').val(),
+        type: "get",
+        success: function(data) {
+            $("#apply_promos").html('APPLY');
+            $("#price").val($("#old_price").val());
+            if (data) {
+                let total = parseFloat($("#price").val()) * ((100 - parseFloat(data.discount))/100);
+                $("#price").val(total);
+                $("#discount").val(data.discount);
+                $("#apply_promos").html('APPLIED');
+                $("#order_discount").text(data.discount + '%');
+                $("#order_total").text(total.toLocaleString('en', {style : 'currency', currency : 'USD'}));
+                $("#liveToastSuccess").html(
+                    'Promo code found'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                    '</button>'
+                );
+                $('#liveToastSuccess').show();
+                $("#liveToastSuccess").delay(1000).slideUp(200, function() {
+                    $(this).hide();
+                });
+                return;
+            }
+            $("#discount").val(0);
+            $("#order_discount").text('0%');
+            $("#order_total").text(parseFloat($("#old_price").val()).toLocaleString('en', {style : 'currency', currency : 'USD'}));
+            $('#promos_code').val('');
+            $("#liveToastError").html(
+                'Promo code not found'+
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                '<span aria-hidden="true">&times;</span>'+
+                '</button>'
+            );
+            $("#liveToastError").show();
+            $("#liveToastError").delay(1000).slideUp(200, function() {
+                $(this).hide();
+            });
+        }
+    });
 })
+
+$(document).on('keypress', function(event){
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
+});
+    

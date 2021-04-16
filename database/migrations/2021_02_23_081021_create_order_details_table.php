@@ -19,7 +19,7 @@ class CreateOrderDetailsTable extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->bigInteger('quantity');
             $table->bigInteger('discount');
-            $table->bigInteger('total');
+            $table->double('total');
             $table->foreignId('size_id')->constrained()->onDelete('cascade');
             $table->foreignId('color_id')->constrained()->onDelete('cascade');
             $table->timestamps();

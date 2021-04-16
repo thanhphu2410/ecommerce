@@ -34,6 +34,7 @@ class CheckoutRequest extends FormRequest
             'ward_id' => 'required|numeric',
             'notes' => 'nullable',
             'price' => 'required|numeric',
+            'discount' => 'required|numeric',
         ];
     }
 }

@@ -43,8 +43,12 @@
                                             <td>{{ $order->notes }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Price</td>
-                                            <td>{{ $order->price }} đ</td>
+                                            <td>Price (after discount)</td>
+                                            <td>{{ money($order->price) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount</td>
+                                            <td>{{ $order->discount }}%</td>
                                         </tr>
                                         <tr>
                                             <td>Status</td>

@@ -22,7 +22,9 @@
             <form action="{{ route('checkout.store') }}" method="POST" >
                 @csrf
                 <input type="hidden" value="{{ auth()->id() }}" name="user_id">
-                <input type="hidden" value="{{ $total }}" name="price">
+                <input type="hidden" value="{{ $total }}" id="old_price">
+                <input type="hidden" value="{{ $total }}" name="price" id="price">
+                <input type="hidden" value="0" name="discount" id="discount">
                 <div class="row edit-input-btn">
                     <div class="col-lg-8 col-md-6">
                         @guest
@@ -158,7 +160,7 @@
                         <div class="cart__discount">
                             <h6>Discount codes</h6>
                             <div>
-                                <input type="text" placeholder="Promos code">
+                                <input type="text" placeholder="Promos code" id="promos_code">
                                 <button type="button" id="apply_promos">Apply</button>
                             </div>
                         </div>
@@ -190,7 +192,9 @@
                                 @endforeach
                             </ul>
                             <ul class="checkout__total__all">
-                                <li>Total <span>{{ money($total) }}</span></li>
+                                <li>Sub Total <span>{{ money($total) }}</span></li>
+                                <li>Discount <span id="order_discount">0%</span></li>
+                                <li>Total <span id="order_total">{{ money($total) }}</span></li>
                             </ul>
                             <p>* Pay when you receive the item
                             </p>

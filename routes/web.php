@@ -29,6 +29,7 @@ Route::get('contact/create', 'ContactController@create')->name('contact.create')
 Route::post('contact', 'ContactController@store');
 Route::get('order-checking', 'CheckoutController@orderCheckView');
 Route::post('order-checking', 'CheckoutController@orderChecking')->name('checking-order');
+Route::get('find-promos/{code}', 'LandingPageController@findPromos');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('wishlist', 'WishListController');
