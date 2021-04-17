@@ -11,6 +11,7 @@
     <link href="{{ asset('backend/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet">
+    @yield('css')
     <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
@@ -158,6 +159,14 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
     <script src="{{ asset('backend/js/custom.js') }}"></script>
+    <script>
+        lightbox.option({
+            'disableScrolling': true,
+            'resizeDuration': 0,
+            'wrapAround': true
+        })
+    </script>
+    @yield('script')
     @isset($success)
         <script>
             $.toast({

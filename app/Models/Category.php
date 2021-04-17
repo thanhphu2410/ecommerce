@@ -23,7 +23,7 @@ class Category extends Model
     {
         if (request()->has('image_path')) {
             $path = request('image_path')->store('category', 'public');
-            $this->attributes['image_path'] = "storage/".$path;
+            $this->attributes['image_path'] = 'storage/'.$path;
         }
     }
 }

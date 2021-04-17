@@ -41,7 +41,7 @@
                             <div>
                                 <h3><i class="icon-screen-desktop"></i></h3>
                                 <p class="text-muted">NEW CLIENTS</p>
-                                <p>({{ $month . date("-Y") }})</p>
+                                <p>({{ $month . date('-Y') }})</p>
                             </div>
                             <div class="ml-auto">
                                 <h2 class="counter text-primary">{{ $newCustomers->count() }}</h2>
@@ -65,7 +65,7 @@
                             <div>
                                 <h3><i class="icon-note"></i></h3>
                                 <p class="text-muted">NEW ORDERS</p>
-                                <p>({{ $month . date("-Y") }})</p>
+                                <p>({{ $month . date('-Y') }})</p>
                             </div>
                             <div class="ml-auto">
                                 <h2 class="counter text-cyan">{{ $newOrders->count() }}</h2>
@@ -89,7 +89,7 @@
                             <div>
                                 <h3><i class="icon-doc"></i></h3>
                                 <p class="text-muted">TOTAL INCOME</p>
-                                <p>({{ $month . date("-Y") }})</p>
+                                <p>({{ $month . date('-Y') }})</p>
                             </div>
                             <div class="ml-auto">
                                 <h4 class="counter text-purple">{{ money($totalIncome) }}</h4>
@@ -113,7 +113,7 @@
                             <div>
                                 <h3><i class="icon-bag"></i></h3>
                                 <p class="text-muted">NEW REVIEWS</p>
-                                <p>({{ $month . date("-Y") }})</p>
+                                <p>({{ $month . date('-Y') }})</p>
                             </div>
                             <div class="ml-auto">
                                 <h2 class="counter text-success">{{ $newReviews->count() }}</h2>
@@ -305,22 +305,23 @@
                 </div>
                 <div class="comment-widgets">
                     @foreach ($newReviews->take(8) as $item)
-                    <a href="{{ route('product-details', ['product' => $item->product->id]) }}">
-                        <div class="d-flex no-block comment-row">
-                            <div class="p-2">
-                                <span class="round">
-                                    <img src="/{{ $item->user->avatar }}" alt="user" width="50" height="50">
-                                </span>
-                            </div>
-                            <div class="comment-text w-100">
-                                <h5 class="font-medium">{{ $item->user->name }}</h5>
-                                <p class="m-b-10 text-muted">{{ $item->body }}</p>
-                                <div class="comment-footer">
-                                    <span class="text-muted pull-right ml-auto">{{ $item->created_at->format('d F, Y') }}</span> 
+                        <a href="{{ route('product-details', ['product' => $item->product->id]) }}">
+                            <div class="d-flex no-block comment-row">
+                                <div class="p-2">
+                                    <span class="round">
+                                        <img src="/{{ $item->user->avatar }}" alt="user" width="50" height="50">
+                                    </span>
+                                </div>
+                                <div class="comment-text w-100">
+                                    <h5 class="font-medium">{{ $item->user->name }}</h5>
+                                    <p class="m-b-10 text-muted">{{ $item->body }}</p>
+                                    <div class="comment-footer">
+                                        <span
+                                            class="text-muted pull-right ml-auto">{{ $item->created_at->format('d F, Y') }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
                     @endforeach
                 </div>
             </div>

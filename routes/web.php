@@ -54,6 +54,11 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::resource('customers', 'CustomerController');
     Route::resource('tags', 'TagController');
     Route::resource('blogs', 'BlogController');
+    Route::get('albums-images', 'AlbumImageController@index')->name('albums-images');
+    Route::post('albums-images', 'AlbumImageController@store');
+    Route::delete('albums-images/{album}/delete', 'AlbumImageController@destroy');
+    Route::patch('albums-images/{album}/display', 'AlbumImageController@display');
+    Route::patch('albums-images/{album}/un-display', 'AlbumImageController@unDisplay');
     Route::get('contact', 'ContactController@index');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('assign-roles/{role}', 'AssignRoleController@index')->name('assign-roles.index');

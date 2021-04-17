@@ -56,3 +56,7 @@
 .profiletimeline .fa-star {
     color: #ff9900;
 }
+.album-image {
+    height: 162px;
+    object-fit: cover;
+}
