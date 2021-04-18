@@ -30,6 +30,7 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
@@ -3429,6 +3430,26 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.header__logo .main,
+.footer__logo .main {
+    user-select: none;
+}
+
+.header__logo .main span {
+    font-family: "Quicksand", sans-serif;
+    color: black;
+    font-size: 25px;
+    line-height: 0.7;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+}
+
+.footer__logo .main span {
+    font-family: "Anton", "Quicksand", sans-serif;
+    color: white;
+    font-size: 25px;
+    line-height: 0.7;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+}
 .status {
     padding: 3px 10px;
     line-height: 13px;

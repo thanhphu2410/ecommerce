@@ -75,7 +75,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="related-title">Best Sellers</h3>
+                <div class="section-title">
+                    <span>Best Sellers</span>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -135,7 +137,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="related-title">New Arrivals</h3>
+                <div class="section-title">
+                    <span>New Arrivals</span>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -195,7 +199,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="related-title">Hot Sales</h3>
+                <div class="section-title">
+                    <span>Hot Sales</span>
+                </div>
             </div>
         </div>
         <div class="row">

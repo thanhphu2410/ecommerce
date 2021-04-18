@@ -107,7 +107,6 @@
                             </div>
                             <div class="product__details__last__option">
                                 <h5><span>Guaranteed Safe Checkout</span></h5>
-                                <img src="img/shop-details/details-payment.png" alt="">
                                 <ul>
                                     <li id="in_stock"><span>In stock:</span> {{ $product->attributes->first()->product_quantity }}</li>
                                     <li><span>Category:</span> {{ $product->category->name }}</li>

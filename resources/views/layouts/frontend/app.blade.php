@@ -118,9 +118,17 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3">
+                <div class="col-lg-3 col-md-3 d-flex align-items-center">
                     <div class="header__logo">
-                        <a href="/"><img src="{{ asset('images/logo.svg') }}" alt=""></a>
+                        <a href="/">
+                            <div class="main">
+                                <span>A</span>
+                                <span>D</span>
+                                <span>I</span>
+                                <span>K</span>
+                                <span>E</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -169,13 +177,19 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#">
-                                <i class="far fa-heart"></i>
+                            <a href="/">
+                                <div class="main">
+                                    <span>A</span>
+                                    <span>D</span>
+                                    <span>I</span>
+                                    <span>K</span>
+                                    <span>E</span>
+                                </div>
                             </a>
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
                         <a href="#">
-                            <i class="far fa-heart"></i>
+                            <img src="{{ asset('images/details-payment.png') }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -250,6 +264,7 @@
           <path d="M26 10.109c0 .281-.203.547-.406.75l-5.672 5.531 1.344 7.812c.016.109.016.203.016.313 0 .406-.187.781-.641.781a1.27 1.27 0 0 1-.625-.187L13 21.422l-7.016 3.687c-.203.109-.406.187-.625.187-.453 0-.656-.375-.656-.781 0-.109.016-.203.031-.313l1.344-7.812L.39 10.859c-.187-.203-.391-.469-.391-.75 0-.469.484-.656.875-.719l7.844-1.141 3.516-7.109c.141-.297.406-.641.766-.641s.625.344.766.641l3.516 7.109 7.844 1.141c.375.063.875.25.875.719z"/>
         </symbol>
     </svg>
+
     @isset($success)
         <script>
             $("#liveToastSuccess").show();
