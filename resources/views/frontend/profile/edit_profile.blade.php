@@ -23,7 +23,7 @@
                                     <p>Avatar</p>
                                 </div>
                                 <div class="custom-file mb-3">
-                                    <input type="file" class="custom-file-input" name="avatar">
+                                    <input type="file" class="custom-file-input" name="avatar" accept="image/*">
                                     <label class="custom-file-label">Choose image</label>
                                 </div>
                             </div>

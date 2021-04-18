@@ -48,7 +48,7 @@
                                 <label>Image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="images[]" multiple>
+                                        <input type="file" class="custom-file-input" name="images[]" multiple accept="image/*">
                                         <label class="custom-file-label">Choose images</label>
                                     </div>
                                 </div>

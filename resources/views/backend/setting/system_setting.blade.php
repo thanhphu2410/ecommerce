@@ -24,7 +24,7 @@
                             <label>Favicon</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('favicon') is-invalid @enderror" name="favicon">
+                                    <input type="file" class="custom-file-input @error('favicon') is-invalid @enderror" name="favicon" accept="image/*">
                                     <label class="custom-file-label">Choose image</label>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                             <label>Logo</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('logo') is-invalid @enderror" name="logo">
+                                    <input type="file" class="custom-file-input @error('logo') is-invalid @enderror" name="logo" accept="image/*">
                                     <label class="custom-file-label">Choose image</label>
                                 </div>
                             </div>
