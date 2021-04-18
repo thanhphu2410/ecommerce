@@ -4,6 +4,12 @@
 @endsection
 @section('script')
 <script src="{{ asset('backend/lightbox/js/lightbox.js') }}"></script>
+<script>
+    lightbox.option({
+        'resizeDuration': 10,
+        'wrapAround': true
+    })
+</script>
 @endsection
 @section('content')
     <div class="row page-titles">
@@ -71,19 +77,19 @@
                                     <form action="albums-images/{{ $item->id }}/un-display" method="post" class="mr-2">
                                         @method('patch')
                                         @csrf
-                                        <button class="btn btn-primary">Display <i class="fas fa-check"></i></button>
+                                        <button class="btn btn-success">Display <i class="fas fa-check"></i></button>
                                     </form>
                                 @else
                                     <form action="albums-images/{{ $item->id }}/display" method="post" class="mr-2">
                                         @method('patch')
                                         @csrf
-                                        <button class="btn btn-primary">Display</button>
+                                        <button class="btn btn-success">Display</button>
                                     </form>
                                 @endif
                                 <form action="albums-images/{{ $item->id }}/delete" method="post">
                                     @method('delete')
                                     @csrf
-                                    <button class="btn btn-primary">Delete</button>
+                                    <button class="btn btn-danger">Delete</button>
                                 </form>
                             </div>
                         </div>

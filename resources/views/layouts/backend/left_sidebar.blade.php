@@ -106,7 +106,7 @@
                         <li><a href="{{ route('system-setting.edit') }}">System Settings</a></li>
                         <li><a href="{{ route('roles.index') }}">All Roles</a></li>
                         <li><a href="{{ route('roles.create') }}">New Role</a></li>
-                        <li><a href="{{ url('albums-images') }}">ALbums</a></li>
+                        <li><a href="{{ url('albums-images') }}">Albums</a></li>
                     </ul>
                 </li>
             </ul>

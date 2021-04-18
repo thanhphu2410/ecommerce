@@ -159,13 +159,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
     <script src="{{ asset('backend/js/custom.js') }}"></script>
-    <script>
-        lightbox.option({
-            'disableScrolling': true,
-            'resizeDuration': 0,
-            'wrapAround': true
-        })
-    </script>
     @yield('script')
     @isset($success)
         <script>

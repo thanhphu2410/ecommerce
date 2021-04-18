@@ -36,6 +36,7 @@ class AlbumImageController extends Controller
 
     public function display(Album $album)
     {
+        Album::query()->update(['display' => 0]);
         $album->update(['display' => 1]);
         return success('albums-images');
     }

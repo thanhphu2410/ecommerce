@@ -251,31 +251,34 @@
     </div>
     @endif
 </section>
+@if ($album)
 <section class="instagram spad">
     <div class="container">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Our gallery</span>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
             <div class="col-lg-8">
                 <div class="instagram__pic">
-                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('images/instagram-1.jpeg') }}"></div>
-                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('images/instagram-2.jpeg') }}"></div>
-                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('images/instagram-3.jpeg') }}"></div>
-                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('images/instagram-4.jpeg') }}"></div>
-                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('images/instagram-5.jpeg') }}"></div>
-                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('images/instagram-6.jpeg') }}"></div>
+                    @foreach ($album->images as $item)
+                    <div class="instagram__pic__item set-bg" data-setbg="/{{ $item->path }}"></div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="instagram__text">
-                    <h2>Gallery</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
-                    </p>
-                    <h3>#Fashion</h3>
+                    <h2>{{ $album->title }}</h2>
+                    <p>{{ $album->description }}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
 <section class="latest spad">
     <div class="container">
         <div class="row">

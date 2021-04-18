@@ -12,4 +12,9 @@ class Album extends Model
     {
         return $this->hasMany('App\Models\AlbumImage', 'album_id', 'id');
     }
+
+    public function scopeDisplay($query)
+    {
+        return $query->where('display', 1);
+    }
 }
