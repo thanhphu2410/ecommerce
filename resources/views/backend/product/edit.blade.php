@@ -24,7 +24,8 @@
                         @csrf
                         <div class="form-group">
                             <label>Product Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ $product->name }}" autocomplete="off">
+                            <input type="text" class="form-control" placeholder="Enter Name" name="name" 
+                            value="{{ old('name', $product->name) }}" autocomplete="off">
                             @error('name') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -168,7 +169,7 @@
                                 <option selected value="">Select sub-category</option>
                                 @foreach ($subCategories as $subCategory)
                                     <option value="{{ $subCategory->id }}" 
-                                        @if ($product->subcategory->id == $subCategory->id) selected @endif>
+                                        @if (old('sub_category_id', $product->subcategory->id) == $subCategory->id) selected @endif>
                                         {{ $subCategory->name }}
                                     </option>
                                 @endforeach
@@ -180,7 +181,8 @@
 
                         <div class="form-group">
                             <label>Product Price</label>
-                            <input type="number" class="form-control" placeholder="Enter Price" name="price" value="{{ $product->price }}">
+                            <input type="number" class="form-control" placeholder="Enter Price" 
+                            name="price" value="{{ old('price', $product->price) }}">
                             @error('price') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -188,15 +190,16 @@
 
                         <div class="form-group">
                             <label>Discount (%)</label>
-                            <input type="number" class="form-control" placeholder="Enter Discount" name="discount" value="{{ $product->discount }}">
+                            <input type="number" class="form-control" placeholder="Enter Discount" 
+                            name="discount" value="{{ old('discount', $product->discount) }}">
                             @error('discount') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label>Product Description</label>
-                            <textarea class="form-control" name="description" rows="3">{{ $product->description }}</textarea>
+                            <label>Description</label>
+                            <textarea id="summernote" name="description">{!! old('description', $product->description) !!}</textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-danger"> <i class="fa fa-pencil"></i> Save</button>

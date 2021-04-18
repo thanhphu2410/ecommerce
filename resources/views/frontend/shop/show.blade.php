@@ -133,7 +133,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane" id="tabs-5" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        {{ $product->description }}
+                                        {!! $product->description !!}
                                     </div>
                                 </div>
                                 <div class="tab-pane active" id="tabs-6" role="tabpanel">

@@ -3,10 +3,29 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li> 
-                    <a class="waves-effect waves-dark" href="/dashboard" >
+                    <a class="waves-effect waves-dark" href="{{ route('dashboard') }}" >
                         <i class="icon-speedometer"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
+                </li>
+                <li> 
+                    <a class="waves-effect waves-dark" href="{{ route('albums-images') }}" >
+                        <i class="far fa-images"></i>
+                        <span class="hide-menu">Album Image</span>
+                    </a>
+                </li>
+                <li> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="far fa-newspaper"></i>
+                        <span class="hide-menu">Blogs</span> 
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('tags.index') }}">All Tags</a></li>
+                        <li><a href="{{ route('tags.create') }}">New Tag</a></li>
+                        <li><a href="{{ route('blogs.index') }}">All Blogs</a></li>
+                        <li><a href="{{ route('blogs.create') }}">New Blog</a></li>
+                    </ul>
                 </li>
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
@@ -34,7 +53,7 @@
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
                         <i class="fas fa-toolbox"></i>
-                        <span class="hide-menu">Toolbox</span> 
+                        <span class="hide-menu">Product Attributes</span> 
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('sizes.index') }}">All Sizes</a></li>
@@ -86,19 +105,6 @@
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
-                        <i class="far fa-newspaper"></i>
-                        <span class="hide-menu">Blogs</span> 
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{ route('tags.index') }}">All Tags</a></li>
-                        <li><a href="{{ route('tags.create') }}">New Tag</a></li>
-                        <li><a href="{{ route('blogs.index') }}">All Blogs</a></li>
-                        <li><a href="{{ route('blogs.create') }}">New Blog</a></li>
-                    </ul>
-                </li>
-                <li> 
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
                         <i class="ti-settings"></i>
                         <span class="hide-menu">Settings</span> 
                     </a>
@@ -106,7 +112,6 @@
                         <li><a href="{{ route('system-setting.edit') }}">System Settings</a></li>
                         <li><a href="{{ route('roles.index') }}">All Roles</a></li>
                         <li><a href="{{ route('roles.create') }}">New Role</a></li>
-                        <li><a href="{{ url('albums-images') }}">Albums</a></li>
                     </ul>
                 </li>
             </ul>

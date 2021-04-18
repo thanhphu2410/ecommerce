@@ -185,8 +185,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Product Description</label>
-                            <textarea class="form-control" name="description" rows="3">{{ old('description') }}</textarea>
+                            <label>Description</label>
+                            <textarea id="summernote" name="description">{!! old('description') !!}</textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>

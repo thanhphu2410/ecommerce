@@ -9,7 +9,6 @@ use App\Models\SubCategory;
 use App\Models\ProductImage;
 use App\Services\ImageServices;
 use App\Models\ProductAttribute;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductStoreRequest;
 
 class ProductController extends Controller
@@ -30,11 +29,9 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $product = Product::create($request->validated());
-            $attributes = $product->attributes()->createMany(ProductAttribute::getData());
-            ProductImage::storeItem($attributes);
-        });
+        $product = Product::create($request->validated());
+        $attributes = $product->attributes()->createMany(ProductAttribute::getData());
+        ProductImage::storeItem($attributes);
         return success('products.index');
     }
 
@@ -55,11 +52,9 @@ class ProductController extends Controller
 
     public function update(ProductStoreRequest $request, Product $product)
     {
-        DB::transaction(function () use ($request, $product) {
-            $product->update($request->validated());
-            $product->sizes()->sync(ProductAttribute::getData());
-            ProductImage::updateItem($product->attributes);
-        });
+        $product->update($request->validated());
+        $product->sizes()->sync(ProductAttribute::getData());
+        ProductImage::updateItem($product->attributes);
         return success('products.index');
     }
 

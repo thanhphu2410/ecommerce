@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-6">
                             <h4 class="box-title">Product description</h4>
-                            <p>{{ $product->description }}</p>
+                            <p>{!! $product->description !!}</p>
                             <h2 class="m-t-40">{{ money($product->price) }}<small
                                     class="text-success"> ({{ $product->discount }}% off)</small></h2>
                         </div>

@@ -34,7 +34,7 @@
                             @foreach ($tags as $tag)
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="tag{{ $tag->id }}" 
-                                    value="{{ $tag->id }}" name="tags[]">
+                                    value="{{ $tag->id }}" name="tags[]" @if(in_array($tag->id, old('tags', []))) checked @endif>
                                     <label class="custom-control-label" for="tag{{ $tag->id }}">{{ $tag->name }}</label>
                                 </div>
                             @endforeach
@@ -55,7 +55,7 @@
                                 <div class="error">Please choose images again</div>
                             @endif
                         </div>
-                        <textarea id="summernote" name="body"></textarea>
+                        <textarea id="summernote" name="body">{{ old('body') }}</textarea>
                         @error('body') 
                             <div class="error">{{ $message }}</div>
                         @enderror
