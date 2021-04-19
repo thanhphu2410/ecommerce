@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\ReviewImage;
 use App\Models\SubCategory;
+use App\Models\ViewedProduct;
 use App\Models\ProductAttribute;
 use App\Http\Requests\ReviewRequest;
 
@@ -26,6 +27,7 @@ class ShopController extends Controller
 
     public function show(Product $product)
     {
+        ViewedProduct::view($product);
         $product->load(['attributes.images', 'reviews.images', 'sizes']);
         $relatedProducts = $product->related;
         $reviews = $product->reviews()->paginate(5);
