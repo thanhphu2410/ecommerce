@@ -42,14 +42,6 @@
                 <a href="#">Sign in</a>
                 <a href="#">FAQs</a>
             </div>
-            <div class="offcanvas__top__hover">
-                <span>Usd <i class="fas fa-caret-down"></i></i></span>
-                <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>USD</li>
-                </ul>
-            </div>
         </div>
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch">
@@ -91,16 +83,8 @@
                                     @endif
                                 @endauth
                             </div>
-                            <div class="header__top__hover">
-                                <span>Usd <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                                <ul>
-                                    <li>USD</li>
-                                    <li>EUR</li>
-                                    <li>USD</li>
-                                </ul>
-                            </div>
 
-                            <div class="header__top__hover ml-3 my-profile">
+                            <div class="header__top__hover my-profile">
                                 <span>My Profile <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
                                 <ul>
                                     <li>

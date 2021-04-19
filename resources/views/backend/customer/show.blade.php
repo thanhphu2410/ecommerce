@@ -33,10 +33,15 @@
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <ul class="nav nav-tabs profile-tab" role="tablist">
-                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Timeline</a> </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link active" data-toggle="tab" href="#review" role="tab">Reviews</a> 
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link" data-toggle="tab" href="#wishlist" role="tab">Wishlist</a> 
+                    </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home" role="tabpanel">
+                    <div class="tab-pane active" id="review" role="tabpanel">
                         <div class="card-body">
                             <div class="profiletimeline">
                                 @foreach ($reviews as $review)
@@ -60,6 +65,33 @@
                                             <div>
                                                 <i class="fas fa-star"></i> 
                                                 {{ $review->rating }} Star
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="wishlist" role="tabpanel">
+                        <div class="card-body">
+                            <div class="profiletimeline">
+                                @foreach ($wishlist as $value)
+                                <div class="sl-item">
+                                    <div class="sl-right">
+                                        <div>
+                                            <a href="{{ route('product-details', ['product' => $value->product_id]) }}" class="link">{{ $customer->name }}</a> 
+                                            <span class="sl-date">{{ $value->created_at->format('m-d-Y') }}</span>
+                                            <p class="mt-3">
+                                                <a class="body" href="{{ route('product-details', ['product' => $value->product_id]) }}">
+                                                    Product name: {{ $value->product->name }}
+                                                </a>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6 m-b-20">
+                                                    <img src="/{{ $value->product->first_image }}" class="img-responsive radius"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

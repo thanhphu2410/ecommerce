@@ -26,7 +26,9 @@
                 </div>
                 <div class="col-md-8 col-lg-9">
                     <h3 class="box-title m-b-0">
-                        {{ $customer->name }}
+                        <a href="{{ route('customers.show', ['customer' => $customer->id ]) }}">
+                            {{ $customer->name }}
+                        </a>
                         <form action="{{ route('customers.destroy', ['customer' => $customer->id ]) }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf

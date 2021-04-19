@@ -20,14 +20,14 @@
     <div id="main-wrapper">
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header">
+                <div class="navbar-header d-flex justify-content-center">
                     <a class="navbar-brand" href="/">
                         <b>
                             <i class="ti-pinterest"></i>
                         </b>
-                        <span>
+                        {{-- <span>
                             Adike
-                        </span>
+                        </span> --}}
                     </a>
                 </div>
 
