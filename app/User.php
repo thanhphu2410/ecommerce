@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order');
     }
 
+    public function viewed_products()
+    {
+        return $this->hasMany('App\Models\ViewedProduct');
+    }
+
     public function isAdmin()
     {
         return $this->roles->pluck('name')->contains('Admin');
