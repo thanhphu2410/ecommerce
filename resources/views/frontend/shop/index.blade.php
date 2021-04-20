@@ -232,7 +232,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="row justify-content-md-center">
+                <div class="row justify-content-center">
                     <button type="button" class="site-btn mt-5 loadmore" id="shop_loadmore">
                         Load More
                     </button>

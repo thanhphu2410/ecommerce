@@ -3430,6 +3430,9 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+#carouselExampleIndicators {
+    display: none;
+}
 .header__logo .main,
 .footer__logo .main {
     user-select: none;
@@ -4006,6 +4009,25 @@ input:focus {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+    .header__logo {
+        margin-top: 35px;
+    }
+    #background {
+        display: none;
+    }
+    #carouselExampleIndicators {
+        display: block;
+    }
+    .instagram {
+        display: none;
+    }
+    .loadmore {
+        margin-top: 0 !important;
+        margin-bottom: 10px;
+    }
+    .spad {
+        padding: 0;
+    }
     .canvas__open {
         display: block;
         font-size: 22px;
