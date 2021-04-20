@@ -3430,6 +3430,9 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.collapseSidebar {
+    display: none;
+}
 #carouselExampleIndicators {
     display: none;
 }
@@ -4009,6 +4012,15 @@ input:focus {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+    .collapseSidebar {
+        display: block;
+    }
+    .shop__sidebar__search {
+        display: none;
+    }
+    .breadcrumb-option {
+        margin: 15px 0;
+    }
     .header__logo {
         margin-top: 35px;
     }
