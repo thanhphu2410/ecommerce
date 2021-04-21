@@ -36,7 +36,7 @@ $("#best-seller").owlCarousel({
     autoplay: false,
     responsive:{
         0:{
-            items:1,
+            items:2,
         },
         600:{
             items:4,
@@ -53,7 +53,7 @@ $("#new-arrivals").owlCarousel({
     autoplay: false,
     responsive:{
         0:{
-            items:1,
+            items:2,
         },
         600:{
             items:4,
@@ -70,7 +70,7 @@ $("#hot-sales").owlCarousel({
     autoplay: false,
     responsive:{
         0:{
-            items:1,
+            items:2,
         },
         600:{
             items:4,

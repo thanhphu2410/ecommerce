@@ -198,7 +198,7 @@
                     </div>
                     <div class="row" id="products">
                         @foreach ($products as $product)
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-6 col-6">
                                 <div class="product__item sale">
                                     <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
                                         @if ($product->discount > 0)
