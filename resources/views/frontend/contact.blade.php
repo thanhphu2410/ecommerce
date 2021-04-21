@@ -24,7 +24,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6 mb-3">
                     <div class="contact__form">
                         <form action="{{ url('contact') }}" method="post">
                             @csrf
@@ -35,7 +35,7 @@
                                 <div class="col-lg-6">
                                     <input type="text" placeholder="Email" name="email" value="{{ old('email') }}" autocomplete="off">
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 send-message">
                                     <textarea placeholder="Message" name="message">{{ old('message') }}</textarea>
                                     <button type="submit" class="site-btn">Send Message</button>
                                 </div>
