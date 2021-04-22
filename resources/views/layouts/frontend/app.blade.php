@@ -74,7 +74,8 @@
                         <div class="header__top__right">
                             <div class="header__top__links">
                                 @guest
-                                    <a href="{{ route('login') }}">Sign in</a>
+                                    <a href="{{ route('login') }}">Login</a>
+                                    <a href="{{ route('register') }}">Register</a>
                                 @endguest
                                 @auth
                                     <a href="/logout">Log out</a>
@@ -100,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mb-4">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-3 d-flex align-items-center">
                     <div class="header__logo">

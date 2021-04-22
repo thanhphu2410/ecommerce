@@ -23,7 +23,7 @@
                                     <div class="checkout__input">
                                         <p>Email <span>*</span></p>
                                         <input type="email" name="email" placeholder="Email Address"
-                                            value="{{ old('email') }}" autocomplete="off">
+                                            value="{{ old('email') }}" autocomplete="off" id="login_email">
                                         @error('email') 
                                             <div class="error">{{ $message }}</div>
                                         @enderror
@@ -33,7 +33,7 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Password <span>*</span></p>
-                                        <input type="password" placeholder="Password" name="password" autocomplete="off">
+                                        <input type="password" placeholder="Password" name="password" autocomplete="off" id="login_password">
                                         @error('password') 
                                             <div class="error">{{ $message }}</div>
                                         @enderror
@@ -44,11 +44,9 @@
                         </div>
                     </div>
                     <button type="submit" class="site-btn mt-5">LOGIN</button>
-                    <a href="{{ route('register') }}">
-                        <button type="button" class="site-btn mt-5 register-btn">
-                            REGISTER
-                        </button>
-                    </a>
+                    <button type="button" class="site-btn mt-5 register-btn" id="login_admin">
+                        CONTINUE AS ADMIN
+                    </button>
                 </form>
             </div>
         </div>

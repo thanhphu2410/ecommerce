@@ -16,7 +16,7 @@
                 @csrf
                 <div class="row edit-input-btn">
                     <div class="col-lg-12 col-md-6">
-                        <h6 class="checkout__title">LOGIN</h6>
+                        <h6 class="checkout__title">REGISTER</h6>
                         <div class="row justify-content-md-center align-items-center">
 
                             <div class="col-lg-12">

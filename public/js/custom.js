@@ -605,3 +605,7 @@ $(document).on('keypress', function(event){
     }
 });
     
+$("#login_admin").on('click', function(){
+    $("#login_email").val('thanhphu2410@gmail.com');
+    $("#login_password").val('camhoipass');
+})

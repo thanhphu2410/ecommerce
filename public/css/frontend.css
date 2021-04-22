@@ -4015,9 +4015,6 @@ input:focus {
     .send-message {
         text-align: center;
     }
-    .breadcrumb-blog {
-        margin: 20px 0;
-    }
     .product__item__pic {
         height: 177px;
     }
@@ -4027,7 +4024,9 @@ input:focus {
     .shop__sidebar__search {
         display: none;
     }
-    .breadcrumb-option {
+    .breadcrumb-option,
+    .map,
+    .breadcrumb-blog {
         margin: 15px 0;
     }
     .header__logo {
