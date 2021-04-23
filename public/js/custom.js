@@ -27,6 +27,9 @@ $("#owl-example").owlCarousel({
     autoplay: false,
     responsive:{
         0:{
+            items:1
+        },
+        414:{
             items:2,
         },
         992:{
@@ -39,14 +42,17 @@ $("#owl-example").owlCarousel({
 });
 
 $("#best-seller").owlCarousel({
-    loop: false,
+    loop: true,
     items: 4,
     autoplayTimeout: 3000,
-    smartSpeed: 500,
+    smartSpeed: 600,
     autoHeight: false,
-    autoplay: false,
+    autoplay: true,
     responsive:{
         0:{
+            items:1
+        },
+        414:{
             items:2,
         },
         992:{
@@ -67,6 +73,9 @@ $("#new-arrivals").owlCarousel({
     autoplay: false,
     responsive:{
         0:{
+            items:1
+        },
+        414:{
             items:2,
         },
         992:{
@@ -87,6 +96,9 @@ $("#hot-sales").owlCarousel({
     autoplay: false,
     responsive:{
         0:{
+            items:1
+        },
+        414:{
             items:2,
         },
         992:{

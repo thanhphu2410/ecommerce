@@ -4303,6 +4303,7 @@ input:focus {
         float: none;
     }
     .banner__item__pic img {
+        height: 300px;
         min-width: 100%;
     }
     .banner__item__text {
@@ -4423,6 +4424,9 @@ input:focus {
 /* Small Device = 320px */
 
 @media only screen and (max-width: 479px) {
+    .product__item__pic {
+        height: 160px;
+    }
     .cart__total {
         padding: 35px 30px 40px;
     }
@@ -4473,5 +4477,20 @@ input:focus {
     }
     .categories__text:before {
         height: 250px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .blog__hero__text h2 {
+        font-size: 25px;
+        margin-bottom: 0;
+    }
+
+    .blog__hero__text ul li {
+        font-size: 14px;
+    }
+
+    .shopping__cart__table table thead tr th {
+        padding-right: 20px;
     }
 }

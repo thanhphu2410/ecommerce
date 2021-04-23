@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             @foreach ($blogs as $blog)
-            <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="col-lg-4 col-md-6 col-12">
                 <div class="blog__item">
                     <div class="blog__item__pic set-bg" data-setbg="/{{ $blog->image_path }}"></div>
                     <div class="blog__item__text">
