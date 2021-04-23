@@ -70,12 +70,12 @@
         <div class="header__top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-7">
+                    <div class="col-6">
                         <div class="header__top__left">
                             <p>“Just do it.”</p>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-5">
+                    <div class="col-6">
                         <div class="header__top__right">
                             <div class="header__top__links">
                                 @guest

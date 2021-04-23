@@ -26,7 +26,7 @@
                 <input type="hidden" value="{{ $total }}" name="price" id="price">
                 <input type="hidden" value="0" name="discount" id="discount">
                 <div class="row edit-input-btn">
-                    <div class="col-lg-8 col-md-6">
+                    <div class="col-lg-8 col-md-6 mb-5">
                         @guest
                             <h6 class="coupon__code">
                                 <i class="fa fa-tag"></i>

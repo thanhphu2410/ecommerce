@@ -29,9 +29,12 @@ $("#owl-example").owlCarousel({
         0:{
             items:2,
         },
-        600:{
-            items:4,
+        992:{
+            items:3,
         },
+        1200:{
+            items:4,
+        }
     }
 });
 
@@ -46,9 +49,12 @@ $("#best-seller").owlCarousel({
         0:{
             items:2,
         },
-        600:{
-            items:4,
+        992:{
+            items:3,
         },
+        1200:{
+            items:4,
+        }
     }
 });
 
@@ -63,9 +69,12 @@ $("#new-arrivals").owlCarousel({
         0:{
             items:2,
         },
-        600:{
-            items:4,
+        992:{
+            items:3,
         },
+        1200:{
+            items:4,
+        }
     }
 });
 
@@ -80,9 +89,12 @@ $("#hot-sales").owlCarousel({
         0:{
             items:2,
         },
-        600:{
-            items:4,
+        992:{
+            items:3,
         },
+        1200:{
+            items:4,
+        }
     }
 });
 
@@ -342,7 +354,7 @@ $(".sub-category").on("click", function(){
     ajaxFilter();
 })
 
-$(".sale").on("click", function(){
+$(".onsale").on("click", function(){
     $(this).hasClass("active") ? $(this).removeClass("active") : $(this).addClass("active");
     var currentSale = "yes";
     var nextSale = "no";

@@ -306,7 +306,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="instagram__text">
+                        <div class="instagram__text text-center">
                             <h2>{{ $album->title }}</h2>
                             <p>{{ $album->description }}</p>
                         </div>

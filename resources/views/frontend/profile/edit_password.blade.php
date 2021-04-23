@@ -9,7 +9,7 @@
             <form action="{{ url('edit-password') }}" method="POST">
                 @csrf
                 <div class="row edit-input-btn">
-                    <div class="col-lg-12 col-md-6">
+                    <div class="col-12">
                         <h6 class="checkout__title">Change Password</h6>
                         <div class="row justify-content-md-center align-items-center">
                             <img src="/{{ $user->avatar }}" class="avatar" style="width: 100px; height: 100px; margin: auto">

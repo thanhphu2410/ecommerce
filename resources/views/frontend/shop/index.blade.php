@@ -87,7 +87,7 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll">
-                                                    <li class="sale @if (request('sale')=='yes' ) active @endif">
+                                                    <li class="onsale @if (request('sale')=='yes' ) active @endif">
                                                         <span>Sale</span>
                                                     </li>
                                                 </ul>
