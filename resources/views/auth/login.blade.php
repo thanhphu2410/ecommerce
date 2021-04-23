@@ -9,7 +9,7 @@
     </div>
     @endif
 
-    <section class="checkout spad">
+    <section class="checkout spad login">
         <div class="container">
             <div class="checkout__form">
                 <form action="{{ route('login') }}" method="POST">

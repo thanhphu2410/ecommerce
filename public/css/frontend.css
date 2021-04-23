@@ -4012,6 +4012,20 @@ input:focus {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+    .blog-details {
+        margin-top: 0;
+    }
+    .product__details__tab {
+        display: none;
+    }
+    .checkout__order {
+        margin-bottom: 20px;
+    }
+    .province,
+    .district,
+    .ward {
+        margin-bottom: 15px !important;
+    }
     .send-message {
         text-align: center;
     }
@@ -4026,8 +4040,12 @@ input:focus {
     }
     .breadcrumb-option,
     .map,
-    .breadcrumb-blog {
-        margin: 15px 0;
+    .breadcrumb-blog,
+    .login,
+    .register,
+    .shop-details,
+    .blog-hero {
+        margin: 20px 0;
     }
     .header__logo {
         margin-top: 35px;
@@ -4046,7 +4064,7 @@ input:focus {
         margin-bottom: 10px;
     }
     .spad {
-        padding: 0;
+        padding: 20px 0;
     }
     .canvas__open {
         display: block;

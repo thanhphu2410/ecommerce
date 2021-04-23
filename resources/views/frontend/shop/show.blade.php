@@ -19,7 +19,7 @@
         <div class="product__details__content">
             <div class="container">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-lg-6 col-md-9">
+                    <div class="col-lg-6 col-md-9 mb-5">
                         <div class="tab-content">
                             <div class="product__details__pic__item">
                                 <img class="img-thumbnail" src="/{{ $product->first_image }}" id="main-image">

@@ -17,7 +17,7 @@
                     <div class="col-lg-12 col-md-6">
                         <h6 class="checkout__title">Basic Information</h6>
                         <div class="row justify-content-md-center align-items-center">
-                            <img src="/{{ $user->avatar }}" class="avatar" style="width: 100px; height: 100px">
+                            <img src="/{{ $user->avatar }}" class="avatar" style="width: 100px; height: 100px; margin: auto">
                             <div class="col-lg-12">
                                 <div class="checkout__input">
                                     <p>Avatar</p>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 mb-3">
                                 <div class="checkout__input">
                                     <p>Gender </p>
                                     <div class="custom-control custom-radio custom-control-inline">
@@ -105,7 +105,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-12 custom-nice-select mb-5">
+                            <div class="col-lg-12 custom-nice-select province">
                                 <div class="checkout__input">
                                     <p>Province</p>
                                     <select id="province" name="province_id">
@@ -122,7 +122,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-6 custom-nice-select">
+                            <div class="col-lg-6 custom-nice-select district">
                                 <div class="checkout__input">
                                     <p>District</p>
                                     <select id="district" name="district_id">
@@ -142,7 +142,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-6 custom-nice-select">
+                            <div class="col-lg-6 custom-nice-select ward">
                                 <div class="checkout__input">
                                     <p>Ward</p>
                                     <select id="ward" name="ward_id">

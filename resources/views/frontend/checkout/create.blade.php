@@ -83,7 +83,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-12 custom-nice-select mb-5">
+                            <div class="col-lg-12 custom-nice-select mb-5 province">
                                 <div class="checkout__input">
                                     <p>Province<span>*</span></p>
                                     <select id="province" name="province_id">
@@ -102,7 +102,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-6 custom-nice-select">
+                            <div class="col-lg-6 custom-nice-select district">
                                 <div class="checkout__input">
                                     <p>District<span>*</span></p>
                                     <select id="district" name="district_id">
@@ -128,7 +128,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-6 custom-nice-select">
+                            <div class="col-lg-6 custom-nice-select ward">
                                 <div class="checkout__input">
                                     <p>Ward<span>*</span></p>
                                     <select id="ward" name="ward_id">
@@ -196,8 +196,7 @@
                                 <li>Discount <span id="order_discount">0%</span></li>
                                 <li>Total <span id="order_total">{{ money($total) }}</span></li>
                             </ul>
-                            <p>* Pay when you receive the item
-                            </p>
+                            <p><b>* Direct payment on delivery</b></p>
                             <button @if($products->count() == 0) disabled @endif type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
                     </div>

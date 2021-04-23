@@ -134,8 +134,7 @@
                                     </div>
                                     <div class="product__item__text">
                                         <h6>{{ $product->name }}</h6>
-                                        <a href="{{ route('product-details', ['product' => $product->id]) }}"
-                                            class="add-cart">+ Add To Cart</a>
+                                        <a href="{{ route('product-details', ['product' => $product->id]) }}" class="add-cart">+ Add To Cart</a>
                                         <div class="rating">
                                             @for ($i = 0; $i < $product->rating_star; $i++)
                                                 <i class="fa fa-star"></i>
@@ -148,7 +147,8 @@
                                         <h5 class="discount">
                                             {{ money($product->after_discount) }}
                                             @if ($product->discount > 0)
-                                                <span>{{ money($product->price) }}</span> @endif
+                                                <span>{{ money($product->price) }}</span>
+                                            @endif
                                         </h5>
                                     </div>
                                 </div>

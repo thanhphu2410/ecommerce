@@ -25,6 +25,14 @@ $("#owl-example").owlCarousel({
     smartSpeed: 500,
     autoHeight: false,
     autoplay: false,
+    responsive:{
+        0:{
+            items:2,
+        },
+        600:{
+            items:4,
+        },
+    }
 });
 
 $("#best-seller").owlCarousel({
@@ -490,7 +498,7 @@ function renderProducts(item) {
         starRender += '<i class="fa fa-star-o"></i> ';
     
     $("#products").append(
-        '<div class="col-lg-4 col-md-6 col-sm-6">' + 
+        '<div class="col-lg-4 col-md-6 col-6">' + 
         '<div class="product__item sale">' +
             '<div class="product__item__pic set-bg" style="background-image: url(/' + item.first_image + ')">' +
                 saleRender +

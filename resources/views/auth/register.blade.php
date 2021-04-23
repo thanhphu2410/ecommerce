@@ -9,7 +9,7 @@
     </button>
 </div>
 @endif
-<section class="checkout spad">
+<section class="checkout spad register">
     <div class="container">
         <div class="checkout__form">
             <form action="{{ route('register') }}" method="POST">
