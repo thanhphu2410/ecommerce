@@ -64,13 +64,4 @@ class ProductController extends Controller
         $product->delete();
         return success('products.index');
     }
-
-    public function getAttributes()
-    {
-        $attributes = [
-            'sizes' => Size::all(),
-            'colors' => Color::all(),
-        ];
-        return $attributes;
-    }
 }

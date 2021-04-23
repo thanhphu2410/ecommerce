@@ -94,11 +94,4 @@ class ShopController extends Controller
                 ->limit(request('limit', 5))
                 ->get();
     }
-
-    public function getColor($product, $size)
-    {
-        $attributes = ProductAttribute::where('product_id', $product)->where('size_id', $size)->get()->unique('color_id');
-        $attributes->load('color');
-        return $attributes;
-    }
 }

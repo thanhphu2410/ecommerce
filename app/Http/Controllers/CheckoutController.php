@@ -40,15 +40,4 @@ class CheckoutController extends Controller
         session()->forget('cart');
         return success('home', 'Checkout successful');
     }
-
-    public function orderCheckView()
-    {
-        return view('frontend.order_checking');
-    }
-
-    public function orderChecking()
-    {
-        $order = Order::where('order_no', request('order_no'))->first();
-        return view('frontend.order_checking', compact('order'));
-    }
 }

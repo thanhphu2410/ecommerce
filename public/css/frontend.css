@@ -4483,6 +4483,12 @@ input:focus {
 /* Small Device < 320px */
 
 @media only screen and (max-width: 400px) {
+    .offcanvas-menu-wrapper.active {
+        left: -30px;
+    }
+    .offcanvas-menu-wrapper {
+        padding: 50px 20px 30px 50px;
+    }
     .blog__hero__text h2 {
         font-size: 25px;
         margin-bottom: 0;

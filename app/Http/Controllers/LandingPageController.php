@@ -20,9 +20,4 @@ class LandingPageController extends Controller
         $album = Album::display()->first()->load('images');
         return view('frontend.index', compact('bestSellers', 'newArrivals', 'hotSales', 'blogs', 'categories', 'album'));
     }
-
-    public function findPromos($code)
-    {
-        return Promo::where('code', $code)->first();
-    }
 }

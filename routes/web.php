@@ -19,17 +19,17 @@ Route::resource('checkout', 'CheckoutController');
 Route::get('/', 'LandingPageController@index')->name('home');
 Route::get('shop', 'ShopController@index')->name('shop');
 Route::get('product-details/{product}', 'ShopController@show')->name('product-details');
-Route::get('districts/{province}', 'AddressController@getDistrict');
-Route::get('wards/{district}', 'AddressController@getWards');
 Route::get('all-blogs', 'NewsController@index');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
 Route::get('filter', 'ShopController@filter');
-Route::get('get-colors/{product}/{size}', 'ShopController@getColor');
 Route::get('contact/create', 'ContactController@create')->name('contact.create');
 Route::post('contact', 'ContactController@store');
-Route::get('order-checking', 'CheckoutController@orderCheckView');
-Route::post('order-checking', 'CheckoutController@orderChecking')->name('checking-order');
-Route::get('find-promos/{code}', 'LandingPageController@findPromos');
+Route::get('order-checking', 'OrderCheckController@index');
+Route::post('order-checking', 'OrderCheckController@check')->name('checking-order');
+Route::get('get-colors/{product}/{size}', 'AjaxController@getColor');
+Route::get('find-promos/{code}', 'AjaxController@findPromos');
+Route::get('districts/{province}', 'AjaxController@getDistrict');
+Route::get('wards/{district}', 'AjaxController@getWards');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('wishlist', 'WishListController');
@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
 /* *************Back End************* */
 Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
-    Route::get('products/attributes', 'ProductController@getAttributes');
+    Route::get('products/attributes', 'AjaxController@getAttributes');
     Route::resource('categories', 'CategoryController');
     Route::resource('sub-categories', 'SubCategoryController');
     Route::resource('products', 'ProductController');

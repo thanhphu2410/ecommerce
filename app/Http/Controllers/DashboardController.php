@@ -6,7 +6,6 @@ use App\User;
 use App\Models\Order;
 use App\Models\Review;
 use App\Models\Product;
-use App\Models\SubCategory;
 
 class DashboardController extends Controller
 {
