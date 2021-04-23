@@ -33,7 +33,7 @@
                             @foreach ($wishlist as $index=>$item)
                                 <tr>
                                     <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
+                                        <div class="product__cart__item__pic mb-3">
                                             <img width="100" src="{{ $item->product->first_image }}" alt="">
                                         </div>
                                         <div class="product__cart__item__text">

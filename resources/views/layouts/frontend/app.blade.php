@@ -39,26 +39,31 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
-                <a href="#">Sign in</a>
-                <a href="#">FAQs</a>
+                @guest
+                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('register') }}">Register</a>
+                @endguest
+                @auth
+                    <a href="/logout">Log out</a>
+                    @if (auth()->user()->isAdmin())
+                        <a href="/dashboard">Dashboard</a>
+                    @endif
+                @endauth
             </div>
         </div>
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch">
                 <i class="fa fa-search"></i>
             </a>
-            <a href="#">
+            <a href="{{ route('wishlist.index') }}">
                 <i class="far fa-heart"></i>
             </a>
-            <a href="#">
-                <i class="fa-shopping-cart"></i>
-                <span>{{ $cart_amount }}</span>
+            <a href="{{ route('cart.index') }}">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="badge rounded-pill bg-warning">{{ $cart_amount }}</span>
             </a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
-        </div>
     </div>
 
     <header class="header">
@@ -130,6 +135,12 @@
                             </li>
                             <li @if(request()->url() == url("contact/create")) class="active" @endif>
                                 <a href="{{ route('contact.create') }}">Contacts</a>
+                            </li>
+                            <li class="mobile-only">
+                                <a href="{{ url('edit-profile') }}">Update Profile</a>
+                            </li>
+                            <li class="mobile-only">
+                                <a href="{{ url('edit-password') }}">Change Password</a>
                             </li>
                         </ul>
                     </nav>

@@ -29,7 +29,7 @@
 										<tr>
 											<input type="hidden" value="{{ $index }}" id="indexValue">
 											<td class="product__cart__item">
-												<div class="product__cart__item__pic">
+												<div class="product__cart__item__pic mb-3">
 													<img src="{{ $attribute->images[0]->path ?? ''}}" alt="">
 												</div>
 												<div class="product__cart__item__text">

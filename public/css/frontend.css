@@ -3430,6 +3430,9 @@ ol {
 
 /*--------------------------------- CSS CUSTOM -----------------------------*/
 
+.mobile-only {
+    display: none !important;
+}
 .collapseSidebar {
     display: none;
 }
@@ -4012,6 +4015,9 @@ input:focus {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+    .mobile-only {
+        display: inline !important;
+    }
     .blog-details {
         margin-top: 0;
     }
@@ -4044,7 +4050,9 @@ input:focus {
     .login,
     .register,
     .shop-details,
-    .blog-hero {
+    .blog-hero,
+    .checkout,
+    .shopping-cart {
         margin: 20px 0;
     }
     .header__logo {
@@ -4224,6 +4232,7 @@ input:focus {
         margin-bottom: 25px;
     }
     .offcanvas__nav__option a {
+        color: black;
         display: inline-block;
         margin-right: 26px;
         position: relative;
@@ -4232,8 +4241,8 @@ input:focus {
         color: #0d0d0d;
         font-size: 11px;
         position: absolute;
-        left: 5px;
-        top: 8px;
+        left: 9px;
+        top: 11px;
     }
     .offcanvas__nav__option a:last-child {
         margin-right: 0;
