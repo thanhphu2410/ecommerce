@@ -249,7 +249,7 @@
                 </div>
             </div>
             <div class="row">
-                <div id="owl-example" class="owl-carousel">
+                <div id="related-products" class="owl-carousel">
                     @foreach ($relatedProducts as $product)
                         <div class="col-12">
                             <div class="product__item sale">

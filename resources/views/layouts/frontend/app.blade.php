@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/frontend.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
     @yield('css')
 </head>
 
@@ -213,7 +215,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
+                    <div class="footer__widget newslatter">
                         <h6>NewLetter</h6>
                         <div class="footer__newslatter">
                             <p>Be the first to know about new arrivals, look books, sales & promos!</p>

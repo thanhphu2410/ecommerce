@@ -18,7 +18,7 @@ $("#background").owlCarousel({
     }
 });
 
-$("#owl-example").owlCarousel({
+$("#related-products").owlCarousel({
     loop: true,
     items: 4,
     autoplayTimeout: 3000,
