@@ -82,7 +82,7 @@
                         <div class="header__top__right">
                             <div class="header__top__links">
                                 @guest
-                                    <a href="{{ route('login') }}">Login</a>
+                                    <a href="{{ url('login') }}">Login</a>
                                     <a href="{{ route('register') }}">Register</a>
                                 @endguest
                                 @auth

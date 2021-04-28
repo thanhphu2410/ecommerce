@@ -195,6 +195,9 @@
                                         </div>
                                         @endforeach
                                     </div>
+                                    <div class="mt-3"> 
+                                        {{ $reviews->links() }}
+                                    </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-7" role="tabpanel">
                                     <div class="product__details__tab__content">

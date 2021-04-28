@@ -483,3 +483,7 @@ input:focus {
     height: 90px;
     object-fit: cover;
 }
+
+#spinner {
+    display: none;
+}

@@ -41,4 +41,10 @@ class AjaxController extends Controller
         ];
         return $attributes;
     }
+
+    public function paypalPaid()
+    {
+        session()->put('paypal_paid', true);
+        return true;
+    }
 }

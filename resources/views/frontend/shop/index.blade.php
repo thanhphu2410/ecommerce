@@ -181,9 +181,11 @@
                     <div class="shop__product__option">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__left">
+                                <div class="shop__product__option__left d-flex">
                                     <p>Showing {{ $products->count() }} results</p>
+                                    <div class="spinner-border spinner-border-sm ml-3" role="status" id="spinner"></div>
                                 </div>
+                                
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">

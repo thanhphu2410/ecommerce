@@ -445,6 +445,7 @@ $("#sortby").on("change", function(){
 })
 
 function ajaxFilter() {
+    $("#spinner").css('display', 'block');
     var currentUrl = $("#filterUrl").val();
     var currentOffset = currentUrl.slice(currentUrl.indexOf("offset=") + 7, currentUrl.indexOf("&limit="));
     $("#filterUrl").val(function(i, v) {return v.replace("offset=" + currentOffset, "offset=0");}).val();
@@ -462,6 +463,7 @@ function ajaxFilter() {
                 renderProducts(item);
             });
             $(".shop__product__option__left p").text('Showing ' + $(".product__hover input[name='product_id']").length + ' results');
+            $("#spinner").css('display', 'none');
         }
     });
 }
@@ -524,7 +526,7 @@ function renderProducts(item) {
     $("#products").append(
         '<div class="col-lg-4 col-md-6 col-6">' + 
         '<div class="product__item sale">' +
-            '<div class="product__item__pic set-bg" style="background-image: url(/' + item.first_image + ')">' +
+            '<div class="product__item__pic set-bg" style="background-image: url(/' + item.first_image + ');">' +
                 saleRender +
                 '<ul class="product__hover">' + 
                     '<li>' + 
@@ -560,8 +562,6 @@ function renderProducts(item) {
     '</div>'
     );
 }
-
-
 
 var btn = $('#button');
 
@@ -611,6 +611,8 @@ $("#apply_promos").on("click", function(){
                 $("#liveToastSuccess").delay(1000).slideUp(200, function() {
                     $(this).hide();
                 });
+                console.log(total);
+                updatePaypalBtn(total);
                 return;
             }
             $("#discount").val(0);
@@ -627,9 +629,66 @@ $("#apply_promos").on("click", function(){
             $("#liveToastError").delay(1000).slideUp(200, function() {
                 $(this).hide();
             });
+            updatePaypalBtn($("#old_price").val());
         }
     });
 })
+
+function updatePaypalBtn(total){
+    paypal.Button.render({
+        // Configure environment
+        env: 'sandbox',
+        client: {
+            sandbox: 'ARtU3c6GkSq_b4FqZGE0_2Sb2VCiOj4wjbyg3_m2CjeFzJaYnCraR8Qe8Bzcc0eN-uRBeFHzzv1TeZ7k',
+            production: 'demo_production_client_id'
+        },
+        // Customize button (optional)
+        locale: 'en_US',
+        style: {
+            size: 'responsive',
+            color: 'black',
+            shape: 'rect',
+            tagline: false
+        },
+
+        // Enable Pay Now checkout flow (optional)
+        commit: true,
+
+        // Set up a payment
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [{
+                        amount: {
+                            total: Math.round(total * 100) / 100,
+                            currency: 'USD'
+                        }
+                    }]
+                },
+                experience: {
+                    input_fields: {
+                        no_shipping: 1
+                    }
+                }
+            });
+        },
+        // Execute the payment
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute()
+                .then(function() {
+                    $.ajax({
+                        url: "/paypal-paid",
+                        type: "get",
+                        dataType: "JSON",
+                    });
+                })
+                .then(function() {
+                    $("#checkout-form").submit();
+                });
+        }
+    }, '#paypal-button');
+    $("#paypal-button > div").get(0).remove();
+}
 
 $(document).on('keypress', function(event){
     if (event.key === 'Enter') {
@@ -640,4 +699,18 @@ $(document).on('keypress', function(event){
 $("#login_admin").on('click', function(){
     $("#login_email").val('thanhphu2410@gmail.com');
     $("#login_password").val('camhoipass');
+})
+
+$("#paypal").on('click', function(){
+    if ($("#paypal").is(":checked")) {
+        $("#site-btn").css('display', 'none');
+        $("#paypal-button").css('display', 'block');
+    }
+})
+
+$("#cod").on('click', function(){
+    if ($("#cod").is(":checked")) {
+        $("#site-btn").css('display', 'block');
+        $("#paypal-button").css('display', 'none');
+    }
 })

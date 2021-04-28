@@ -30,6 +30,7 @@ Route::get('get-colors/{product}/{size}', 'AjaxController@getColor');
 Route::get('find-promos/{code}', 'AjaxController@findPromos');
 Route::get('districts/{province}', 'AjaxController@getDistrict');
 Route::get('wards/{district}', 'AjaxController@getWards');
+Route::get('paypal-paid', 'AjaxController@paypalPaid');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('wishlist', 'WishListController');

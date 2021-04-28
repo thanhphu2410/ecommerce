@@ -26,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // if ($this->app->environment() != 'production') {
+        //     $parse = parse_url(config('app.url'));
+        //     request()->headers->set('host', $parse['host']);
+        // }
+        
         view()->composer('layouts.frontend.app', function ($view) {
             $cart = session('cart', []);
             $amount = 0;

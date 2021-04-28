@@ -20,7 +20,11 @@ class CheckoutController extends Controller
         $products = Product::find(array_keys($cart));
         $total = CartService::total($cart, $products);
         $provinces = Province::all();
-        return view('frontend.checkout.create', compact('products', 'cart', 'total', 'provinces'));
+        $user = '';
+        if (auth()->check()) {
+            $user = auth()->user()->load(['province.districts', 'district.wards']);
+        }
+        return view('frontend.checkout', compact('products', 'cart', 'total', 'provinces', 'user'));
     }
 
     public function store(CheckoutRequest $request)
@@ -37,7 +41,7 @@ class CheckoutController extends Controller
 
         User::find(1)->notify(new NewOrder($order));
         
-        session()->forget('cart');
+        session()->forget(['cart', 'paypal_paid']);
         return success('home', 'Checkout successful');
     }
 }
