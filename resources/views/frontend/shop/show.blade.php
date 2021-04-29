@@ -304,3 +304,7 @@
         </div>
     </section>
 @endsection
+
+@section('script')
+    <script src="{{ asset('js/product_details.js') }}"></script>
+@endsection

@@ -50,6 +50,9 @@ class CartController extends Controller
     public function destroy($id)
     {
         session()->forget('cart.'.$id.'.'.request('index'));
+        if (count(session('cart.'.$id)) == 0) {
+            session()->forget('cart.'.$id);
+        }
         return response()->json(['success'=> 'Success']);
     }
 }

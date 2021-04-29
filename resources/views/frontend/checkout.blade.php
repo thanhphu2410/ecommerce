@@ -123,22 +123,6 @@
 											@if (!($user->province_id ?? null))
 											<option selected value="">Select District</option>
 											@endif
-                                            {{-- @auth
-                                                @if (auth()->user()->province_id != null)
-                                                    @foreach (auth()->user()->province->load('districts')->districts as $district)
-                                                        <option value="{{ $district->id }}" 
-                                                        @if ($district->id == auth()->user()->district_id) selected @endif>
-                                                            {{ $district->name }}
-                                                        </option>
-                                                    @endforeach
-                                                @else
-                                                    <option selected value="">Select District</option>
-                                                @endif
-                                            @endauth
-
-                                            @guest
-                                                <option selected value="">Select District</option>
-                                            @endguest --}}
                                         </select>
                                         @error('district_id')
                                             <div class="error error-nice-select">{{ $message }}</div>
@@ -159,22 +143,6 @@
 											@if (!($user->district_id ?? null))
 											<option selected value="">Select Ward</option>
 											@endif
-
-                                            {{-- @auth
-                                                @if (auth()->user()->district_id != null)
-                                                    @foreach (auth()->user()->district->load('wards')->wards as $ward)
-                                                        <option value="{{ $ward->id }}" @if ($ward->id == auth()->user()->ward_id) selected @endif>
-                                                            {{ $ward->name }}
-                                                        </option>
-                                                    @endforeach
-                                                @else
-                                                    <option selected value="">Select Ward</option>
-                                                @endif
-                                            @endauth
-
-                                            @guest
-                                                <option selected value="">Select Ward</option>
-                                            @endguest --}}
                                         </select>
                                     </div>
                                     @error('ward_id')
@@ -226,8 +194,8 @@
                                     <li>Discount <span id="order_discount">0%</span></li>
                                     <li>Total <span id="order_total">{{ money($total) }}</span></li>
                                 </ul>
-                                @if (!session()->has('paypal_paid'))
-                                    <p><b>PAYMENT METHOD</b></p>
+                                @if (!session()->has('paypal_paid') && $products->count() > 0)
+                                    <p><b>PAYMENT METHODS</b></p>
                                     <div class="mb-3">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="cod" name="customRadio" class="custom-control-input" checked>
@@ -239,12 +207,14 @@
                                         </div>
                                     </div>
                                     <div id="paypal-button" style="display: none"></div>
-                                @else
+                                @elseif(session()->has('paypal_paid'))
                                     <p><b>You're paid by Paypal</b></p>
                                 @endif
-                                <button @if ($products->count() == 0) disabled @endif 
-									type="submit" class="site-btn" id="site-btn">PLACE ORDER
-                                </button>
+                                @if ($products->count() > 0)
+                                    <button type="submit" class="site-btn" id="site-btn">
+                                        PLACE ORDER
+                                    </button>
+                                @endif 
                             </div>
                         </div>
                     </div>
@@ -279,7 +249,7 @@
                     payment: {
                         transactions: [{
                             amount: {
-                                total: 1,
+                                total: Math.round(@json($total) * 100) / 100,
                                 currency: 'USD'
                             }
                         }]

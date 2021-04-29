@@ -105,3 +105,7 @@
 		</div>
 	</section>
 @endsection
+
+@section('script')
+    <script src="{{ asset('js/cart.js') }}"></script>
+@endsection
