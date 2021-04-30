@@ -258,3 +258,7 @@
         </div>
     </section>
 @endsection
+
+@section('script')
+    <script src="{{ asset('js/shop_filter.js') }}"></script>
+@endsection

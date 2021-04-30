@@ -139,6 +139,9 @@
                             <li @if(request()->url() == url("contact/create")) class="active" @endif>
                                 <a href="{{ route('contact.create') }}">Contacts</a>
                             </li>
+                            <li @if(request()->url() == url("checkout/create")) class="active" @endif>
+                                <a href="{{ route('checkout.create') }}">Checkout</a>
+                            </li>
                             <li class="mobile-only">
                                 <a href="{{ url('edit-profile') }}">Update Profile</a>
                             </li>
