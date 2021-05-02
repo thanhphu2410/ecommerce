@@ -16,7 +16,7 @@ class LandingPageController extends Controller
         $hotSales = $product->hot_sale;
         $blogs = Blog::latest()->limit(3)->get();
         $categories = Category::inRandomOrder()->limit(3)->get();
-        $album = Album::display()->first()->load('images');
+        $album = Album::display()->first();
         return view('frontend.index', compact('bestSellers', 'newArrivals', 'hotSales', 'blogs', 'categories', 'album'));
     }
 }

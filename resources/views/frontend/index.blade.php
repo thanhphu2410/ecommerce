@@ -300,7 +300,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-8">
                         <div class="instagram__pic">
-                            @foreach ($album->images as $item)
+                            @foreach ($album->load('images')->images as $item)
                                 <div class="instagram__pic__item set-bg" data-setbg="/{{ $item->path }}"></div>
                             @endforeach
                         </div>
@@ -315,6 +315,7 @@
             </div>
         </section>
     @endif
+    @if ($blogs->count() > 0)
     <section class="latest spad">
         <div class="container">
             <div class="row">
@@ -347,4 +348,5 @@
             </div>
         </div>
     </section>
+    @endif
 @endsection

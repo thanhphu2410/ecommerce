@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Exports\OrdersExport;
 use App\Exports\ProductsExport;
 use App\Exports\CategoriesExport;
