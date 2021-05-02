@@ -18,7 +18,11 @@ class AjaxController extends Controller
 
     public function getColor($product, $size)
     {
-        $attributes = ProductAttribute::where('product_id', $product)->where('size_id', $size)->get()->unique('color_id');
+        $attributes = ProductAttribute::where('product_id', $product)
+                    ->where('size_id', $size)
+                    ->get()
+                    ->unique('color_id');
+                    
         $attributes->load('color');
         return $attributes;
     }

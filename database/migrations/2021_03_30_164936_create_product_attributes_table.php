@@ -18,7 +18,7 @@ class CreateProductAttributesTable extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('size_id')->constrained()->onDelete('cascade');
             $table->foreignId('color_id')->constrained()->onDelete('cascade');
-            $table->string('product_quantity');
+            $table->bigInteger('product_quantity');
             $table->timestamps();
         });
     }

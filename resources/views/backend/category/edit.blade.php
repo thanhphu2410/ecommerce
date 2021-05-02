@@ -24,7 +24,8 @@
                         @csrf
                         <div class="form-group">
                             <label>Category Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ $category->name }}" autocomplete="off">
+                            <input type="text" class="form-control" placeholder="Enter Name" 
+                            name="name" value="{{ old('name', $category->name) }}" autocomplete="off">
                             @error('name') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -33,13 +34,11 @@
                             <label>Image</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('image_path') is-invalid @enderror" name="image_path" accept="image/*">
+                                    <input type="file" class="custom-file-input @error('image_path') is-invalid @enderror" 
+                                    name="image_path" accept="image/*">
                                     <label class="custom-file-label">Choose image</label>
                                 </div>
                             </div>
-                            @if ($errors->any())
-                                <div class="error">Please choose images again</div>
-                            @endif
                         </div>
                         <button type="submit" class="btn btn-danger"> <i class="fa fa-pencil"></i> Save</button>
                     </form>

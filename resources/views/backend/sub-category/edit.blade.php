@@ -24,7 +24,8 @@
                         @csrf
                         <div class="form-group">
                             <label>Sub Category Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" value="{{ $subCategory->name }}" autocomplete="off">
+                            <input type="text" class="form-control" placeholder="Enter Name" 
+                            name="name" value="{{ old('name', $subCategory->name) }}" autocomplete="off">
                             @error('name') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -35,7 +36,8 @@
                             <select class="custom-select" name="category_id">
                                 <option selected value="">Select category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" @if($subCategory->category_id == $category->id) selected @endif>
+                                    <option value="{{ $category->id }}" 
+                                        @if(old('name', $subCategory->category_id) == $category->id) selected @endif>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
