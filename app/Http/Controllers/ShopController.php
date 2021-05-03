@@ -14,6 +14,7 @@ class ShopController extends Controller
 {
     public function index()
     {
+        return session()->all();
         $products = $this->filter();
         $categories = Category::all();
         $subCategories = SubCategory::all();
