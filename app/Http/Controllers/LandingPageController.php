@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Models\Blog;
 use App\Models\Album;
 use App\Models\Product;
@@ -11,6 +12,7 @@ class LandingPageController extends Controller
 {
     public function index(Product $product)
     {
+        return User::all();
         $bestSellers = $product->best_seller;
         $newArrivals = $product->new_arrival;
         $hotSales = $product->hot_sale;
