@@ -12,8 +12,6 @@ class LandingPageController extends Controller
 {
     public function index(Product $product)
     {
-        session()->put('test', true);
-        return session()->all();
         $bestSellers = $product->best_seller;
         $newArrivals = $product->new_arrival;
         $hotSales = $product->hot_sale;
