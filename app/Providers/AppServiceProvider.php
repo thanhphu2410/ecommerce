@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\SubCategory;
 use App\Models\SystemSetting;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        URL::forceSchema('https');
         // if ($this->app->environment() != 'production') {
         //     $parse = parse_url(config('app.url'));
         //     request()->headers->set('host', $parse['host']);
