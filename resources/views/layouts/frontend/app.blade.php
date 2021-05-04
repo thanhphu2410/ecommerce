@@ -127,19 +127,19 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li @if(request()->url() == url("/")) class="active" @endif>
+                            <li @if(url()->current() == url("/")) class="active" @endif>
                                 <a href="/">Home</a>
                             </li>
-                            <li @if(request()->url() == url("shop")) class="active" @endif>
+                            <li @if(url()->current() == url("shop")) class="active" @endif>
                                 <a href="{{ route('shop') }}">Shop</a>
                             </li>
-                            <li @if(request()->url() == url("all-blogs")) class="active" @endif>
+                            <li @if(url()->current() == url("all-blogs")) class="active" @endif>
                                 <a href="{{ url('all-blogs') }}">Blog</a>
                             </li>
-                            <li @if(request()->url() == url("contact/create")) class="active" @endif>
+                            <li @if(url()->current() == url("contact/create")) class="active" @endif>
                                 <a href="{{ route('contact.create') }}">Contacts</a>
                             </li>
-                            <li @if(request()->url() == url("checkout/create")) class="active" @endif>
+                            <li @if(url()->current() == url("checkout/create")) class="active" @endif>
                                 <a href="{{ route('checkout.create') }}">Checkout</a>
                             </li>
                             <li class="mobile-only">
