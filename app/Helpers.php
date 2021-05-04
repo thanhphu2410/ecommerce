@@ -28,7 +28,6 @@ if (! function_exists('delete_file')) {
 if (! function_exists('money')) {
     function money($money)
     {
-        $amount = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
-        return $amount->format($money);
+        return '$' . number_format($money, 2, '.', '.');
     }
 }
