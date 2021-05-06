@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
             'avatar' => 'images/avatar-default.svg',
+            'created_at' => now()
         ]);
     }
 }
