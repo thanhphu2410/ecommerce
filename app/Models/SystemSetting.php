@@ -35,8 +35,8 @@ class SystemSetting extends Model
     private function storeImage($key)
     {
         if (request()->has($key)) {
-            $path = request($key)->store('setting', 'public');
-            $this->attributes[$key] = "storage/".$path;
+            $path = store_file(request($key), 'setting');
+            $this->attributes[$key] = $path;
         }
     }
 }

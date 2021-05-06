@@ -35,7 +35,7 @@ Route::get('paypal-paid', 'AjaxController@paypalPaid');
 Route::middleware(['auth'])->group(function () {
     Route::resource('wishlist', 'WishListController');
     Route::post('review/{product}', 'ProductReviewController')->name('review');
-    Route::get('edit-profile', 'ProfileController@editProfile');
+    Route::get('edit-profile', 'ProfileController@editProfile')->name('edit-profile');
     Route::post('edit-profile', 'ProfileController@updateProfile');
     Route::get('edit-password', 'ProfileController@editPassword');
     Route::post('edit-password', 'ProfileController@updatePassword');

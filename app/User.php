@@ -83,8 +83,8 @@ class User extends Authenticatable
     public function setAvatarAttribute()
     {
         if (request()->has('avatar')) {
-            $path = request('avatar')->store('avatar', 'public');
-            $this->attributes['avatar'] = "storage/".$path;
+            $path = store_file(request('avatar'), 'avatar');
+            $this->attributes['avatar'] = $path;
         }
     }
 

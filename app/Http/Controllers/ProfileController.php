@@ -22,7 +22,7 @@ class ProfileController extends Controller
             delete_file(auth()->user()->avatar);
         }
         auth()->user()->update($request->validated());
-        return success();
+        return success('edit-profile');
     }
 
     public function editPassword()

@@ -12,8 +12,8 @@ class ProductImage extends Model
     {
         foreach ($attributes as $index=>$attribute) {
             foreach (request('images'.$index, []) as $image) {
-                $path = $image->store('product', 'public');
-                $attribute->images()->create(['path' => "storage/".$path]);
+                $path = store_file($image, 'product');
+                $attribute->images()->create(['path' => $path]);
             }
         }
     }

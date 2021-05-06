@@ -37,21 +37,33 @@
                                 <label>Album Title</label>
                                 <input type="text" class="form-control" placeholder="Enter Title" required name="title"
                                     value="{{ old('title') }}" autocomplete="off">
+                                @error('title') 
+                                    <div class="error">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea class="form-control" name="description" rows="3">{{ old('description') }}</textarea>
+                                @error('description') 
+                                    <div class="error">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Images (maximum 6 files)</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="images[]" multiple accept="image/*">
                                         <label class="custom-file-label">Choose images</label>
                                     </div>
                                 </div>
+                                @error('images') 
+                                    <div class="error">{{ $message }}</div>
+                                @enderror
+                                @if ($errors->any())
+                                    <div class="error">Please choose images again</div>
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
                         </form>

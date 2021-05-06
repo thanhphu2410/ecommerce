@@ -16,8 +16,8 @@ class Blog extends Model
     public function setImagePathAttribute()
     {
         if (request()->has('image_path')) {
-            $path = request('image_path')->store('blog', 'public');
-            $this->attributes['image_path'] = "storage/".$path;
+            $path = store_file(request('image_path'), 'blog');
+            $this->attributes['image_path'] = $path;
         }
     }
 

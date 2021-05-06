@@ -14,11 +14,15 @@ class AlbumImageController extends Controller
 
     public function store()
     {
+        request()->validate([
+            'images' => 'required|array|max:6',
+            'images.*' => 'required|image'
+        ]);
         $album = Album::create(request()->all());
 
         foreach (request('images') as $image) {
-            $path = $image->store('album', 'public');
-            $album->images()->create(['path' => 'storage/'.$path]);
+            $path = store_file($image, 'album');
+            $album->images()->create(['path' => $path]);
         }
 
         return success('albums-images');

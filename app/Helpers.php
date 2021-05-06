@@ -21,7 +21,9 @@ if (! function_exists('error')) {
 if (! function_exists('delete_file')) {
     function delete_file($path)
     {
-        File::delete($path);
+        if ($path != 'images/avatar-default.svg') {
+            File::delete($path);
+        }
     }
 }
 

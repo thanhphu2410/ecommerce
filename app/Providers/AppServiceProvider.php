@@ -50,8 +50,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('layouts.*', function ($view) {
-            $view->with('setting', SystemSetting::all()->first());
-            
             if (session()->has('success')) {
                 $view->with('success', session('success'));
                 session()->forget('success');
@@ -62,6 +60,8 @@ class AppServiceProvider extends ServiceProvider
                 session()->forget('error');
             }
         });
+
+        view()->share('setting', SystemSetting::all()->first());
 
         view()->composer('layouts.backend.app', function ($view) {
             $view->with('current_user', auth()->user()->load('unreadNotifications'));

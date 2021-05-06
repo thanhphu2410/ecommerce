@@ -15,7 +15,7 @@ class ProductReviewController extends Controller
             $request->validated()
         );
         ReviewImage::deleteItem($review);
-        ReviewImage::storeItem($review, request('images'));
+        ReviewImage::storeItem($review, request('images', []));
         session()->put('success', 'Operation successful');
         return redirect()->route('product-details', ['product' => $request->product_id]);
     }

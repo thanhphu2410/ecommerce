@@ -10,9 +10,9 @@ class ReviewImage extends Model
 
     public static function storeItem($review, $images)
     {
-        foreach ($images ?? [] as $image) {
-            $path = $image->store('review', 'public');
-            $review->images()->create(['path' => "storage/".$path]);
+        foreach ($images as $image) {
+            $path = store_file($image, 'review');
+            $review->images()->create(['path' => $path]);
         }
     }
     

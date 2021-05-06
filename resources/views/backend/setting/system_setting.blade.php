@@ -20,7 +20,7 @@
                 <div class="col-sm-12 col-xs-12">
                     <form action="{{ route('system-setting.update') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Favicon</label>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -44,7 +44,7 @@
                             @error('logo') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label>Shop Name</label>
