@@ -173,7 +173,7 @@
                         @foreach ($newArrivals as $product)
                             <div class="col-12">
                                 <div class="product__item sale">
-                                    <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
+                                    <div class="product__item__pic set-bg" data-setbg="{{ $product->first_image }}">
                                         @if ($product->discount > 0)
                                             <span class="label">Sale</span>
                                         @endif

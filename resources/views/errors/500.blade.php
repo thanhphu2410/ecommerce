@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="/{{ $setting->favicon }}">
-    <title>{{ $setting->site_title }}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.svg') }}">
+    <title>500</title>
     <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/error-pages.css') }}" rel="stylesheet">
 </head>

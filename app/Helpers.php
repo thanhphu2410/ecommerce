@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 if (! function_exists('success')) {
     function success($nameRoute = 'home', $message = 'Operation successful')
@@ -21,7 +21,14 @@ if (! function_exists('error')) {
 if (! function_exists('delete_file')) {
     function delete_file($path)
     {
-        Storage::delete(str_replace('storage', 'public', $path));
+        File::delete($path);
+    }
+}
+
+if (! function_exists('store_file')) {
+    function store_file($image, $folder)
+    {
+        return $image->store("uploads/$folder", 'public');
     }
 }
 

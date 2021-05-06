@@ -22,8 +22,8 @@ class Category extends Model
     public function setImagePathAttribute()
     {
         if (request()->has('image_path')) {
-            $path = request('image_path')->store('category', 'public');
-            $this->attributes['image_path'] = 'storage/'.$path;
+            $path = store_file(request('image_path'), 'category');
+            $this->attributes['image_path'] = $path;
         }
     }
 }

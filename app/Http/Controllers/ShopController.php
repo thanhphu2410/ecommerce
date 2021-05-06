@@ -33,6 +33,8 @@ class ShopController extends Controller
         $relatedProducts = $product->related;
         $reviews = $product->reviews()->paginate(10);
         $ratingStar = round($reviews->average('rating'));
+        
+        //các sizes được lấy phải là duy nhất, tránh lỗi hiện thị các size trùng nhau
         $sizes = $product->sizes->unique('id');
 
         //lấy colors có quan hệ với thằng product và thằng sizes[0]
