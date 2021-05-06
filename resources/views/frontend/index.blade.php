@@ -86,7 +86,7 @@
                             </div>
                             <div class="banner__item__text">
                                 <h2>{{ $item->name }}</h2>
-                                <a href="/product/search/?category_id={{ $item->id }}">Shop now</a>
+                                <a href="{{ route('shop', ['category' => $item->id]) }}">Shop now</a>
                             </div>
                         </div>
                     </div>
