@@ -1,5 +1,17 @@
 @extends('layouts.frontend.app')
 @section('content')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/flatpickr.css') }}">
+@endsection
+
+@section('script')
+<script src="{{ asset('js/flatpickr.js') }}"></script>
+<script>
+    $(".date").flatpickr();
+</script>
+@endsection
+
 @if ($errors->any())
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <strong>Something went wrong! Try again</strong>
@@ -42,8 +54,8 @@
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Date of birth </p>
-                                    <input type="date" placeholder="Date of birth" name="date_of_birth" autocomplete="off"
-                                    value="{{ $user->date_of_birth }}">
+                                    <input type="text" placeholder="Date of birth" name="date_of_birth" autocomplete="off"
+                                    class="date" value="{{ $user->date_of_birth }}">
                                     @error('date_of_birth') 
                                         <div class="error">{{ $message }}</div>
                                     @enderror

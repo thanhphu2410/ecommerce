@@ -12,7 +12,7 @@
 
 <section class="blog spad">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach ($blogs as $blog)
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="blog__item">

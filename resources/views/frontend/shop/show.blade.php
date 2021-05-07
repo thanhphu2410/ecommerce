@@ -171,8 +171,7 @@
                                                 <img src="/{{ $review->user->avatar }}" alt="" width="50" class="mr-3 avatar">
                                                 <div>
                                                     <p class="font-weight-bold">{{ $review->user->name }}</p>
-                                                    <p>Joined at {{ $review->user->created_at 
-                                                        ? $review->user->created_at->format('d/m/Y') : 'Unknown' }}</p>
+                                                    <p>Joined at {{ $review->user->created_at->format('d/m/Y') }}</p>
                                                 </div>
                                             </div>
                                             <div class="col-9">

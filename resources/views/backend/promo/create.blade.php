@@ -22,7 +22,7 @@
                     <form action="{{ route('promos.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label>Promo Discount</label>
+                            <label>Promo Discount (%)</label>
                             <input type="number" class="form-control" placeholder="Enter Discount" required
                             name="discount" value="{{ old('discount', 0) }}" autocomplete="off">
                         </div>
