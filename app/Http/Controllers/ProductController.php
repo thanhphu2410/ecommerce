@@ -53,7 +53,8 @@ class ProductController extends Controller
     public function update(ProductStoreRequest $request, Product $product)
     {
         $product->update($request->validated());
-        $product->sizes()->sync(ProductAttribute::getData());
+        $product->sizes()->detach();
+        $product->attributes()->createMany(ProductAttribute::getData());
         ProductImage::updateItem($product->attributes);
         return success('products.index');
     }

@@ -1,9 +1,11 @@
-$(".tab-image").on("mouseover", function(){
-    var path = $(this).find("input").val();
+$(".tab-image").on("mouseover", function() {
+    var path = $(this)
+        .find("input")
+        .val();
     $("#main-image").attr("src", path);
     $(".tab-image").removeClass("active");
     $(this).addClass("active");
-})
+});
 
 $("#review").on("keyup", function() {
     $("#reviewBtn").removeAttr("disabled");
@@ -69,31 +71,46 @@ $(".size").on("click", function() {
         success: function(data) {
             $("#colorValue").val(data[0].color_id);
             $("#colorWrapper").empty();
-            var colorsRender = '';
+            var colorsRender = "";
             var active = "";
             data.forEach(function(item, index) {
                 active = index == 0 ? "active" : "";
-                console.log(active);
-                colorsRender += '<label class="color ' + active + '" style="background: ' + item.color.code + '" for="sp-1">'+
-                '<input type="hidden" value="' + item.color_id+ '">'+
-                '<i class="fas fa-check"></i>'+
-                '</label>';
+                colorsRender +=
+                    '<label class="color ' +
+                    active +
+                    '" style="background: ' +
+                    item.color.code +
+                    '" id="color_id' +
+                    item.id +
+                    '">' +
+                    '<input type="hidden" value="' +
+                    item.color_id +
+                    '">' +
+                    '<i class="fas fa-check"></i>' +
+                    "</label>";
             });
-            $("#colorWrapper").append(
-                '<span>Color:</span>'+
-                colorsRender
-            );
+            $("#colorWrapper").append("<span>Color:</span>" + colorsRender);
+            var path = $("#attribute" + data[0].id).val();
+            $("#main-image").attr("src", path);
         }
     });
 });
 
-$(document).on("click", ".color", function(){
+$(document).on("click", ".color", function() {
     $(".color").removeClass("active");
     $(this).addClass("active");
-    $("#colorValue").val($(this).find("input").val());
-    var path = $("#attribute" + $(this).attr("id").replace('attribute_id', '')).val();
+    $("#colorValue").val(
+        $(this)
+            .find("input")
+            .val()
+    );
+    var path = $(
+        "#attribute" +
+            $(this)
+                .attr("id")
+                .replace("color_id", "")
+    ).val();
     $("#main-image").attr("src", path);
-    console.log(path);
 });
 
 $("#quantity").on("keyup", function() {

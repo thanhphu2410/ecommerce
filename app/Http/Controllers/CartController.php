@@ -19,7 +19,7 @@ class CartController extends Controller
     public function store(CartRequest $request)
     {
         $sessionKey = 'cart.'.request('product_id');
-        $cart = $request->validated(); 
+        $cart = $request->validated();
         $index = -1;
         foreach (session($sessionKey, []) as $key=>$value) {
             if ($value['size'] == request('size') && $value['color'] == request('color')) {

@@ -44,7 +44,6 @@ class ShopController extends Controller
                     ->where('size_id', $sizes[0]->id)
                     ->get()
                     ->unique('color_id');
-                    
         return view('frontend.shop.show', compact('product', 'relatedProducts', 'reviews', 'ratingStar', 'colors', 'sizes'));
     }
 

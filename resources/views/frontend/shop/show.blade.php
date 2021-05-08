@@ -26,11 +26,12 @@
                             </div>
                         </div>
                         <div id="tab_image" class="owl-carousel mt-3">
-                            @foreach ($product->attributes as $attributeKey=>$attribute)
-                                @foreach ($attribute->images as $imageKey=>$image)
-                                    <div class="tab-image @if ($attributeKey == 0 && $imageKey == 0) active @endif">
+                            @foreach ($product->attributes as $attributeKey => $attribute)
+                                @foreach ($attribute->images as $imageKey => $image)
+                                    <div class="tab-image @if ($attributeKey==0 && $imageKey==0) active @endif">
                                         <a href="#tab{{ $image->id }}">
-                                            <input type="hidden" value="/{{ $image->path }}" id="attribute{{ $attribute->id }}">
+                                            <input type="hidden" value="/{{ $image->path }}"
+                                                id="attribute{{ $attribute->id }}">
                                             <div class="product__thumb__pic set-bg img-thumbnail"
                                                 data-setbg="/{{ $image->path }}"></div>
                                         </a>
@@ -44,19 +45,19 @@
                             <h4>{{ $product->name }}</h4>
                             <div class="rating">
                                 @for ($i = 0; $i < $ratingStar; $i++)
-                                <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
                                 @endfor
 
                                 @for ($i = 5; $i > $ratingStar; $i--)
-                                <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
                                 @endfor
                                 <span> - {{ $reviews->count() }} Reviews</span>
                             </div>
                             <h3>
                                 {{ money($product->after_discount) }}
-                                @if($product->discount > 0)
-                                <span>{{ money($product->price) }}</span>
-                                @endif 
+                                @if ($product->discount > 0)
+                                    <span>{{ money($product->price) }}</span>
+                                @endif
                             </h3>
                             <form action="{{ route('cart.store') }}" method="post">
                                 @csrf
@@ -64,36 +65,44 @@
                                     <div class="product__details__option__size">
                                         <span>Size:</span>
                                         @foreach ($sizes as $size)
-                                            <label for="size{{ $size->id }}" @if($loop->first) class="active" @endif>
-                                                {{ $size->name }} 
-                                                <input type="radio" id="size{{ $size->id }}" value="{{ $size->id }}"
-                                                name="size" @if($loop->first) checked @endif class="size">
-                                                <input type="hidden" value="{{ $size->pivot->product_quantity }}" id="size_qty{{ $size->id }}">
+                                            <label for="size{{ $size->id }}" @if ($loop->first) class="active" @endif>
+                                                {{ $size->name }}
+                                                <input type="radio" id="size{{ $size->id }}"
+                                                    value="{{ $size->id }}" name="size" @if ($loop->first) checked @endif
+                                                    class="size">
+                                                <input type="hidden" value="{{ $size->pivot->product_quantity }}"
+                                                    id="size_qty{{ $size->id }}">
                                             </label>
                                         @endforeach
                                     </div>
-                                    <input type="hidden" name="color" value="{{ $colors[0]->color_id }}" id="colorValue" required>
+                                    <input type="hidden" name="color" value="{{ $colors[0]->color_id }}" id="colorValue"
+                                        required>
                                     <div class="product__details__option__color" id="colorWrapper">
                                         <span>Color:</span>
                                         @foreach ($colors as $item)
-                                        <label class="color @if($loop->first) active @endif" style="background: {{ $item->color->code }}" id="attribute_id{{ $item->id }}">
-                                            <input type="hidden" value="{{ $item->color_id}}">
-                                            <i class="fas fa-check"></i>
-                                        </label>
+                                            <label class="color @if ($loop->first) active @endif" style="background:
+                                                {{ $item->color->code }}" id="color_id{{ $item->id }}">
+                                                <input type="hidden" value="{{ $item->color_id }}">
+                                                <i class="fas fa-check"></i>
+                                            </label>
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="product__details__cart__option">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="hidden" value="{{ $product->id }}" name="product_id" id="product_id">
-                                            <input type="hidden" value="{{ $product->attributes->first()->product_quantity }}" id="max_qty">
+                                            <input type="hidden" value="{{ $product->id }}" name="product_id"
+                                                id="product_id">
+                                            <input type="hidden"
+                                                value="{{ $product->attributes->first()->product_quantity }}"
+                                                id="max_qty">
                                             <span class="fa fa-angle-up dec qtybtn" id="increase"></span>
                                             <input type="text" value="0" id="quantity" name="quantity">
                                             <span class="fa fa-angle-down inc qtybtn" id="decrease"></span>
                                         </div>
                                     </div>
-                                    <button id="addToCartBtn" type="submit" class="primary-btn" disabled>add to cart</button>
+                                    <button id="addToCartBtn" type="submit" class="primary-btn" disabled>add to
+                                        cart</button>
                                 </div>
                             </form>
                             <div class="product__details__btns__option">
@@ -108,7 +117,8 @@
                             <div class="product__details__last__option">
                                 <h5><span>Guaranteed Safe Checkout</span></h5>
                                 <ul>
-                                    <li id="in_stock"><span>In stock:</span> {{ $product->attributes->first()->product_quantity }}</li>
+                                    <li id="in_stock"><span>In stock:</span>
+                                        {{ $product->attributes->first()->product_quantity }}</li>
                                     <li><span>Category:</span> {{ $product->category->name }}</li>
                                     <li><span>Sub Category:</span> {{ $product->subCategory->name }}</li>
                                 </ul>
@@ -124,10 +134,12 @@
                                     <a class="nav-link " data-toggle="tab" href="#tabs-5" role="tab">Description</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs-6" role="tab">Customer Reviews</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-6" role="tab">Customer
+                                        Reviews</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional Information</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional
+                                        Information</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -139,63 +151,72 @@
                                 <div class="tab-pane active" id="tabs-6" role="tabpanel">
                                     <div class="product__details__tab__content">
                                         <div class="row p-3">
-                                            <button type="button" class="btn btn-primary button-reviews col-4">{{ $reviews->count() }} reviews</button>
+                                            <button type="button"
+                                                class="btn btn-primary button-reviews col-4">{{ $reviews->count() }}
+                                                reviews</button>
                                         </div>
 
                                         @guest
-                                        <div class="row p-3">
-                                             <div class="row col-3 align-items-center">
-                                                <img src="/images/avatar-default.svg" alt="" width="50" class="mr-3">
-                                                <a href="{{ route('login') }}" class="font-weight-bold" style="color: #9d9d9d">Login to reviews</a>
+                                            <div class="row p-3">
+                                                <div class="row col-3 align-items-center">
+                                                    <img src="/images/avatar-default.svg" alt="" width="50" class="mr-3">
+                                                    <a href="{{ route('login') }}" class="font-weight-bold"
+                                                        style="color: #9d9d9d">Login to reviews</a>
+                                                </div>
                                             </div>
-                                        </div>
                                         @endguest
-                                       
+
                                         @auth
 
-                                        <div class="row p-3">
-                                            <div class="row col-3 align-items-center">
-                                               <img src="/{{ auth()->user()->avatar }}" alt="" width="50" class="mr-3 avatar">
-                                               <a href="{{ route('login') }}" class="font-weight-bold" data-toggle="modal" data-target="#reviews" style="color: #9d9d9d">Click to reviews</a>
-                                           </div>
-                                        </div>
+                                            <div class="row p-3">
+                                                <div class="row col-3 align-items-center">
+                                                    <img src="/{{ auth()->user()->avatar }}" alt="" width="50"
+                                                        class="mr-3 avatar">
+                                                    <a href="{{ route('login') }}" class="font-weight-bold"
+                                                        data-toggle="modal" data-target="#reviews" style="color: #9d9d9d">Click
+                                                        to reviews</a>
+                                                </div>
+                                            </div>
 
-                                        <!-- Modal -->
-                                        @include('frontend.modals.review')
-                                            
+                                            <!-- Modal -->
+                                            @include('frontend.modals.review')
+
                                         @endauth
 
                                         @foreach ($reviews as $review)
-                                        <div class="row p-3 border-bottom">
-                                            <div class="row col-3 align-items-start">
-                                                <img src="/{{ $review->user->avatar }}" alt="" width="50" class="mr-3 avatar">
-                                                <div>
-                                                    <p class="font-weight-bold">{{ $review->user->name }}</p>
-                                                    <p>Joined at {{ $review->user->created_at->format('d/m/Y') }}</p>
+                                            <div class="row p-3 border-bottom">
+                                                <div class="row col-3 align-items-start">
+                                                    <img src="/{{ $review->user->avatar }}" alt="" width="50"
+                                                        class="mr-3 avatar">
+                                                    <div>
+                                                        <p class="font-weight-bold">{{ $review->user->name }}</p>
+                                                        <p>Joined at {{ $review->user->created_at->format('d/m/Y') }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="rating mb-2">
-                                                    @for ($i = 0; $i < $review->rating; $i++)
-                                                    <i class="fa fa-star"></i>
-                                                    @endfor
+                                                <div class="col-9">
+                                                    <div class="rating mb-2">
+                                                        @for ($i = 0; $i < $review->rating; $i++)
+                                                            <i class="fa fa-star"></i>
+                                                        @endfor
 
-                                                    @for ($i = 5; $i > $review->rating; $i--)
-                                                    <i class="fa fa-star-o"></i>
-                                                    @endfor
-                                                    <span class="review_at"> - Reviewed at {{ $review->updated_at->format('d/m/Y') }}</span>
-                                                </div>
-                                                <p>{{ $review->body }}</p>
-                                                <div>
-                                                    @foreach ($review->images as $image)
-                                                        <img src="/{{ $image->path }}" width="120" height="120" class="image-review mr-2"> 
-                                                    @endforeach
+                                                        @for ($i = 5; $i > $review->rating; $i--)
+                                                            <i class="fa fa-star-o"></i>
+                                                        @endfor
+                                                        <span class="review_at"> - Reviewed at
+                                                            {{ $review->updated_at->format('d/m/Y') }}</span>
+                                                    </div>
+                                                    <p>{{ $review->body }}</p>
+                                                    <div>
+                                                        @foreach ($review->images as $image)
+                                                            <img src="/{{ $image->path }}" width="120" height="120"
+                                                                class="image-review mr-2">
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
-                                    <div class="mt-3"> 
+                                    <div class="mt-3">
                                         {{ $reviews->links() }}
                                     </div>
                                 </div>
@@ -257,7 +278,7 @@
                         <div class="col-12">
                             <div class="product__item sale">
                                 <div class="product__item__pic set-bg" data-setbg="/{{ $product->first_image }}">
-                                    @if($product->discount > 0)
+                                    @if ($product->discount > 0)
                                         <span class="label">Sale</span>
                                     @endif
                                     <ul class="product__hover">
@@ -271,29 +292,32 @@
                                             </form>
                                         </li>
                                         <li>
-                                            <a href="{{ route('product-details', ['product' => $product->id])  }}">
-                                            <button type="submit" class="wishlist">
-                                                <i class="fa fa-search"></i>
-                                            </button>
+                                            <a href="{{ route('product-details', ['product' => $product->id]) }}">
+                                                <button type="submit" class="wishlist">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
                                     <h6>{{ $product->name }}</h6>
-                                    <a href="{{ route('product-details', ['product' => $product->id])  }}" class="add-cart">+ Add To Cart</a>
+                                    <a href="{{ route('product-details', ['product' => $product->id]) }}"
+                                        class="add-cart">+ Add To Cart</a>
                                     <div class="rating">
                                         @for ($i = 0; $i < $product->rating_star; $i++)
-                                        <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
                                         @endfor
-        
+
                                         @for ($i = 5; $i > $product->rating_star; $i--)
-                                        <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
                                         @endfor
                                     </div>
                                     <h5 class="discount">
-                                        {{ money($product->after_discount) }} 
-                                        @if($product->discount > 0) <span>{{ money($product->price) }}</span> @endif
+                                        {{ money($product->after_discount) }}
+                                        @if ($product->discount > 0)
+                                            <span>{{ money($product->price) }}</span>
+                                        @endif
                                     </h5>
                                 </div>
                             </div>
