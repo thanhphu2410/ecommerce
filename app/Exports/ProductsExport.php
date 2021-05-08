@@ -20,7 +20,6 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping, Shoul
             'price',
             'quantity',
             'discount',
-            'description',
             'sub_category_id'
         )->latest()->get();
     }
@@ -32,7 +31,6 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping, Shoul
             $item->price,
             $item->quantity,
             $item->discount,
-            $item->description,
             $item->subCategory->name,
         ] ;
     }
@@ -40,7 +38,7 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping, Shoul
     public function headings(): array
     {
         return [
-            'NAME', 'PRICE', 'QUANTITY', 'DISCOUNT', 'DESCRIPTION', 'SUB CATEGORY'
+            'NAME', 'PRICE', 'QUANTITY', 'DISCOUNT', 'SUB CATEGORY'
         ];
     }
 }

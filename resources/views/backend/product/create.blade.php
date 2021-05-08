@@ -32,7 +32,7 @@
 
                             <div>
                                 <label class="mb-3">Product Attributes</label>
-                                <button type="button" class="btn btn-info btn-sm" id="addAttribute">
+                                <button type="button" class="btn btn-dark btn-sm" id="addAttribute">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
@@ -185,7 +185,7 @@
                             <div class="form-group">
                                 <label>Discount (%)</label>
                                 <input type="number" class="form-control" placeholder="Enter Discount" name="discount"
-                                    value="{{ old('discount', 0) }}" min="1" max="100">
+                                    value="{{ old('discount', 0) }}" min="0" max="100">
                                 @error('discount')
                                     <div class="error">{{ $message }}</div>
                                 @enderror

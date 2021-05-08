@@ -42,10 +42,6 @@
                                             <td>{{ money($product->after_discount) }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Description</td>
-                                            <td>{{ $product->description }}</td>
-                                        </tr>
-                                        <tr>
                                             <td>Sizes</td>
                                             <td>{{ $product->sizes->implode('name', ', ') }}</td>
                                         </tr>

@@ -43,7 +43,7 @@
                             <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                     </div>
-                    <div class="blog__details__text text-center">
+                    <div class="blog__details__text text-justify">
                         {!! $blog->body !!}
                     </div>
                     <div class="blog__details__option">

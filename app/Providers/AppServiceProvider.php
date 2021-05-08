@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\URL;
@@ -30,17 +31,14 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() == 'production') {
             URL::forceScheme('https');
         }
-        // if ($this->app->environment() != 'production') {
-        //     $parse = parse_url(config('app.url'));
-        //     request()->headers->set('host', $parse['host']);
-        // }
         
         view()->composer('layouts.frontend.app', function ($view) {
             $cart = session('cart', []);
+            $products = Product::find(array_keys($cart));
             $amount = 0;
-            foreach (session('cart', []) as $index=>$item) {
-                foreach (session('cart.'.$index) as $key=>$value) {
-                    $amount += $cart[$index][$key]['quantity'];
+            foreach ($products as $item) {
+                foreach (session('cart.'.$item->id) as $key=>$value) {
+                    $amount += $cart[$item->id][$key]['quantity'];
                 }
             }
             $view->with('cart_amount', $amount);
