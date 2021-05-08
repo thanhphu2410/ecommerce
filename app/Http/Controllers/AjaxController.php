@@ -27,6 +27,14 @@ class AjaxController extends Controller
         return $attributes;
     }
 
+    public function getAttribute()
+    {
+        return ProductAttribute::where('product_id', request('product'))
+                    ->where('size_id', request('size'))
+                    ->where('color_id', request('color'))
+                    ->first();
+    }
+
     public function getDistrict(Province $province)
     {
         return response()->json($province->districts);
@@ -37,7 +45,7 @@ class AjaxController extends Controller
         return response()->json($district->wards);
     }
 
-    public function getAttributes()
+    public function getAllAttributes()
     {
         $attributes = [
             'sizes' => Size::all(),

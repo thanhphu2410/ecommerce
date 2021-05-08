@@ -59,22 +59,18 @@ $("#decrease").on("click", function() {
 });
 
 $(".size").on("click", function() {
-    let qty = $("#size_qty" + $(this).val()).val();
-    $("#quantity").val(0);
-    $("#max_qty").val(qty);
-    $("#in_stock").empty();
-    $("#in_stock").append("<span>In stock:</span> " + qty);
+    $("#addToCartBtn").attr("disabled", "disabled");
     $.ajax({
         url: "/get-colors/" + $("#product_id").val() + "/" + $(this).val(),
         type: "get",
         dataType: "JSON",
         success: function(data) {
-            $("#colorValue").val(data[0].color_id);
-            $("#colorWrapper").empty();
             var colorsRender = "";
             var active = "";
+            var checked = "";
             data.forEach(function(item, index) {
                 active = index == 0 ? "active" : "";
+                checked = index == 0 ? "checked" : "";
                 colorsRender +=
                     '<label class="color ' +
                     active +
@@ -83,34 +79,60 @@ $(".size").on("click", function() {
                     '" id="color_id' +
                     item.id +
                     '">' +
-                    '<input type="hidden" value="' +
+                    '<input type="radio" name="color" ' +
+                    'value="' +
                     item.color_id +
-                    '">' +
+                    '" ' +
+                    checked +
+                    ">" +
                     '<i class="fas fa-check"></i>' +
                     "</label>";
             });
-            $("#colorWrapper").append("<span>Color:</span>" + colorsRender);
+            $("#colorWrapper")
+                .empty()
+                .append("<span>Color:</span>" + colorsRender);
+
             var path = $("#attribute" + data[0].id).val();
             $("#main-image").attr("src", path);
+
+            $("#quantity").val(0);
+            $("#max_qty").val(data[0].product_quantity);
+            $("#in_stock")
+                .empty()
+                .append("<span>In stock:</span> " + data[0].product_quantity);
         }
     });
 });
 
-$(document).on("click", ".color", function() {
+$(document).on("click", ".color", function(e) {
+    e.preventDefault();
+    $("#addToCartBtn").removeAttr("disabled");
     $(".color").removeClass("active");
     $(this).addClass("active");
-    $("#colorValue").val(
-        $(this)
-            .find("input")
-            .val()
-    );
-    var path = $(
-        "#attribute" +
-            $(this)
-                .attr("id")
-                .replace("color_id", "")
-    ).val();
-    $("#main-image").attr("src", path);
+    $(this)
+        .find("input")
+        .prop("checked", true);
+
+    $.ajax({
+        url:
+            "/get-attribute?size=" +
+            $("[name='size']:checked").val() +
+            "&color=" +
+            $("[name='color']:checked").val() +
+            "&product=" +
+            $("#product_id").val(),
+        type: "get",
+        dataType: "JSON",
+        success: function(data) {
+            $("#quantity").val(0);
+            $("#max_qty").val(data.product_quantity);
+            $("#in_stock")
+                .empty()
+                .append("<span>In stock:</span> " + data.product_quantity);
+            var path = $("#attribute" + data.id).val();
+            $("#main-image").attr("src", path);
+        }
+    });
 });
 
 $("#quantity").on("keyup", function() {

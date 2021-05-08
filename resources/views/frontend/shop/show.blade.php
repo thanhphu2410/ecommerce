@@ -70,19 +70,15 @@
                                                 <input type="radio" id="size{{ $size->id }}"
                                                     value="{{ $size->id }}" name="size" @if ($loop->first) checked @endif
                                                     class="size">
-                                                <input type="hidden" value="{{ $size->pivot->product_quantity }}"
-                                                    id="size_qty{{ $size->id }}">
                                             </label>
                                         @endforeach
                                     </div>
-                                    <input type="hidden" name="color" value="{{ $colors[0]->color_id }}" id="colorValue"
-                                        required>
                                     <div class="product__details__option__color" id="colorWrapper">
                                         <span>Color:</span>
                                         @foreach ($colors as $item)
                                             <label class="color @if ($loop->first) active @endif" style="background:
-                                                {{ $item->color->code }}" id="color_id{{ $item->id }}">
-                                                <input type="hidden" value="{{ $item->color_id }}">
+                                                {{ $item->color->code }}">
+                                                <input type="radio" name="color" value="{{ $colors[0]->color_id }}" @if ($loop->first) checked @endif>
                                                 <i class="fas fa-check"></i>
                                             </label>
                                         @endforeach

@@ -27,6 +27,7 @@ Route::post('contact', 'ContactController@store');
 Route::get('order-checking', 'OrderCheckController@index');
 Route::post('order-checking', 'OrderCheckController@check')->name('checking-order');
 Route::get('get-colors/{product}/{size}', 'AjaxController@getColor');
+Route::get('get-attribute', 'AjaxController@getAttribute');
 Route::get('find-promos/{code}', 'AjaxController@findPromos');
 Route::get('districts/{province}', 'AjaxController@getDistrict');
 Route::get('wards/{district}', 'AjaxController@getWards');
@@ -43,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
 /* *************Back End************* */
 Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
-    Route::get('products/attributes', 'AjaxController@getAttributes');
+    Route::get('products/attributes', 'AjaxController@getAllAttributes');
     Route::resource('categories', 'CategoryController');
     Route::resource('sub-categories', 'SubCategoryController');
     Route::resource('products', 'ProductController');
