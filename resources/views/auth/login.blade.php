@@ -113,11 +113,11 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                                 <div class="social">
-                                    <a href="{{ url('auth/redirect/facebook') }}" class="btn  btn-facebook" data-toggle="tooltip"
+                                    <a href="{{ url('auth/redirect/facebook') }}" class="btn btn-facebook" data-toggle="tooltip"
                                         title="Login with Facebook">
                                         <i aria-hidden="true" class="fa fa-facebook"></i>
                                     </a>
-                                    <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip"
+                                    <a href="{{ url('auth/redirect/google') }}" class="btn btn-googleplus" data-toggle="tooltip"
                                         title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i>
                                     </a>
                                 </div>
