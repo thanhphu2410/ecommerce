@@ -10,6 +10,7 @@ use App\Models\OrderDetail;
 use Illuminate\Support\Str;
 use App\Services\CartService;
 use App\Notifications\NewOrder;
+use App\Services\CheckoutService;
 use App\Http\Requests\CheckoutRequest;
 
 class CheckoutController extends Controller
@@ -29,8 +30,8 @@ class CheckoutController extends Controller
 
     public function store(CheckoutRequest $request)
     {
-        if (!Product::checkQuantity()) {
-            return error('checkout.create');
+        if (!CheckoutService::checkQuantity()) {
+            return error('checkout.create', 'Your product is out of stock');
         }
         
         $order = Order::create($request->validated());
