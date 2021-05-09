@@ -70,6 +70,14 @@
         <div class="login-register" style="background-image:url({{ asset('images/login-register.jpg') }});">
             <div class="login-box card">
                 <div class="card-body">
+                    @if ($errors->first())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $errors->first() }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <form action="{{ route('login') }}" method="POST" class="form-horizontal form-material"
                         id="loginform">
                         @csrf
@@ -129,6 +137,7 @@
         </div>
     </section>
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>

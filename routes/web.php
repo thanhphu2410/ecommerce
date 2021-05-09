@@ -75,5 +75,7 @@ Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
         Route::get('orders', 'ExportExcelController@orders');
     });
 });
+Route::get('auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('callback/{provider}', 'SocialController@callback');
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
