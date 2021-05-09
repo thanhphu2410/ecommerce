@@ -1,4 +1,19 @@
 @extends('layouts.frontend.app')
+@section('css')
+    <link href="{{ asset('backend/lightbox/css/lightbox.css') }}" rel="stylesheet" />
+@endsection
+@section('script')
+    <script src="{{ asset('js/product_details.js') }}"></script>
+    <script src="{{ asset('backend/lightbox/js/lightbox.js') }}"></script>
+    <script>
+        lightbox.option({
+            'resizeDuration': 10,
+            'wrapAround': true,
+            'disableScrolling': true
+        })
+
+    </script>
+@endsection
 @section('content')
     <section class="shop-details">
         <div class="product__details__pic">
@@ -22,7 +37,12 @@
                     <div class="col-lg-6 col-md-9 mb-5">
                         <div class="tab-content">
                             <div class="product__details__pic__item">
-                                <img class="img-thumbnail" src="/{{ $product->first_image }}" id="main-image">
+                                <a href="/{{ $product->first_image }}"
+                                    data-lightbox="main-image" id="main-image-link">
+                                    <img src="/{{ $product->first_image }}" class="img-thumbnail"
+                                            id="main-image">
+                                </a>
+                                {{-- <img class="img-thumbnail" src="/{{ $product->first_image }}" id="main-image"> --}}
                             </div>
                         </div>
                         <div id="tab_image" class="owl-carousel mt-3">
@@ -204,8 +224,11 @@
                                                     <p>{{ $review->body }}</p>
                                                     <div>
                                                         @foreach ($review->images as $image)
-                                                            <img src="/{{ $image->path }}" width="120" height="120"
-                                                                class="image-review mr-2">
+                                                            <a href="/{{ $image->path }}"
+                                                                data-lightbox="album{{ $review->id }}">
+                                                                <img src="/{{ $image->path }}" class="image-review mr-2"
+                                                                    width="120" height="120">
+                                                            </a>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -323,8 +346,4 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('script')
-    <script src="{{ asset('js/product_details.js') }}"></script>
 @endsection

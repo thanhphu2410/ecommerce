@@ -1620,7 +1620,7 @@ ol {
     position: relative;
 }
 
-.product__details__pic__item a {
+/* .product__details__pic__item a {
     height: 56px;
     width: 56px;
     border: 4px solid #ffffff;
@@ -1635,7 +1635,7 @@ ol {
     top: 50%;
     margin-top: -28px;
     margin-left: -28px;
-}
+} */
 
 .product__details__text {
     text-align: center;

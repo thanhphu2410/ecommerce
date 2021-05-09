@@ -3,6 +3,7 @@ $(".tab-image").on("mouseover", function() {
         .find("input")
         .val();
     $("#main-image").attr("src", path);
+    $("#main-image-link").attr("href", path);
     $(".tab-image").removeClass("active");
     $(this).addClass("active");
 });
@@ -94,6 +95,7 @@ $(".size").on("click", function() {
 
             var path = $("#attribute" + data[0].id).val();
             $("#main-image").attr("src", path);
+            $("#main-image-link").attr("href", path);
 
             $("#quantity").val(0);
             $("#max_qty").val(data[0].product_quantity);
@@ -131,6 +133,7 @@ $(document).on("click", ".color", function(e) {
                 .append("<span>In stock:</span> " + data.product_quantity);
             var path = $("#attribute" + data.id).val();
             $("#main-image").attr("src", path);
+            $("#main-image-link").attr("href", path);
         }
     });
 });
