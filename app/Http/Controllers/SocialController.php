@@ -30,8 +30,6 @@ class SocialController extends Controller
                 'email'    => $getInfo->email,
                 'avatar'   => $getInfo->avatar,
                 'password' => Hash::make('123456'),
-                // 'provider' => $provider,
-                // 'provider_id' => $getInfo->id
             ]);
         }
         return $user;
