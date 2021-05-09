@@ -86,6 +86,9 @@ class User extends Authenticatable
             $path = store_file(request('avatar'), 'avatar');
             $this->attributes['avatar'] = $path;
         }
+        else {
+            $this->attributes['avatar'] = "images/avatar-default.svg";
+        }
     }
 
     public function scopeCustomer($query)
