@@ -1,4 +1,4 @@
-$(".tab-image").on("mouseover", function() {
+$(".tab-image").on("click", function() {
     var path = $(this)
         .find("input")
         .val();
@@ -60,6 +60,7 @@ $("#decrease").on("click", function() {
 });
 
 $(".size").on("click", function() {
+    $("#quantity").val(0);
     $("#addToCartBtn").attr("disabled", "disabled");
     $.ajax({
         url: "/get-colors/" + $("#product_id").val() + "/" + $(this).val(),
@@ -97,7 +98,6 @@ $(".size").on("click", function() {
             $("#main-image").attr("src", path);
             $("#main-image-link").attr("href", path);
 
-            $("#quantity").val(0);
             $("#max_qty").val(data[0].product_quantity);
             $("#in_stock")
                 .empty()
@@ -108,7 +108,7 @@ $(".size").on("click", function() {
 
 $(document).on("click", ".color", function(e) {
     e.preventDefault();
-    $("#addToCartBtn").removeAttr("disabled");
+    $("#addToCartBtn").attr("disabled", "disabled");
     $(".color").removeClass("active");
     $(this).addClass("active");
     $(this)

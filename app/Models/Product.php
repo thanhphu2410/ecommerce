@@ -20,7 +20,9 @@ class Product extends Model
 
     public function sizes()
     {
-        return $this->belongsToMany('App\Models\Size', 'product_attributes')->withPivot('product_quantity');
+        return $this->belongsToMany('App\Models\Size', 'product_attributes')
+                    ->withPivot('product_quantity')
+                    ->where('product_quantity', '>', 0);
     }
 
     public function subCategory()
@@ -30,7 +32,7 @@ class Product extends Model
 
     public function attributes()
     {
-        return $this->hasMany('App\Models\ProductAttribute');
+        return $this->hasMany('App\Models\ProductAttribute')->where('product_quantity', '>', 0);
     }
 
     public function reviews()

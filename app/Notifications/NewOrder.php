@@ -41,7 +41,7 @@ class NewOrder extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new CheckoutMail($this->order))->to('thanhphu2410@gmail.com');
+        return (new CheckoutMail($this->order))->to(request('customer_email'));
     }
 
     /**

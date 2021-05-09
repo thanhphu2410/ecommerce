@@ -40,7 +40,8 @@ class ShopController extends Controller
         //lấy colors có quan hệ với thằng product và thằng sizes[0]
         //chọn thằng sizes[0] vì size[0] được chọn mặc định (dùng nó để lọc bớt các color được hiển thị)
         //các colors được lấy phải là duy nhất, tránh lỗi hiện thị các color trùng nhau
-        $colors = ProductAttribute::where('product_id', $product->id)
+        $colors = ProductAttribute::where('product_quantity', '>', 0)
+                    ->where('product_id', $product->id)
                     ->where('size_id', $sizes[0]->id)
                     ->get()
                     ->unique('color_id');

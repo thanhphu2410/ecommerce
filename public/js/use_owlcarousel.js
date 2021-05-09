@@ -111,7 +111,8 @@ $("#hot-sales").owlCarousel({
 });
 
 $("#tab_image").owlCarousel({
-    loop: false,
+    loop: true,
     items: 4,
     autoplay: false,
+    nav: true
 });

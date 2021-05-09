@@ -487,3 +487,18 @@ input:focus {
 #spinner {
     display: none;
 }
+
+#tab_image .owl-next {
+    position: absolute;
+    top: 4%;
+    right: 4%;
+}
+#tab_image .owl-next span,
+#tab_image .owl-prev span {
+    font-size: 50px;
+}
+#tab_image .owl-prev {
+    position: absolute;
+    top: 4%;
+    left: 4%;
+}
