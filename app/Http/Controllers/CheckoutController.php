@@ -21,7 +21,10 @@ class CheckoutController extends Controller
         $products = Product::find(array_keys($cart));
         $total = CartService::total($cart, $products);
         $provinces = Province::all();
+        
         $user = '';
+        
+        //if user logged in
         if (auth()->check()) {
             $user = auth()->user()->load(['province.districts', 'district.wards']);
         }

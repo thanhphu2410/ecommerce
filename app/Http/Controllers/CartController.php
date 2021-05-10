@@ -34,18 +34,18 @@ class CartController extends Controller
         return success('cart.index', 'Added to cart');
     }
 
-    public function update()
-    {
-        foreach (session('cart', []) as $index=>$item) {
-            $i = 0;
-            foreach (session('cart.'.$index) as $key=>$value) {
-                $sessionKey = 'cart.'.$index.'.'.$key.'.quantity';
-                session()->put($sessionKey, request('quantity'.$index.'.'.$i));
-                $i ++;
-            }
-        }
-        return success('cart.index', 'Updated successful');
-    }
+    // public function update()
+    // {
+    //     foreach (session('cart', []) as $index=>$item) {
+    //         $i = 0;
+    //         foreach (session('cart.'.$index) as $key=>$value) {
+    //             $sessionKey = 'cart.'.$index.'.'.$key.'.quantity';
+    //             session()->put($sessionKey, request('quantity'.$index.'.'.$i));
+    //             $i ++;
+    //         }
+    //     }
+    //     return success('cart.index', 'Updated successful');
+    // }
 
     public function updateAjax()
     {

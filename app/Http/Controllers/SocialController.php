@@ -18,11 +18,7 @@ class SocialController extends Controller
         $getInfo = Socialite::driver($provider)->user();
         $user = $this->createUser($getInfo);
         auth()->login($user);
-        $url = url()->previous();
-        if (strpos($url, 'login') !== false) {
-            return redirect()->to('/');
-        }
-        return redirect()->to($url);
+        return redirect()->to('/');
     }
     
     public function createUser($getInfo)
