@@ -1,3 +1,20 @@
+function liveToastSuccess() {
+    $("#liveToastSuccess")
+        .empty()
+        .html(
+            "Operation successful" +
+                '<button type="button" class="close" id="close_success">' +
+                '<span aria-hidden="true">&times;</span>' +
+                "</button>"
+        )
+        .show();
+    $("#liveToastSuccess")
+        .delay(1000)
+        .slideUp(200, function() {
+            $(this).hide();
+        });
+}
+
 function updateCart(that, qty) {
     $.ajax({
         url:
@@ -16,15 +33,7 @@ function updateCart(that, qty) {
         type: "get",
         dataType: "JSON",
         success: function(data) {
-            $("#liveToastSuccess")
-                .empty()
-                .html(
-                    "Operation successful" +
-                        '<button type="button" class="close" id="close_success">' +
-                        '<span aria-hidden="true">&times;</span>' +
-                        "</button>"
-                )
-                .show();
+            liveToastSuccess();
             $("#total_price").text(
                 data.toLocaleString("en", {
                     style: "currency",
@@ -142,14 +151,14 @@ $(".quantityValue").on("keyup", function() {
 
 $(".deleteBtn").on("click", function() {
     var t = $(this);
-    var cart_amount =
-        parseInt($("#cart_amount").text()) -
-        parseInt(
-            t
-                .parents("tr")
-                .find(".quantityValue")
-                .val()
-        );
+    // var cart_amount =
+    //     parseInt($("#cart_amount").text()) -
+    //     parseInt(
+    //         t
+    //             .parents("tr")
+    //             .find(".quantityValue")
+    //             .val()
+    //     );
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -171,19 +180,15 @@ $(".deleteBtn").on("click", function() {
         dataType: "JSON",
         success: function() {
             t.parents("tr").remove();
-            $("#cart_amount").text(cart_amount);
-            if (cart_amount == 0) {
-                $("#updateBtn").attr("disabled", "disabled");
-            }
-            $("#liveToastSuccess")
-                .empty()
-                .html(
-                    "Operation successful" +
-                        '<button type="button" class="close" id="close_success">' +
-                        '<span aria-hidden="true">&times;</span>' +
-                        "</button>"
-                )
-                .show();
+            // $("#cart_amount").text(cart_amount);
+            var price = 0;
+            $("#total_price").text(
+                price.toLocaleString("en", {
+                    style: "currency",
+                    currency: "USD"
+                })
+            );
+            liveToastSuccess();
         }
     });
 });

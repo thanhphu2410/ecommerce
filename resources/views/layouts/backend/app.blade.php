@@ -140,7 +140,7 @@
         </div>
 
         <footer class="footer">
-            © 2021 Made by <a href="#">thanhphu2410@gmail.com</a>
+            {{ $setting->copyright_text }}
         </footer>
 
     </div>

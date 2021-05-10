@@ -8,7 +8,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::paginate(9);
+        $blogs = Blog::latest()->paginate(9);
         return view('frontend.blog.index', compact('blogs'));
     }
     

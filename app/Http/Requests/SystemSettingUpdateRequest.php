@@ -31,9 +31,9 @@ class SystemSettingUpdateRequest extends FormRequest
             'email' => 'nullable|email',
             'copyright_text' => 'nullable',
             'phone' => 'nullable|regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/',
-            'province_id' => 'nullable|numeric',
-            'district_id' => 'nullable|numeric',
-            'ward_id' => 'nullable|numeric',
+            'province_id' => 'nullable',
+            'district_id' => 'nullable',
+            'ward_id' => 'nullable',
             'address' => 'nullable',
         ];
     }

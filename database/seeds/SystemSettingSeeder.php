@@ -15,6 +15,8 @@ class SystemSettingSeeder extends Seeder
         DB::table('system_settings')->insert([
             'shop_name' => 'Adike',
             'site_title' => 'Just Do It',
+            'email' => 'thanhphu2410@gmail.com',
+            'copyright_text' => '© 2021 Made with ♥ by thanhphu2410@gmail.com'
         ]);
     }
 }

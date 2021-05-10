@@ -284,7 +284,7 @@
     @isset($error)
         <script>
             $("#liveToastError").show();
-            $("#liveToastError").delay(3000).slideUp(200, function() {
+            $("#liveToastError").delay(1500).slideUp(200, function() {
                 $(this).hide();
             });
         </script>

@@ -191,7 +191,7 @@
                         <div class="form-group">
                             <label>Discount (%)</label>
                             <input type="number" class="form-control" placeholder="Enter Discount" 
-                            name="discount" value="{{ old('discount', $product->discount) }}">
+                            name="discount" value="{{ old('discount', $product->discount) }}" min="0" max="100">
                             @error('discount') 
                                 <div class="error">{{ $message }}</div>
                             @enderror
