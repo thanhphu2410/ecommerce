@@ -2,14 +2,14 @@
 
 namespace App\Notifications;
 
-use App\Mail\CheckoutMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NewOrder extends Notification
+class NewOrder extends Notification implements ShouldQueue
 {
+    public $order;
     use Queueable;
 
     /**
@@ -30,7 +30,7 @@ class NewOrder extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database'];
     }
 
     /**
@@ -41,7 +41,7 @@ class NewOrder extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new CheckoutMail($this->order))->to(request('customer_email'));
+        // return (new CheckoutMail($this->order))->to('thanhphu2410@gmail.com');
     }
 
     /**
