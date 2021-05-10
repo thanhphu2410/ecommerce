@@ -134,18 +134,4 @@ class Product extends Model
     {
         return round($this->reviews->average('rating'));
     }
-
-    /*  *****************************METHODS***************************** */
-
-    public static function checkQuantity()
-    {
-        foreach (request('product_id') as $index => $value) {
-            $product = Product::find($value);
-            if ($product->quantity < request('quantity')[$index]) {
-                session()->forget('cart.'.$value);
-                return false;
-            }
-        }
-        return true;
-    }
 }

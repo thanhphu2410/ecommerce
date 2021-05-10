@@ -10,26 +10,26 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cart = session('cart', []);
-        $products = Product::find(array_keys($cart));
-        $total = CartService::total($cart, $products);
-        return view('frontend.cart', compact('cart', 'products', 'total'));
+        try {
+            $cart = session('cart', []);
+            $products = Product::find(array_keys($cart));
+            $total = CartService::total($cart, $products);
+            return view('frontend.cart', compact('cart', 'products', 'total'));
+        } catch (\Exception $th) {
+            session()->flush();
+            return error();
+        }
     }
 
     public function store(CartRequest $request)
     {
         $sessionKey = 'cart.'.request('product_id');
-        $cart = $request->validated();
-        $index = -1;
-        foreach (session($sessionKey, []) as $key=>$value) {
-            if ($value['size'] == request('size') && $value['color'] == request('color')) {
-                $index = $key;
-            }
-        }
-        if ($index == -1) {
-            session()->push($sessionKey, $cart);
+        $collect = collect(session($sessionKey, []));
+        $key = $collect->where('size', request('size'))->where('color', request('color'))->keys();
+        if ($key->count() == 0) {
+            session()->push($sessionKey, $request->validated());
         } else {
-            session()->increment($sessionKey.'.'.$index.'.quantity', request('quantity'));
+            session()->increment($sessionKey.'.'.$key[0].'.quantity', request('quantity'));
         }
         return success('cart.index', 'Added to cart');
     }
@@ -45,6 +45,16 @@ class CartController extends Controller
             }
         }
         return success('cart.index', 'Updated successful');
+    }
+
+    public function updateAjax()
+    {
+        $sessionKey = 'cart.'.request('product').'.'.request('key').'.quantity';
+        session()->put($sessionKey, request('quantity'));
+        $cart = session('cart', []);
+        $products = Product::find(array_keys($cart));
+        $total = CartService::total($cart, $products);
+        return response()->json($total);
     }
 
     public function destroy($id)

@@ -46,7 +46,7 @@
                                                             <span class="font-weight-bold">Size: </span>
                                                             {{ $attribute->size->name }}
                                                         </div>
-                                                        <div class="mt-2">
+                                                        <div class="mt-2" style="color: {{  $attribute->color->code }}">
                                                             <span class="font-weight-bold">Color: </span>
                                                             {{ $attribute->color->name }}
                                                         </div>
@@ -88,14 +88,14 @@
                                     <a href="{{ route('shop') }}">Continue Shopping</a>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            {{-- <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="continue__btn update__btn">
                                     <button id="updateBtn" @if (count($cart) == 0) disabled @endif>
                                         <i class="fa fa-spinner"></i>
                                         Update cart
                                     </button>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </form>
                 </div>
@@ -103,7 +103,7 @@
                     <div class="cart__total mt-5">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Total <span>{{ money($total) }}</span></li>
+                            <li>Total <span id="total_price">{{ money($total) }}</span></li>
                         </ul>
                         <a href="{{ route('checkout.create') }}" class="primary-btn">Proceed to checkout</a>
                     </div>

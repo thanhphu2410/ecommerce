@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 /* *************Front End************* */
 Route::resource('cart', 'CartController');
+Route::get('update-cart-ajax', 'CartController@updateAjax');
 Route::resource('checkout', 'CheckoutController');
 Route::get('/', 'LandingPageController@index')->name('home');
 Route::get('shop', 'ShopController@index')->name('shop');

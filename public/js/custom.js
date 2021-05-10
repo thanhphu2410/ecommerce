@@ -61,7 +61,7 @@ btn.on("click", function(e) {
     $("html, body").animate({ scrollTop: 0 }, "300");
 });
 
-$("#close_success").on("click", function() {
+$(document).on("click", "#close_success" , function() {
     $("#liveToastSuccess").hide();
 });
 
