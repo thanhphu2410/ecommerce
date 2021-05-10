@@ -10,6 +10,7 @@ class ProductImage extends Model
 
     public static function storeItem($attributes)
     {
+        //upload hình ảnh theo product_attribute, mỗi product_attribute có thể có nhiều hình ảnh
         foreach ($attributes as $index=>$attribute) {
             foreach (request('images'.$index, []) as $image) {
                 $path = store_file($image, 'product');

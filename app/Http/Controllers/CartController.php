@@ -25,6 +25,8 @@ class CartController extends Controller
     {
         $sessionKey = 'cart.'.request('product_id');
         $collect = collect(session($sessionKey, []));
+
+        //nếu sản phẩm đã có trong session thì chỉ tăng số lượng, ngược lại thì thêm vào session
         $key = $collect->where('size', request('size'))->where('color', request('color'))->keys();
         if ($key->count() == 0) {
             session()->push($sessionKey, $request->validated());

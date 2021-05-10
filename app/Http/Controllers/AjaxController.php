@@ -18,6 +18,7 @@ class AjaxController extends Controller
 
     public function getColor($product, $size)
     {
+        //loại bỏ color trùng id để sửa lỗi hiện thị color trùng 
         $attributes = ProductAttribute::where('product_quantity', '>', 0)
                     ->where('product_id', $product)
                     ->where('size_id', $size)
@@ -57,6 +58,7 @@ class AjaxController extends Controller
 
     public function paypalPaid()
     {
+        //dùng để check là user đã thanh toán qua paypal rồi
         session()->put('paypal_paid', true);
         return true;
     }
