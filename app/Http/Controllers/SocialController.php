@@ -16,6 +16,9 @@ class SocialController extends Controller
     public function callback($provider)
     {
         $getInfo = Socialite::driver($provider)->user();
+        if ($getInfo->email == null) {
+            return error();
+        }
         $user = $this->createUser($getInfo);
         auth()->login($user);
         return redirect()->to('/');
