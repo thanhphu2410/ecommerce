@@ -46,7 +46,7 @@ class ProductController extends Controller
         $subCategories = SubCategory::all();
         $sizes = Size::all();
         $colors = Color::all();
-        $product->load(['attributes']);
+        $product->load(['allattributes']);
         return view('backend.product.edit', compact('product', 'subCategories', 'sizes', 'colors'));
     }
 

@@ -38,7 +38,7 @@
                             </button>
                         </div>
 
-                        <input type="hidden" value="{{ $product->attributes->count() }}" id="currentAttribute">
+                        <input type="hidden" value="{{ $product->allattributes->count() }}" id="currentAttribute">
                         <input type="hidden" value="{{ $sizes->count() * $colors->count() }}" id="maxOfAttribute">
 
                         @if (count(old('sizes') ?? []) > 0)
@@ -97,7 +97,7 @@
                             </div>
                         @else
                             <div id="attributeWrapper">
-                                @foreach ($product->attributes as $index=>$attribute)
+                                @foreach ($product->allattributes as $index=>$attribute)
                                 <div style="display: none">
                                     @foreach ($attribute->images as $image)
                                         <input type="checkbox" name="old_images{{ $index }}[]" value="{{ $image->path }}" checked>

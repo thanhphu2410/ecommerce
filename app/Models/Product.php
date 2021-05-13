@@ -30,9 +30,16 @@ class Product extends Model
         return $this->belongsTo('App\Models\SubCategory');
     }
 
+    //lấy attributes có product_quantity > 0
     public function attributes()
     {
         return $this->hasMany('App\Models\ProductAttribute')->where('product_quantity', '>', 0);
+    }
+
+    //lấy tất cả attributes 
+    public function allattributes()
+    {
+        return $this->hasMany('App\Models\ProductAttribute');
     }
 
     public function reviews()
