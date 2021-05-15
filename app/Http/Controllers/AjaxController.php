@@ -39,11 +39,13 @@ class AjaxController extends Controller
 
     public function getDistrict(Province $province)
     {
+        $province->load('districts');
         return response()->json($province->districts);
     }
     
     public function getWards(District $district)
     {
+        $district->load('wards');
         return response()->json($district->wards);
     }
 

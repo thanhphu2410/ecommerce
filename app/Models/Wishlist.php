@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Wishlist extends Model
@@ -14,7 +13,7 @@ class Wishlist extends Model
         return $this->belongsTo('App\Models\Product');
     }
 
-    public static function isExists()
+    public function isExists()
     {
         return WishList::whereUserId(auth()->id())
                 ->whereProductId(request('product_id'))->first() ? true : false;

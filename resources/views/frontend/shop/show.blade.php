@@ -37,12 +37,9 @@
                     <div class="col-lg-6 col-md-9 mb-5">
                         <div class="tab-content">
                             <div class="product__details__pic__item">
-                                <a href="/{{ $product->first_image }}"
-                                    data-lightbox="main-image" id="main-image-link">
-                                    <img src="/{{ $product->first_image }}" class="img-thumbnail"
-                                            id="main-image">
+                                <a href="/{{ $product->first_image }}" data-lightbox="main-image" id="main-image-link">
+                                    <img src="/{{ $product->first_image }}" class="img-thumbnail" id="main-image">
                                 </a>
-                                {{-- <img class="img-thumbnail" src="/{{ $product->first_image }}" id="main-image"> --}}
                             </div>
                         </div>
                         <div id="tab_image" class="owl-carousel mt-3">
@@ -84,11 +81,11 @@
                                 <div class="product__details__option">
                                     <div class="product__details__option__size">
                                         <span>Size:</span>
-                                        @foreach ($sizes as $size)
-                                            <label for="size{{ $size->id }}" @if ($loop->first) class="active" @endif>
-                                                {{ $size->name }}
-                                                <input type="radio" id="size{{ $size->id }}"
-                                                    value="{{ $size->id }}" name="size" @if ($loop->first) checked @endif
+                                        @foreach ($sizes as $item)
+                                            <label for="size{{ $item->size_id }}" @if ($loop->first) class="active" @endif>
+                                                {{ $item->size->name }}
+                                                <input type="radio" id="size{{ $item->size_id }}"
+                                                    value="{{ $item->size_id }}" name="size" @if ($loop->first) checked @endif
                                                     class="size">
                                             </label>
                                         @endforeach

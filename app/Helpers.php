@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\CartService;
 use Illuminate\Support\Facades\File;
 
 if (! function_exists('success')) {
@@ -38,5 +39,12 @@ if (! function_exists('money')) {
     function money($money)
     {
         return '$' . number_format($money, 2, '.', '.');
+    }
+}
+
+if (! function_exists('cart')) {
+    function cart()
+    {
+        return new CartService();
     }
 }

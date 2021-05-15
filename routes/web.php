@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 /* *************Front End************* */
 Route::resource('cart', 'CartController');
-Route::get('update-cart-ajax', 'CartController@updateAjax');
+Route::get('update-cart-ajax', 'CartController@update');
 Route::resource('checkout', 'CheckoutController');
 Route::get('/', 'LandingPageController@index')->name('home');
 Route::get('shop', 'ShopController@index')->name('shop');
 Route::get('product-details/{product}', 'ShopController@show')->name('product-details');
+Route::get('filter', 'ShopController@filter');
 Route::get('all-blogs', 'NewsController@index');
 Route::get('blog-details/{blog}', 'NewsController@show')->name('blog-details');
-Route::get('filter', 'ShopController@filter');
 Route::get('contact/create', 'ContactController@create')->name('contact.create');
 Route::post('contact', 'ContactController@store');
 Route::get('order-checking', 'OrderCheckController@index');

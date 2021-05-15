@@ -275,7 +275,7 @@
     @isset($success)
         <script>
             $("#liveToastSuccess").show();
-            $("#liveToastSuccess").delay(3000).slideUp(200, function() {
+            $("#liveToastSuccess").delay(1500).slideUp(200, function() {
                 $(this).hide();
             });
         </script>

@@ -12,9 +12,9 @@ class WishListController extends Controller
         return view('frontend.wishlist', compact('wishlist'));
     }
 
-    public function store()
+    public function store(Wishlist $wishlist)
     {
-        if (!Wishlist::isExists()) {
+        if (!$wishlist->isExists()) {
             auth()->user()->wishlist()->create(['product_id' => request('product_id')]);
             return success('wishlist.index', 'Added to wishlist');
         }

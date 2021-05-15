@@ -36,7 +36,7 @@ class Product extends Model
         return $this->hasMany('App\Models\ProductAttribute')->where('product_quantity', '>', 0);
     }
 
-    //lấy tất cả attributes 
+    //lấy tất cả attributes
     public function allattributes()
     {
         return $this->hasMany('App\Models\ProductAttribute');
@@ -140,5 +140,14 @@ class Product extends Model
     public function getRatingStarAttribute()
     {
         return round($this->reviews->average('rating'));
+    }
+
+    /*  *****************************METHODS***************************** */
+
+    public function firstAttribute($item)
+    {
+        return $this->attributes()->where('size_id', $item['size'])
+                ->where('color_id', $item['color'])
+                ->first();
     }
 }

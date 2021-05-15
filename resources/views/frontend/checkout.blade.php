@@ -40,11 +40,11 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Full Name<span>*</span></p>
-                                        
-										<input type="text" placeholder="Full Name" name="customer_name" required
-                                        autocomplete="off" value="{{ old('customer_name', $user->name ?? '') }}">
-                                        
-										@error('customer_name')
+
+                                        <input type="text" placeholder="Full Name" name="customer_name" required
+                                            autocomplete="off" value="{{ old('customer_name', $user->name ?? '') }}">
+
+                                        @error('customer_name')
                                             <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -53,8 +53,8 @@
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
 
-                                        <input type="text" placeholder="Phone number" required name="customer_phone" 
-                                        autocomplete="off" value="{{ old('customer_phone', $user->phone ?? '' ) }}">
+                                        <input type="text" placeholder="Phone number" required name="customer_phone"
+                                            autocomplete="off" value="{{ old('customer_phone', $user->phone ?? '') }}">
 
                                         @error('customer_phone')
                                             <div class="error">{{ $message }}</div>
@@ -64,10 +64,10 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        
-                                        <input type="text" placeholder="Email" name="customer_email"
-										autocomplete="off" value="{{ old('customer_email', $user->email ?? '' ) }}">
-                                        
+
+                                        <input type="text" placeholder="Email" name="customer_email" autocomplete="off"
+                                            value="{{ old('customer_email', $user->email ?? '') }}">
+
                                         @error('customer_email')
                                             <div class="error">{{ $message }}</div>
                                         @enderror
@@ -77,18 +77,19 @@
                                     <div class="checkout__input">
                                         <p>Order notes</p>
                                         <input type="text" name="notes" value="{{ old('notes') }}"
-                                        placeholder="Notes about your order, e.g. special notes for delivery.">
+                                            placeholder="Notes about your order, e.g. special notes for delivery.">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Address<span>*</span></p>
-                                        
-                                        <input type="text" placeholder="Your Address" class="checkout__input__add" autocomplete="off"
-										name="customer_address" value="{{ old('customer_address', $user->address ?? '') }}">
-                                        
-										@error('customer_address')
-											<div class="error">{{ $message }}</div>
+
+                                        <input type="text" placeholder="Your Address" class="checkout__input__add"
+                                            autocomplete="off" name="customer_address"
+                                            value="{{ old('customer_address', $user->address ?? '') }}">
+
+                                        @error('customer_address')
+                                            <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -98,9 +99,9 @@
                                         <select id="province" name="province_id">
                                             <option selected value="">Select province</option>
                                             @foreach ($provinces as $province)
-                                                <option value="{{ $province->id }}" 
-												{{ $province->id == old('province_id', $user->province_id ?? '') ? 'selected' : '' }}>
-													{{ $province->name }}
+                                                <option value="{{ $province->id }}"
+                                                    {{ $province->id == old('province_id', $user->province_id ?? '') ? 'selected' : '' }}>
+                                                    {{ $province->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -113,16 +114,16 @@
                                     <div class="checkout__input">
                                         <p>District<span>*</span></p>
                                         <select id="district" name="district_id">
-											@foreach (($user->province->districts ?? []) as $district)
-											<option value="{{ $district->id }}" 
-											{{ ($district->id == $user->district_id ?? '') ? 'selected' : '' }}>
-												{{ $district->name }}
-											</option>
-											@endforeach
+                                            @foreach ($user->province->districts ?? [] as $district)
+                                                <option value="{{ $district->id }}"
+                                                    {{ $district->id == $user->district_id ?? '' ? 'selected' : '' }}>
+                                                    {{ $district->name }}
+                                                </option>
+                                            @endforeach
 
-											@if (!($user->province_id ?? null))
-											<option selected value="">Select District</option>
-											@endif
+                                            @if (!($user->province_id ?? null))
+                                                <option selected value="">Select District</option>
+                                            @endif
                                         </select>
                                         @error('district_id')
                                             <div class="error error-nice-select">{{ $message }}</div>
@@ -133,16 +134,16 @@
                                     <div class="checkout__input">
                                         <p>Ward<span>*</span></p>
                                         <select id="ward" name="ward_id">
-											@foreach (($user->district->wards ?? []) as $ward)
-											<option value="{{ $ward->id }}" 
-											{{ ($ward->id == $user->ward_id ?? '') ? 'selected' : '' }}>
-												{{ $ward->name }}
-											</option>
-											@endforeach
-											
-											@if (!($user->district_id ?? null))
-											<option selected value="">Select Ward</option>
-											@endif
+                                            @foreach ($user->district->wards ?? [] as $ward)
+                                                <option value="{{ $ward->id }}"
+                                                    {{ $ward->id == $user->ward_id ?? '' ? 'selected' : '' }}>
+                                                    {{ $ward->name }}
+                                                </option>
+                                            @endforeach
+
+                                            @if (!($user->district_id ?? null))
+                                                <option selected value="">Select Ward</option>
+                                            @endif
                                         </select>
                                     </div>
                                     @error('ward_id')
@@ -164,12 +165,9 @@
                                 <div class="checkout__order__products font-weight-bold">Product <span>Total</span></div>
                                 <ul class="checkout__total__products">
                                     @foreach ($products as $product)
-                                        @foreach (session('cart.' . $product->id) as $index => $item)
+                                        @foreach ($cart[$product->id] as $index => $item)
                                             @php
-                                                $attribute = $product->attributes
-                                                    ->where('size_id', $item['size'])
-                                                    ->where('color_id', $item['color'])
-                                                    ->first();
+                                                $attribute = $product->firstAttribute($item);
                                             @endphp
 
                                             <input type="hidden" name="size_id[]" value="{{ $item['size'] }}">
@@ -177,7 +175,7 @@
                                             <input type="hidden" name="product_id[]" value="{{ $item['product_id'] }}">
                                             <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
                                             <input type="hidden" name="total[]"
-                                            value="{{ $product->after_discount * $item['quantity'] }}">
+                                                value="{{ $product->after_discount * $item['quantity'] }}">
 
                                             <li>
                                                 <div>{{ $product->name }} - {{ $attribute->color->name }}<br>
@@ -198,7 +196,8 @@
                                     <p><b>PAYMENT METHODS</b></p>
                                     <div class="mb-3">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="cod" name="customRadio" class="custom-control-input" checked>
+                                            <input type="radio" id="cod" name="customRadio" class="custom-control-input"
+                                                checked>
                                             <label class="custom-control-label" for="cod">Direct payment on delivery</label>
                                         </div>
                                         <div class="custom-control custom-radio">
@@ -214,7 +213,7 @@
                                     <button type="submit" class="site-btn" id="site-btn">
                                         PLACE ORDER
                                     </button>
-                                @endif 
+                                @endif
                             </div>
                         </div>
                     </div>
