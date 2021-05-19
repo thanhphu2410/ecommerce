@@ -28,18 +28,24 @@
                     <table class="table table-bordered" id="table">
                         <thead>
                             <tr>
-                                <th>Product Name</th>
-                                <th>Product Price</th>
-                                <th>Product Quantity</th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Category</th>
+                                <th>Sub Category</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
                             <tr>
+                                <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ money($product->price) }}</td>
                                 <td>{{ $product->quantity }}</td>
+                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->subcategory->name }}</td>
                                 <td>
                                     <a href="{{ route('products.show', ['product' => $product->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="View"> 

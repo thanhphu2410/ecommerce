@@ -28,14 +28,18 @@
                     <table class="table table-bordered" id="table">
                         <thead>
                             <tr>
-                                <th>Sub Category Name</th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Category</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($subCategories as $subCategory)
                             <tr>
+                                <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $subCategory->name }}</td>
+                                <td>{{ $subCategory->category->name }}</td>
                                 <td>
                                     <a href="{{ route('sub-categories.edit', ['sub_category' => $subCategory->id ]) }}" 
                                         data-toggle="tooltip" data-original-title="Edit"> 

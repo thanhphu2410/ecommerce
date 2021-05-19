@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'is_staff', 'mark_as_read'])->group(function () {
     Route::get('products/attributes', 'AjaxController@getAllAttributes');
     Route::resource('categories', 'CategoryController');
+    Route::resource('send-email', 'SendEmailController');
     Route::resource('sub-categories', 'SubCategoryController');
     Route::resource('products', 'ProductController');
     Route::resource('sizes', 'SizeController');

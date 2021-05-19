@@ -30,127 +30,158 @@
                                 @enderror
                             </div>
 
-                            <div>
+                            {{-- <div>
                                 <label class="mb-3">Product Attributes</label>
                                 <button type="button" class="btn btn-dark btn-sm" id="addAttribute">
                                     <i class="fas fa-plus"></i>
                                 </button>
-                            </div>
+                            </div> --}}
 
                             <input type="hidden" value="{{ old('sizes') ? count(old('sizes', [])) : 1 }}"
                                 id="currentAttribute">
                             <input type="hidden" value="{{ $sizes->count() * $colors->count() }}" id="maxOfAttribute">
+
                             @if (count(old('sizes', [])) > 0)
-                                <div id="attributeWrapper">
-                                    @foreach (old('sizes') as $index => $item)
-                                        <div class="row align-items-center" id="attribute">
-                                            <div class="col-10 row">
-                                                <div class="form-group col-6">
-                                                    <label>Select sizes</label>
-                                                    <select class="custom-select" name="sizes[]">
-                                                        <option selected value="">Sizes</option>
-                                                        @foreach ($sizes as $size)
-                                                            <option value="{{ $size->id }}" @if ($size->id == $item) selected @endif>
-                                                                {{ $size->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-6">
-                                                    <label>Product Quantity</label>
-                                                    <input type="number" class="form-control" placeholder="Enter Quantity"
-                                                        name="quantity[]" value="{{ old('quantity.' . $loop->index) }}">
-                                                </div>
-
-                                                <div class="form-group col-6">
-                                                    <label>Select colors</label>
-                                                    <select class="custom-select" name="colors[]">
-                                                        <option selected value="">Colors</option>
-                                                        @foreach ($colors as $color)
-                                                            <option value="{{ $color->id }}" @if ($color->id == old('colors')[$index]) selected @endif>
-                                                                {{ $color->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-6">
-                                                    <label>Images</label>
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" multiple class="custom-file-input"
-                                                                name="images{{ $index }}[]" accept="image/*">
-                                                            <label class="custom-file-label">Choose images</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-2">
-                                                <button type="button" class="btn btn-dark deleteAttribute">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <p class="card-title m-0 mr-3">Products Attributes</p>
+                                            <button type="button" class="btn btn-dark btn-sm" id="addAttribute">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
-                                    @endforeach
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sizes</th>
+                                                        <th>Colors</th>
+                                                        <th>Quantity</th>
+                                                        <th>Image</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="attributeWrapper">
+                                                    @foreach (old('sizes') as $index => $item)
+                                                    <tr>
+                                                        <td>
+                                                            <select class="custom-select" name="sizes[]">
+                                                                <option selected value="">Sizes</option>
+                                                                @foreach ($sizes as $size)
+                                                                    <option value="{{ $size->id }}" @if ($size->id == $item) selected @endif>
+                                                                        {{ $size->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="custom-select" name="colors[]">
+                                                                <option selected value="">Colors</option>
+                                                                @foreach ($colors as $color)
+                                                                    <option value="{{ $color->id }}" @if ($color->id == old('colors')[$index]) selected @endif>
+                                                                        {{ $color->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control"
+                                                                placeholder="Enter Quantity" name="quantity[]" value="{{ old('quantity.' . $loop->index) }}">
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-file">
+                                                                <input type="file" multiple class="custom-file-input"
+                                                                    name="images{{ $index }}[]" accept="image/*">
+                                                                <label class="custom-file-label">Choose images</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn-none deleteAttribute" data-toggle="tooltip"
+                                                                data-original-title="Delete">
+                                                                <i class="fa fa-close text-danger"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             @else
-                                <div id="attributeWrapper">
-                                    <div class="row align-items-center" id="attribute">
-                                        <div class="col-10 row">
-                                            <div class="form-group col-6">
-                                                <label>Select sizes</label>
-                                                <select class="custom-select" name="sizes[]">
-                                                    <option selected value="">Sizes</option>
-                                                    @foreach ($sizes as $size)
-                                                        <option value="{{ $size->id }}">{{ $size->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-6">
-                                                <label>Product Quantity</label>
-                                                <input type="number" class="form-control" placeholder="Enter Quantity"
-                                                    name="quantity[]" value="">
-                                            </div>
-
-                                            <div class="form-group col-6">
-                                                <label>Select colors</label>
-                                                <select class="custom-select" name="colors[]">
-                                                    <option selected value="">Colors</option>
-                                                    @foreach ($colors as $color)
-                                                        <option value="{{ $color->id }}">
-                                                            {{ $color->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-6">
-                                                <label>Images</label>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input type="file" multiple class="custom-file-input"
-                                                            name="images0[]" accept="image/*">
-                                                        <label class="custom-file-label">Choose images</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-2 text-center">
-                                            <button type="button" class="btn btn-dark deleteAttribute">
-                                                <i class="fas fa-trash"></i>
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <p class="card-title m-0 mr-3">Products Attributes</p>
+                                            <button type="button" class="btn btn-dark btn-sm" id="addAttribute">
+                                                <i class="fas fa-plus"></i>
                                             </button>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Size</th>
+                                                        <th>Color</th>
+                                                        <th>Quantity</th>
+                                                        <th>Image</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="attributeWrapper">
+                                                    <tr>
+                                                        <td>
+                                                            <select class="custom-select" name="sizes[]">
+                                                                <option selected value="">Sizes</option>
+                                                                @foreach ($sizes as $size)
+                                                                    <option value="{{ $size->id }}">
+                                                                        {{ $size->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="custom-select" name="colors[]">
+                                                                <option selected value="">Colors</option>
+                                                                @foreach ($colors as $color)
+                                                                    <option value="{{ $color->id }}">
+                                                                        {{ $color->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control"
+                                                                placeholder="Enter Quantity" name="quantity[]" value="">
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-file">
+                                                                <input type="file" multiple class="custom-file-input"
+                                                                    name="images0[]" accept="image/*">
+                                                                <label class="custom-file-label">Choose images</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn-none deleteAttribute" data-toggle="tooltip"
+                                                                data-original-title="Delete">
+                                                                <i class="fa fa-close text-danger"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             @endif
+
                             @if ($errors->any())
                                 <div class="error">Please choose images again</div>
                             @endif
                             @error('sizes.*')
+                                <div class="error">The size field is required.</div>
+                            @enderror
+                            @error('colors.*')
                                 <div class="error">The size field is required.</div>
                             @enderror
                             @error('quantity.*')

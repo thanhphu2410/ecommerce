@@ -19,6 +19,18 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             DistrictSeeder::class,
             WardSeeder::class,
+            ColorSeeder::class,
+            SizeSeeder::class,
+            CategorySeeder::class,
+            SubCategorySeeder::class,
+            ProductSeeder::class,
+            ProductAttributeSeeder::class,
+            ProductImageSeeder::class,
+            TagSeeder::class,
+            BlogSeeder::class,
+            BlogTagSeeder::class,
+            AlbumSeeder::class,
+            AlbumImageSeeder::class,
         ]);
     }
 }

@@ -447,6 +447,7 @@ input:focus {
     color: red;
     font-weight: bold;
     user-select: none;
+    font-size: 13px;
 }
 
 .error-nice-select {
@@ -501,4 +502,32 @@ input:focus {
     position: absolute;
     top: 4%;
     left: 4%;
+}
+
+.info-paypal-btn, button.info-paypal-btn:hover, button.info-paypal-btn:focus {
+    background: none;
+    border: none !important;
+}
+
+button.info-paypal-btn:hover i{
+    font-size: 18px;
+    transition: all 0.5s;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+}
+
+.fw-600 {
+    font-weight: 600;   
+}
+
+.fs-15 {
+    font-size: 15px;   
 }

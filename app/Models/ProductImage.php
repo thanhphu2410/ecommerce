@@ -40,7 +40,11 @@ class ProductImage extends Model
             foreach ($old_images as $image) {
                 delete_file($image);
             }
-            self::storeItem($attributes);
+            
+            foreach (request('images'.$index, []) as $image) {
+                $path = store_file($image, 'product');
+                $attribute->images()->create(['path' => $path]);
+            }
         }
     }
 }

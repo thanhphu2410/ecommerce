@@ -283,7 +283,14 @@
                                     <td class="txt-oflo">{{ $item->customer_phone }}</td>
                                     <td class="txt-oflo">{{ $item->price }}</td>
                                     <td>
-                                        <span class="label {{ $item->status_color }}">{{ $item->status }}</span>
+                                        <input type="hidden" value="{{ $item->id }}" id="order_id">
+                                        <select class="form-control" id="order_status">
+                                            <option {{ $item->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                            <option {{ $item->status == 'Shipping' ? 'selected' : '' }}>Shipping</option>
+                                            <option {{ $item->status == 'Delivered' ? 'selected' : '' }}>Delivered
+                                            </option>
+                                        </select>
+                                        {{-- <span class="label {{ $item->status_color }}">{{ $item->status }}</span> --}}
                                     </td>
                                     <td class="txt-oflo">
                                         <a href="{{ route('orders.show', ['order' => $item->id]) }}">VIEW</a>

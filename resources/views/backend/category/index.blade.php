@@ -28,6 +28,7 @@
                     <table class="table table-bordered" id="table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Category Name</th>
                                 <th>Category Image</th>
                                 <th class="text-nowrap">Action</th>
@@ -36,6 +37,7 @@
                         <tbody>
                             @foreach ($categories as $category)
                             <tr>
+                                <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>
                                    <img src="{{ $category->image_path }}" width="100" height="100" class="of-cover">

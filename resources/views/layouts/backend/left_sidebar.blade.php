@@ -36,15 +36,6 @@
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('categories.index') }}">All Categories</a></li>
                         <li><a href="{{ route('categories.create') }}">New Category</a></li>
-                    </ul>
-                </li>
-                <li> 
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
-                        <i class="mdi mdi-tag-multiple"></i>
-                        <span class="hide-menu">Sub Categories</span> 
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('sub-categories.index') }}">All Sub Categories</a></li>
                         <li><a href="{{ route('sub-categories.create') }}">New Sub Category</a></li>
                     </ul>
@@ -91,17 +82,17 @@
                     </a>
                 </li> 
                 <li> 
-                    <a class="waves-effect waves-dark" href="{{ route('customers.index') }}">
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                        <span class="hide-menu">Customers</span> 
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="fas fa-globe-asia"></i>
+                        <span class="hide-menu">Communication</span> 
                     </a>
-                </li> 
-                <li> 
-                    <a class="waves-effect waves-dark" href="{{ url('contact') }}">
-                        <i class="fas fa-address-card"></i>
-                        <span class="hide-menu">Contact Message</span> 
-                    </a>
-                </li> 
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('send-email.create') }}">Inbox</a></li>
+                        <li><a href="{{ url('contact') }}">Contact Message</a></li>
+                        <li><a href="{{ route('customers.index') }}">Customers</a></li>
+                    </ul>
+                </li>
                 <li> 
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">

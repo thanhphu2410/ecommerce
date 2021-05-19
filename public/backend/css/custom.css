@@ -20,7 +20,8 @@
 
 .error {
     color: #e46a76;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 12px;
 }
 .btn-none,
 .btn-none:focus {
@@ -59,4 +60,16 @@
 .album-image {
     height: 162px;
     object-fit: cover;
+}
+th,
+td {
+    text-align: center !important;
+}
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.icon-btn:focus {
+    outline: none;
 }

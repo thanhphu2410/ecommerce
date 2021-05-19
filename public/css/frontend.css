@@ -1347,7 +1347,7 @@ ol {
     margin-right: 10px;
     margin-left: 3px;
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     cursor: pointer;
     top: -12px;
 }
@@ -2843,6 +2843,9 @@ ol {
     font-weight: 700;
     line-height: 28px;
     margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .blog__item__text a {

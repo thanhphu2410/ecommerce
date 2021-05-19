@@ -18,7 +18,7 @@ class AjaxController extends Controller
 
     public function getColor($product, $size)
     {
-        //loại bỏ color trùng id để sửa lỗi hiện thị color trùng 
+        //loại bỏ color trùng id để sửa lỗi hiện thị color trùng
         $attributes = ProductAttribute::where('product_quantity', '>', 0)
                     ->where('product_id', $product)
                     ->where('size_id', $size)

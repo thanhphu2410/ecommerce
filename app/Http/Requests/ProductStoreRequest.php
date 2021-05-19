@@ -33,6 +33,8 @@ class ProductStoreRequest extends FormRequest
             'sub_category_id' => 'required',
             'sizes' => 'required|array',
             'sizes.*' => 'required|numeric',
+            'colors' => 'required|array',
+            'colors.*' => 'required|numeric',
         ];
     }
 }

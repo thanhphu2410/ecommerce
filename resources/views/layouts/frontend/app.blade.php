@@ -203,18 +203,18 @@
                             @foreach ($sub_categories_footer as $item)
                             <li><a href="{{ route('shop', ['subcategory' => $item->id]) }}">{{ $item->name }}</a></li>
                             @endforeach
-                            <li><a href="{{ route('shop', ['sale' => 'yes']) }}">Sale Products</a></li>
+                            <li><a href="{{ route('shop', ['sale' => 'yes']) }}">Sale off</a></li>
+                            <li><a href="{{ url('order-checking') }}">Search Order</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="footer__widget">
-                        <h6>Shopping</h6>
+                        <h6>Contact</h6>
                         <ul>
                             <li><a href="{{ route('contact.create') }}">Contact Us</a></li>
-                            <li><a href="{{ url('order-checking') }}">Check Order</a></li>
-                            <li><a href="#">Delivary</a></li>
-                            <li><a href="#">Return & Exchanges</a></li>
+                            <li><a href="tel:0932042076">0932042076</a></li>
+                            <li><a href="mailto:thanhphu2410@gmail.com">thanhphu2410@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>

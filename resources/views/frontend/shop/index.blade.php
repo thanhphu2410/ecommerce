@@ -21,9 +21,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <a class="btn btn-dark collapseSidebar mb-4" data-toggle="collapse" href="#collapseSidebar" role="button"
-                        aria-expanded="false" aria-controls="collapseSidebar">
-                        Show / Hide Filter 
+                    <a class="btn btn-dark collapseSidebar mb-4" data-toggle="collapse" href="#collapseSidebar"
+                        role="button" aria-expanded="false" aria-controls="collapseSidebar">
+                        Show / Hide Filter
                     </a>
                     <div class="shop__sidebar collapse show" id="collapseSidebar">
                         <div class="shop__sidebar__search">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="shop__sidebar__accordion">
                             <input type="hidden" id="filterUrl"
-                                value="/filter?sortby=asc&category=&subcategory=&sale=no&price=&size=&color=&name=&offset={{ $products->count() }}&limit=5">
+                                value="/filter?sortby=asc&category={{ request('category') }}&subcategory={{ request('subcategory') }}&sale={{ request('sale', 'no') }}&price=&size=&color=&name=&offset={{ $products->count() }}&limit=5">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     <div class="card-heading">
@@ -41,17 +41,14 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll">
-                                                    <input type="hidden" id="categorySelected">
+                                                    <input type="hidden" id="categorySelected" value={{ request('category') }}>
                                                     @foreach ($categories as $category)
-                                                        @php
-                                                            $requestCategory = explode(',', request('category'));
-                                                        @endphp
-                                                        <li class="category @if (in_array($category->
-                                                            id, $requestCategory)) active @endif">
-                                                            <input type="hidden" value="{{ $category->id }}"
-                                                                id="category_id">
-                                                            <span>{{ $category->name }}</span>
-                                                        </li>
+                                                            <li class="category 
+                                                                @if ($category->id == request('category')) active @endif">
+                                                                <input type="hidden" value="{{ $category->id }}"
+                                                                    id="category_id">
+                                                                <span>{{ $category->name }}</span>
+                                                            </li>
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -66,9 +63,10 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll">
-                                                    <input type="hidden" id="subCategorySelected">
+                                                    <input type="hidden" id="subCategorySelected" value={{ request('subcategory') }}>
                                                     @foreach ($subCategories as $subCategory)
-                                                        <li class="sub-category @if (request('subcategory')==$subCategory->id) active @endif">
+                                                        <li class="sub-category 
+                                                            @if (request('subcategory') == $subCategory->id) active @endif">
                                                             <input type="hidden" value="{{ $subCategory->id }}"
                                                                 id="sub_category_id">
                                                             <span>{{ $subCategory->name }}</span>
@@ -106,8 +104,7 @@
                                                     <input type="hidden" id="priceSelected">
                                                     <li class="price">
                                                         <input type="hidden" value="0" id="price">
-                                                        <span>
-                                                            < 200$</span>
+                                                        <span>< 200$</span>
                                                     </li>
 
                                                     <li class="price">
@@ -185,7 +182,7 @@
                                     <p>Showing {{ $products->count() }} results</p>
                                     <div class="spinner-border spinner-border-sm ml-3" role="status" id="spinner"></div>
                                 </div>
-                                
+
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
@@ -241,7 +238,8 @@
                                         <h5 class="discount">
                                             {{ money($product->after_discount) }}
                                             @if ($product->discount > 0)
-                                                <span>{{ money($product->price) }}</span> @endif
+                                                <span>{{ money($product->price) }}</span>
+                                            @endif
                                         </h5>
                                     </div>
                                 </div>

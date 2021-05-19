@@ -110,7 +110,7 @@
                                 <a href="javascript:void(0)" class="dropdown-item">
                                     <i class="ti-wallet"></i> My balance
                                 </a>
-                                <a href="javascript:void(0)" class="dropdown-item">
+                                <a href="{{ route('send-email.create') }}" class="dropdown-item">
                                     <i class="ti-email"></i> Inbox
                                 </a>
                                 <a href="{{ url('logout') }}" class="dropdown-item">
@@ -164,6 +164,20 @@
                 position: "top-right",
                 loaderBg: "#ff6849",
                 icon: "success",
+                hideAfter: 3500,
+                stack: 6
+            });
+        </script>
+    @endisset
+
+    @isset($error)
+        <script>
+            $.toast({
+                heading: "Failed",
+                text: @json($error),
+                position: "top-right",
+                loaderBg: "#ff6849",
+                icon: "error",
                 hideAfter: 3500,
                 stack: 6
             });

@@ -95,7 +95,7 @@
                                         @foreach ($colors as $item)
                                             <label class="color @if ($loop->first) active @endif" style="background:
                                                 {{ $item->color->code }}">
-                                                <input type="radio" name="color" value="{{ $colors[0]->color_id }}" @if ($loop->first) checked @endif>
+                                                <input type="radio" name="color" value="{{ $item->color_id }}" @if ($loop->first) checked @endif>
                                                 <i class="fas fa-check"></i>
                                             </label>
                                         @endforeach

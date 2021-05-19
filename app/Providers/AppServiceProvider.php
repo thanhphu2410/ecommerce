@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with('cart_amount', $amount);
 
-            $subCategories = SubCategory::limit(3)->get();
+            $subCategories = SubCategory::inRandomOrder()->limit(3)->get();
             $view->with('sub_categories_footer', $subCategories);
         });
 

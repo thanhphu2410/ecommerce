@@ -198,16 +198,48 @@
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="cod" name="customRadio" class="custom-control-input"
                                                 checked>
-                                            <label class="custom-control-label" for="cod">Direct payment on delivery</label>
+                                            <label class="custom-control-label fw-600 fs-15" for="cod">COD</label>
+
+                                            <button type="button" class="info-paypal-btn" data-toggle="tooltip" data-placement="top" title="Pay on delivery">
+                                                <i class="fas fa-info-circle"></i>
+                                            </button>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="paypal" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="paypal">PAYPAL</label>
+                                            <label class="custom-control-label fw-600 fs-15" for="paypal">PAYPAL</label>
+
+                                            <button type="button" class="info-paypal-btn" data-toggle="modal"
+                                                data-target="#info_paypal_modal">
+                                                <i class="fas fa-info-circle"></i>
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="info_paypal_modal" data-backdrop="static"
+                                                data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">
+                                                                PAYPAL ACCOUNT TEST
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Username : sb-47duhe6013914@personal.example.com</p>
+                                                            <p>Password : 12345678</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div id="paypal-button" style="display: none"></div>
                                 @elseif(session()->has('paypal_paid'))
-                                    <p><b>You're paid by Paypal</b></p>
+                                    <p><b>You're paid by PAYPAL</b></p>
                                 @endif
                                 @if ($products->count() > 0)
                                     <button type="submit" class="site-btn" id="site-btn">
@@ -222,59 +254,4 @@
         </div>
     </section>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-    <script>
-        paypal.Button.render({
-            // Configure environment
-            env: 'sandbox',
-            client: {
-                sandbox: 'ARtU3c6GkSq_b4FqZGE0_2Sb2VCiOj4wjbyg3_m2CjeFzJaYnCraR8Qe8Bzcc0eN-uRBeFHzzv1TeZ7k',
-                production: 'demo_production_client_id'
-            },
-            // Customize button (optional)
-            locale: 'en_US',
-            style: {
-                size: 'responsive',
-                color: 'black',
-                shape: 'rect',
-                tagline: false
-            },
-
-            // Enable Pay Now checkout flow (optional)
-            commit: true,
-
-            // Set up a payment
-            payment: function(data, actions) {
-                return actions.payment.create({
-                    payment: {
-                        transactions: [{
-                            amount: {
-                                total: Math.round(@json($total) * 100) / 100,
-                                currency: 'USD'
-                            }
-                        }]
-                    },
-                    experience: {
-                        input_fields: {
-                            no_shipping: 1
-                        }
-                    }
-                });
-            },
-            // Execute the payment
-            onAuthorize: function(data, actions) {
-                return actions.payment.execute()
-                    .then(function() {
-                        $.ajax({
-                            url: "/paypal-paid",
-                            type: "get",
-                            dataType: "JSON",
-                        });
-                    })
-                    .then(function() {
-                        $("#checkout-form").submit();
-                    });
-            }
-        }, '#paypal-button');
-
-    </script>
 @endsection
