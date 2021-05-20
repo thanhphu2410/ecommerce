@@ -15,26 +15,34 @@ class SocialController extends Controller
     
     public function callback($provider)
     {
-        $getInfo = Socialite::driver($provider)->user();
-        if ($getInfo->email == null) {
-            return error();
+        try {
+            $getInfo = Socialite::driver($provider)->user();
+            if ($getInfo->email == null) {
+                return error();
+            }
+            $user = $this->createUser($getInfo);
+            auth()->login($user);
+            return redirect()->to('/');
+        } catch (\Exception $th) {
+            return error('home', 'Login failed');
         }
-        $user = $this->createUser($getInfo);
-        auth()->login($user);
-        return redirect()->to('/');
     }
     
     public function createUser($getInfo)
     {
-        $user = User::where('email', $getInfo->email)->first();
-        if (!$user) {
-            $user = User::create([
-                'name'     => $getInfo->name,
-                'email'    => $getInfo->email,
-                'avatar'   => $getInfo->avatar,
-                'password' => Hash::make('123456'),
-            ]);
+        try {
+            $user = User::where('email', $getInfo->email)->first();
+            if (!$user) {
+                $user = User::create([
+                    'name'     => $getInfo->name,
+                    'email'    => $getInfo->email,
+                    'avatar'   => $getInfo->avatar,
+                    'password' => Hash::make('123456'),
+                ]);
+            }
+            return $user;
+        } catch (\Exception $th) {
+            return error('home', 'Login failed');
         }
-        return $user;
     }
 }
