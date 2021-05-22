@@ -13,7 +13,7 @@
 
 <body class="skin-default card-no-border">
     <section id="wrapper">
-        <div class="login-register" style="background-image:url({{ asset('images/login-register.jpg') }});">
+        <div class="login-register" style="background-image:url({{ asset('images/login-register.jpeg') }});">
             <div class="login-box card">
                 <div class="card-body">
                     @if ($errors->first())

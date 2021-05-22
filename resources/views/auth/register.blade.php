@@ -13,16 +13,16 @@
 
 <body class="skin-default card-no-border">
     <section id="wrapper">
-        <div class="login-register" style="background-image:url({{ asset('images/login-register.jpg') }});">
+        <div class="login-register" style="background-image:url({{ asset('images/login-register.jpeg') }});">
             <div class="login-box card">
                 <div class="card-body">
                     @if ($errors->first())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ $errors->first() }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ $errors->first() }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     @endif
                     <form action="{{ route('register') }}" class="form-horizontal form-material" id="loginform"
                         method="POST">
@@ -79,4 +79,5 @@
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
 </body>
+
 </html>

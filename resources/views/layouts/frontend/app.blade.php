@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" sizes="16x16" 
-    href="{{ asset('images/favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.svg') }}">
     <title>{{ $setting->site_title }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/frontend.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" /> --}}
+
+    <link rel="stylesheet" href="{{ asset('bundle/frontend/app.css') }}" type="text/css" />
     @yield('css')
 </head>
 
 <body>
     <div class="position-fixed p-3 toast-wrapper">
         <div id="liveToastSuccess" class="alert alert-success alert-dismissible" role="alert">
-            {{ $success ?? "Operation successful" }}
+            {{ $success ?? 'Operation successful' }}
             <button type="button" class="close" id="close_success">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -33,7 +33,7 @@
     </div>
     <div class="position-fixed p-3 toast-wrapper">
         <div id="liveToastError" class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $error ?? "Operation failed" }}
+            {{ $error ?? 'Operation failed' }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -128,19 +128,19 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li @if(url()->current() == url("/")) class="active" @endif>
+                            <li @if (url()->current() == url('/')) class="active" @endif>
                                 <a href="/">Home</a>
                             </li>
-                            <li @if(url()->current() == url("shop")) class="active" @endif>
+                            <li @if (url()->current() == url('shop')) class="active" @endif>
                                 <a href="{{ route('shop') }}">Shop</a>
                             </li>
-                            <li @if(url()->current() == url("all-blogs")) class="active" @endif>
+                            <li @if (url()->current() == url('all-blogs')) class="active" @endif>
                                 <a href="{{ url('all-blogs') }}">Blog</a>
                             </li>
-                            <li @if(url()->current() == url("contact/create")) class="active" @endif>
+                            <li @if (url()->current() == url('contact/create')) class="active" @endif>
                                 <a href="{{ route('contact.create') }}">Contacts</a>
                             </li>
-                            <li @if(url()->current() == url("checkout/create")) class="active" @endif>
+                            <li @if (url()->current() == url('checkout/create')) class="active" @endif>
                                 <a href="{{ route('checkout.create') }}">Checkout</a>
                             </li>
                             <li class="mobile-only">
@@ -201,7 +201,9 @@
                         <h6>Shopping</h6>
                         <ul>
                             @foreach ($sub_categories_footer as $item)
-                            <li><a href="{{ route('shop', ['subcategory' => $item->id]) }}">{{ $item->name }}</a></li>
+                                <li><a
+                                        href="{{ route('shop', ['subcategory' => $item->id]) }}">{{ $item->name }}</a>
+                                </li>
                             @endforeach
                             <li><a href="{{ route('shop', ['sale' => 'yes']) }}">Sale off</a></li>
                             <li><a href="{{ url('order-checking') }}">Search Order</a></li>
@@ -252,10 +254,7 @@
         </div>
     </div>
 
-	{{-- <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> --}}
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/fontawesome.js') }}"></script>
     <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
@@ -265,10 +264,14 @@
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{ asset('js/use_owlcarousel.js') }}"></script>
+    <script src="{{ asset('js/use_owlcarousel.js') }}"></script> --}}
+
+    <script src="{{ asset('bundle/frontend/app.js') }}"></script>
+
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
         <symbol id="star" viewBox="0 0 26 28">
-          <path d="M26 10.109c0 .281-.203.547-.406.75l-5.672 5.531 1.344 7.812c.016.109.016.203.016.313 0 .406-.187.781-.641.781a1.27 1.27 0 0 1-.625-.187L13 21.422l-7.016 3.687c-.203.109-.406.187-.625.187-.453 0-.656-.375-.656-.781 0-.109.016-.203.031-.313l1.344-7.812L.39 10.859c-.187-.203-.391-.469-.391-.75 0-.469.484-.656.875-.719l7.844-1.141 3.516-7.109c.141-.297.406-.641.766-.641s.625.344.766.641l3.516 7.109 7.844 1.141c.375.063.875.25.875.719z"/>
+            <path
+                d="M26 10.109c0 .281-.203.547-.406.75l-5.672 5.531 1.344 7.812c.016.109.016.203.016.313 0 .406-.187.781-.641.781a1.27 1.27 0 0 1-.625-.187L13 21.422l-7.016 3.687c-.203.109-.406.187-.625.187-.453 0-.656-.375-.656-.781 0-.109.016-.203.031-.313l1.344-7.812L.39 10.859c-.187-.203-.391-.469-.391-.75 0-.469.484-.656.875-.719l7.844-1.141 3.516-7.109c.141-.297.406-.641.766-.641s.625.344.766.641l3.516 7.109 7.844 1.141c.375.063.875.25.875.719z" />
         </symbol>
     </svg>
 
@@ -278,6 +281,7 @@
             $("#liveToastSuccess").delay(1500).slideUp(200, function() {
                 $(this).hide();
             });
+
         </script>
     @endisset
 
@@ -287,6 +291,7 @@
             $("#liveToastError").delay(1500).slideUp(200, function() {
                 $(this).hide();
             });
+
         </script>
     @endisset
 

@@ -2,7 +2,7 @@
 @section('content')
     <section class="hero">
         <div class="hero__slider owl-carousel" id="background">
-            <div class="hero__items set-bg" data-setbg="{{ asset('images/background_1.jpg') }}">
+            <div class="hero__items set-bg" data-setbg="{{ asset('images/background_1.jpeg') }}">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="{{ asset('images/background_2.jpg') }}">
+            <div class="hero__items set-bg" data-setbg="{{ asset('images/background_2.jpeg') }}">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
@@ -56,10 +56,10 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('images/background_1.jpg') }}" class="d-block w-100">
+                    <img src="{{ asset('images/background_1.jpeg') }}" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('images/background_2.jpg') }}" class="d-block w-100">
+                    <img src="{{ asset('images/background_2.jpeg') }}" class="d-block w-100">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

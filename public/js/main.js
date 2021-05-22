@@ -69,7 +69,6 @@
             ".product__color__select label, .product__details__option__size label"
         ).removeClass("active");
         $(this).addClass("active");
-        console.log("hello");
     });
 
     /*-------------------

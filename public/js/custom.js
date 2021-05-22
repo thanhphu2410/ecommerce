@@ -250,7 +250,9 @@ $("#paypal").on("click", function() {
                                     {
                                         amount: {
                                             total:
-                                                Math.round($("#old_price").val() * 100) / 100,
+                                                Math.round(
+                                                    $("#old_price").val() * 100
+                                                ) / 100,
                                             currency: "USD"
                                         }
                                     }

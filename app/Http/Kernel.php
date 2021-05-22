@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is_staff' => \App\Http\Middleware\CheckStaff::class,
         'mark_as_read' => \App\Http\Middleware\MarkAsReadNotification::class,
+        'HtmlMinifier' => \App\Http\Middleware\HtmlMinifier::class,
     ];
 }

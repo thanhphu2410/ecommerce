@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,16 +13,16 @@
 
 <body class="skin-default card-no-border">
     <section id="wrapper">
-        <div class="login-register" style="background-image:url({{ asset('images/login-register.jpg') }});">
+        <div class="login-register" style="background-image:url({{ asset('images/login-register.jpeg') }});">
             <div class="login-box card">
                 <div class="card-body">
                     @if ($errors->first())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ $errors->first() }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ $errors->first() }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     @endif
                     <form action="{{ route('login') }}" method="POST" class="form-horizontal form-material"
                         id="loginform">
@@ -58,12 +59,13 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                                 <div class="social">
-                                    <a href="{{ url('auth/redirect/facebook') }}" class="btn btn-facebook" data-toggle="tooltip"
-                                        title="Login with Facebook">
+                                    <a href="{{ url('auth/redirect/facebook') }}" class="btn btn-facebook"
+                                        data-toggle="tooltip" title="Login with Facebook">
                                         <i aria-hidden="true" class="fa fa-facebook"></i>
                                     </a>
-                                    <a href="{{ url('auth/redirect/google') }}" class="btn btn-googleplus" data-toggle="tooltip"
-                                        title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i>
+                                    <a href="{{ url('auth/redirect/google') }}" class="btn btn-googleplus"
+                                        data-toggle="tooltip" title="Login with Google"> <i aria-hidden="true"
+                                            class="fa fa-google-plus"></i>
                                     </a>
                                 </div>
                             </div>
@@ -85,4 +87,5 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 </body>
+
 </html>
