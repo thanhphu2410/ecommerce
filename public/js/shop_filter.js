@@ -1,6 +1,8 @@
 $(".category").on("click", function(e) {
     e.preventDefault();
-    $(this).hasClass("active") ? $(this).removeClass("active") : $(this).addClass("active");
+    $(this).hasClass("active")
+        ? $(this).removeClass("active")
+        : $(this).addClass("active");
     var category_id = $(this)
         .children("#category_id")
         .val();
