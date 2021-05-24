@@ -10,14 +10,6 @@
     <title>{{ $setting->site_title }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
-    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/frontend.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" /> --}}
-
     <link rel="stylesheet" href="{{ asset('bundle/frontend/app.css') }}" type="text/css" />
     @yield('css')
 </head>
@@ -254,20 +246,7 @@
         </div>
     </div>
 
-    {{-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/fontawesome.js') }}"></script>
-    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('js/mixitup.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{ asset('js/use_owlcarousel.js') }}"></script> --}}
-
     <script src="{{ asset('bundle/frontend/app.js') }}"></script>
-
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
         <symbol id="star" viewBox="0 0 26 28">
             <path
