@@ -22,11 +22,11 @@ class ShopController extends Controller
         $subCategories = Cache::remember('subCategories', now()->addMinutes(10), function () {
             return SubCategory::all();
         });
-        $sizes = Cache::remember('subCategories', now()->addMinutes(10), function () {
-            return Cache::all();
+        $sizes = Cache::remember('sizes', now()->addMinutes(10), function () {
+            return Size::all();
         });
-        $colors = Cache::remember('subCategories', now()->addMinutes(10), function () {
-            return SubCategory::all();
+        $colors = Cache::remember('colors', now()->addMinutes(10), function () {
+            return Color::all();
         });
         // $categories = Category::all();
         // $subCategories = SubCategory::all();
