@@ -257,6 +257,6 @@
     </section>
 @endsection
 
-{{-- @section('script')
+@section('script')
     <script src="{{ asset('js/shop_filter.js') }}"></script>
-@endsection --}}
+@endsection

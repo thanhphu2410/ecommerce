@@ -9,16 +9,29 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\ViewedProduct;
 use App\Services\ShopService;
+use Illuminate\Support\Facades\Cache;
 
 class ShopController extends Controller
 {
     public function index()
     {
         $products = $this->filter();
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
-        $sizes = Size::all();
-        $colors = Color::all();
+        $categories = Cache::remember('categories', now()->addMinutes(10), function () {
+            return Category::all();
+        });
+        $subCategories = Cache::remember('subCategories', now()->addMinutes(10), function () {
+            return SubCategory::all();
+        });
+        $sizes = Cache::remember('subCategories', now()->addMinutes(10), function () {
+            return Cache::all();
+        });
+        $colors = Cache::remember('subCategories', now()->addMinutes(10), function () {
+            return SubCategory::all();
+        });
+        // $categories = Category::all();
+        // $subCategories = SubCategory::all();
+        // $sizes = Size::all();
+        // $colors = Color::all();
         return view('frontend.shop.index', compact('products', 'categories', 'sizes', 'subCategories', 'colors'));
     }
 
