@@ -17,7 +17,7 @@ class LandingPageController extends Controller
         });
 
         $newArrivals = Cache::remember('newArrivals', now()->addMinutes(10), function () use ($product) {
-            return $product->best_seller;
+            return $product->new_arrival;
         });
 
         $hotSales = Cache::remember('hotSales', now()->addMinutes(10), function () use ($product) {
