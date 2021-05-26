@@ -38,6 +38,7 @@ mix.scripts(
         "public/js/owl.carousel.min.js",
         "public/js/use_owlcarousel.js",
         "public/js/custom.js",
+        "public/js/shop_filter.js",
         "public/js/main.js"
     ],
     "public/bundle/frontend/app.js"
