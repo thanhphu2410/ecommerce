@@ -246,7 +246,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('bundle/frontend/app.js') }}" defer></script>
+    <script src="{{ asset('bundle/frontend/app.js') }}"></script>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
         <symbol id="star" viewBox="0 0 26 28">
             <path
